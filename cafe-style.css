@@ -1,8 +1,13 @@
 /* ==========================================================================
-   KŌHĪ ATELIER — MINIMALIST BOTANICAL COFFEE & SLOW BAKERY
-   Aesthetic: Tokyo & Copenhagen Restrained Editorial Minimalism.
-   Palette: Warm Oat Cream (#F7F4EE), Rich Espresso Ink (#1F1612),
-   Roasted Hazelnut (#C68A4C), Terracotta Cinnamon (#9B4F32), Muted Olive (#4A5441)
+   KŌHĪ ATELIER — HIGH-LEVEL ANIMATED STYLESHEET
+   Features:
+   - Tactile Fluid Cursor with Proximity Magnetism
+   - 3D Interactive Card Tilt with Specular Glare
+   - Pinned Scroll-Scrubbed "Anatomy of an Extraction" Assembly Sequence
+   - Pinned Horizontal Tasting Gallery Deck
+   - Ambient Canvas Steam & Particle Turbulence
+   - Split-Text Mask Reveals & Kinetic Typography
+   - 60 FPS Hardware-Accelerated Transforms & Easing
    ========================================================================== */
 
 :root {
@@ -35,10 +40,11 @@
   --radius-lg: 28px;
   --radius-pill: 9999px;
   
-  --max-w: 1240px;
+  --max-w: 1260px;
   --transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --shadow-soft: 0 10px 30px rgba(31, 22, 18, 0.05);
-  --shadow-hover: 0 18px 45px rgba(31, 22, 18, 0.1);
+  --shadow-hover: 0 20px 50px rgba(31, 22, 18, 0.12);
 }
 
 /* Base & Reset */
@@ -67,15 +73,26 @@ body {
   background-size: 28px 28px;
 }
 
-/* Subtle tactile linen noise */
+/* Subtle tactile linen noise filter */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 9990;
   pointer-events: none;
   opacity: 0.35;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3 0 0 0 0 .22 0 0 0 0 .15 0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Ambient Steam Canvas Background */
+#steamCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.65;
 }
 
 a {
@@ -102,6 +119,49 @@ button {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 28px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   CUSTOM FLUID TACTILE CURSOR
+   ========================================================================== */
+.kohi-cursor-dot,
+.kohi-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: opacity 0.3s ease;
+}
+
+.kohi-cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--c-accent);
+}
+
+.kohi-cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(198, 138, 76, 0.45);
+  transition: width 0.25s var(--transition), height 0.25s var(--transition), border-color 0.25s, background-color 0.25s;
+}
+
+.kohi-cursor-ring.active-hover {
+  width: 64px;
+  height: 64px;
+  border-color: var(--c-accent);
+  background-color: rgba(198, 138, 76, 0.08);
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  .kohi-cursor-dot, .kohi-cursor-ring {
+    display: none !important;
+  }
 }
 
 /* Typography Helpers */
@@ -113,7 +173,7 @@ button {
 
 .caps-title {
   font-family: var(--font-caps);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -129,9 +189,32 @@ button {
   color: var(--c-olive);
 }
 
+/* Kinetic Mask Text Reveal */
+.split-line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+.split-line-inner {
+  display: block;
+  transform: translateY(115%);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-line-mask.is-revealed .split-line-inner {
+  transform: translateY(0);
+}
+
 /* ==========================================================================
-   BUTTONS & MICRO-INTERACTIONS
+   MAGNETIC BUTTONS & INTERACTIONS
    ========================================================================== */
+.btn-primary, .btn-outline {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  will-change: transform;
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -139,23 +222,23 @@ button {
   gap: 10px;
   background-color: var(--c-ink);
   color: #FFFFFF;
-  padding: 12px 26px;
+  padding: 14px 30px;
   border-radius: var(--radius-pill);
   font-family: var(--font-caps);
   font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 500;
   border: 1px solid var(--c-ink);
-  box-shadow: 0 4px 14px rgba(31, 22, 18, 0.12);
-  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(31, 22, 18, 0.15);
+  transition: transform 0.3s var(--transition), background-color 0.3s, box-shadow 0.3s;
 }
 
 .btn-primary:hover {
   background-color: var(--c-accent);
   border-color: var(--c-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(198, 138, 76, 0.3);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(198, 138, 76, 0.35);
 }
 
 .btn-outline {
@@ -165,29 +248,29 @@ button {
   gap: 10px;
   background-color: transparent;
   color: var(--c-ink);
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: var(--radius-pill);
   font-family: var(--font-caps);
   font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   border: 1px solid var(--c-border-strong);
-  transition: var(--transition);
+  transition: transform 0.3s var(--transition), border-color 0.3s, background-color 0.3s;
 }
 
 .btn-outline:hover {
   border-color: var(--c-ink);
   background-color: var(--c-bg-card);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .btn-sm {
-  padding: 8px 16px;
+  padding: 8px 18px;
   font-size: 0.6875rem;
 }
 
 /* ==========================================================================
-   1. ANNOUNCEMENT MARQUEE STRIP
+   1. ANNOUNCEMENT STRIP
    ========================================================================== */
 .kohi-strip {
   background-color: var(--c-ink);
@@ -196,6 +279,8 @@ button {
   letter-spacing: 0.08em;
   padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 50;
 }
 
 .strip-inner {
@@ -234,15 +319,15 @@ button {
 }
 
 /* ==========================================================================
-   2. ATELIER EDITORIAL HEADER
+   2. STICKY EDITORIAL NAVBAR
    ========================================================================== */
 .kohi-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(247, 244, 238, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background-color: rgba(247, 244, 238, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--c-border);
   transition: padding var(--transition), box-shadow var(--transition);
 }
@@ -251,7 +336,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 82px;
+  height: 84px;
 }
 
 .brand-anchor {
@@ -261,22 +346,22 @@ button {
 }
 
 .brand-emblem {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid var(--c-border-strong);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-caps);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--c-accent);
-  transition: transform var(--transition);
+  transition: transform 0.6s var(--ease-elastic);
 }
 
 .brand-anchor:hover .brand-emblem {
-  transform: rotate(45deg);
+  transform: rotate(90deg);
   border-color: var(--c-accent);
 }
 
@@ -287,7 +372,7 @@ button {
 
 .brand-name {
   font-family: var(--font-caps);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   color: var(--c-ink);
@@ -305,13 +390,13 @@ button {
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 34px;
+  gap: 36px;
 }
 
 .nav-link {
   font-family: var(--font-caps);
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--c-ink-muted);
   position: relative;
@@ -340,7 +425,7 @@ button {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .tray-btn {
@@ -348,8 +433,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--c-border);
   color: var(--c-ink);
@@ -359,6 +444,7 @@ button {
 .tray-btn:hover {
   background-color: var(--c-bg-subtle);
   border-color: var(--c-accent);
+  transform: scale(1.05);
 }
 
 .tray-badge {
@@ -376,7 +462,7 @@ button {
   align-items: center;
   justify-content: center;
   transform: scale(0);
-  transition: transform var(--transition);
+  transition: transform 0.4s var(--ease-elastic);
 }
 
 .tray-badge.active {
@@ -384,11 +470,12 @@ button {
 }
 
 /* ==========================================================================
-   3. HERO SECTION (SPLIT WITH AMBIENT 4K VIDEO & ROTATING SEAL)
+   3. HERO SECTION WITH 3D DEPTH & AMBIENT VIDEO
    ========================================================================== */
 .kohi-hero {
-  padding: 72px 0 96px;
+  padding: 80px 0 100px;
   position: relative;
+  perspective: 1200px;
 }
 
 .hero-grid {
@@ -406,16 +493,22 @@ button {
 }
 
 .kicker-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: var(--c-accent);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
 }
 
 .kicker-text {
   font-family: var(--font-caps);
   font-size: 0.6875rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--c-accent);
   font-weight: 600;
@@ -423,8 +516,8 @@ button {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 5.5vw, 5.2rem);
-  line-height: 1.05;
+  font-size: clamp(3.2rem, 5.6vw, 5.4rem);
+  line-height: 1.04;
   font-weight: 400;
   color: var(--c-ink);
   letter-spacing: -0.015em;
@@ -466,7 +559,7 @@ button {
 
 .metric-val {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
   line-height: 1;
   color: var(--c-ink);
@@ -480,9 +573,10 @@ button {
   margin-top: 4px;
 }
 
-/* Right Column: Hero Video Frame with Rotating Seal */
+/* Hero Video Frame & Rotating Seal */
 .hero-media-col {
   position: relative;
+  transform-style: preserve-3d;
 }
 
 .hero-video-frame {
@@ -493,23 +587,24 @@ button {
   aspect-ratio: 4 / 5;
   background-color: var(--c-bg-subtle);
   border: 1px solid var(--c-border);
+  transition: transform 0.6s var(--transition);
 }
 
 .hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
+  transition: transform 1.2s ease;
 }
 
 .hero-video-frame:hover .hero-video {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .video-overlay-tint {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(31, 22, 18, 0.05) 0%, rgba(31, 22, 18, 0.45) 100%);
+  background: linear-gradient(180deg, rgba(31, 22, 18, 0.05) 0%, rgba(31, 22, 18, 0.5) 100%);
   pointer-events: none;
 }
 
@@ -517,7 +612,7 @@ button {
   position: absolute;
   top: 18px;
   left: 18px;
-  background-color: rgba(247, 244, 238, 0.92);
+  background-color: rgba(247, 244, 238, 0.94);
   backdrop-filter: blur(8px);
   border: 1px solid var(--c-border);
   padding: 6px 14px;
@@ -534,7 +629,7 @@ button {
   left: 20px;
   right: 20px;
   bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.94);
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-sm);
@@ -572,11 +667,7 @@ button {
 .stamp-svg-ring {
   width: 100%;
   height: 100%;
-  animation: spinStamp 28s linear infinite;
-}
-
-@keyframes spinStamp {
-  to { transform: rotate(360deg); }
+  will-change: transform;
 }
 
 .stamp-center-bean {
@@ -599,66 +690,227 @@ button {
 }
 
 /* ==========================================================================
-   4. PHILOSOPHY & BOTANICAL CRAFT (EDITORIAL ACCENT)
+   4. SIGNATURE FEATURE: PINNED SCROLL-SCRUBBED ANATOMY ASSEMBLY
    ========================================================================== */
-.kohi-philosophy {
-  padding: 96px 0;
+.anatomy-pinned-section {
+  position: relative;
   background-color: var(--c-bg-subtle);
   border-top: 1px solid var(--c-border);
   border-bottom: 1px solid var(--c-border);
+  overflow: hidden;
 }
 
-.philosophy-inner {
-  max-width: 840px;
+.anatomy-pinned-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 40px 0;
+}
+
+.anatomy-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+
+.anatomy-stage-box {
+  position: relative;
+  max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
+  height: 520px;
+  width: 100%;
+  perspective: 1400px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
 }
 
-.philo-quote {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.4vw, 3.2rem);
-  line-height: 1.25;
-  font-weight: 400;
-  color: var(--c-ink);
-  letter-spacing: -0.01em;
-  margin-bottom: 24px;
+/* 3D Visual Extraction Core */
+.anatomy-visual-core {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
 }
 
-.philo-author {
+.anatomy-layer {
+  position: absolute;
+  width: 280px;
+  height: 110px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--c-border-accent);
+  box-shadow: 0 16px 40px rgba(31, 22, 18, 0.12);
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  gap: 16px;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+.layer-icon-disc {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-border-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.layer-info h4 {
   font-family: var(--font-caps);
-  font-size: 0.75rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--c-accent);
+  font-size: 0.8125rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-ink);
+  margin-bottom: 2px;
 }
 
-/* ==========================================================================
-   5. SIGNATURE CREATIONS / CURATED BREW CARDS
-   ========================================================================== */
-.kohi-creations {
-  padding: 104px 0;
+.layer-info p {
+  font-size: 0.75rem;
+  color: var(--c-ink-muted);
 }
 
-.section-head-block {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto 56px;
+/* Anatomy Narrative Cards on the Right */
+.anatomy-narrative-col {
+  position: relative;
+  height: 380px;
 }
 
-.section-title {
+.anatomy-card-slide {
+  position: absolute;
+  inset: 0;
+  background-color: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: 40px;
+  box-shadow: var(--shadow-hover);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.anatomy-card-slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.slide-step-badge {
+  font-family: var(--font-caps);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  color: var(--c-accent);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.slide-title {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 3.8vw, 3.5rem);
-  line-height: 1.1;
+  font-size: 2.2rem;
   font-weight: 400;
+  line-height: 1.15;
   color: var(--c-ink);
   margin-bottom: 14px;
 }
 
-.section-lead {
-  font-size: 1.0625rem;
+.slide-body {
+  font-size: 0.9375rem;
   color: var(--c-ink-muted);
-  line-height: 1.6;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   5. PINNED HORIZONTAL TASTING GALLERY DECK
+   ========================================================================== */
+.horizontal-deck-section {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--c-bg);
+  padding: 100px 0;
+}
+
+.deck-container {
+  overflow: hidden;
+}
+
+.deck-track {
+  display: flex;
+  gap: 36px;
+  width: max-content;
+  will-change: transform;
+  padding-left: calc((100vw - var(--max-w)) / 2 + 28px);
+}
+
+.deck-slide-card {
+  width: 440px;
+  flex-shrink: 0;
+  background-color: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.4s var(--transition), box-shadow 0.4s;
+}
+
+.deck-slide-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.deck-slide-media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  position: relative;
+}
+
+.deck-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.deck-slide-card:hover .deck-slide-img {
+  transform: scale(1.06);
+}
+
+.deck-slide-body {
+  padding: 28px;
+}
+
+/* ==========================================================================
+   6. 3D TILT CARDS WITH SPECULAR GLARE
+   ========================================================================== */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+  position: relative;
+}
+
+.card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+  z-index: 10;
 }
 
 /* 3-Column Clean Card Grid */
@@ -676,13 +928,6 @@ button {
   box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-}
-
-.creation-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--c-border-strong);
 }
 
 .card-media-box {
@@ -700,7 +945,7 @@ button {
 }
 
 .creation-card:hover .card-img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .card-tag {
@@ -805,14 +1050,71 @@ button {
 
 .btn-add-tray:hover {
   color: var(--c-accent-hover);
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
 /* ==========================================================================
-   6. BENTO EXPERIENCE & TASTING WORKSHOP
+   7. BENTO & PHILOSOPHY
    ========================================================================== */
+.kohi-philosophy {
+  padding: 100px 0;
+  background-color: var(--c-bg-subtle);
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.philosophy-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.philo-quote {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.4vw, 3.2rem);
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--c-ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.philo-author {
+  font-family: var(--font-caps);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+.kohi-creations {
+  padding: 110px 0;
+}
+
+.section-head-block {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto 60px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 3.8vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--c-ink);
+  margin-bottom: 14px;
+}
+
+.section-lead {
+  font-size: 1.0625rem;
+  color: var(--c-ink-muted);
+  line-height: 1.6;
+}
+
 .kohi-experience {
-  padding: 96px 0;
+  padding: 100px 0;
   background-color: var(--c-bg-subtle);
   border-top: 1px solid var(--c-border);
 }
@@ -914,7 +1216,7 @@ button {
 }
 
 /* ==========================================================================
-   7. PRIVATE TABLE & BARISTA FLIGHT RESERVATION MODAL
+   8. MODAL & DRAWER STYLING
    ========================================================================== */
 .kohi-modal-overlay {
   position: fixed;
@@ -1019,9 +1321,6 @@ button {
   box-shadow: 0 0 0 3px rgba(198, 138, 76, 0.12);
 }
 
-/* ==========================================================================
-   8. TASTING TRAY FLYOUT DRAWER
-   ========================================================================== */
 .tray-drawer-overlay {
   position: fixed;
   inset: 0;
@@ -1114,9 +1413,7 @@ button {
   color: var(--c-cinnamon);
 }
 
-/* ==========================================================================
-   9. EDITORIAL FOOTER
-   ========================================================================== */
+/* Footer */
 .kohi-footer {
   background-color: var(--c-ink);
   color: var(--c-bg-subtle);
@@ -1193,7 +1490,6 @@ button {
   gap: 16px;
 }
 
-/* Toast */
 .kohi-toast {
   position: fixed;
   bottom: 28px;
@@ -1217,9 +1513,9 @@ button {
   opacity: 1;
 }
 
-/* Responsive */
+/* Responsive Media Queries */
 @media (max-width: 960px) {
-  .hero-grid, .bento-grid {
+  .hero-grid, .bento-grid, .anatomy-stage-box {
     grid-template-columns: 1fr;
     gap: 48px;
   }
@@ -1243,5 +1539,8 @@ button {
   }
   .hero-title {
     font-size: 2.8rem;
+  }
+  .deck-slide-card {
+    width: 320px;
   }
 }
