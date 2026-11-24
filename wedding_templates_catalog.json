@@ -1,0 +1,198 @@
+{
+  "catalog": "Knotlink & Premium Wedding Invitation Websites",
+  "generated_at": "2026-11-24",
+  "description": "Comprehensive reference of top 10 royal and modern wedding invitation website templates for future client deployments.",
+  "templates": [
+    {
+      "id": "rangmahal",
+      "name": "Rangmahal (The Palace)",
+      "culture": "Rajasthani Hindu Royal Heritage",
+      "signature_animation": "Carved 3D palace doors swing open on scroll into a glowing courtyard with floating marigold and rose petals",
+      "primary_colors": {
+        "maroon": "#4C1026",
+        "gold": "#C08A2E",
+        "ivory": "#FBF4E6",
+        "peacock": "#0F3F3D"
+      },
+      "typography": ["Cinzel (Caps)", "Cormorant Garamond (Italic Serif)"],
+      "key_features": [
+        "3D palace doors scroll opening",
+        "Sacred Lord Ganesha blessing with editable mantra",
+        "Four color-coded events (Mehendi, Haldi, Sangeet, Wedding)",
+        "Swipeable pre-wedding photo gallery",
+        "Couple photo in carved marble jharokha frame",
+        "One-tap WhatsApp RSVP with pre-filled guest message",
+        "Good-to-know travel tiles (hashtag, weather, stay, parking)",
+        "Live dusk countdown with flickering lake diyas",
+        "Audio engine with original classical theme"
+      ]
+    },
+    {
+      "id": "phulkari",
+      "name": "Phulkari (The Bloom)",
+      "culture": "Punjabi Heritage & Royal Sangeet",
+      "signature_animation": "Intricate embroidery threads stitch themselves across the screen, unfolding bright marigold and fuchsia canopy",
+      "primary_colors": {
+        "mustard": "#E1A21B",
+        "fuchsia": "#C2185B",
+        "emerald": "#1B5E20",
+        "gold": "#FFD54F"
+      },
+      "typography": ["Rozha One", "Montserrat"],
+      "key_features": [
+        "Vibrant marigold toran animation",
+        "Energetic Dhol and Sangeet soundscapes",
+        "Boliyaan and interactive song request jukebox",
+        "Baraat location live tracker link"
+      ]
+    },
+    {
+      "id": "kolam",
+      "name": "Kolam (Sacred Threshold)",
+      "culture": "South Indian Traditional & Vedic",
+      "signature_animation": "Rice-powder sacred geometric Kolam draws itself line-by-line upon page load with glowing brass kuthuvilakku lamps",
+      "primary_colors": {
+        "turmeric": "#FFB300",
+        "kumkum": "#880E4F",
+        "cream": "#FFF8E1",
+        "leaf_green": "#2E7D32"
+      },
+      "typography": ["Cinzel Decorative", "Anek Tamil", "Jost"],
+      "key_features": [
+        "Sacred Mangalashtakam chanting background",
+        "Banana leaf & jasmine floral borders",
+        "Muhurtham timing countdown",
+        "Traditional temple wedding schedule"
+      ]
+    },
+    {
+      "id": "noor",
+      "name": "Noor (The Light)",
+      "culture": "Mughal & Nawabi Royal Heritage",
+      "signature_animation": "Fine jaali (lattice stone) screen dissolves with cinematic light rays and delicate gold arabesque flourishes",
+      "primary_colors": {
+        "emerald": "#0D382B",
+        "ivory": "#FAF8F2",
+        "champagne": "#D4AF37",
+        "ruby": "#6B1D2F"
+      },
+      "typography": ["Playfair Display", "Amiri", "Cinzel"],
+      "key_features": [
+        "Bismillah calligraphy and Dua blessing",
+        "Nikah & Walima ceremony cards",
+        "Archival Mughal botanical illustrations",
+        "Sufi instrumental audio stream"
+      ]
+    },
+    {
+      "id": "capela",
+      "name": "Capela (The Coastal Chapel)",
+      "culture": "Goan Portuguese & Coastal Catholic",
+      "signature_animation": "Hand-painted blue Azulejo ceramic tiles flip and align into an arch with blooming magenta bougainvillea petals",
+      "primary_colors": {
+        "azulejo_blue": "#1A365D",
+        "bougainvillea": "#D81B60",
+        "white_stucco": "#FFFFFF",
+        "sandy_gold": "#D4AF37"
+      },
+      "typography": ["Cormorant Garamond", "Cinzel"],
+      "key_features": [
+        "Seaside breeze wave audio & church bell chime",
+        "Beach sundowner & church nuptial mass itinerary",
+        "Sunset palette dress code guidelines",
+        "Goa travel & seaside villa recommendations"
+      ]
+    },
+    {
+      "id": "pichola",
+      "name": "Pichola (Lake Palace Romance)",
+      "culture": "Udaipur Royal Lakeside",
+      "signature_animation": "Royal royal boat glides across rippling lake water reflecting palace lights and fireworks at dusk",
+      "primary_colors": {
+        "royal_navy": "#0B1D3A",
+        "copper_gold": "#C68A4C",
+        "terracotta": "#9B4F32",
+        "marble": "#F7F5F0"
+      },
+      "typography": ["Prata", "Cormorant", "Jost"],
+      "key_features": [
+        "Boat shuttle schedule & boarding pass card",
+        "Lakeview evening countdown with animated reflections",
+        "Royal Mewari fresco illustrations"
+      ]
+    },
+    {
+      "id": "mandapam",
+      "name": "Mandapam (The Sacred Canopy)",
+      "culture": "Grand Classical Vedic",
+      "signature_animation": "Carved temple pillars descend into place while fresh jasmine garlands sway into a sacred mandap",
+      "primary_colors": {
+        "vermilion": "#B71C1C",
+        "saffron": "#FF6F00",
+        "sandalwood": "#E0C097",
+        "gold": "#D4AF37"
+      },
+      "typography": ["Cinzel", "Yatra One", "Jost"],
+      "key_features": [
+        "Kanyadaan & Saptapadi seven vows interactive cards",
+        "Vedic priest blessing audio",
+        "Traditional family tree lineage presentation"
+      ]
+    },
+    {
+      "id": "vatika",
+      "name": "Vatika (Enchanted Botanic Garden)",
+      "culture": "Modern Bohemian & Pastel Garden",
+      "signature_animation": "Lush watercolor peonies, eucalyptus, and wisteria vines bloom outward across a rustic linen backdrop",
+      "primary_colors": {
+        "sage": "#6B8E23",
+        "dusty_rose": "#D8A47F",
+        "linen": "#F9F6F0",
+        "warm_amber": "#C68A4C"
+      },
+      "typography": ["Alex Brush", "Playfair Display", "Lato"],
+      "key_features": [
+        "Fairy lights night mode toggle",
+        "Sustainable wedding notes & green gift registry",
+        "Acoustic indie folk love songs player"
+      ]
+    },
+    {
+      "id": "rajwada",
+      "name": "Rajwada (Fortress of Royals)",
+      "culture": "Maratha & Rajput Regal Fortress",
+      "signature_animation": "Massive brass-studded fortress gates unlock with heavy iron keys and drawbridge lowering sound",
+      "primary_colors": {
+        "ochre_gold": "#C28B1E",
+        "deep_indigo": "#1A237E",
+        "fort_stone": "#5D4037",
+        "crimson": "#880E4F"
+      },
+      "typography": ["Cinzel Bold", "Rozha One"],
+      "key_features": [
+        "Royal insignia wax seal and crest",
+        "Drums of victory Nagada soundtrack",
+        "Royal feast banquet menu presentation"
+      ]
+    },
+    {
+      "id": "aura_luxe",
+      "name": "Aura Luxe (Minimalist Haute Couture)",
+      "culture": "Contemporary High-Fashion Editorial",
+      "signature_animation": "3D metallic foil embossed wax seal breaks on scroll with fluid camera push through frosted glass layers",
+      "primary_colors": {
+        "obsidian_or_ivory": "#FAF7F2",
+        "burgundy_velvet": "#5C1D24",
+        "champagne_foil": "#D4AF37",
+        "blush_petal": "#EBC8CC"
+      },
+      "typography": ["Alex Brush", "Cinzel", "Playfair Display", "Jost"],
+      "key_features": [
+        "Scroll-scrubbed 3D envelope unfolding sequence",
+        "Real-time countdown timer card",
+        "Bespoke thin-line SVG vector icons",
+        "Confetti explosion digital RSVP submission"
+      ]
+    }
+  ]
+}
