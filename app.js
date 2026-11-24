@@ -1,593 +1,572 @@
 /**
- * AURA PRIME - ARCHITECTURAL REAL ESTATE APPLICATION ENGINE
- * Powered by 21st.dev MCP component patterns & ui-ux-pro-max guidelines
+ * AURA PRIME — 21st.dev Signature Engine
+ * 60 FPS Container Scroll, 3D Card Tilt, Spotlight Tracker, Magnetic Buttons, & Web Audio
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // ==========================================
-  // 1. DATA REPOSITORY (ESTATES DOSSIER)
-  // ==========================================
-  const PROPERTIES_DATA = {
-    1: {
-      id: 1,
-      title: "Sri Sri Amrutha Varshini",
-      category: "waterfront",
-      location: "Prime Gated Residential Sector",
-      usdPrice: 74500000,
-      beds: "Gated Enclave",
-      baths: "Grand Portal",
-      sqft: "Monumental Entrance Gate with Security Checkpoint",
-      architect: "Sri Sri Infrastructure & Town Planners",
-      yearBuilt: "2024",
-      features: [
-        "Iconic modern white & graphite canopy entrance portal with custom lettering",
-        "24/7 manned security outpost with boom barrier access control",
-        "Direct access road with pedestrian zebra crossing & traffic safety markings",
-        "Curated roadside palm & flora plantations with decorative water features",
-        "Fully demarcated premium residential plots with clear title conveyance"
-      ],
-      description: "Sri Sri Amrutha Varshini stands as an iconic plotted residential landmark. Characterized by its monumental white entrance portico with custom typography, wide tarmac avenues, 24/7 security booth, and tranquil green verges, this gated enclave offers an elite standard of private community living.",
-      gallery: [
-        "assets/images/amrutha-varshini-entrance.jpg"
-      ]
-    },
-    2: {
-      id: 2,
-      title: "Sodhi-Akru Master Planned Layout",
-      category: "island",
-      location: "Way to Sodhi & Akru Expressway Corridor",
-      usdPrice: 58000000,
-      beds: "260+ Plots",
-      baths: "Club House",
-      sqft: "30 M.T. Future Road · 12 M.T. & 7.5 M.T. Internal Network",
-      architect: "Town Planning Authority & Sudha 3D Works",
-      yearBuilt: "2025",
-      features: [
-        "30 M.T. wide future arterial road connectivity",
-        "12.00 M.T. and 7.50 M.T. asphalt internal road grid",
-        "Centrally located swimming pool and sports club house",
-        "Landscaped green open spaces and children's park",
-        "Clear demarcation with Vastu-compliant plot orientations"
-      ],
-      description: "A meticulously engineered residential plotted township featuring multi-tier blacktop roads, sports arenas, clubhouse amenities, and high-yielding investment plot divisions ready for immediate construction.",
-      gallery: [
-        "assets/images/plot-master-plan.jpg",
-        "assets/images/plot-layout-3d.jpg",
-        "assets/images/plot-highway-green.jpg"
-      ]
-    },
-    3: {
-      id: 3,
-      title: "Aerovista Gated Plotted Township",
-      category: "alpine",
-      location: "Prime Arterial Access Highway Sector",
-      usdPrice: 42800000,
-      beds: "Demarcated",
-      baths: "Amenities",
-      sqft: "40ft Bitumen Roads · Grand Entrance Arch",
-      architect: "Master Infrastructure Consortium",
-      yearBuilt: "2024",
-      features: [
-        "Grand security entrance portal with 24/7 CCTV surveillance",
-        "Full compound boundary wall around entire township",
-        "Underground cabling, water pipeline, and stormwater drains",
-        "Curated avenue tree plantations along every road",
-        "100% clear title with immediate registration conveyance"
-      ],
-      description: "An ultra-modern gated plotted community featuring a landmark entry portal, wide blacktop roads with pedestrian curbs, lush avenue landscaping, and premium residential plot demarcations.",
-      gallery: [
-        "assets/images/plot-layout-3d.jpg",
-        "assets/images/plot-gated-enclave.jpg",
-        "assets/images/plot-green-township.png"
-      ]
-    },
-    4: {
-      id: 4,
-      title: "Greenfield Grand Highway Plots",
-      category: "waterfront",
-      location: "4-Lane High-Speed Arterial Corridor",
-      usdPrice: 96000000,
-      beds: "Highway Frontage",
-      baths: "Commercial/NA",
-      sqft: "4-Lane Highway Access with Green Buffer",
-      architect: "Urban Infrastructure Authority",
-      yearBuilt: "2024",
-      features: [
-        "Direct frontage on 4-lane major multi-lane highway",
-        "Multi-row landscaped green buffer and central divider trees",
-        "Ideal for commercial hubs, logistics, or premium residential layout",
-        "Heavy vehicle access and signal-free interchange access",
-        "High capital appreciation corridor with accelerated growth"
-      ],
-      description: "Prime highway-facing commercial and residential plots offering unmatched logistics connectivity, broad arterial frontage, and expansive landscaped greens.",
-      gallery: [
-        "assets/images/plot-highway-green.jpg",
-        "assets/images/plot-land-boundary.jpg",
-        "assets/images/plot-master-plan.jpg"
-      ]
-    },
-    5: {
-      id: 5,
-      title: "Emerald Horizon Demarcated Land",
-      category: "island",
-      location: "Scenic Valley Investment Sector",
-      usdPrice: 67000000,
-      beds: "Clear Boundary",
-      baths: "Geo-tagged",
-      sqft: "50 Contiguous Acres",
-      architect: "Landscape & Environmental Surveyors",
-      yearBuilt: "2024",
-      features: [
-        "Precise satellite geo-tagged boundary markers",
-        "Lush fertile green terrain suitable for farm villas or resort development",
-        "Clear title ownership with clean legal history",
-        "Perennial natural water source and electricity connectivity",
-        "Zero-encumbrance certificate verified by legal counsel"
-      ],
-      description: "Expansive green land parcels featuring clear boundary demarcations, high agricultural or residential conversion potential, and stunning natural vistas.",
-      gallery: [
-        "assets/images/plot-land-boundary.jpg",
-        "assets/images/plot-green-township.png",
-        "assets/images/plot-layout-3d.jpg"
-      ]
-    },
-    6: {
-      id: 6,
-      title: "Serene Palms Residential Layout",
-      category: "alpine",
-      location: "Lush Valley Plotted Gated Enclave",
-      usdPrice: 52000000,
-      beds: "180 Plots",
-      baths: "Central Park",
-      sqft: "Eco-Designed Layout Grid",
-      architect: "Eco-Urban Living Architects",
-      yearBuilt: "2023",
-      features: [
-        "Eco-friendly layout with extensive tree cover and parklands",
-        "Well-planned internal street network with solar streetlamps",
-        "Dedicated children's play area and senior citizen pavilion",
-        "Rainwater percolation pits and eco-drainage channels",
-        "Ready for immediate home construction"
-      ],
-      description: "A tranquil, eco-planned residential community with demarcated plots, lush avenue trees, community facilities, and top-tier infrastructure for family living.",
-      gallery: [
-        "assets/images/plot-green-township.png",
-        "assets/images/plot-gated-enclave.jpg",
-        "assets/images/plot-master-plan.jpg"
-      ]
+// ==========================================
+// 1. DATA REPOSITORY & STATE
+// ==========================================
+const CURRENCY_RATES = {
+  USD: { rate: 1.0, symbol: '$', code: 'USD' },
+  EUR: { rate: 0.92, symbol: '€', code: 'EUR' },
+  AED: { rate: 3.67, symbol: 'AED ', code: 'AED' },
+  GBP: { rate: 0.79, symbol: '£', code: 'GBP' }
+};
+
+let currentCurrency = 'USD';
+let soundEnabled = true;
+
+// Enclave Dossiers Database
+const DOSSIERS = {
+  'amrutha-varshini': {
+    title: 'Sri Sri Amrutha Varshini',
+    badge: 'SIGNATURE MASTERPIECE // 40 ACRES',
+    image: 'assets/images/amrutha-varshini-entrance.jpg',
+    desc: 'An iconic sanctuary featuring a monumental entrance portico, manicured avenue boulevards, 24/7 security checkpoint, asphalt road hierarchy, underground electrical cabling, and comprehensive perimeter compound walling.',
+    usdPrice: 2400000,
+    meta: [
+      { label: 'LOCATION', value: 'Prime South Growth Corridor' },
+      { label: 'COORDINATES', value: '12° 58\' 44" N, 77° 35\' 12" E' },
+      { label: 'TOTAL AREA', value: '40 Demarcated Acres' },
+      { label: 'LEGAL STATUS', value: '100% Freehold Clear Title' },
+      { label: 'ROAD WIDTH', value: '60 Ft Main / 40 Ft Internal' },
+      { label: 'DELIVERY', value: 'Immediate Registration Ready' }
+    ]
+  },
+  'sodhi-akru': {
+    title: 'The Sodhi-Akru Master Grid',
+    badge: '30 M.T. ARTERIAL COMMUNITY',
+    image: 'assets/images/plot-master-plan.jpg',
+    desc: 'Approved geometric master community with direct 30 M.T. future road access, internal 12 M.T. and 7.5 M.T. boulevard network, central water pavilion, clubhouse facility, and 266 demarcated plots.',
+    usdPrice: 1850000,
+    meta: [
+      { label: 'ACCESS ROAD', value: '30 M.T. Future Expressway' },
+      { label: 'INTERNAL ROADS', value: '12.00 & 7.50 M.T. Grid' },
+      { label: 'PLOT COUNT', value: '266 Approved Plots' },
+      { label: 'AMENITIES', value: 'Clubhouse, Swimming Pool, Park' },
+      { label: 'ZONING', value: 'Residential Master Approved' },
+      { label: 'LEGAL CUSTODY', value: 'Direct Escrow Settlement' }
+    ]
+  },
+  'aerovista': {
+    title: 'Aerovista Gated Township',
+    badge: '3D PLOTTED TOWNSHIP',
+    image: 'assets/images/plot-layout-3d.jpg',
+    desc: 'Grand landmark entrance portico with bitumen asphalt roads, underground drainage, tree avenues, and solar perimeter security.',
+    usdPrice: 3100000,
+    meta: [
+      { label: 'INFRASTRUCTURE', value: 'Asphalt & Underground Grid' },
+      { label: 'SECURITY', value: '24/7 Monitored Access Gate' },
+      { label: 'APPRECIATION', value: 'Projected 16.4% Historic CAGR' },
+      { label: 'LEGAL', value: 'RERA & Town Planning Sanctioned' }
+    ]
+  },
+  'highway': {
+    title: 'Greenfield Highway Plots',
+    badge: 'EXPRESSWAY CORRIDOR',
+    image: 'assets/images/plot-highway-green.jpg',
+    desc: '4-lane high-speed expressway frontage with high commercial appreciation, landscaped green medians, and scenic open buffer zones.',
+    usdPrice: 2250000,
+    meta: [
+      { label: 'FRONTAGE', value: '4-Lane Highway Access' },
+      { label: 'COMMERCIAL POTENTIAL', value: 'Hospitality / High-Yield Commercial' },
+      { label: 'STATUS', value: 'Clear Boundary Fenced' },
+      { label: 'TITLE', value: 'Single Owner Freehold' }
+    ]
+  },
+  'emerald': {
+    title: 'Emerald Horizon Land',
+    badge: '50-ACRE PARCEL',
+    image: 'assets/images/plot-land-boundary.jpg',
+    desc: 'Scenic open valley land with precision geotagged boundary survey, clear ownership title, and clean panoramic views.',
+    usdPrice: 1950000,
+    meta: [
+      { label: 'ACREAGE', value: '50 Continuous Acres' },
+      { label: 'SURVEY', value: 'Satellite DGPS Geotagged' },
+      { label: 'TITLE DEED', value: 'Verified 30-Year Chain' },
+      { label: 'SUITABILITY', value: 'Private Estate / Eco-Retreat' }
+    ]
+  }
+};
+
+// ==========================================
+// 2. WEB AUDIO ACOUSTIC SYNTHESIZER
+// ==========================================
+let audioCtx = null;
+
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+      audioCtx = new AudioContext();
     }
-  };
-
-  // ==========================================
-  // 2. CURRENCY CONVERSION ENGINE
-  // ==========================================
-  const CURRENCY_CONFIG = {
-    USD: { symbol: '$', rate: 1.0, suffix: '' },
-    EUR: { symbol: '€', rate: 0.92, suffix: '' },
-    AED: { symbol: 'د.إ ', rate: 3.67, suffix: '' },
-    GBP: { symbol: '£', rate: 0.79, suffix: '' }
-  };
-
-  let currentCurrency = 'USD';
-
-  function formatCurrency(amountUSD) {
-    const config = CURRENCY_CONFIG[currentCurrency];
-    const converted = amountUSD * config.rate;
-    return `${config.symbol}${Math.round(converted).toLocaleString()}${config.suffix}`;
   }
-
-  function updateAllPricesOnPage() {
-    // 1. Trophy Cards
-    document.querySelectorAll('.price-pill-float').forEach(el => {
-      const usd = parseFloat(el.getAttribute('data-usd'));
-      if (usd) el.textContent = formatCurrency(usd);
-    });
-
-    // 2. Inventory Cards
-    document.querySelectorAll('.prop-price').forEach(el => {
-      const usd = parseFloat(el.getAttribute('data-usd'));
-      if (usd) el.textContent = formatCurrency(usd);
-    });
-
-    // 3. Update Calculator
-    runCalculatorSim();
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
   }
+  return audioCtx;
+}
 
-  const currencySelect = document.getElementById('currencySelect');
-  if (currencySelect) {
-    currencySelect.addEventListener('change', (e) => {
-      currentCurrency = e.target.value;
-      updateAllPricesOnPage();
-      showToast(`Currency converted to ${currentCurrency}`);
-    });
+function playHapticTick(freq = 800, duration = 0.03, gainVal = 0.03) {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(freq * 0.5, ctx.currentTime + duration);
+    gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + duration);
+  } catch (e) {
+    // Ignore audio restrictions
   }
+}
 
-  // ==========================================
-  // 3. TOAST SYSTEM
-  // ==========================================
-  const toastHub = document.getElementById('toastHub');
-  function showToast(message) {
-    if (!toastHub) return;
-    const toast = document.createElement('div');
-    toast.className = 'toast-item';
-    toast.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#98f014" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-      <span>${message}</span>
-    `;
-    toastHub.appendChild(toast);
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(10px)';
-      toast.style.transition = 'all 0.3s ease';
-      setTimeout(() => toast.remove(), 300);
-    }, 3500);
+// Sound toggle button
+const soundToggleBtn = document.getElementById('soundToggleBtn');
+if (soundToggleBtn) {
+  soundToggleBtn.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    const textSpan = soundToggleBtn.querySelector('.sound-state');
+    if (textSpan) {
+      textSpan.textContent = soundEnabled ? 'Sound: ON' : 'Sound: OFF';
+    }
+    soundToggleBtn.style.borderColor = soundEnabled ? 'var(--gold)' : 'var(--border-subtle)';
+    if (soundEnabled) playHapticTick(1000, 0.05, 0.05);
+  });
+}
+
+// ==========================================
+// 3. INTERACTIVE CUSTOM CURSOR
+// ==========================================
+const cursorDot = document.getElementById('cursorDot');
+const cursorRing = document.getElementById('cursorRing');
+
+let mouseX = -100;
+let mouseY = -100;
+let ringX = -100;
+let ringY = -100;
+
+window.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  if (cursorDot) {
+    cursorDot.style.left = `${mouseX}px`;
+    cursorDot.style.top = `${mouseY}px`;
   }
+}, { passive: true });
 
-  // ==========================================
-  // 4. HERO SEARCH & FILTER BAR (21ST.DEV PATTERN)
-  // ==========================================
-  const searchTabs = document.querySelectorAll('.search-tab');
-  searchTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      searchTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const type = tab.getAttribute('data-type');
-      showToast(`Catalog mode switched: ${tab.textContent.trim()}`);
-    });
+function renderCursor() {
+  ringX += (mouseX - ringX) * 0.18;
+  ringY += (mouseY - ringY) * 0.18;
+  if (cursorRing) {
+    cursorRing.style.left = `${ringX}px`;
+    cursorRing.style.top = `${ringY}px`;
+  }
+  requestAnimationFrame(renderCursor);
+}
+requestAnimationFrame(renderCursor);
+
+// Add hover class to body when over interactive elements
+const interactiveElements = 'a, button, input, select, .bento-card, .scroll-3d-card';
+document.addEventListener('mouseover', (e) => {
+  if (e.target.closest(interactiveElements)) {
+    document.body.classList.add('cursor-hover');
+  }
+});
+document.addEventListener('mouseout', (e) => {
+  if (e.target.closest(interactiveElements)) {
+    document.body.classList.remove('cursor-hover');
+  }
+});
+
+// ==========================================
+// 4. 21ST.DEV SIGNATURE 3D CONTAINER SCROLL
+// ==========================================
+const heroSection = document.getElementById('hero');
+const scroll3dCard = document.getElementById('scroll3dCard');
+
+function updateContainerScroll() {
+  if (!heroSection || !scroll3dCard) return;
+
+  const rect = heroSection.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  // Compute scroll progress: 0 at top, 1 when hero scrolls through
+  const scrollDistance = -rect.top;
+  const maxScroll = rect.height * 0.65;
+  const progress = Math.min(Math.max(scrollDistance / maxScroll, 0), 1);
+
+  // Map progress: rotateX(16deg -> 0deg), scale(0.93 -> 1.0), translateY(20px -> 0px)
+  const rotateX = (1 - progress) * 16;
+  const scale = 0.93 + progress * 0.07;
+  const translateY = (1 - progress) * 20;
+
+  scroll3dCard.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) scale(${scale.toFixed(3)}) translateY(${translateY.toFixed(1)}px)`;
+}
+
+window.addEventListener('scroll', updateContainerScroll, { passive: true });
+updateContainerScroll();
+
+// ==========================================
+// 5. RADIAL SPOTLIGHT TRACKING (CSS Variables)
+// ==========================================
+const spotlightCards = document.querySelectorAll('.bento-card, .scroll-3d-card, .yield-calculator-card, .advisory-form-panel');
+
+spotlightCards.forEach((card) => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  });
+});
+
+// ==========================================
+// 6. 3D CARD TILT ON POINTER MOVE (Physics)
+// ==========================================
+const tiltCards = document.querySelectorAll('.bento-tilt-card');
+
+tiltCards.forEach((card) => {
+  let isHovered = false;
+
+  card.addEventListener('mouseenter', () => {
+    isHovered = true;
+    playHapticTick(600, 0.02, 0.02);
   });
 
-  const executeSearchBtn = document.getElementById('executeSearchBtn');
-  if (executeSearchBtn) {
-    executeSearchBtn.addEventListener('click', () => {
-      const loc = document.getElementById('filterLocation').value;
-      const type = document.getElementById('filterType').value;
-      const price = document.getElementById('filterPrice').value;
+  card.addEventListener('mousemove', (e) => {
+    if (!isHovered) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-      const cards = document.querySelectorAll('.prop-card');
-      let visibleCount = 0;
+    const maxTilt = 8; // degrees
+    const rotateX = -((y - centerY) / centerY) * maxTilt;
+    const rotateY = ((x - centerX) / centerX) * maxTilt;
 
-      cards.forEach(card => {
-        const cardLoc = card.getAttribute('data-location');
-        const cardPrice = parseFloat(card.getAttribute('data-price'));
+    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
+  });
 
-        let matchLoc = (loc === 'all' || cardLoc === loc);
-        let matchPrice = true;
+  card.addEventListener('mouseleave', () => {
+    isHovered = false;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+  });
+});
 
-        if (price === 'tier1') matchPrice = (cardPrice >= 15000000 && cardPrice <= 35000000);
-        else if (price === 'tier2') matchPrice = (cardPrice > 35000000 && cardPrice <= 75000000);
-        else if (price === 'tier3') matchPrice = (cardPrice > 75000000);
+// ==========================================
+// 7. MAGNETIC BUTTON PHYSICS
+// ==========================================
+const magneticButtons = document.querySelectorAll('.btn-magnetic');
 
-        if (matchLoc && matchPrice) {
-          card.style.display = 'flex';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
+magneticButtons.forEach((btn) => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - (rect.left + rect.width / 2);
+    const y = e.clientY - (rect.top + rect.height / 2);
+    // Magnetic pull strength: 0.25
+    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+  });
+
+  btn.addEventListener('mouseenter', () => {
+    playHapticTick(750, 0.02, 0.03);
+  });
+
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'translate(0px, 0px)';
+  });
+
+  btn.addEventListener('click', () => {
+    playHapticTick(1100, 0.04, 0.05);
+  });
+});
+
+// ==========================================
+// 8. SLIDING PILL NAVIGATION INDICATOR
+// ==========================================
+const pillNav = document.getElementById('pillNav');
+const navPillIndicator = document.getElementById('navActivePill');
+const pillItems = document.querySelectorAll('.pill-nav-item');
+
+function setPillPosition(element) {
+  if (!navPillIndicator || !element) return;
+  const navRect = pillNav.getBoundingClientRect();
+  const elemRect = element.getBoundingClientRect();
+  navPillIndicator.style.width = `${elemRect.width}px`;
+  navPillIndicator.style.transform = `translateX(${elemRect.left - navRect.left - 4}px)`;
+}
+
+// Initial position
+if (pillItems.length > 0) {
+  const activeItem = document.querySelector('.pill-nav-item.active') || pillItems[0];
+  setPillPosition(activeItem);
+}
+
+pillItems.forEach((item) => {
+  item.addEventListener('mouseenter', () => {
+    setPillPosition(item);
+  });
+
+  item.addEventListener('click', () => {
+    pillItems.forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    setPillPosition(item);
+  });
+});
+
+if (pillNav) {
+  pillNav.addEventListener('mouseleave', () => {
+    const activeItem = document.querySelector('.pill-nav-item.active');
+    if (activeItem) setPillPosition(activeItem);
+  });
+}
+
+// Scrollspy for pill nav
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.pageYOffset + 200;
+  sections.forEach((sec) => {
+    const top = sec.offsetTop;
+    const height = sec.offsetHeight;
+    const id = sec.getAttribute('id');
+    if (scrollY >= top && scrollY < top + height) {
+      pillItems.forEach((p) => {
+        if (p.getAttribute('data-nav') === id) {
+          pillItems.forEach(i => i.classList.remove('active'));
+          p.classList.add('active');
+          setPillPosition(p);
         }
       });
+    }
+  });
+}, { passive: true });
 
-      // Scroll to inventory smoothly
-      const inventorySection = document.getElementById('inventory');
-      if (inventorySection) {
-        inventorySection.scrollIntoView({ behavior: 'smooth' });
-      }
-      showToast(`Showing ${visibleCount} matching private estate(s)`);
-    });
+// ==========================================
+// 9. LIVE MULTI-CURRENCY CONVERTER
+// ==========================================
+const currencySelect = document.getElementById('currencySelect');
+
+function formatCurrency(amountUSD, currencyCode) {
+  const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.USD;
+  const converted = Math.round(amountUSD * config.rate);
+
+  if (currencyCode === 'AED') {
+    return `AED ${converted.toLocaleString('en-US')}`;
+  }
+  return `${config.symbol}${converted.toLocaleString('en-US')}`;
+}
+
+function updateAllPrices() {
+  const priceElements = document.querySelectorAll('.price-dynamic');
+  priceElements.forEach((el) => {
+    const usdVal = parseFloat(el.getAttribute('data-usd'));
+    if (!isNaN(usdVal)) {
+      el.textContent = formatCurrency(usdVal, currentCurrency);
+    }
+  });
+}
+
+if (currencySelect) {
+  currencySelect.addEventListener('change', (e) => {
+    currentCurrency = e.target.value;
+    updateAllPrices();
+    updateYieldCalculator();
+    playHapticTick(900, 0.03, 0.03);
+  });
+}
+
+// ==========================================
+// 10. INTERACTIVE CAPITAL YIELD CALCULATOR
+// ==========================================
+const allocSlider = document.getElementById('allocSlider');
+const yearsSlider = document.getElementById('yearsSlider');
+const cagrSlider = document.getElementById('cagrSlider');
+
+const allocVal = document.getElementById('allocVal');
+const yearsVal = document.getElementById('yearsVal');
+const cagrVal = document.getElementById('cagrVal');
+
+const maturityCapital = document.getElementById('maturityCapital');
+const netGain = document.getElementById('netGain');
+
+function updateYieldCalculator() {
+  if (!allocSlider || !yearsSlider || !cagrSlider) return;
+
+  const P = parseFloat(allocSlider.value);
+  const years = parseInt(yearsSlider.value, 10);
+  const cagr = parseFloat(cagrSlider.value) / 100;
+
+  // Compound Interest: A = P * (1 + r)^n
+  const A = Math.round(P * Math.pow(1 + cagr, years));
+  const gain = A - P;
+
+  if (allocVal) {
+    allocVal.setAttribute('data-usd', P);
+    allocVal.textContent = formatCurrency(P, currentCurrency);
+  }
+  if (yearsVal) {
+    yearsVal.textContent = `${years} Years`;
+  }
+  if (cagrVal) {
+    cagrVal.textContent = `${(cagr * 100).toFixed(1)}%`;
   }
 
-  // ==========================================
-  // 5. INVENTORY FILTER CHIPS
-  // ==========================================
-  const filterChips = document.querySelectorAll('.filter-chip');
-  filterChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      filterChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
+  if (maturityCapital) {
+    maturityCapital.setAttribute('data-usd', A);
+    maturityCapital.textContent = formatCurrency(A, currentCurrency);
+  }
+  if (netGain) {
+    netGain.setAttribute('data-usd', gain);
+    netGain.textContent = `+${formatCurrency(gain, currentCurrency)}`;
+  }
+}
 
-      const filter = chip.getAttribute('data-filter');
-      const cards = document.querySelectorAll('.prop-card');
-      let count = 0;
+if (allocSlider && yearsSlider && cagrSlider) {
+  [allocSlider, yearsSlider, cagrSlider].forEach((slider) => {
+    slider.addEventListener('input', () => {
+      updateYieldCalculator();
+      playHapticTick(450, 0.015, 0.015);
+    });
+  });
+}
 
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        if (filter === 'all' || cat === filter) {
-          card.style.display = 'flex';
-          count++;
-        } else {
-          card.style.display = 'none';
+// ==========================================
+// 11. 60 FPS METRIC NUMBER COUNTERS
+// ==========================================
+const counterObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const counters = entry.target.querySelectorAll('.counter-num');
+      counters.forEach((counter) => {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const isDecimal = target % 1 !== 0;
+        let start = 0;
+        const duration = 1600; // ms
+        const startTime = performance.now();
+
+        function updateNumber(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out expo
+          const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          const current = start + easeProgress * (target - start);
+          counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+
+          if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+          } else {
+            counter.textContent = target;
+          }
         }
+        requestAnimationFrame(updateNumber);
       });
-      showToast(`Filtered: ${chip.textContent.trim()}`);
-    });
+      observer.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.3 });
 
-  // Save to Watchlist buttons
-  document.querySelectorAll('.btn-card-save').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      btn.classList.toggle('saved');
-      if (btn.classList.contains('saved')) {
-        showToast("Asset appended to your encrypted portfolio watchlist");
-      } else {
-        showToast("Asset removed from watchlist");
-      }
-    });
+const metricsSection = document.querySelector('.metrics-ticker-container');
+if (metricsSection) {
+  counterObserver.observe(metricsSection);
+}
+
+// ==========================================
+// 12. INTERACTIVE DOSSIER MODAL
+// ==========================================
+const dossierModal = document.getElementById('dossierModal');
+const modalMainImg = document.getElementById('modalMainImg');
+const modalBadge = document.getElementById('modalBadge');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalMetaGrid = document.getElementById('modalMetaGrid');
+const modalPrice = document.getElementById('modalPrice');
+
+window.openDossierModal = function(enclaveKey) {
+  const data = DOSSIERS[enclaveKey] || DOSSIERS['amrutha-varshini'];
+  if (!dossierModal) return;
+
+  if (modalMainImg) modalMainImg.src = data.image;
+  if (modalBadge) modalBadge.textContent = data.badge;
+  if (modalTitle) modalTitle.textContent = data.title;
+  if (modalDesc) modalDesc.textContent = data.desc;
+
+  if (modalPrice) {
+    modalPrice.textContent = formatCurrency(data.usdPrice, currentCurrency);
+  }
+
+  if (modalMetaGrid) {
+    modalMetaGrid.innerHTML = data.meta.map(m => `
+      <div class="meta-item">
+        <span class="meta-label" style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); display: block;">${m.label}</span>
+        <span class="meta-val" style="font-size: 13px; font-weight: 600; color: #fff;">${m.value}</span>
+      </div>
+    `).join('');
+  }
+
+  dossierModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  playHapticTick(900, 0.04, 0.04);
+};
+
+window.closeDossierModal = function() {
+  if (!dossierModal) return;
+  dossierModal.classList.remove('active');
+  document.body.style.overflow = '';
+  playHapticTick(600, 0.02, 0.02);
+};
+
+if (dossierModal) {
+  dossierModal.addEventListener('click', (e) => {
+    if (e.target === dossierModal) {
+      closeDossierModal();
+    }
   });
+}
 
-  // ==========================================
-  // 6. PROPERTY DOSSIER MODAL
-  // ==========================================
-  const propertyModal = document.getElementById('propertyModal');
-  const modalDynamicContent = document.getElementById('modalDynamicContent');
-  const closePropertyModalBtn = document.getElementById('closePropertyModalBtn');
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDossierModal();
+});
 
-  function openPropertyModal(propId) {
-    const prop = PROPERTIES_DATA[propId];
-    if (!prop || !modalDynamicContent || !propertyModal) return;
+// ==========================================
+// 13. VIP INQUIRY FORM SUBMISSION
+// ==========================================
+window.handleVipSubmit = function(event) {
+  event.preventDefault();
+  const name = document.getElementById('patronName')?.value;
+  const email = document.getElementById('patronEmail')?.value;
+  const tier = document.getElementById('allocationTier')?.value;
+  const enclave = document.getElementById('targetEnclave')?.value;
 
-    modalDynamicContent.innerHTML = `
-      <div class="dossier-grid">
-        <div class="dossier-gallery">
-          <img src="${prop.gallery[0]}" alt="${prop.title}" id="mainDossierImg" class="main-dossier-img">
-          <div class="dossier-thumbs">
-            ${prop.gallery.map((img, idx) => `
-              <img src="${img}" alt="Thumbnail ${idx+1}" class="thumb-item ${idx===0?'active':''}" onclick="document.getElementById('mainDossierImg').src='${img}'; document.querySelectorAll('.thumb-item').forEach(t=>t.classList.remove('active')); this.classList.add('active');">
-            `).join('')}
-          </div>
-        </div>
+  playHapticTick(1200, 0.08, 0.06);
 
-        <div class="dossier-info">
-          <div class="confidential-badge mb-2">SOVEREIGN ESCROW DOSSIER</div>
-          <h2 class="dossier-title">${prop.title}</h2>
-          <div class="location-tag mb-3">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ${prop.location}
-          </div>
-          <div class="dossier-price">${formatCurrency(prop.usdPrice)}</div>
-
-          <div class="dossier-specs-list">
-            <div class="dossier-spec-item">
-              <span>Bedrooms / Suites</span>
-              <strong>${prop.beds} Private Suites</strong>
-            </div>
-            <div class="dossier-spec-item">
-              <span>Bathrooms</span>
-              <strong>${prop.baths} Marble Baths</strong>
-            </div>
-            <div class="dossier-spec-item">
-              <span>Living Area / Acreage</span>
-              <strong>${prop.sqft}</strong>
-            </div>
-            <div class="dossier-spec-item">
-              <span>Architectural Firm</span>
-              <strong>${prop.architect}</strong>
-            </div>
-          </div>
-
-          <p class="dossier-desc">${prop.description}</p>
-
-          <h4 class="text-sm font-bold tracking-wider uppercase mb-2 text-white">KEY STRUCTURAL SPECIFICATIONS:</h4>
-          <ul class="step-features mb-4">
-            ${prop.features.map(f => `<li>${f}</li>`).join('')}
-          </ul>
-
-          <div class="flex gap-3 mt-4">
-            <button class="btn-primary w-full" id="dossierBookViewingBtn">Schedule Private Helicopter Viewing</button>
-          </div>
-        </div>
+  const formPanel = document.querySelector('.advisory-form-panel');
+  if (formPanel) {
+    formPanel.innerHTML = `
+      <div style="text-align: center; padding: 40px 20px;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(152, 240, 20, 0.15); border: 1.5px solid var(--cyber-lime); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; color: var(--cyber-lime); font-size: 24px;">✓</div>
+        <h3 style="font-family: var(--font-display); font-size: 24px; color: #fff; margin-bottom: 12px;">Allocation Dossier Dispatched</h3>
+        <p style="font-size: 14px; color: var(--text-secondary); max-width: 440px; margin: 0 auto 24px auto; line-height: 1.6;">
+          Thank you, <strong>${name}</strong>. The authenticated title package and private viewing coordinates for <strong>${enclave.toUpperCase()}</strong> have been sent to <strong>${email}</strong>.
+        </p>
+        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--gold); background: rgba(212, 175, 55, 0.08); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-gold);">
+          PATRON ID // AP-2026-${Math.floor(1000 + Math.random() * 9000)}
+        </span>
       </div>
     `;
-
-    propertyModal.classList.add('active');
-
-    // Wire up button inside dynamic content
-    const dossierBookBtn = document.getElementById('dossierBookViewingBtn');
-    if (dossierBookBtn) {
-      dossierBookBtn.addEventListener('click', () => {
-        propertyModal.classList.remove('active');
-        openConsultationModal(prop.title);
-      });
-    }
   }
+};
 
-  document.querySelectorAll('.view-details-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const id = btn.getAttribute('data-id');
-      openPropertyModal(id);
-    });
-  });
-
-  if (closePropertyModalBtn) {
-    closePropertyModalBtn.addEventListener('click', () => {
-      propertyModal.classList.remove('active');
-    });
-  }
-
-  // ==========================================
-  // 7. PRIVATE VIEWING CONSULTATION MODAL
-  // ==========================================
-  const consultModal = document.getElementById('consultModal');
-  const closeConsultModalBtn = document.getElementById('closeConsultModalBtn');
-  const consultPropertyName = document.getElementById('consultPropertyName');
-
-  function openConsultationModal(propertyName = "Villa Céleste & Marine Sanctuary") {
-    if (!consultModal) return;
-    if (consultPropertyName) {
-      consultPropertyName.value = propertyName;
-    }
-    consultModal.classList.add('active');
-  }
-
-  document.querySelectorAll('.book-tour-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const title = btn.getAttribute('data-title');
-      openConsultationModal(title);
-    });
-  });
-
-  const openConsultModalBtn = document.getElementById('openConsultModalBtn');
-  if (openConsultModalBtn) {
-    openConsultModalBtn.addEventListener('click', () => openConsultationModal());
-  }
-
-  const mobileConsultBtn = document.getElementById('mobileConsultBtn');
-  if (mobileConsultBtn) {
-    mobileConsultBtn.addEventListener('click', () => {
-      document.getElementById('mobileDrawer')?.classList.remove('active');
-      openConsultationModal();
-    });
-  }
-
-  const consultAdvisorBtn = document.getElementById('consultAdvisorBtn');
-  if (consultAdvisorBtn) {
-    consultAdvisorBtn.addEventListener('click', () => openConsultationModal("Portfolio Financing Mandate"));
-  }
-
-  if (closeConsultModalBtn) {
-    closeConsultModalBtn.addEventListener('click', () => {
-      consultModal.classList.remove('active');
-    });
-  }
-
-  // Close modals on outside click
-  window.addEventListener('click', (e) => {
-    if (e.target === propertyModal) propertyModal.classList.remove('active');
-    if (e.target === consultModal) consultModal.classList.remove('active');
-  });
-
-  // Handle consultation form submit
-  const quickConsultForm = document.getElementById('quickConsultForm');
-  if (quickConsultForm) {
-    quickConsultForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      consultModal.classList.remove('active');
-      showToast("Viewing dispatch confirmed. Private counsel will connect via encrypted channel.");
-      quickConsultForm.reset();
-    });
-  }
-
-  // ==========================================
-  // 8. CAPITAL YIELD & FINANCING SIMULATOR
-  // ==========================================
-  const propValSlider = document.getElementById('propValSlider');
-  const downSlider = document.getElementById('downSlider');
-  const rateSlider = document.getElementById('rateSlider');
-  const termSlider = document.getElementById('termSlider');
-  const yieldSlider = document.getElementById('yieldSlider');
-
-  const valDisplay = document.getElementById('valDisplay');
-  const downDisplay = document.getElementById('downDisplay');
-  const rateDisplay = document.getElementById('rateDisplay');
-  const termDisplay = document.getElementById('termDisplay');
-  const yieldDisplay = document.getElementById('yieldDisplay');
-
-  const monthlyMortgageResult = document.getElementById('monthlyMortgageResult');
-  const monthlyRentResult = document.getElementById('monthlyRentResult');
-  const annualRentResult = document.getElementById('annualRentResult');
-  const netMonthlyResult = document.getElementById('netMonthlyResult');
-  const tenYearEquityResult = document.getElementById('tenYearEquityResult');
-
-  function runCalculatorSim() {
-    if (!propValSlider || !downSlider || !rateSlider || !termSlider || !yieldSlider) return;
-
-    const valUSD = parseFloat(propValSlider.value);
-    const downPct = parseFloat(downSlider.value) / 100;
-    const ratePct = parseFloat(rateSlider.value) / 100;
-    const termYears = parseInt(termSlider.value);
-    const yieldPct = parseFloat(yieldSlider.value) / 100;
-
-    // Displays
-    valDisplay.textContent = formatCurrency(valUSD);
-    const downEquityUSD = valUSD * downPct;
-    downDisplay.textContent = `${Math.round(downPct * 100)}% (${formatCurrency(downEquityUSD)})`;
-    rateDisplay.textContent = `${(ratePct * 100).toFixed(2)}%`;
-    termDisplay.textContent = `${termYears} Years`;
-    yieldDisplay.textContent = `${(yieldPct * 100).toFixed(1)}%`;
-
-    // Loan calculations
-    const loanPrincipalUSD = valUSD * (1 - downPct);
-    const monthlyRate = ratePct / 12;
-    const totalPayments = termYears * 12;
-
-    let monthlyPaymentUSD = 0;
-    if (monthlyRate > 0) {
-      monthlyPaymentUSD = loanPrincipalUSD * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
-    } else {
-      monthlyPaymentUSD = loanPrincipalUSD / totalPayments;
-    }
-
-    // Rental yield
-    const annualRentUSD = valUSD * yieldPct;
-    const monthlyRentUSD = annualRentUSD / 12;
-    const netCashflowUSD = monthlyRentUSD - monthlyPaymentUSD;
-
-    // 10-Year appreciation projection (5.2% compounded)
-    const tenYearValueUSD = valUSD * Math.pow(1 + 0.052, 10);
-    // Approximate remaining loan after 10 years
-    const remainingLoanRatio = Math.max(0, (totalPayments - 120) / totalPayments);
-    const remainingLoanUSD = loanPrincipalUSD * remainingLoanRatio;
-    const netTenYearEquityUSD = tenYearValueUSD - remainingLoanUSD;
-
-    // Render results
-    monthlyMortgageResult.textContent = `${formatCurrency(monthlyPaymentUSD)} /mo`;
-    monthlyRentResult.textContent = `${formatCurrency(monthlyRentUSD)} /mo`;
-    annualRentResult.textContent = `(${formatCurrency(annualRentUSD)} /yr)`;
-
-    if (netCashflowUSD >= 0) {
-      netMonthlyResult.textContent = `+${formatCurrency(netCashflowUSD)} /mo`;
-      netMonthlyResult.className = 'sub-metric-val positive';
-    } else {
-      netMonthlyResult.textContent = `-${formatCurrency(Math.abs(netCashflowUSD))} /mo`;
-      netMonthlyResult.className = 'sub-metric-val text-red-400';
-    }
-
-    tenYearEquityResult.textContent = formatCurrency(netTenYearEquityUSD);
-  }
-
-  [propValSlider, downSlider, rateSlider, termSlider, yieldSlider].forEach(slider => {
-    if (slider) {
-      slider.addEventListener('input', runCalculatorSim);
-    }
-  });
-
-  // Initial Calculation Run
-  runCalculatorSim();
-
-  // ==========================================
-  // 9. CONFIDENTIAL INQUIRY FORM
-  // ==========================================
-  const inquiryForm = document.getElementById('inquiryForm');
-  if (inquiryForm) {
-    inquiryForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const clientName = document.getElementById('clientName').value;
-      showToast(`Mandate registered for ${clientName}. Encrypted dispatch sent to Swiss desk.`);
-      inquiryForm.reset();
-    });
-  }
-
-  // ==========================================
-  // 10. MOBILE NAVIGATION & BACK TO TOP
-  // ==========================================
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  if (mobileMenuBtn && mobileDrawer) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileDrawer.classList.toggle('active');
-    });
-  }
-
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileDrawer?.classList.remove('active');
-    });
-  });
-
-  const backToTopBtn = document.getElementById('backToTopBtn');
-  if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+// INITIALIZE ON LOAD
+document.addEventListener('DOMContentLoaded', () => {
+  updateAllPrices();
+  updateYieldCalculator();
 });

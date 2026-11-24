@@ -3,965 +3,616 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA PRIME | Sovereign Architectural Estates & Trophy Penthouses</title>
-  <meta name="description" content="A bespoke private client real estate house specializing in confidential, off-market architectural monuments, private islands, and penthouse residences across global financial capitals.">
+  <title>AURA PRIME — Sovereign Architectural Estates & Plotted Sanctuaries</title>
+  <meta name="description" content="Ultra-luxury bespoke real estate marketing platform with 21st.dev container scroll animations, spatial 3D interaction, and prime residential sanctuaries.">
   
-  <!-- Fonts: Cinzel (Ultra-Luxury Display) & Plus Jakarta Sans (Modern Precision Body) from ui-ux-pro-max -->
+  <!-- Fonts: Syne (Architectural Display), Plus Jakarta Sans (Modern Body) & JetBrains Mono (Precision Metadata) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-theme">
 
-  <!-- Ambient Glow Effects -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-  <div class="ambient-glow glow-3"></div>
+  <!-- Interactive Custom Cursor Ring -->
+  <div class="custom-cursor-dot" id="cursorDot"></div>
+  <div class="custom-cursor-ring" id="cursorRing"></div>
 
-  <!-- 1. TOP GLOBAL NOTIFICATION & CURRENCY BAR -->
-  <div class="top-announcement">
-    <div class="container top-bar-content">
-      <div class="market-live-pill">
-        <span class="pulse-dot"></span>
-        <span class="live-text">OFF-MARKET INDEX: <strong>Q4 GLOBAL PRIVATE INVENTORY EXPANDED (+14.8%)</strong></span>
+  <!-- Ambient Luxury Grid & Vignette Background -->
+  <div class="background-grid-pattern"></div>
+  <div class="ambient-glow glow-gold"></div>
+  <div class="ambient-glow glow-cyan"></div>
+  <div class="ambient-glow glow-lime"></div>
+
+  <!-- 1. TOP GLOBAL NOTIFICATION TICKER -->
+  <aside class="top-announcement-bar">
+    <div class="site-container announcement-inner">
+      <div class="announcement-left">
+        <span class="status-pulse-dot"></span>
+        <span class="mono-badge">OFF-MARKET INDEX 2026</span>
+        <span class="announcement-text">Global Sovereign Plotted Allocations Active • Verified Clear Title Guarantee</span>
       </div>
-      <div class="top-controls">
-        <span class="confidential-badge">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Sovereign Tier Access
-        </span>
-        <div class="currency-selector">
-          <label for="currencySelect">Currency:</label>
-          <select id="currencySelect" class="currency-dropdown">
+      <div class="announcement-right">
+        <!-- Sound Haptic Toggle -->
+        <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Acoustic Sound Feedback" title="Toggle Sound Feedback">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          <span class="sound-state">Sound: ON</span>
+        </button>
+
+        <!-- Live Currency Switcher -->
+        <div class="currency-control">
+          <label for="currencySelect" class="currency-label">Currency:</label>
+          <select id="currencySelect" class="currency-select">
             <option value="USD" selected>USD ($)</option>
             <option value="EUR">EUR (€)</option>
-            <option value="AED">AED (د.إ)</option>
+            <option value="AED">AED (AED)</option>
             <option value="GBP">GBP (£)</option>
           </select>
         </div>
       </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- 2. MASTER NAVIGATION -->
-  <header class="master-header" id="masterHeader">
-    <div class="container header-container">
-      <a href="#" class="brand-logo">
-        <div class="logo-mark">
-          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+  <!-- 2. STICKY FLOATING NAVBAR -->
+  <header class="master-navbar" id="masterNavbar">
+    <div class="site-container navbar-inner">
+      <a href="#hero" class="brand-signature">
+        <div class="brand-geometric-icon">
+          <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
             <polygon points="20,2 38,14 38,26 20,38 2,26 2,14" stroke="#98f014" stroke-width="2" fill="rgba(152, 240, 20, 0.08)"/>
             <polygon points="20,10 30,17 30,23 20,30 10,23 10,17" stroke="#d4af37" stroke-width="1.5" fill="none"/>
             <circle cx="20" cy="20" r="3" fill="#ffffff"/>
           </svg>
         </div>
-        <div class="logo-text">
+        <div class="brand-name-group">
           <span class="brand-title">AURA PRIME</span>
-          <span class="brand-sub">ARCHITECTURAL ESTATES</span>
+          <span class="brand-subtitle">SOVEREIGN ESTATES</span>
         </div>
       </a>
 
-      <nav class="desktop-nav">
-        <a href="#hero" class="nav-link active">Overview</a>
-        <a href="#featured" class="nav-link">Trophy Estates</a>
-        <a href="#inventory" class="nav-link">Private Catalog</a>
-        <a href="#protocol" class="nav-link">Acquisition Protocol</a>
-        <a href="#calculator" class="nav-link">Investment Yield</a>
-        <a href="#testimonials" class="nav-link">Private Desk</a>
+      <!-- Pill Nav with Sliding Active Indicator -->
+      <nav class="pill-navigation" id="pillNav">
+        <div class="nav-active-pill" id="navActivePill"></div>
+        <a href="#hero" class="pill-nav-item active" data-nav="hero">01 // The Horizon</a>
+        <a href="#enclaves" class="pill-nav-item" data-nav="enclaves">02 // Enclaves</a>
+        <a href="#protocol" class="pill-nav-item" data-nav="protocol">03 // Capital Matrix</a>
+        <a href="#advisory" class="pill-nav-item" data-nav="advisory">04 // Private Desk</a>
       </nav>
 
-      <div class="header-actions">
-        <button class="btn-ghost" id="openSearchBtn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-        <button class="btn-primary" id="openConsultModalBtn">
-          <span>Private Viewing</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </button>
+      <div class="navbar-actions">
+        <a href="#advisory" class="btn-magnetic btn-primary-action">
+          <span class="btn-text">Private Viewing</span>
+          <span class="btn-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
       </div>
-
-      <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
 
-  <!-- MOBILE NAVIGATION DRAWER -->
-  <div class="mobile-drawer" id="mobileDrawer">
-    <div class="mobile-drawer-inner">
-      <a href="#hero" class="mobile-nav-link">Overview</a>
-      <a href="#featured" class="mobile-nav-link">Trophy Estates</a>
-      <a href="#inventory" class="mobile-nav-link">Private Catalog</a>
-      <a href="#protocol" class="mobile-nav-link">Acquisition Protocol</a>
-      <a href="#calculator" class="mobile-nav-link">Investment Yield</a>
-      <a href="#testimonials" class="mobile-nav-link">Private Desk</a>
-      <button class="btn-primary w-full mt-4" id="mobileConsultBtn">Request Confidential Briefing</button>
-    </div>
-  </div>
-
-  <main>
-    <!-- 3. HERO SECTION (CINEMATIC 3D PARALLAX & SEARCH BAR - Inspired by 21st.dev [id: 19080]) -->
-    <section class="hero-section" id="hero">
-      <div class="hero-bg-media">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=85" alt="Monolithic Ultra-Luxury Modern Architectural Estate" class="hero-img">
-        <div class="hero-overlay"></div>
+  <!-- 3. SECTION 01: HERO & 21ST.DEV 3D CONTAINER SCROLL -->
+  <section class="hero-container-scroll-section" id="hero">
+    <div class="site-container hero-heading-block">
+      <div class="hero-tag-badge">
+        <span class="badge-dot-live"></span>
+        <span>2026 ARCHITECTURAL ALLOCATIONS LIVE</span>
       </div>
 
-      <div class="container hero-content">
-        <div class="hero-tag-wrap">
-          <span class="hero-status-pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98f014" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            Confidential Off-Market Brokerage · Geneva · Dubai · Bel-Air · Monaco
-          </span>
+      <h1 class="hero-display-title">
+        ARCHITECTURAL <span class="gradient-text-gold">SANCTUARIES</span> FOR THE VISIONARY PATRON.
+      </h1>
+
+      <p class="hero-editorial-subtitle">
+        Curating legally vetted gated townships, master-planned residential grids, and expressway corridors with uncompromising infrastructure across premier growth corridors.
+      </p>
+
+      <div class="hero-action-row">
+        <a href="#enclaves" class="btn-magnetic btn-gold-pill">
+          <span>Explore Curated Enclaves</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#protocol" class="btn-magnetic btn-glass-pill">
+          <span>Capital Yield Matrix</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 21st.dev Signature: 3D Perspective Container Scroll Frame -->
+    <div class="scroll-3d-wrapper" id="scroll3dWrapper">
+      <div class="scroll-3d-card border-beam" id="scroll3dCard">
+        <!-- Interactive Spotlight Highlight -->
+        <div class="card-spotlight-layer"></div>
+
+        <div class="card-glass-top-bar">
+          <div class="window-controls">
+            <span class="control-dot dot-red"></span>
+            <span class="control-dot dot-yellow"></span>
+            <span class="control-dot dot-green"></span>
+          </div>
+          <div class="spatial-tag-indicator">
+            <span class="mono-text">COORDINATES // 12° 58' 44" N, 77° 35' 12" E</span>
+          </div>
+          <div class="valuation-chip">
+            <span class="chip-label">TIER //</span>
+            <span class="chip-val price-dynamic" data-usd="2400000">$2,400,000</span>
+          </div>
         </div>
 
-        <h1 class="hero-headline">
-          WHERE ARCHITECTURAL <span class="text-gradient">SOVEREIGNTY</span> MEETS TIMELESS CAPITAL
-        </h1>
-
-        <p class="hero-subhead">
-          Facilitating discreet global acquisitions of world-class architectural monuments, private islands, and trophy penthouses for family offices, sovereign funds, and visionary collectors.
-        </p>
-
-        <!-- 21st.dev Real Estate Search Bar Pattern -->
-        <div class="hero-search-card">
-          <div class="search-tabs">
-            <button class="search-tab active" data-type="buy">Acquisition (Buy)</button>
-            <button class="search-tab" data-type="rent">Private Lease (Rent)</button>
-            <button class="search-tab" data-type="invest">Co-Investment (Yield)</button>
-            <button class="search-tab" data-type="island">Islands & Compounds</button>
+        <div class="spatial-hero-content">
+          <!-- Featured Sri Sri Amrutha Varshini Grand Entrance Portal -->
+          <div class="spatial-image-frame">
+            <img src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini Grand Entrance Arch and Avenue" class="spatial-preview-img" loading="eager">
+            <div class="spatial-overlay-gradient"></div>
+            <div class="spatial-badge-floating">
+              <span class="badge-star">★</span>
+              <span>SIGNATURE MASTERPIECE // SRI SRI AMRUTHA VARSHINI</span>
+            </div>
           </div>
 
-          <div class="search-fields-grid">
-            <div class="field-col">
-              <label><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Location Territory</label>
-              <select id="filterLocation" class="search-select">
-                <option value="all">All Global Territories</option>
-                <option value="monaco">Monaco & French Riviera</option>
-                <option value="dubai">Dubai (Palm Jumeirah & Emirates Hills)</option>
-                <option value="california">Bel-Air & Beverly Hills, CA</option>
-                <option value="switzerland">Geneva & St. Moritz, Switzerland</option>
-                <option value="caribbean">St. Barts & Bahamas</option>
-              </select>
+          <div class="spatial-metadata-dock">
+            <div class="meta-column">
+              <span class="meta-label">TYPOLOGY</span>
+              <span class="meta-value">Gated Plotted Enclave</span>
             </div>
-
-            <div class="field-col">
-              <label><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Asset Typology</label>
-              <select id="filterType" class="search-select">
-                <option value="all">All Asset Classes</option>
-                <option value="villa">Waterfront Modernist Villa</option>
-                <option value="penthouse">Sky Duplex Penthouse</option>
-                <option value="compound">Brutalist Private Compound</option>
-                <option value="island">Private Sanctuary Island</option>
-              </select>
+            <div class="meta-column">
+              <span class="meta-label">INFRASTRUCTURE</span>
+              <span class="meta-value">Grand Entrance Portico • 24/7 Checkpoint</span>
             </div>
-
-            <div class="field-col">
-              <label><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Target Capital Tier</label>
-              <select id="filterPrice" class="search-select">
-                <option value="all">Any Valuation Tier</option>
-                <option value="tier1">$15M – $35M</option>
-                <option value="tier2">$35M – $75M</option>
-                <option value="tier3">$75M – $150M+</option>
-              </select>
+            <div class="meta-column">
+              <span class="meta-label">ACREAGE</span>
+              <span class="meta-value">40 Acres Demarcated</span>
             </div>
-
-            <div class="field-col btn-col">
-              <button class="btn-execute-search" id="executeSearchBtn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <span>Filter Inventory</span>
+            <div class="meta-column">
+              <span class="meta-label">LEGAL TITLE</span>
+              <span class="meta-value text-cyber-lime">100% Freehold Verified</span>
+            </div>
+            <div class="meta-action">
+              <button class="btn-magnetic btn-lime-sm" onclick="openDossierModal('amrutha-varshini')">
+                <span>View Master Dossier</span>
               </button>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="hero-stats-quick">
-          <div class="quick-stat">
-            <span class="stat-num">$4.85B</span>
-            <span class="stat-label">Verified AUM Managed</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="quick-stat">
-            <span class="stat-num">98.4%</span>
-            <span class="stat-label">Off-Market Privacy Rate</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="quick-stat">
-            <span class="stat-num">14 Cities</span>
-            <span class="stat-label">Sovereign Desk Despatches</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="quick-stat">
-            <span class="stat-num">&lt; 72 Hours</span>
-            <span class="stat-label">Private Escrow Close</span>
-          </div>
+    <!-- Live Performance Metrics Ticker (60 FPS Animated) -->
+    <div class="site-container metrics-ticker-container">
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <span class="metric-number"><span class="counter-num" data-target="4.2">0</span>B+</span>
+          <span class="metric-label">TRANSACTED ASSET CAPITAL</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-number"><span class="counter-num" data-target="100">0</span>%</span>
+          <span class="metric-label">VETTED CLEAR TITLE GUARANTEE</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-number"><span class="counter-num" data-target="48">0</span>+</span>
+          <span class="metric-label">SOVEREIGN PRIVATE ENCLAVES</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-number"><span class="counter-num" data-target="15.8">0</span>%</span>
+          <span class="metric-label">AVERAGE 5-YEAR HISTORIC CAGR</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 4. CONTINUOUS TICKER RAIL (LIVE LUXURY CAP-RATE & VOLUME INDICES) -->
-    <section class="ticker-section" aria-hidden="true">
-      <div class="ticker-track">
-        <div class="ticker-item"><span>MONACO WATERFRONT:</span> $82,400/m² <span class="trend-up">▲ +6.8%</span></div>
-        <div class="ticker-item"><span>PALM JUMEIRAH PENTHOUSES:</span> $28,900/m² <span class="trend-up">▲ +19.4%</span></div>
-        <div class="ticker-item"><span>BEL AIR TROPHY COMPOUNDS:</span> $41,200/m² <span class="trend-up">▲ +7.3%</span></div>
-        <div class="ticker-item"><span>GENEVA LAKEFRONT SANCTUARY:</span> $36,800/m² <span class="trend-up">▲ +4.1%</span></div>
-        <div class="ticker-item"><span>ST. BARTS COASTAL ESTATES:</span> $49,500/m² <span class="trend-up">▲ +11.2%</span></div>
-        <div class="ticker-item"><span>MAYFAIR LONDON RESIDENCES:</span> $38,100/m² <span class="trend-up">▲ +5.6%</span></div>
-        <!-- Duplicated for seamless loop -->
-        <div class="ticker-item"><span>MONACO WATERFRONT:</span> $82,400/m² <span class="trend-up">▲ +6.8%</span></div>
-        <div class="ticker-item"><span>PALM JUMEIRAH PENTHOUSES:</span> $28,900/m² <span class="trend-up">▲ +19.4%</span></div>
-        <div class="ticker-item"><span>BEL AIR TROPHY COMPOUNDS:</span> $41,200/m² <span class="trend-up">▲ +7.3%</span></div>
-        <div class="ticker-item"><span>GENEVA LAKEFRONT SANCTUARY:</span> $36,800/m² <span class="trend-up">▲ +4.1%</span></div>
-        <div class="ticker-item"><span>ST. BARTS COASTAL ESTATES:</span> $49,500/m² <span class="trend-up">▲ +11.2%</span></div>
-        <div class="ticker-item"><span>MAYFAIR LONDON RESIDENCES:</span> $38,100/m² <span class="trend-up">▲ +5.6%</span></div>
-      </div>
-    </section>
-
-    <!-- 5. PINNED ARCHITECTURAL DECK / SIGNATURE TROPHY ASSETS -->
-    <section class="featured-section" id="featured">
-      <div class="container">
-        <div class="section-header-row">
-          <div>
-            <span class="section-eyebrow">CURATED MASTERPIECES</span>
-            <h2 class="section-title">TROPHY ASSETS OF DISTINCTION</h2>
-          </div>
-          <p class="section-lead">
-            Hand-selected sovereign commissions engineered by Pritzker Prize laureates and visionary architectural sculptors. Available exclusively under Non-Disclosure Protocol.
-          </p>
-        </div>
-
-        <div class="trophy-deck-grid">
-          <!-- Card 1: Sri Sri Amrutha Varshini Grand Entrance -->
-          <article class="trophy-card featured-large">
-            <div class="trophy-media">
-              <img src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini Gated Enclave" class="trophy-img">
-              <div class="trophy-badges">
-                <span class="badge-accent">ICONIC ENTRANCE</span>
-                <span class="badge-dark">GATED ENCLAVE</span>
-              </div>
-              <div class="price-pill-float" data-usd="74500000">$74,500,000</div>
-            </div>
-            <div class="trophy-body">
-              <div class="trophy-meta">
-                <span class="location-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Sri Sri Amrutha Varshini Premium Sector</span>
-                <span class="specs-preview">Grand Entrance Portal · 24/7 Gated Security · Landscaped Avenues</span>
-              </div>
-              <h3 class="trophy-name">Sri Sri Amrutha Varshini</h3>
-              <p class="trophy-desc">
-                Distinguished by its monumental architectural entrance portal with signature signage, landscaped boulevards, dedicated security detachment, and premium residential plots crafted for discerning homeowners.
-              </p>
-              <div class="trophy-action-bar">
-                <button class="btn-outline view-details-btn" data-id="1">Examine Layout & Specs</button>
-                <button class="btn-cyber book-tour-btn" data-title="Sri Sri Amrutha Varshini">Schedule Site Visit</button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 2: Aerovista Gated Township (With uploaded layout 3D image) -->
-          <article class="trophy-card">
-            <div class="trophy-media">
-              <img src="assets/images/plot-layout-3d.jpg" alt="Aerovista Gated Plotted Township" class="trophy-img">
-              <div class="trophy-badges">
-                <span class="badge-gold">GATED TOWNSHIP</span>
-              </div>
-              <div class="price-pill-float" data-usd="58000000">$58,000,000</div>
-            </div>
-            <div class="trophy-body">
-              <div class="trophy-meta">
-                <span class="location-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Prime Arterial Corridor</span>
-                <span class="specs-preview">Demarcated NA Plots · 40ft Bitumen Roads · Grand Gate</span>
-              </div>
-              <h3 class="trophy-name">Aerovista Gated Plotted Township</h3>
-              <p class="trophy-desc">
-                State-of-the-art master-planned community featuring grand security portal, tree-lined avenue plantations, underground stormwater drainage, and turnkey clear-title plot demarcations.
-              </p>
-              <div class="trophy-action-bar">
-                <button class="btn-outline view-details-btn" data-id="2">Examine Master Plan</button>
-                <button class="btn-cyber book-tour-btn" data-title="Aerovista Gated Plotted Township">Schedule Site Visit</button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3: Sodhi-Akru Master Planned Layout (With uploaded blueprint layout plan) -->
-          <article class="trophy-card">
-            <div class="trophy-media">
-              <img src="assets/images/plot-master-plan.jpg" alt="Sodhi-Akru Master Layout" class="trophy-img">
-              <div class="trophy-badges">
-                <span class="badge-accent">APPROVED MASTER PLAN</span>
-              </div>
-              <div class="price-pill-float" data-usd="42800000">$42,800,000</div>
-            </div>
-            <div class="trophy-body">
-              <div class="trophy-meta">
-                <span class="location-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Way to Sodhi & Akru Expressway</span>
-                <span class="specs-preview">30 M.T. Future Road · 12 M.T. & 7.5 M.T. Internal Network</span>
-              </div>
-              <h3 class="trophy-name">Sodhi-Akru Master Layout Blueprint</h3>
-              <p class="trophy-desc">
-                Engineered grid community with integrated sports arena, swimming pavilion, landscaped central greens, and multi-tier road infrastructure designed for high-density capital appreciation.
-              </p>
-              <div class="trophy-action-bar">
-                <button class="btn-outline view-details-btn" data-id="3">Examine Blueprint</button>
-                <button class="btn-cyber book-tour-btn" data-title="Sodhi-Akru Master Layout Blueprint">Schedule Site Visit</button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. COMPLETE PRIVATE INVENTORY (21ST.DEV COMPONENT-DRIVEN CARD SYSTEM [id: 28203]) -->
-    <section class="inventory-section" id="inventory">
-      <div class="container">
-        <div class="section-title-wrap text-center">
-          <span class="section-eyebrow">GLOBAL PORTFOLIO</span>
-          <h2 class="section-title">ACTIVE PRIVATE CATALOG</h2>
-          <p class="section-lead max-w-xl mx-auto">
-            Interactive filtering by territory, architecture class, and valuation metrics. All listings are verified and pre-approved for immediate private escrow conveyance.
-          </p>
-        </div>
-
-        <!-- Filter Chips Bar -->
-        <div class="filter-chips-container">
-          <button class="filter-chip active" data-filter="all">All Exclusive Assets (<span class="chip-count">6</span>)</button>
-          <button class="filter-chip" data-filter="waterfront">Waterfront & Coastal</button>
-          <button class="filter-chip" data-filter="penthouse">Sky Penthouses</button>
-          <button class="filter-chip" data-filter="alpine">Alpine & Country</button>
-          <button class="filter-chip" data-filter="island">Private Compounds</button>
-        </div>
-
-        <!-- Inventory Grid -->
-        <div class="inventory-grid" id="inventoryGrid">
-          <!-- Property Item 1: Sri Sri Amrutha Varshini -->
-          <div class="prop-card" data-category="waterfront" data-location="monaco" data-price="74500000">
-            <div class="prop-thumb-wrap">
-              <img src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini" class="prop-thumb">
-              <div class="prop-badge-top">
-                <span class="badge-chip verified"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Verified Enclave</span>
-                <span class="badge-chip coastal">Grand Gate</span>
-              </div>
-              <div class="prop-hover-action">
-                <span class="hover-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              </div>
-            </div>
-            <div class="prop-details">
-              <div class="prop-price" data-usd="74500000">$74,500,000</div>
-              <h4 class="prop-title">Sri Sri Amrutha Varshini</h4>
-              <p class="prop-address">Landmark Architectural Entrance Portal</p>
-              <div class="prop-stats-row">
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg> Gated Entry</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6v6m6-6v6M4 12h16a1 1 0 0 1 1 1v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a1 1 0 0 1 1-1z"/></svg> 24/7 Guard</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> Clear Title</div>
-              </div>
-              <div class="prop-footer-btns">
-                <button class="btn-card-details view-details-btn" data-id="1">Explore Dossier</button>
-                <button class="btn-card-save" title="Save to Watchlist">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Property Item 2: Sodhi-Akru Master Planned Layout (Uploaded Master Plan Blueprint) -->
-          <div class="prop-card" data-category="island" data-location="dubai" data-price="58000000">
-            <div class="prop-thumb-wrap">
-              <img src="assets/images/plot-master-plan.jpg" alt="Sodhi-Akru Master Planned Layout" class="prop-thumb">
-              <div class="prop-badge-top">
-                <span class="badge-chip verified"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Approved Layout</span>
-                <span class="badge-chip sky">Master Grid</span>
-              </div>
-              <div class="prop-hover-action">
-                <span class="hover-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              </div>
-            </div>
-            <div class="prop-details">
-              <div class="prop-price" data-usd="58000000">$58,000,000</div>
-              <h4 class="prop-title">Sodhi-Akru Master Layout Blueprint</h4>
-              <p class="prop-address">Way to Sodhi & Akru Expressway Corridor</p>
-              <div class="prop-stats-row">
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg> 260+ Plots</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6v6m6-6v6M4 12h16a1 1 0 0 1 1 1v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a1 1 0 0 1 1-1z"/></svg> Club House</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> 30 M.T. Road</div>
-              </div>
-              <div class="prop-footer-btns">
-                <button class="btn-card-details view-details-btn" data-id="2">Explore Dossier</button>
-                <button class="btn-card-save" title="Save to Watchlist">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Property Item 3: Aerovista Gated Plotted Township (Uploaded 3D Aerial View) -->
-          <div class="prop-card" data-category="alpine" data-location="california" data-price="42800000">
-            <div class="prop-thumb-wrap">
-              <img src="assets/images/plot-layout-3d.jpg" alt="Aerovista Gated Plotted Township" class="prop-thumb">
-              <div class="prop-badge-top">
-                <span class="badge-chip verified"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Gated Township</span>
-                <span class="badge-chip mountain">Grand Arch</span>
-              </div>
-              <div class="prop-hover-action">
-                <span class="hover-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              </div>
-            </div>
-            <div class="prop-details">
-              <div class="prop-price" data-usd="42800000">$42,800,000</div>
-              <h4 class="prop-title">Aerovista Gated Plotted Township</h4>
-              <p class="prop-address">Highway Access Arterial Sector</p>
-              <div class="prop-stats-row">
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg> Bitumen Roads</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6v6m6-6v6M4 12h16a1 1 0 0 1 1 1v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a1 1 0 0 1 1-1z"/></svg> 24/7 Security</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> 100% Clear Title</div>
-              </div>
-              <div class="prop-footer-btns">
-                <button class="btn-card-details view-details-btn" data-id="3">Explore Dossier</button>
-                <button class="btn-card-save" title="Save to Watchlist">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Property Item 4: Greenfield Grand Highway Plots (Uploaded Highway View) -->
-          <div class="prop-card" data-category="waterfront" data-location="caribbean" data-price="96000000">
-            <div class="prop-thumb-wrap">
-              <img src="assets/images/plot-highway-green.jpg" alt="Greenfield Grand Highway Plots" class="prop-thumb">
-              <div class="prop-badge-top">
-                <span class="badge-chip gold"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Expressway Facing</span>
-                <span class="badge-chip coastal">High Yield</span>
-              </div>
-              <div class="prop-hover-action">
-                <span class="hover-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              </div>
-            </div>
-            <div class="prop-details">
-              <div class="prop-price" data-usd="96000000">$96,000,000</div>
-              <h4 class="prop-title">Greenfield Grand Highway Plots</h4>
-              <p class="prop-address">4-Lane Green Arterial Corridor</p>
-              <div class="prop-stats-row">
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg> 4-Lane Access</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6v6m6-6v6M4 12h16a1 1 0 0 1 1 1v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a1 1 0 0 1 1-1z"/></svg> Avenue Trees</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> Commercial/NA</div>
-              </div>
-              <div class="prop-footer-btns">
-                <button class="btn-card-details view-details-btn" data-id="4">Explore Dossier</button>
-                <button class="btn-card-save" title="Save to Watchlist">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Property Item 5: Emerald Horizon Demarcated Plots (Uploaded Field Pin Image) -->
-          <div class="prop-card" data-category="island" data-location="california" data-price="67000000">
-            <div class="prop-thumb-wrap">
-              <img src="assets/images/plot-land-boundary.jpg" alt="Emerald Horizon Demarcated Plots" class="prop-thumb">
-              <div class="prop-badge-top">
-                <span class="badge-chip verified"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Demarcated</span>
-                <span class="badge-chip modern">Clear Boundary</span>
-              </div>
-              <div class="prop-hover-action">
-                <span class="hover-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              </div>
-            </div>
-            <div class="prop-details">
-              <div class="prop-price" data-usd="67000000">$67,000,000</div>
-              <h4 class="prop-title">Emerald Horizon Demarcated Land</h4>
-              <p class="prop-address">Geotagged Scenic Valley Sector</p>
-              <div class="prop-stats-row">
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg> Scenic Views</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6v6m6-6v6M4 12h16a1 1 0 0 1 1 1v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a1 1 0 0 1 1-1z"/></svg> Geo-tagged</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> 50 Acres</div>
-              </div>
-              <div class="prop-footer-btns">
-                <button class="btn-card-details view-details-btn" data-id="5">Explore Dossier</button>
-                <button class="btn-card-save" title="Save to Watchlist">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Property Item 6: Serene Palms Residential Layout (Uploaded Green Township Image) -->
-          <div class="prop-card" data-category="alpine" data-location="switzerland" data-price="52000000">
-            <div class="prop-thumb-wrap">
-              <img src="assets/images/plot-green-township.png" alt="Serene Palms Residential Layout" class="prop-thumb">
-              <div class="prop-badge-top">
-                <span class="badge-chip verified"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Eco Plotted</span>
-                <span class="badge-chip alpine">Lush Greenery</span>
-              </div>
-              <div class="prop-hover-action">
-                <span class="hover-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              </div>
-            </div>
-            <div class="prop-details">
-              <div class="prop-price" data-usd="52000000">$52,000,000</div>
-              <h4 class="prop-title">Serene Palms Residential Layout</h4>
-              <p class="prop-address">Lush Valley Gated Enclave</p>
-              <div class="prop-stats-row">
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg> 180 Plots</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6v6m6-6v6M4 12h16a1 1 0 0 1 1 1v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a1 1 0 0 1 1-1z"/></svg> Central Park</div>
-                <div class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> Water Grid</div>
-              </div>
-              <div class="prop-footer-btns">
-                <button class="btn-card-details view-details-btn" data-id="6">Explore Dossier</button>
-                <button class="btn-card-save" title="Save to Watchlist">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. ACQUISITION PROTOCOL (4-STAGE BESPOKE SOVEREIGN PROCESS) -->
-    <section class="protocol-section" id="protocol">
-      <div class="container">
-        <div class="section-header-row">
-          <div>
-            <span class="section-eyebrow">GOVERNANCE & PRIVACY</span>
-            <h2 class="section-title">THE ACQUISITION PROTOCOL</h2>
-          </div>
-          <p class="section-lead">
-            Every transaction executed through AURA PRIME adheres to strict multi-jurisdictional privacy standards and cryptographic escrow frameworks.
-          </p>
-        </div>
-
-        <div class="protocol-steps-grid">
-          <div class="step-card">
-            <div class="step-badge">STAGE 01</div>
-            <div class="step-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#98f014" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3 class="step-title">KYC & Blind Mandate</h3>
-            <p class="step-desc">
-              Direct verification conducted through private counsel under mutual non-disclosure. Identity remains shielded from public registries and MLS platforms.
-            </p>
-            <ul class="step-features">
-              <li>Dual-counsel confidentiality protocols</li>
-              <li>Encrypted off-market dossier transmission</li>
-            </ul>
-          </div>
-
-          <div class="step-card">
-            <div class="step-badge">STAGE 02</div>
-            <div class="step-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#98f014" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-            </div>
-            <h3 class="step-title">Air & Marine Inspection</h3>
-            <p class="step-desc">
-              Private executive transport via chartered helicopter or offshore tenders directly to the estate's helipad or deep-water dock without paparazzi exposure.
-            </p>
-            <ul class="step-features">
-              <li>Comprehensive physical & structural audits</li>
-              <li>Architectural engineer on-site debrief</li>
-            </ul>
-          </div>
-
-          <div class="step-card">
-            <div class="step-badge">STAGE 03</div>
-            <div class="step-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#98f014" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            </div>
-            <h3 class="step-title">Fiscal & Legal Architecture</h3>
-            <p class="step-desc">
-              Structuring through family trusts, sovereign SPVs, and Swiss foundation vehicles to optimize international taxation, estate succession, and capital mobility.
-            </p>
-            <ul class="step-features">
-              <li>Multi-currency settlement (USD, EUR, CHF, BTC)</li>
-              <li>Global golden visa & residency structuring</li>
-            </ul>
-          </div>
-
-          <div class="step-card">
-            <div class="step-badge">STAGE 04</div>
-            <div class="step-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#98f014" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <h3 class="step-title">Frictionless Escrow Close</h3>
-            <p class="step-desc">
-              Final deed custodian conveyance executed within 48 to 72 hours via audited Swiss or London notary escrows, accompanied by full bespoke concierge onboarding.
-            </p>
-            <ul class="step-features">
-              <li>Turnkey estate management handoff</li>
-              <li>Permanent white-glove security retainers</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. INTERACTIVE INVESTMENT YIELD & MORTGAGE CALCULATOR -->
-    <section class="calculator-section" id="calculator">
-      <div class="container">
-        <div class="calc-box-glass">
-          <div class="calc-grid">
-            <div class="calc-inputs-col">
-              <span class="section-eyebrow">PORTFOLIO FINANCIAL MODELING</span>
-              <h2 class="section-title">CAPITAL YIELD & FINANCING SIMULATOR</h2>
-              <p class="calc-lead">
-                Calculate bespoke private banking leverage, estimated debt servicing, and projected capital appreciation across prime global residential markets.
-              </p>
-
-              <!-- Slider 1: Valuation -->
-              <div class="slider-group">
-                <div class="slider-label-row">
-                  <span>Target Asset Valuation:</span>
-                  <strong class="slider-val-display" id="valDisplay">$50,000,000</strong>
-                </div>
-                <input type="range" id="propValSlider" min="5000000" max="150000000" step="1000000" value="50000000" class="aura-slider">
-                <div class="slider-ticks">
-                  <span>$5M</span>
-                  <span>$75M</span>
-                  <span>$150M</span>
-                </div>
-              </div>
-
-              <!-- Slider 2: Down Payment -->
-              <div class="slider-group">
-                <div class="slider-label-row">
-                  <span>Down Payment Equity:</span>
-                  <strong class="slider-val-display" id="downDisplay">35% ($17,500,000)</strong>
-                </div>
-                <input type="range" id="downSlider" min="15" max="60" step="5" value="35" class="aura-slider">
-                <div class="slider-ticks">
-                  <span>15%</span>
-                  <span>35%</span>
-                  <span>60%</span>
-                </div>
-              </div>
-
-              <!-- Sliders Row: Interest & Term -->
-              <div class="calc-two-col">
-                <div class="slider-group">
-                  <div class="slider-label-row">
-                    <span>Private Bank Rate:</span>
-                    <strong class="slider-val-display" id="rateDisplay">4.85%</strong>
-                  </div>
-                  <input type="range" id="rateSlider" min="2.5" max="7.5" step="0.25" value="4.85" class="aura-slider">
-                </div>
-
-                <div class="slider-group">
-                  <div class="slider-label-row">
-                    <span>Loan Duration:</span>
-                    <strong class="slider-val-display" id="termDisplay">20 Years</strong>
-                  </div>
-                  <input type="range" id="termSlider" min="10" max="30" step="5" value="20" class="aura-slider">
-                </div>
-              </div>
-
-              <!-- Slider 3: Rental Yield -->
-              <div class="slider-group">
-                <div class="slider-label-row">
-                  <span>Target Gross Rental Yield (p.a.):</span>
-                  <strong class="slider-val-display" id="yieldDisplay">6.5%</strong>
-                </div>
-                <input type="range" id="yieldSlider" min="3.0" max="10.0" step="0.5" value="6.5" class="aura-slider">
-              </div>
-            </div>
-
-            <!-- Calculated Financial Outputs -->
-            <div class="calc-results-col">
-              <div class="results-card">
-                <div class="results-header">
-                  <span class="results-tag">PRIVATE WEALTH PROJECTION</span>
-                  <h3 class="results-title">FINANCIAL SUMMARY</h3>
-                </div>
-
-                <div class="result-metric-large">
-                  <span class="metric-caption">Estimated Monthly Debt Service</span>
-                  <div class="metric-number-glow" id="monthlyMortgageResult">$212,410 /mo</div>
-                  <span class="metric-note">Principal + Private Wealth Interest</span>
-                </div>
-
-                <div class="metric-divider"></div>
-
-                <div class="metrics-row-duo">
-                  <div>
-                    <span class="sub-metric-label">Estimated Gross Rental Income</span>
-                    <div class="sub-metric-val" id="monthlyRentResult">$270,833 /mo</div>
-                    <span class="sub-metric-annual" id="annualRentResult">($3,250,000 /yr)</span>
-                  </div>
-                  <div>
-                    <span class="sub-metric-label">Net Monthly Cash Carry</span>
-                    <div class="sub-metric-val positive" id="netMonthlyResult">+$58,423 /mo</div>
-                    <span class="sub-metric-annual">Surplus After Debt</span>
-                  </div>
-                </div>
-
-                <div class="metric-divider"></div>
-
-                <div class="equity-projection-block">
-                  <div class="projection-head">
-                    <span>10-Year Estimated Total Asset Equity:</span>
-                    <strong id="tenYearEquityResult">$84,650,000</strong>
-                  </div>
-                  <div class="projection-bar-bg">
-                    <div class="projection-bar-fill" style="width: 72%;"></div>
-                  </div>
-                  <span class="projection-disclaimer">Based on 5.2% historical compounded annual appreciation across Monaco, Palm Jumeirah & Bel-Air.</span>
-                </div>
-
-                <button class="btn-primary w-full mt-4" id="consultAdvisorBtn">
-                  <span>Discuss Financing With Senior Partner</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. SOCIAL PROOF & PRIVATE CLIENT DESK TESTIMONIALS -->
-    <section class="testimonials-section" id="testimonials">
-      <div class="container">
-        <div class="section-header-row">
-          <div>
-            <span class="section-eyebrow">REPUTATION & ENDORSEMENTS</span>
-            <h2 class="section-title">THE PRIVATE CLIENT CONSORTIUM</h2>
-          </div>
-          <div class="press-logos">
-            <span class="press-logo">FINANCIAL TIMES</span>
-            <span class="press-logo">ROBB REPORT</span>
-            <span class="press-logo">ARCHITECTURAL DIGEST</span>
-            <span class="press-logo">FORBES GLOBAL</span>
-          </div>
-        </div>
-
-        <div class="testimonials-grid">
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">
-              "AURA PRIME executed the off-market acquisition of our Cap d'Antibes compound without a single leak to the French or international press. Their Swiss legal structuring was impeccable."
-            </p>
-            <div class="testi-author">
-              <div class="avatar-placeholder">FO</div>
-              <div>
-                <strong class="author-name">Principal Trustee</strong>
-                <span class="author-title">Zurich Multi-Family Office ($3.2B AUM)</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">
-              "Finding a trophy property on Palm Jumeirah that genuinely balances architectural pedigree with absolute yacht accessibility seemed impossible. The AURA partners presented three off-market options in 48 hours."
-            </p>
-            <div class="testi-author">
-              <div class="avatar-placeholder">TK</div>
-              <div>
-                <strong class="author-name">Technology Founder & Sovereign Collector</strong>
-                <span class="author-title">Dubai & Singapore Private Equity</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">
-              "Their direct access to Pritzker-level residential commissions is unmatched. The transaction closed through their London escrow in less than three business days."
-            </p>
-            <div class="testi-author">
-              <div class="avatar-placeholder">ER</div>
-              <div>
-                <strong class="author-name">Managing Partner</strong>
-                <span class="author-title">Geneva Sovereign Advisory Services</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 10. CONVERSION FUNNEL & CONFIDENTIAL INQUIRY DESK -->
-    <section class="inquiry-section" id="inquiry">
-      <div class="container">
-        <div class="inquiry-card">
-          <div class="inquiry-glow"></div>
-          <div class="inquiry-content">
-            <span class="section-eyebrow">CONCIERGE ACQUISITION SERVICE</span>
-            <h2 class="inquiry-title">INITIATE A CONFIDENTIAL MANDATE</h2>
-            <p class="inquiry-lead">
-              Submit your acquisition criteria. A Senior Managing Partner will contact your private family office or legal counsel within four hours under full Non-Disclosure Protocol.
-            </p>
-
-            <form class="inquiry-form" id="inquiryForm">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="clientName">Full Name / Representative Title *</label>
-                  <input type="text" id="clientName" placeholder="e.g. Lord Sterling / Family Office Trustee" required>
-                </div>
-                <div class="form-group">
-                  <label for="clientEmail">Confidential Email / Counsel Address *</label>
-                  <input type="email" id="clientEmail" placeholder="principal@familyoffice.ch" required>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="clientTerritory">Preferred Territory</label>
-                  <select id="clientTerritory">
-                    <option value="french-riviera">French Riviera & Monaco</option>
-                    <option value="dubai">Dubai & Arabian Gulf</option>
-                    <option value="california">Beverly Hills & Bel-Air, California</option>
-                    <option value="switzerland">Geneva & Swiss Alps</option>
-                    <option value="caribbean">St. Barts & Exuma Cays</option>
-                    <option value="custom">Other Sovereign Territory</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="clientBudget">Capital Allocation Range</label>
-                  <select id="clientBudget">
-                    <option value="25-50">$25M – $50M</option>
-                    <option value="50-100">$50M – $100M</option>
-                    <option value="100+">$100M+ (Private Island / Compound)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="clientBrief">Specific Architectural Requirements / Discretion Brief</label>
-                <textarea id="clientBrief" rows="3" placeholder="Specify desired acreage, deep-water dock requirements, helipad approvals, or biometric vaults..."></textarea>
-              </div>
-
-              <div class="form-footer">
-                <div class="privacy-notice">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98f014" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                  <span>Encrypted 256-bit transmission. Never logged on public MLS or third-party CRM systems.</span>
-                </div>
-                <button type="submit" class="btn-primary btn-submit">
-                  <span>Dispatch Confidential Mandate</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- 11. MASTER FOOTER -->
-  <footer class="master-footer">
-    <div class="container">
-      <div class="footer-top-grid">
-        <div class="footer-brand-col">
-          <div class="logo-mark">
-            <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
-              <polygon points="20,2 38,14 38,26 20,38 2,26 2,14" stroke="#98f014" stroke-width="2" fill="rgba(152, 240, 20, 0.08)"/>
-              <polygon points="20,10 30,17 30,23 20,30 10,23 10,17" stroke="#d4af37" stroke-width="1.5" fill="none"/>
-              <circle cx="20" cy="20" r="3" fill="#ffffff"/>
-            </svg>
-          </div>
-          <h3 class="footer-logo-title">AURA PRIME</h3>
-          <p class="footer-mission">
-            The premier global brokerage for confidential acquisition of world-class architectural monuments, private islands, and penthouse residences.
-          </p>
-          <div class="sovereign-status-pill">
-            <span class="pulse-dot"></span> Swiss FINMA & Monaco Escrow Compliant
-          </div>
-        </div>
-
-        <div class="footer-nav-col">
-          <h4 class="footer-col-title">TERRITORIES</h4>
-          <ul class="footer-links">
-            <li><a href="#inventory">Monaco & Côte d'Azur</a></li>
-            <li><a href="#inventory">Palm Jumeirah & Emirates Hills</a></li>
-            <li><a href="#inventory">Bel-Air & Beverly Hills</a></li>
-            <li><a href="#inventory">Geneva & St. Moritz</a></li>
-            <li><a href="#inventory">St. Barts & Exuma Cays</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-nav-col">
-          <h4 class="footer-col-title">GOVERNANCE</h4>
-          <ul class="footer-links">
-            <li><a href="#protocol">Acquisition Protocol</a></li>
-            <li><a href="#calculator">Private Wealth Modeling</a></li>
-            <li><a href="#inquiry">Blind Mandate Submission</a></li>
-            <li><a href="#testimonials">Consortium Press</a></li>
-            <li><a href="#protocol">Cross-Border Taxation</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-nav-col">
-          <h4 class="footer-col-title">GLOBAL DESKS</h4>
-          <p class="office-location"><strong>GENEVA:</strong> Rue du Rhône 42, 1204 Genève</p>
-          <p class="office-location"><strong>DUBAI:</strong> Gate Precinct 4, DIFC, Dubai</p>
-          <p class="office-location"><strong>MONACO:</strong> Boulevard des Moulins, Monte-Carlo</p>
-          <p class="office-location"><strong>LOS ANGELES:</strong> Rodeo Drive, Beverly Hills, CA</p>
-        </div>
-      </div>
-
-      <div class="footer-bottom-bar">
-        <p class="copyright-text">
-          © 2026 AURA PRIME ESTATES SA. ALL RIGHTS RESERVED. CONFIDENTIAL & PRIVILEGED ARCHITECTURAL BROKERAGE.
+  <!-- 4. SECTION 02: CURATED ENCLAVES (21ST.DEV ASYMMETRIC BENTO GRID) -->
+  <section class="enclaves-bento-section" id="enclaves">
+    <div class="site-container">
+      <div class="section-editorial-header">
+        <div class="section-index-tag">02 // THE CURATED INVENTORY</div>
+        <h2 class="section-display-title">Sovereign Plotted Enclaves & Master Grids</h2>
+        <p class="section-description">
+          Intentional architectural planning, arterial highway connectivity, and clear digital title deeds. Every plot is delivered with underground conduits and tree-lined avenues.
         </p>
-        <div class="legal-links">
-          <a href="#">Privacy Protocol</a>
-          <a href="#">Non-Disclosure Terms</a>
-          <a href="#">FINMA Compliance</a>
-          <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
-            <span>Top</span>
-          </button>
+      </div>
+
+      <!-- Asymmetric Bento Grid with 3D Tilt & Pointer Spotlight -->
+      <div class="bento-grid-container" id="bentoGrid">
+        
+        <!-- BENTO CARD 1: Sri Sri Amrutha Varshini (Hero Feature) -->
+        <article class="bento-card bento-span-2 bento-tilt-card border-beam" data-enclave="amrutha">
+          <div class="card-spotlight-layer"></div>
+          <div class="bento-card-media">
+            <img src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini Entrance Arch" class="bento-img">
+            <div class="bento-media-tag">FEATURED ENCLAVE</div>
+          </div>
+          <div class="bento-card-body">
+            <div class="bento-top-meta">
+              <span class="mono-coords">GPS // 12° 58' N, 77° 35' E</span>
+              <span class="bento-price price-dynamic" data-usd="2400000">$2,400,000</span>
+            </div>
+            <h3 class="bento-card-title">Sri Sri Amrutha Varshini</h3>
+            <p class="bento-card-desc">
+              Monumental architectural entrance gatehouse with dedicated security portico, asphalt avenue trees, underground rainwater drainage, and comprehensive boundary demarcation.
+            </p>
+            <div class="bento-footer-row">
+              <div class="spec-pills">
+                <span class="spec-pill">Gated Security</span>
+                <span class="spec-pill">Bitumen Roads</span>
+                <span class="spec-pill text-cyber-lime">Immediate Registry</span>
+              </div>
+              <button class="btn-magnetic btn-subtle-arrow" onclick="openDossierModal('amrutha-varshini')">
+                <span>Inspect Master Plan</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- BENTO CARD 2: Sodhi-Akru Master Grid Layout -->
+        <article class="bento-card bento-span-2 bento-tilt-card" data-enclave="akru-sodhi">
+          <div class="card-spotlight-layer"></div>
+          <div class="bento-card-media">
+            <img src="assets/images/plot-master-plan.jpg" alt="Sodhi-Akru Master Layout Grid" class="bento-img">
+            <div class="bento-media-tag">30 M.T. ARTERIAL GRID</div>
+          </div>
+          <div class="bento-card-body">
+            <div class="bento-top-meta">
+              <span class="mono-coords">GPS // 28° 34' N, 77° 12' E</span>
+              <span class="bento-price price-dynamic" data-usd="1850000">$1,850,000</span>
+            </div>
+            <h3 class="bento-card-title">The Sodhi-Akru Master Grid</h3>
+            <p class="bento-card-desc">
+              Approved geometric master community with direct 30 M.T. future road access, internal 12 M.T. and 7.5 M.T. boulevard network, central water pavilion, and clubhouse facility.
+            </p>
+            <div class="bento-footer-row">
+              <div class="spec-pills">
+                <span class="spec-pill">30M Future Road</span>
+                <span class="spec-pill">266 Plots</span>
+                <span class="spec-pill text-gold">High Liquidity</span>
+              </div>
+              <button class="btn-magnetic btn-subtle-arrow" onclick="openDossierModal('sodhi-akru')">
+                <span>View Master Plan</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- BENTO CARD 3: Aerovista Gated Township -->
+        <article class="bento-card bento-tilt-card" data-enclave="aerovista">
+          <div class="card-spotlight-layer"></div>
+          <div class="bento-card-media">
+            <img src="assets/images/plot-layout-3d.jpg" alt="Aerovista Gated Township 3D" class="bento-img">
+            <div class="bento-media-tag">3D TOWNSHIP</div>
+          </div>
+          <div class="bento-card-body">
+            <div class="bento-top-meta">
+              <span class="mono-coords">12° 58' N, 77° 35' E</span>
+              <span class="bento-price price-dynamic" data-usd="3100000">$3,100,000</span>
+            </div>
+            <h3 class="bento-card-title">Aerovista Gated Township</h3>
+            <p class="bento-card-desc">
+              Grand structural archway with manicured landscaping, asphalt road hierarchy, and compound perimeter walling.
+            </p>
+            <div class="bento-footer-row">
+              <button class="btn-magnetic btn-subtle-arrow" onclick="openDossierModal('aerovista')">
+                <span>Dossier</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- BENTO CARD 4: Greenfield Highway Plots -->
+        <article class="bento-card bento-tilt-card" data-enclave="highway">
+          <div class="card-spotlight-layer"></div>
+          <div class="bento-card-media">
+            <img src="assets/images/plot-highway-green.jpg" alt="Greenfield Highway Expressway Plots" class="bento-img">
+            <div class="bento-media-tag">EXPRESSWAY CORRIDOR</div>
+          </div>
+          <div class="bento-card-body">
+            <div class="bento-top-meta">
+              <span class="mono-coords">19° 04' N, 72° 52' E</span>
+              <span class="bento-price price-dynamic" data-usd="2250000">$2,250,000</span>
+            </div>
+            <h3 class="bento-card-title">Greenfield Highway Plots</h3>
+            <p class="bento-card-desc">
+              4-lane high-speed expressway frontage with high commercial appreciation, landscaped medians, and prime road visibility.
+            </p>
+            <div class="bento-footer-row">
+              <button class="btn-magnetic btn-subtle-arrow" onclick="openDossierModal('highway')">
+                <span>Dossier</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- BENTO CARD 5: Emerald Horizon Land -->
+        <article class="bento-card bento-tilt-card" data-enclave="emerald">
+          <div class="card-spotlight-layer"></div>
+          <div class="bento-card-media">
+            <img src="assets/images/plot-land-boundary.jpg" alt="Emerald Horizon Demarcated Land" class="bento-img">
+            <div class="bento-media-tag">50-ACRE PARCEL</div>
+          </div>
+          <div class="bento-card-body">
+            <div class="bento-top-meta">
+              <span class="mono-coords">13° 10' N, 77° 42' E</span>
+              <span class="bento-price price-dynamic" data-usd="1950000">$1,950,000</span>
+            </div>
+            <h3 class="bento-card-title">Emerald Horizon Land</h3>
+            <p class="bento-card-desc">
+              Scenic open valley land with precision geotagged boundary survey, clear ownership title, and green zoning.
+            </p>
+            <div class="bento-footer-row">
+              <button class="btn-magnetic btn-subtle-arrow" onclick="openDossierModal('emerald')">
+                <span>Dossier</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SECTION 03: SOVEREIGN CAPITAL PROTOCOL & YIELD CALCULATOR -->
+  <section class="protocol-yield-section" id="protocol">
+    <div class="site-container">
+      <div class="protocol-grid-layout">
+        
+        <!-- Left: Sovereign Acquisition Pillars -->
+        <div class="protocol-editorial-column">
+          <div class="section-index-tag">03 // RISK MITIGATION & CUSTODY</div>
+          <h2 class="section-display-title">Guaranteed Title Deeds & Sovereign Settlement</h2>
+          <p class="section-description">
+            Private client advisory designed for sovereign wealth funds, family offices, and discerning patrons who prioritize legal clarity and unencumbered ownership.
+          </p>
+
+          <div class="pillars-stack">
+            <div class="pillar-row">
+              <div class="pillar-num">01</div>
+              <div class="pillar-content">
+                <h4>100% Freehold Title Verification</h4>
+                <p>Every acre undergoes rigorous 30-year forensic title searches by senior legal bar advocates before placement.</p>
+              </div>
+            </div>
+
+            <div class="pillar-row">
+              <div class="pillar-num">02</div>
+              <div class="pillar-content">
+                <h4>Master Plan Approvals & RERA Sanction</h4>
+                <p>Complete statutory road layouts, open green dedications, and government infrastructure approvals on file.</p>
+              </div>
+            </div>
+
+            <div class="pillar-row">
+              <div class="pillar-num">03</div>
+              <div class="pillar-content">
+                <h4>Private Escrow Settlement Protocol</h4>
+                <p>Funds are secured via institutional Tier-1 banking escrow until physical registration deed execution.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Capital Yield Simulator (21st.dev Style) -->
+        <div class="yield-calculator-card border-beam">
+          <div class="card-spotlight-layer"></div>
+          <div class="calculator-header">
+            <div class="calc-badge">LIVE SIMULATOR</div>
+            <h3 class="calc-title">Capital Yield & Compounding Projections</h3>
+            <p class="calc-sub">Estimate land appreciation and equity trajectory across premier corridors.</p>
+          </div>
+
+          <div class="calc-body">
+            <!-- Slider 1: Capital Allocation -->
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span>INITIAL ALLOCATION CAPITAL</span>
+                <span class="slider-display-val price-dynamic" id="allocVal" data-usd="2000000">$2,000,000</span>
+              </div>
+              <input type="range" id="allocSlider" min="500000" max="10000000" step="250000" value="2000000" class="luxury-range-slider">
+            </div>
+
+            <!-- Slider 2: Horizon Years -->
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span>HOLDING HORIZON (YEARS)</span>
+                <span class="slider-display-val" id="yearsVal">7 Years</span>
+              </div>
+              <input type="range" id="yearsSlider" min="3" max="15" step="1" value="7" class="luxury-range-slider">
+            </div>
+
+            <!-- Slider 3: Projected CAGR -->
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span>CORRIDOR APPRECIATION (CAGR)</span>
+                <span class="slider-display-val text-cyber-lime" id="cagrVal">14.5%</span>
+              </div>
+              <input type="range" id="cagrSlider" min="8" max="22" step="0.5" value="14.5" class="luxury-range-slider">
+            </div>
+
+            <!-- Calculated Results Dock -->
+            <div class="calc-results-dock">
+              <div class="result-tile">
+                <span class="res-label">PROJECTED MATURITY CAPITAL</span>
+                <span class="res-num text-gold price-dynamic" id="maturityCapital" data-usd="5143000">$5,143,000</span>
+              </div>
+              <div class="result-tile">
+                <span class="res-label">NET CAPITAL GAIN</span>
+                <span class="res-num text-cyber-lime price-dynamic" id="netGain" data-usd="3143000">+$3,143,000</span>
+              </div>
+            </div>
+
+            <button class="btn-magnetic btn-gold-full" onclick="document.getElementById('advisory').scrollIntoView({behavior: 'smooth'})">
+              <span>Reserve High-Yield Allocation →</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECTION 04: PRIVATE ADVISORY & VIP ALLOCATION FORM -->
+  <section class="advisory-vip-section" id="advisory">
+    <div class="site-container">
+      <div class="advisory-split-container">
+        
+        <!-- Left: Private Client Desk Info -->
+        <div class="advisory-info-panel">
+          <div class="section-index-tag">04 // BESPOKE ENGAGEMENT</div>
+          <h2 class="section-display-title">Schedule a Private Viewing & Legal Inspection</h2>
+          <p class="section-description">
+            Direct coordination with our Senior Managing Partners. Confidential site visits, aerial drone verification, and legal dossier inspections arranged upon verification.
+          </p>
+
+          <div class="desk-contact-items">
+            <div class="desk-item">
+              <div class="desk-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="desk-content">
+                <span class="desk-sub">CONFIDENTIAL DIRECT DESK</span>
+                <span class="desk-val">+91 98200 44810 / +41 22 819 1920</span>
+              </div>
+            </div>
+
+            <div class="desk-item">
+              <div class="desk-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div class="desk-content">
+                <span class="desk-sub">SOVEREIGN PATRON LIAISON</span>
+                <span class="desk-val">patron@auraprime-estates.com</span>
+              </div>
+            </div>
+
+            <div class="desk-item">
+              <div class="desk-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div class="desk-content">
+                <span class="desk-sub">DISPATCH TURNAROUND</span>
+                <span class="desk-val">Confidential Dossier dispatched within 2 hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Minimalist VIP Booking Form -->
+        <div class="advisory-form-panel border-beam">
+          <div class="card-spotlight-layer"></div>
+          <h3 class="form-title">Request Sovereign Dossier</h3>
+          <p class="form-sub">Kindly submit your patron credentials for authenticated file release.</p>
+
+          <form id="vipInquiryForm" class="vip-form" onsubmit="handleVipSubmit(event)">
+            <div class="form-field-group">
+              <label for="patronName">FULL LEGAL NAME</label>
+              <input type="text" id="patronName" required placeholder="e.g. Lord Alistair Sterling" class="luxury-input">
+            </div>
+
+            <div class="form-field-group">
+              <label for="patronEmail">CONFIDENTIAL EMAIL</label>
+              <input type="email" id="patronEmail" required placeholder="patron@sterlingholdings.com" class="luxury-input">
+            </div>
+
+            <div class="form-row-split">
+              <div class="form-field-group">
+                <label for="allocationTier">ALLOCATION CAPITAL</label>
+                <select id="allocationTier" class="luxury-input">
+                  <option value="1M-2.5M">$1,000,000 – $2,500,000</option>
+                  <option value="2.5M-5M" selected>$2,500,000 – $5,000,000</option>
+                  <option value="5M+">$5,000,000+ Sovereign Tier</option>
+                </select>
+              </div>
+
+              <div class="form-field-group">
+                <label for="targetEnclave">TARGET SANCTUARY</label>
+                <select id="targetEnclave" class="luxury-input">
+                  <option value="amrutha">Sri Sri Amrutha Varshini</option>
+                  <option value="akru-sodhi">Sodhi-Akru Master Grid</option>
+                  <option value="aerovista">Aerovista Gated Township</option>
+                  <option value="highway">Greenfield Highway Plots</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-magnetic btn-gold-full">
+              <span>Execute Allocation Request →</span>
+            </button>
+            <div class="form-secure-note">
+              <span>🔒 256-Bit SSL Encrypted • Zero Data Disclosure Guarantee</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. MASTER FOOTER -->
+  <footer class="master-site-footer">
+    <div class="site-container footer-inner">
+      <div class="footer-top-row">
+        <div class="footer-brand-col">
+          <div class="brand-title">AURA PRIME</div>
+          <span class="brand-sub">SOVEREIGN ARCHITECTURAL ASSETS</span>
+          <p class="footer-bio">
+            Representing generational family offices, institutional trusts, and sovereign patrons across prime real estate growth corridors worldwide.
+          </p>
+        </div>
+
+        <div class="footer-links-col">
+          <span class="footer-heading">ENCLAVES</span>
+          <a href="#enclaves" class="footer-link">Sri Sri Amrutha Varshini</a>
+          <a href="#enclaves" class="footer-link">Sodhi-Akru Master Grid</a>
+          <a href="#enclaves" class="footer-link">Aerovista Township</a>
+          <a href="#enclaves" class="footer-link">Greenfield Expressway</a>
+        </div>
+
+        <div class="footer-links-col">
+          <span class="footer-heading">FINANCIAL DESKS</span>
+          <span class="footer-desk-city">Zurich (CH) • +41 22 819 1920</span>
+          <span class="footer-desk-city">Dubai (DIFC) • +971 4 312 8800</span>
+          <span class="footer-desk-city">London (Mayfair) • +44 20 7946 0912</span>
+          <span class="footer-desk-city">Mumbai (BKC) • +91 22 6600 4800</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span class="copyright">© 2026 AURA PRIME Sovereign Real Estate. All rights reserved. Freehold title verification guaranteed.</span>
+        <div class="footer-badges">
+          <span class="f-badge">ISO 9001:2015</span>
+          <span class="f-badge">RERA Compliant</span>
+          <span class="f-badge">Sovereign Escrow</span>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- 12. BLUEPRINT & PROPERTY DOSSIER MODAL -->
-  <div class="modal-backdrop" id="propertyModal">
-    <div class="modal-box">
-      <button class="modal-close-btn" id="closePropertyModalBtn" aria-label="Close Modal">&times;</button>
-      <div class="modal-inner" id="modalDynamicContent">
-        <!-- Injected via JavaScript -->
+  <!-- 8. INTERACTIVE DOSSIER MODAL -->
+  <div class="dossier-modal-backdrop" id="dossierModal">
+    <div class="dossier-modal-window border-beam">
+      <button class="modal-close-btn" onclick="closeDossierModal()" aria-label="Close Modal">&times;</button>
+      <div class="modal-content-grid">
+        <div class="modal-image-col">
+          <img id="modalMainImg" src="" alt="Enclave Preview" class="modal-preview-img">
+        </div>
+        <div class="modal-info-col">
+          <span class="mono-badge" id="modalBadge">SIGNATURE MASTER ENCLAVE</span>
+          <h3 class="modal-title" id="modalTitle">Sri Sri Amrutha Varshini</h3>
+          <p class="modal-desc" id="modalDesc"></p>
+          <div class="modal-meta-grid" id="modalMetaGrid"></div>
+          <div class="modal-price-row">
+            <span class="modal-price-label">ESTATE VALUATION</span>
+            <span class="modal-price-num text-gold" id="modalPrice"></span>
+          </div>
+          <button class="btn-magnetic btn-gold-full" onclick="closeDossierModal(); document.getElementById('advisory').scrollIntoView({behavior: 'smooth'})">
+            <span>Request Full Legal Package →</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- 13. PRIVATE VIEWING CONSULTATION MODAL -->
-  <div class="modal-backdrop" id="consultModal">
-    <div class="modal-box max-w-lg">
-      <button class="modal-close-btn" id="closeConsultModalBtn" aria-label="Close Modal">&times;</button>
-      <div class="consult-modal-inner">
-        <div class="consult-badge">CONFIDENTIAL INQUIRY</div>
-        <h3 class="consult-title">SCHEDULE A PRIVATE HELIPAD OR YACHT VIEWING</h3>
-        <p class="consult-sub">Direct access to the owner's legal delegate. Please specify your desired timing.</p>
-        <form id="quickConsultForm" class="mt-4">
-          <div class="form-group mb-3">
-            <label>Selected Estate Property</label>
-            <input type="text" id="consultPropertyName" value="Villa Céleste & Marine Sanctuary" readonly class="input-readonly">
-          </div>
-          <div class="form-group mb-3">
-            <label>Principal Name / Counsel Representative</label>
-            <input type="text" placeholder="Your name or representative" required>
-          </div>
-          <div class="form-group mb-3">
-            <label>Secure Email / Phone (Signal/WhatsApp)</label>
-            <input type="text" placeholder="secure@familyoffice.com" required>
-          </div>
-          <div class="form-group mb-4">
-            <label>Preferred Viewing Transfer Mode</label>
-            <select>
-              <option>Helicopter Direct to Estate Helipad</option>
-              <option>Private Offshore Yacht Tender</option>
-              <option>Chauffeured Armored Executive Sedan</option>
-            </select>
-          </div>
-          <button type="submit" class="btn-primary w-full">Confirm Confidential Scheduling</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div class="toast-hub" id="toastHub"></div>
 
   <script src="app.js"></script>
 </body>
