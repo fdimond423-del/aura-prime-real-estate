@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KŌHĪ ATELIER — The Roastery & Craft Story</title>
+  <meta name="description" content="Direct-trade coffee sourcing, micro-batch cast iron roasting, and heritage sourdough viennoiserie.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="cafe-style.css">
+  <style>
+    .story-hero {
+      padding: 96px 0 64px;
+      text-align: center;
+      background-color: var(--c-bg-subtle);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .story-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      padding: 96px 0;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .story-chapter {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .story-chapter:nth-child(even) {
+      direction: rtl;
+    }
+    .story-chapter:nth-child(even) .chapter-text {
+      direction: ltr;
+    }
+    .chapter-img-box {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--c-border);
+      box-shadow: var(--shadow-soft);
+    }
+    .chapter-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .chapter-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--c-accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .chapter-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1.15;
+      color: var(--c-ink);
+      margin-bottom: 14px;
+    }
+    .chapter-copy {
+      font-size: 0.9375rem;
+      color: var(--c-ink-muted);
+      line-height: 1.7;
+    }
+    @media (max-width: 800px) {
+      .story-chapter, .story-chapter:nth-child(even) {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT STRIP -->
+  <div class="kohi-strip">
+    <div class="site-container strip-inner">
+      <div class="strip-left">
+        <span style="color:var(--c-accent);">✦</span>
+        <span>Ethical Farm Partnerships: 100% Traceable Direct Trade with Smallholder Farms</span>
+      </div>
+      <div class="strip-right">
+        <span>CURRENCY:</span>
+        <select id="currencySelector" class="curr-select" aria-label="Currency Selector">
+          <option value="USD" selected>USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="AED">AED (AED)</option>
+          <option value="JPY">JPY (¥)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="kohi-header">
+    <div class="site-container header-inner">
+      <a href="index.html" class="brand-anchor">
+        <div class="brand-emblem">K</div>
+        <div class="brand-texts">
+          <span class="brand-name">KŌHĪ</span>
+          <span class="brand-sub">COFFEE ATELIER & BAKERY</span>
+        </div>
+      </a>
+
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">The Atelier</a>
+        <a href="menu.html" class="nav-link">Artisanal Menu</a>
+        <a href="story.html" class="nav-link active">Roastery & Craft</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="tray-btn" aria-label="Tasting Flight Tray" onclick="toggleTray(true)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+          </svg>
+          <span class="tray-badge" id="trayBadgeCount">0</span>
+        </button>
+        <button type="button" class="btn-primary" onclick="openReservationModal()">Reserve a Table</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STORY HERO -->
+  <section class="story-hero">
+    <div class="site-container" style="max-width:760px;">
+      <span class="caps-title text-accent" style="font-size:0.6875rem;display:block;margin-bottom:12px;">✦ THE SOVEREIGN ROASTERY ✦</span>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2.8rem, 4.8vw, 4.4rem);font-weight:400;margin-bottom:18px;">
+        Rooted in Soil, <span class="italic-serif text-cinnamon">Honored</span> in the Cup.
+      </h1>
+      <p style="font-size:1.0625rem;color:var(--c-ink-muted);line-height:1.7;">
+        Founded in 2024 by roaster Kenjiro Nakamura and master baker Claire Dubois, KŌHĪ Atelier was born from one quiet conviction: that the world does not need more fast coffee, it needs more sacred pauses.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4-CHAPTER STORY TIMELINE -->
+  <section class="site-container story-timeline">
+
+    <!-- CHAPTER 01: Terroir -->
+    <article class="story-chapter">
+      <div class="chapter-img-box">
+        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1000&q=80" alt="Coffee beans terroir" class="chapter-img" loading="lazy">
+      </div>
+      <div class="chapter-text">
+        <span class="chapter-num">01.</span>
+        <h2 class="chapter-title">High-Altitude Terroir & Direct Harvest</h2>
+        <p class="chapter-copy">
+          We never buy commodity coffee through broker auctions. We travel directly to small family-owned farms at elevations above 1,800 meters in Ethiopia, Panama, and Colombia. Cooler mountain nights force coffee cherries to ripen slowly, concentrating organic sugars and floral aromatics.
+        </p>
+      </div>
+    </article>
+
+    <!-- CHAPTER 02: Micro-Roasting -->
+    <article class="story-chapter">
+      <div class="chapter-img-box">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1000&q=80" alt="Precision micro roasting" class="chapter-img" loading="lazy">
+      </div>
+      <div class="chapter-text">
+        <span class="chapter-num">02.</span>
+        <h2 class="chapter-title">Cast-Iron Micro-Batch Roasting</h2>
+        <p class="chapter-copy">
+          Dark roasting kills the identity of the coffee. At KŌHĪ, we roast strictly in 5kg batches on custom cast-iron drums with infrared burner curves. We stop the roast right after first crack to preserve the natural jasmine, bergamot, and peach notes innate to the terroir.
+        </p>
+      </div>
+    </article>
+
+    <!-- CHAPTER 03: The Water -->
+    <article class="story-chapter">
+      <div class="chapter-img-box">
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1000&q=80" alt="Pour over water mineral balance" class="chapter-img" loading="lazy">
+      </div>
+      <div class="chapter-text">
+        <span class="chapter-num">03.</span>
+        <h2 class="chapter-title">Mineral Architecture of Water</h2>
+        <p class="chapter-copy">
+          A cup of coffee is 98.5% water. We re-mineralize pure reverse-osmosis water with precise ratios of magnesium (to extract bright floral acids) and calcium (to carry silky body). Poured at an exact 93.5°C using swan-neck kettles with steady spiral turbulence.
+        </p>
+      </div>
+    </article>
+
+    <!-- CHAPTER 04: The Slow Bakery -->
+    <article class="story-chapter">
+      <div class="chapter-img-box">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=80" alt="Artisanal Sourdough Bakery" class="chapter-img" loading="lazy">
+      </div>
+      <div class="chapter-text">
+        <span class="chapter-num">04.</span>
+        <h2 class="chapter-title">72-Hour Wild Levain Sourdough</h2>
+        <p class="chapter-copy">
+          Our bakery dough undergoes cold fermentation over three days using our 8-year-old sourdough starter named ‘Fuji’. Layered with 84% butterfat Normandy cultured butter, our croissants emerge with 32 distinct honeycombed layers that shatter delicately with every bite.
+        </p>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- CTA BENCH BOOKING -->
+  <section style="background-color:var(--c-bg-subtle);padding:96px 0;text-align:center;border-top:1px solid var(--c-border);">
+    <div class="site-container" style="max-width:680px;">
+      <span class="caps-title text-accent" style="font-size:0.6875rem;">✦ SENSORY WORKSHOPS ✦</span>
+      <h2 style="font-family:var(--font-display);font-size:2.6rem;font-weight:400;margin:12px 0 16px;">
+        Experience the <span class="italic-serif text-cinnamon">Slow Bar</span> Tasting
+      </h2>
+      <p style="font-size:1rem;color:var(--c-ink-muted);line-height:1.6;margin-bottom:32px;">
+        Join our roasters for a guided 45-minute cupping and brewing session at our Kyoto or Tokyo Hinoki wood bench.
+      </p>
+      <button type="button" class="btn-primary" onclick="openReservationModal()">
+        Reserve an Atelier Bench Seat →
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="kohi-footer">
+    <div class="site-container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">KŌHĪ</div>
+          <span class="footer-brand-tag">BOTANICAL COFFEE & SLOW BAKERY</span>
+          <p class="footer-desc">An oasis of calm and deliberate craftsmanship. All single-origin lots roasted in small batches.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">PAGES</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">The Atelier</a>
+            <a href="menu.html" class="footer-link">Artisanal Menu</a>
+            <a href="story.html" class="footer-link">Roastery & Terroir</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-col-title">HOURS</h4>
+          <div class="footer-links">
+            <span class="footer-link">Mon – Fri: 07:30 – 18:00</span>
+            <span class="footer-link">Saturday: 08:00 – 19:00</span>
+            <span class="footer-link">Sunday: 08:30 – 17:00</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-col-title">LOCATIONS</h4>
+          <div class="footer-links">
+            <span class="footer-link">Kyoto · Nakagyo Ward, 402</span>
+            <span class="footer-link">Tokyo · Aoyama Minato, 3-12</span>
+            <span class="footer-link">Zurich · St. Peterstrasse 19</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-lower">
+        <span>© 2026 KŌHĪ Atelier. Hand-roasted & baked daily. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TASTING TRAY FLYOUT DRAWER -->
+  <div class="tray-drawer-overlay" id="trayDrawerOverlay" onclick="toggleTray(false)"></div>
+  <aside class="tray-drawer" id="trayDrawer" role="dialog" aria-modal="true" aria-label="Tasting Flight Tray">
+    <div class="tray-head">
+      <h3 class="tray-title">Your Tasting Flight</h3>
+      <button type="button" onclick="toggleTray(false)" style="font-size:1.5rem;line-height:1;">&times;</button>
+    </div>
+    <div class="tray-items-list" id="trayItemsList"></div>
+    <div class="tray-foot">
+      <div class="tray-total-line">
+        <span>TRAY TOTAL:</span>
+        <span class="tray-total-amount" id="trayTotalAmount">$0.00</span>
+      </div>
+      <button type="button" class="btn-primary" onclick="toggleTray(false); openReservationModal();">Proceed with Table Reservation →</button>
+    </div>
+  </aside>
+
+  <!-- RESERVATION MODAL -->
+  <div class="kohi-modal-overlay" id="reservationModal">
+    <div class="kohi-modal-window">
+      <button type="button" class="modal-close-btn" onclick="closeReservationModal()">&times;</button>
+      <span class="caps-title text-accent" style="font-size:0.6875rem;">✦ PRIVATE APPOINTMENT ✦</span>
+      <h2 style="font-family:var(--font-display);font-size:1.875rem;font-weight:400;margin-top:4px;">Reserve an Atelier Table</h2>
+      <p style="font-size:0.875rem;color:var(--c-ink-muted);">We reserve select tables to guarantee a peaceful, unhurried sensory experience.</p>
+      <form class="modal-form" onsubmit="handleReservationSubmit(event)">
+        <div class="form-group">
+          <label for="resName">FULL NAME</label>
+          <input type="text" id="resName" class="form-input" required placeholder="Elena Rostova">
+        </div>
+        <div class="form-group">
+          <label for="resEmail">EMAIL FOR CONFIRMATION</label>
+          <input type="email" id="resEmail" class="form-input" required placeholder="elena@rostova.com">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-group">
+            <label for="resTime">TIME SLOT</label>
+            <select id="resTime" class="form-input">
+              <option>09:30 AM (Morning Brew)</option>
+              <option selected>02:30 PM (Barista Slow Bar)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="resGuests">GUESTS</label>
+            <select id="resGuests" class="form-input">
+              <option selected>2 Guests</option>
+              <option>3 - 4 Guests</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top:10px;">Confirm Private Reservation →</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="cafe-app.js"></script>
+</body>
+</html>

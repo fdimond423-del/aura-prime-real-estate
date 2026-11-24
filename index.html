@@ -3,656 +3,450 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA PRIME — Sovereign Architectural Sanctuaries & Plotted Communities</title>
-  <meta name="description" content="An architectural land atelier curating legally vetted sovereign plotted communities, arterial grids, and expressway frontage across premier growth corridors.">
+  <title>KŌHĪ ATELIER — Artisanal Coffee & Slow Botanical Bakery</title>
+  <meta name="description" content="A minimalist Japanese-Nordic coffeehouse and micro-roastery curating single-origin slow drips, botanical infusions, and slow-fermented viennoiserie.">
   
-  <!-- Fonts from Kedhar Atelier: Cinzel (Caps), Cormorant Garamond (Editorial Display & Italics), Jost (Modern Body) -->
+  <!-- Fonts: Cormorant Garamond (Editorial Display), Cinzel (Caps), Jost (Clean Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   
-  <!-- GSAP for Smooth Choreography -->
+  <!-- GSAP Core & ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cafe-style.css">
 </head>
-<body class="mat-page">
+<body>
 
-  <!-- SVG Patterns Definitions -->
-  <svg style="display:none;" aria-hidden="true">
-    <defs>
-      <!-- Repeating Brocade Border Pattern -->
-      <pattern id="brocadePattern" width="28" height="16" patternUnits="userSpaceOnUse">
-        <path d="M0,0.7H28M0,15.3H28" stroke="currentColor" stroke-width="0.9" />
-        <path d="M14,3.4L18.4,8L14,12.6L9.6,8Z" fill="currentColor" />
-        <circle cx="0" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="0.8" />
-        <circle cx="28" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="0.8" />
-        <circle cx="0" cy="8" r="1.1" fill="currentColor" />
-        <circle cx="28" cy="8" r="1.1" fill="currentColor" />
-        <circle cx="6" cy="4.2" r="0.85" fill="currentColor" />
-        <circle cx="6" cy="11.8" r="0.85" fill="currentColor" />
-        <circle cx="22" cy="4.2" r="0.85" fill="currentColor" />
-        <circle cx="22" cy="11.8" r="0.85" fill="currentColor" />
-      </pattern>
-      <!-- Damask Ogee Lattice Pattern -->
-      <pattern id="damaskPattern" width="96" height="124" patternUnits="userSpaceOnUse">
-        <path d="M48,2Q66,40 94,62Q66,84 48,122Q30,84 2,62Q30,40 48,2Z" fill="none" stroke="currentColor" stroke-width="0.8" />
-        <g transform="translate(48,62)">
-          <circle r="2.4" fill="currentColor" />
-        </g>
-        <circle cx="0" cy="0" r="3" fill="currentColor" />
-        <circle cx="96" cy="0" r="3" fill="currentColor" />
-        <circle cx="0" cy="124" r="3" fill="currentColor" />
-        <circle cx="96" cy="124" r="3" fill="currentColor" />
-      </pattern>
-    </defs>
-  </svg>
-
-  <!-- 1. ANNOUNCEMENT STRIP (MAROON & GOLD MARQUEE) -->
-  <div class="mat-strip">
-    <div class="mat-strip-in">
-      <div class="mat-marquee">
-        <div class="mat-marquee-track">
-          <span>✦ FRESH REGISTRATIONS OPENED FOR 2026 SOVEREIGN ACREAGES</span>
-          <span>✦ 100% CLEAR FREEHOLD VETTED DEEDS</span>
-          <span>✦ INSTITUTIONAL BANKING ESCROW CUSTODY</span>
-          <span>✦ DIRECT CORRESPONDENCE: JAIPUR & ZURICH DESKS</span>
-          <span>✦ FRESH REGISTRATIONS OPENED FOR 2026 SOVEREIGN ACREAGES</span>
-          <span>✦ 100% CLEAR FREEHOLD VETTED DEEDS</span>
-        </div>
+  <!-- 1. ANNOUNCEMENT MARQUEE STRIP -->
+  <div class="kohi-strip">
+    <div class="site-container strip-inner">
+      <div class="strip-left">
+        <span style="color:var(--c-accent);">✦</span>
+        <span>Spring Harvest Geisha Just Arrived from Gesha Village, Ethiopia · Micro-Batch No. 048</span>
       </div>
-      <div>
-        <select id="currencySelect" class="mat-currency-select" aria-label="Currency Selector">
+      <div class="strip-right">
+        <span>CURRENCY:</span>
+        <select id="currencySelector" class="curr-select" aria-label="Currency Selector">
           <option value="USD" selected>USD ($)</option>
           <option value="EUR">EUR (€)</option>
-          <option value="AED">AED (AED)</option>
           <option value="GBP">GBP (£)</option>
+          <option value="AED">AED (AED)</option>
+          <option value="JPY">JPY (¥)</option>
         </select>
       </div>
     </div>
   </div>
 
-  <!-- 2. BRAND BAND (DAMASK GROUND & GILT WORDMARK) -->
-  <div class="mat-band" id="brandBand">
-    <svg class="mat-damask mat-band-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-    <div class="mat-band-in">
-      <!-- Left side: Emblem & Atelier Tagline -->
-      <div class="mat-band-side is-left">
-        <svg class="mat-emblem" viewBox="-50 -50 100 100" width="38" height="38" aria-hidden="true">
-          <circle r="44" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.2" />
-          <circle r="36" fill="none" stroke="currentColor" stroke-width="1.4" />
-          <circle r="6" fill="currentColor" />
-        </svg>
-        <div>
-          <span>AURA PRIME</span>
-          <small>Sovereign Land Atelier · Est. 2026</small>
+  <!-- 2. EDITORIAL NAVBAR -->
+  <header class="kohi-header" id="kohiHeader">
+    <div class="site-container header-inner">
+      <a href="index.html" class="brand-anchor">
+        <div class="brand-emblem">K</div>
+        <div class="brand-texts">
+          <span class="brand-name">KŌHĪ</span>
+          <span class="brand-sub">COFFEE ATELIER & BAKERY</span>
         </div>
-      </div>
+      </a>
 
-      <!-- Center: Wordmark in Cinzel -->
-      <div class="mat-wordmark" aria-label="AURA PRIME">
-        <span class="mat-word-ch">A</span>
-        <span class="mat-word-ch">U</span>
-        <span class="mat-word-ch">R</span>
-        <span class="mat-word-ch">A</span>
-        <span class="mat-word-ch" style="margin-left:0.3em;">P</span>
-        <span class="mat-word-ch">R</span>
-        <span class="mat-word-ch">I</span>
-        <span class="mat-word-ch">M</span>
-        <span class="mat-word-ch">E</span>
-      </div>
-
-      <!-- Right side: Portfolio Drawer Trigger -->
-      <div class="mat-band-side is-right">
-        <button type="button" class="mat-icon-btn mat-bag-btn" aria-label="View Saved Portfolio" onclick="toggleDrawer(true)">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 8.5h14l-1 12H6z" />
-            <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
-          </svg>
-          <span class="mat-bag-badge" id="bandBagBadge">0</span>
-        </button>
-        <span class="mat-band-total" id="bandTotal">$0</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. STICKY NAVBAR WITH BROCADE EDGES -->
-  <header class="mat-navbar" id="atelierNavbar">
-    <svg class="mat-brocade mat-navbar-edge" aria-hidden="true"><rect width="100%" height="100%" fill="url(#brocadePattern)" /></svg>
-    <div class="mat-navbar-in">
-      <button type="button" class="mat-mini-mark" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-        ✦ AURA PRIME
-      </button>
-
-      <nav class="mat-nav" aria-label="Primary">
-        <div class="mat-tab"><a href="#hero">The Atelier</a></div>
-        <div class="mat-tab"><a href="#sanctuaries">Curated Sanctuaries</a></div>
-        <div class="mat-tab"><a href="#bento">The Sovereign Edit</a></div>
-        <div class="mat-tab"><a href="#custody">Legal Custody</a></div>
-        <div class="mat-tab"><a href="#viewing">Private Inspection</a></div>
+      <!-- 3-Page Clean Nav -->
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link active">The Atelier</a>
+        <a href="menu.html" class="nav-link">Artisanal Menu</a>
+        <a href="story.html" class="nav-link">Roastery & Craft</a>
       </nav>
 
-      <button type="button" class="mat-mini-bag mat-icon-btn" aria-label="Portfolio" onclick="toggleDrawer(true)">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path d="M5 8.5h14l-1 12H6z" /><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
-        </svg>
-      </button>
-    </div>
-    <svg class="mat-brocade mat-navbar-edge" aria-hidden="true"><rect width="100%" height="100%" fill="url(#brocadePattern)" /></svg>
-    <div class="mat-progress" aria-hidden="true">
-      <i id="progressBar"></i>
+      <div class="header-actions">
+        <!-- Tasting Tray Flyout Trigger -->
+        <button type="button" class="tray-btn" aria-label="Tasting Flight Tray" onclick="toggleTray(true)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+            <line x1="6" y1="1" x2="6" y2="4" />
+            <line x1="10" y1="1" x2="10" y2="4" />
+            <line x1="14" y1="1" x2="14" y2="4" />
+          </svg>
+          <span class="tray-badge" id="trayBadgeCount">0</span>
+        </button>
+
+        <button type="button" class="btn-primary" onclick="openReservationModal()">
+          Reserve a Table
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- 4. SPLIT HERO (REGAL MAROON & OLIVE WITH CUSPED ARCH WINDOW) -->
-  <section class="mat-hero" id="hero" aria-label="Hero">
-    
-    <!-- Left Panel: Regal Maroon -->
-    <div class="mat-panel mat-panel-l">
-      <svg class="mat-damask mat-panel-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-      <div class="mat-split-mandala is-l mat-mandala" data-seed="7"></div>
-      <div class="mat-hero-fil is-tl mat-filigree" data-corner="tl" data-seed="1"></div>
-      <div class="mat-hero-fil is-bl mat-filigree" data-corner="bl" data-seed="3"></div>
+  <!-- 3. HERO SECTION (AMBIENT 4K VIDEO & ROTATING STAMP) -->
+  <section class="kohi-hero" id="hero">
+    <div class="site-container hero-grid">
+      
+      <!-- Left Column: Editorial Headline -->
+      <div class="hero-text-col">
+        <div class="hero-kicker-row">
+          <span class="kicker-dot"></span>
+          <span class="kicker-text">Slow Coffee · Single Origins · Pure Terroir</span>
+        </div>
 
-      <div class="mat-hero-copy">
-        <p class="mat-kicker">
-          ✦ HAND-SURVEYED ACREAGES · EST. 2026 ✦
-        </p>
-
-        <h1 class="mat-hero-title">
-          <span class="mat-line"><span class="mat-word">Sovereign</span></span>
-          <span class="mat-line"><span class="mat-word">Sanctuaries</span></span>
+        <h1 class="hero-title">
+          Where <span class="italic-serif">Craft</span> Meets<br>
+          the Art of the <span class="italic-serif text-cinnamon">Slow Pour</span>.
         </h1>
 
-        <div class="mat-flourish mat-hero-flourish" data-seed="4"></div>
-
-        <p class="mat-hero-sub">
-          We curate legally unencumbered residential plotted enclaves, arterial highway corridors, and master communities. Delivered with tree-lined asphalt boulevards, underground conduits, and sovereign escrow custody.
+        <p class="hero-copy">
+          We honor single-origin coffees with restrained Japanese roasting methods and wild-fermented French viennoiserie. Every extraction is weighed to the tenth of a gram.
         </p>
 
-        <div class="mat-hero-actions">
-          <a href="#sanctuaries" class="mat-btn mat-btn-line">
-            ✦ Explore Curated Sanctuaries
+        <div class="hero-cta-group">
+          <a href="menu.html" class="btn-primary">
+            Explore Brew Menu →
           </a>
-          <a href="#custody" class="mat-btn mat-btn-ghost">
-            Legal Custody Protocol →
+          <a href="story.html" class="btn-outline">
+            Our Roasting Philosophy
           </a>
         </div>
 
-        <p class="mat-est">EST. 2026 · JAIPUR & ZURICH</p>
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <span class="metric-val">100%</span>
+            <span class="metric-lbl">Direct Farm Trade</span>
+          </div>
+          <div style="color:var(--c-border-strong);">/</div>
+          <div class="metric-item">
+            <span class="metric-val">88+</span>
+            <span class="metric-lbl">SCA Cup Score</span>
+          </div>
+          <div style="color:var(--c-border-strong);">/</div>
+          <div class="metric-item">
+            <span class="metric-val">72h</span>
+            <span class="metric-lbl">Slow Cold Infusions</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Right Column: Ambient Auto-Playing 4K Video Frame -->
+      <div class="hero-media-col">
+        
+        <!-- Rotating Botanical Coffee Seal -->
+        <div class="rotating-cafe-stamp">
+          <svg class="stamp-svg-ring" viewBox="0 0 160 160">
+            <defs>
+              <path id="stampPathCircle" d="M 80, 80 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" />
+            </defs>
+            <circle cx="80" cy="80" r="72" stroke="rgba(198, 138, 76, 0.45)" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+            <text font-family="Cinzel" font-size="10.5" font-weight="600" letter-spacing="2.4" fill="var(--c-accent)">
+              <textPath href="#stampPathCircle">✦ KŌHĪ ATELIER ✦ SINGLE ORIGIN SLOW DRIP </textPath>
+            </text>
+          </svg>
+          <div class="stamp-center-bean">☕</div>
+        </div>
+
+        <div class="hero-video-frame">
+          <video class="hero-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-coffee-maker-pouring-fresh-coffee-into-a-cup-41132-large.mp4" type="video/mp4">
+          </video>
+          <div class="video-overlay-tint"></div>
+          
+          <span class="video-badge">
+            LIVE ATELIER // TOKYO SLOW EXTRACTION
+          </span>
+
+          <div class="video-caption-box">
+            <div>
+              <h3 class="v-cap-title">Kyoto Slow Drip Tower</h3>
+              <p class="v-cap-sub">Single drop per second · 18 hours cold infusion</p>
+            </div>
+            <a href="menu.html" class="btn-outline btn-sm">Explore</a>
+          </div>
+        </div>
+
+      </div>
+
     </div>
+  </section>
 
-    <!-- Right Panel: Deep Olive with Live Arch Window -->
-    <div class="mat-panel mat-panel-r" id="heroPanelR">
-      <svg class="mat-damask mat-panel-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-      <div class="mat-split-mandala is-r mat-mandala" data-seed="7"></div>
-      <div class="mat-hero-fil is-tr mat-filigree" data-corner="tr" data-seed="5"></div>
-      <div class="mat-hero-fil is-br mat-filigree" data-corner="br" data-seed="7"></div>
+  <!-- 4. EDITORIAL PHILOSOPHY (MINIMALIST STATEMENT) -->
+  <section class="kohi-philosophy">
+    <div class="site-container philosophy-inner">
+      <span class="caps-title text-accent" style="font-size:0.6875rem;display:block;margin-bottom:14px;">✦ SLOW LIVING PHILOSOPHY ✦</span>
+      <p class="philo-quote">
+        “Coffee is not a rush for fuel; it is a quiet sensory ceremony. From mountain mist in Yirgacheffe to the gentle bloom of the kettle, we preserve every drop of terroir.”
+      </p>
+      <span class="philo-author">— KENJIRO NAKAMURA · HEAD ROASTER</span>
+    </div>
+  </section>
 
-      <!-- Real photo of Sri Sri Amrutha Varshini entrance inside morphing arch -->
-      <img id="heroWinImg" class="mat-win-img" src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini Grand Entrance Portico" decoding="async">
+  <!-- 5. SIGNATURE CREATIONS (UNCROWDED 3-COLUMN CARDS) -->
+  <section class="kohi-creations">
+    <div class="site-container">
       
-      <!-- Double gold frame lines for the arch -->
-      <svg id="heroWinSvg" class="mat-win-lines" aria-hidden="true" preserveAspectRatio="none">
-        <path id="heroWinOuter" class="mat-dr" pathLength="1" fill="none" stroke="currentColor" stroke-width="1.6" />
-        <path id="heroWinInner" class="mat-dr" pathLength="1" fill="none" stroke="currentColor" stroke-width="0.9" />
-      </svg>
-
-      <!-- Turning Architectural Wax Seal -->
-      <svg class="mat-hero-seal" viewBox="-60 -60 120 120" aria-hidden="true">
-        <defs>
-          <path id="heroSealCircle" d="M0,-46A46,46 0 1 1 0,46A46,46 0 1 1 0,-46" />
-        </defs>
-        <circle r="58" fill="var(--maroon)" />
-        <circle r="55" fill="none" stroke="currentColor" stroke-width="0.8" />
-        <circle r="36" fill="none" stroke="currentColor" stroke-width="0.8" />
-        <g class="mat-seal-turn">
-          <text font-size="9.2" letter-spacing="2.2" fill="currentColor" style="font-family:var(--caps);">
-            <textPath href="#heroSealCircle">✦ SRI SRI AMRUTHA VARSHINI ✦ SOVEREIGN SANCTUARY </textPath>
-          </text>
-        </g>
-        <circle r="6" fill="currentColor" />
-      </svg>
-
-      <!-- Bottom Floating Label -->
-      <div class="mat-photo-label">
-        <p class="mat-kicker">✦ SIGNATURE MASTERPIECE ✦</p>
-        <h2 class="mat-photo-title">Sri Sri Amrutha Varshini</h2>
-        <button type="button" class="mat-btn mat-btn-ghost" onclick="openDossierModal('amrutha-varshini')">
-          View Master Layout Dossier <span style="font-family:inherit;">→</span>
-        </button>
+      <div class="section-head-block">
+        <span class="caps-title text-accent" style="font-size:0.6875rem;display:block;margin-bottom:10px;">✦ SEASONAL HIGHLIGHTS ✦</span>
+        <h2 class="section-title">The Master <span class="italic-serif text-cinnamon">Creations</span></h2>
+        <p class="section-lead">Three signature pairings curated weekly by our head barista and pastry chef.</p>
       </div>
-    </div>
 
-    <!-- Framing & Split Brocade -->
-    <div class="mat-hero-frame" aria-hidden="true">
-      <i class="is-t"></i><i class="is-b"></i><i class="is-l"></i><i class="is-r"></i>
-    </div>
-    <svg class="mat-brocade mat-hero-split is-v" aria-hidden="true"><rect width="100%" height="100%" fill="url(#brocadePattern)" /></svg>
-    <svg class="mat-brocade mat-hero-sill" aria-hidden="true"><rect width="100%" height="100%" fill="url(#brocadePattern)" /></svg>
-  </section>
+      <div class="creations-grid">
 
-  <!-- 5. TWIN HEADING & CURATED SANCTUARIES (IN CUSPED ARCHES) -->
-  <section class="mat-sellers" id="sanctuaries" aria-label="Curated Sanctuaries">
-    <div class="mat-twin">
-      <p class="mat-twin-l">Curated Sovereign Grids</p>
-      <div class="mat-twin-mid" aria-hidden="true">
-        <div class="mat-flourish mat-twin-flourish" data-seed="11"></div>
-        <svg class="mat-emblem" viewBox="-50 -50 100 100" width="56" height="56">
-          <circle r="44" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.2" />
-          <circle r="36" fill="none" stroke="currentColor" stroke-width="1.4" />
-          <circle r="6" fill="currentColor" />
-        </svg>
+        <!-- CARD 1: Geisha Pour-Over -->
+        <article class="creation-card">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80" alt="Ethiopia Gesha Village Pour Over" class="card-img" loading="lazy">
+            <span class="card-tag">SINGLE ORIGIN GEISHA</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">Ethiopia · Bench Maji (1,950m)</span>
+              <span class="card-price price-dynamic" data-usd="9.50">$9.50</span>
+            </div>
+            <h3 class="card-title">Gesha Village Lot 74</h3>
+            <p class="card-notes">
+              Natural anaerobic fermentation yielding delicate bergamot aromatics, jasmine blossom, and wildflower honey finish.
+            </p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Bergamot</span>
+              <span class="taste-pill">Jasmine</span>
+              <span class="taste-pill">Peach Nectar</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Gesha Village Lot 74', 9.50, 'Ethiopia 1,950m')">
+                + Add to Tasting Tray
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: Miso Kouign-Amann -->
+        <article class="creation-card">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Artisanal Viennoiserie" class="card-img" loading="lazy">
+            <span class="card-tag">SLOW BAKERY</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">Normandy Butter · 48h Lamination</span>
+              <span class="card-price price-dynamic" data-usd="6.50">$6.50</span>
+            </div>
+            <h3 class="card-title">Miso Salted Caramel Kouign</h3>
+            <p class="card-notes">
+              Caramelized Brittany pastry infused with organic Kyoto red miso and Maldon sea salt flake crust.
+            </p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Caramelized Crust</span>
+              <span class="taste-pill">Umami Miso</span>
+              <span class="taste-pill">Flaky 32-Layers</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Miso Salted Caramel Kouign', 6.50, 'Handmade French Viennoiserie')">
+                + Add to Tasting Tray
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3: Cold Drip & Tonic -->
+        <article class="creation-card">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=80" alt="Kyoto Cold Drip with Botanical Tonic" class="card-img" loading="lazy">
+            <span class="card-tag">BOTANICAL FUSION</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">18-Hour Slow Drip · Yuzu Essence</span>
+              <span class="card-price price-dynamic" data-usd="8.00">$8.00</span>
+            </div>
+            <h3 class="card-title">Kyoto Yuzu Cold Tonic</h3>
+            <p class="card-notes">
+              Concentrated cold drip layered over artisanal quinine botanical water, candied yuzu peel, and fresh rosemary sprig.
+            </p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Effervescent</span>
+              <span class="taste-pill">Citrus Peel</span>
+              <span class="taste-pill">Bitter Cacao</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Kyoto Yuzu Cold Tonic', 8.00, 'Cold Extraction & Botanical')">
+                + Add to Tasting Tray
+              </button>
+            </div>
+          </div>
+        </article>
+
       </div>
-      <h2 class="mat-twin-r">The 2026 Enclaves</h2>
-    </div>
 
-    <p class="mat-lede">
-      Hand-surveyed master communities featuring sanctioned road widths, underground utilities, and guaranteed freehold custody.
-    </p>
-
-    <!-- 4 Enclaves in Mughal Cusped Arches -->
-    <div class="mat-products">
-
-      <!-- ENCLAVE 1: Sri Sri Amrutha Varshini -->
-      <article class="mat-product">
-        <div class="mat-arch" data-arch="true" data-img="assets/images/amrutha-varshini-entrance.jpg" data-alt="Sri Sri Amrutha Varshini Grand Portico">
-          <span class="mat-badge">SIGNATURE GATED</span>
-          <button type="button" class="mat-quick" onclick="addToPortfolio('amrutha-varshini', this)">
-            <span>Reserve Allocation</span>
-          </button>
-        </div>
-        <span style="color:var(--gold);margin-top:14px;">✦</span>
-        <h3>Sri Sri Amrutha Varshini</h3>
-        <p class="mat-product-note">40 Acres · 60 Ft Main Boulevard</p>
-        <p class="mat-product-price price-dynamic" data-usd="2400000">$2,400,000</p>
-        <button type="button" onclick="openDossierModal('amrutha-varshini')" style="color:var(--copper);font-size:12px;font-family:var(--caps);letter-spacing:0.12em;margin-top:4px;">
-          INSPECT DOSSIER →
-        </button>
-      </article>
-
-      <!-- ENCLAVE 2: The Sodhi-Akru Master Grid -->
-      <article class="mat-product">
-        <div class="mat-arch" data-arch="true" data-img="assets/images/plot-master-plan.jpg" data-alt="Sodhi-Akru Master Grid Layout">
-          <span class="mat-badge">30M ARTERIAL</span>
-          <button type="button" class="mat-quick" onclick="addToPortfolio('sodhi-akru', this)">
-            <span>Reserve Allocation</span>
-          </button>
-        </div>
-        <span style="color:var(--gold);margin-top:14px;">✦</span>
-        <h3>The Sodhi-Akru Grid</h3>
-        <p class="mat-product-note">266 Plots · 30M Future Road</p>
-        <p class="mat-product-price price-dynamic" data-usd="1850000">$1,850,000</p>
-        <button type="button" onclick="openDossierModal('sodhi-akru')" style="color:var(--copper);font-size:12px;font-family:var(--caps);letter-spacing:0.12em;margin-top:4px;">
-          INSPECT DOSSIER →
-        </button>
-      </article>
-
-      <!-- ENCLAVE 3: Aerovista Gated Township -->
-      <article class="mat-product">
-        <div class="mat-arch" data-arch="true" data-img="assets/images/plot-layout-3d.jpg" data-alt="Aerovista 3D Township">
-          <span class="mat-badge">AEROTROPOLIS</span>
-          <button type="button" class="mat-quick" onclick="addToPortfolio('aerovista', this)">
-            <span>Reserve Allocation</span>
-          </button>
-        </div>
-        <span style="color:var(--gold);margin-top:14px;">✦</span>
-        <h3>Aerovista Township</h3>
-        <p class="mat-product-note">Bitumen Roads · 16.2% CAGR</p>
-        <p class="mat-product-price price-dynamic" data-usd="3100000">$3,100,000</p>
-        <button type="button" onclick="openDossierModal('aerovista')" style="color:var(--copper);font-size:12px;font-family:var(--caps);letter-spacing:0.12em;margin-top:4px;">
-          INSPECT DOSSIER →
-        </button>
-      </article>
-
-      <!-- ENCLAVE 4: Greenfield Highway Plots -->
-      <article class="mat-product">
-        <div class="mat-arch" data-arch="true" data-img="assets/images/plot-highway-green.jpg" data-alt="Greenfield Highway Frontage">
-          <span class="mat-badge">EXPRESSWAY</span>
-          <button type="button" class="mat-quick" onclick="addToPortfolio('highway', this)">
-            <span>Reserve Allocation</span>
-          </button>
-        </div>
-        <span style="color:var(--gold);margin-top:14px;">✦</span>
-        <h3>Greenfield Highway Plots</h3>
-        <p class="mat-product-note">300 Ft Frontage · Commercial Multi-Use</p>
-        <p class="mat-product-price price-dynamic" data-usd="2250000">$2,250,000</p>
-        <button type="button" onclick="openDossierModal('highway')" style="color:var(--copper);font-size:12px;font-family:var(--caps);letter-spacing:0.12em;margin-top:4px;">
-          INSPECT DOSSIER →
-        </button>
-      </article>
+      <div style="text-align:center;margin-top:48px;">
+        <a href="menu.html" class="btn-outline">
+          Inspect Full 24-Item Brew & Bakery Menu →
+        </a>
+      </div>
 
     </div>
   </section>
 
-  <!-- 6. THE SOVEREIGN EDIT (BENTO GRID WITH FEATURE TILE & YIELD BOOKER) -->
-  <section class="mat-edit" id="bento" aria-label="The Sovereign Edit">
-    <div class="mat-head">
-      <p class="mat-kicker">✦ THE SOVEREIGN PORTFOLIOS ✦</p>
-      <h2 class="mat-h2">The Curated Land Edit</h2>
-      <p class="mat-lede">Architectural master planning meets institutional legal custodianship.</p>
-    </div>
-
-    <div class="mat-bento">
-      <!-- Master Tile: Emerald Horizon -->
-      <article class="mat-tile">
-        <img class="mat-tile-img" src="assets/images/plot-land-boundary.jpg" alt="Emerald Horizon Demarcated Parcel" loading="lazy" decoding="async">
-        <div class="mat-tile-shade" aria-hidden="true"></div>
-        <div class="mat-frame-box">
-          <i class="is-t"></i><i class="is-b"></i><i class="is-l"></i><i class="is-r"></i>
-          <p class="mat-kicker">✦ 50-ACRE CONTINUOUS PARCEL ✦</p>
-          <h3>Emerald Horizon Sanctuary</h3>
-          <p class="mat-frame-blurb">
-            Pristine continuous acreage with satellite DGPS boundary fencing, clear single ownership deed, and sweeping valley horizons.
-          </p>
-          <button type="button" class="mat-btn mat-btn-gold" onclick="openDossierModal('emerald')">
-            Review Title Chain →
-          </button>
+  <!-- 6. BENTO ATELIER EXPERIENCE -->
+  <section class="kohi-experience">
+    <div class="site-container">
+      <div class="bento-grid">
+        
+        <!-- Large Tile: Sunlit Roastery -->
+        <div class="bento-main-tile">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80" alt="Sunlit Roastery Space" class="bento-tile-img" loading="lazy">
+          <div class="bento-tile-overlay">
+            <span class="bento-tile-kicker">✦ THE ROASTERY ATELIER ✦</span>
+            <h2 class="bento-tile-title">Ceremonial Slow Bar & Tasting Bench</h2>
+            <p class="bento-tile-copy">
+              Sit at our 8-seat Japanese Hinoki wood counter for a 45-minute omakase coffee tasting flight prepared right in front of you.
+            </p>
+            <div>
+              <button type="button" class="btn-primary" onclick="openReservationModal()">
+                Book Barista Tasting Bench
+              </button>
+            </div>
+          </div>
         </div>
-      </article>
 
-      <!-- Highlight Card 1: 30-Year Forensic Search -->
-      <article class="mat-hl">
-        <svg class="mat-damask mat-hl-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-        <div class="mat-hl-fil mat-filigree" data-corner="tl" data-seed="30"></div>
-        <div class="mat-hl-in">
-          <h3>30-Year Forensic Title Search</h3>
-          <p>Historical chain of custody, Encumbrance Certificates, revenue mutations, and Bar Council verified certificates.</p>
-          <button type="button" class="mat-btn mat-btn-sm mat-btn-copper" onclick="document.getElementById('custody').scrollIntoView({behavior:'smooth'})">
-            Review Protocol
-          </button>
-        </div>
-      </article>
-
-      <!-- Highlight Card 2: Tier-1 Escrow -->
-      <article class="mat-hl is-deep">
-        <svg class="mat-damask mat-hl-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-        <div class="mat-hl-fil mat-filigree" data-corner="tl" data-seed="31"></div>
-        <div class="mat-hl-in">
-          <h3>Banking Escrow Custody</h3>
-          <p>Patron capital remains held in neutral Tier-1 banking escrow accounts until physical deed registration execution.</p>
-          <button type="button" class="mat-btn mat-btn-sm mat-btn-copper" onclick="document.getElementById('custody').scrollIntoView({behavior:'smooth'})">
-            Custody Details
-          </button>
-        </div>
-      </article>
-
-      <!-- Land Booker & Yield Simulator -->
-      <article class="mat-designs">
-        <div class="mat-designs-fil is-tl mat-filigree" data-corner="tl" data-seed="40"></div>
-        <div class="mat-designs-fil is-tr mat-filigree" data-corner="tr" data-seed="41"></div>
-        <div class="mat-designs-fil is-bl mat-filigree" data-corner="bl" data-seed="42"></div>
-        <div class="mat-designs-fil is-br mat-filigree" data-corner="br" data-seed="43"></div>
-        <div class="mat-designs-in">
-          <p class="mat-kicker">✦ CAPITAL TRAJECTORY ✦</p>
-          <h3>Compounding Yield</h3>
-          <p class="mat-designs-blurb">Select asset class to simulate capital accumulation:</p>
-
-          <div class="mat-design-list" role="radiogroup" aria-label="Asset Class Yield Simulator">
-            <button type="button" role="radio" class="mat-design-row" onclick="selectYieldTier(0)">
-              <span>Highway Frontage</span>
-              <small>5 Yrs · 16.5%</small>
-            </button>
-            <button type="button" role="radio" class="mat-design-row is-on" onclick="selectYieldTier(1)">
-              <span>Gated Sanctuary</span>
-              <small>7 Yrs · 14.8%</small>
-            </button>
-            <button type="button" role="radio" class="mat-design-row" onclick="selectYieldTier(2)">
-              <span>Master Grid (30M)</span>
-              <small>6 Yrs · 15.2%</small>
-            </button>
-            <button type="button" role="radio" class="mat-design-row" onclick="selectYieldTier(3)">
-              <span>Valley Acreage</span>
-              <small>8 Yrs · 13.5%</small>
-            </button>
+        <!-- Right Side Stack -->
+        <div class="bento-side-stack">
+          <div class="bento-sub-card">
+            <div class="sub-card-icon">🌱</div>
+            <h3 class="sub-card-title">Single-Origin Traceability</h3>
+            <p class="sub-card-copy">
+              Direct-trade agreements with smallholder farmers in Colombia, Ethiopia, and Panama, paying 300% above Fair Trade minimums.
+            </p>
           </div>
 
-          <p class="mat-design-sum" id="designSumVal">
-            <b>$6,340,000</b> · 7 Years @ 14.8% CAGR
+          <div class="bento-sub-card">
+            <div class="sub-card-icon">🥐</div>
+            <h3 class="sub-card-title">Slow Sourdough Fermentation</h3>
+            <p class="sub-card-copy">
+              Our viennoiserie dough rests for 72 hours with natural heritage levain, baked fresh three times daily at 7 AM, 11 AM, and 2 PM.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. EDITORIAL FOOTER -->
+  <footer class="kohi-footer">
+    <div class="site-container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">KŌHĪ</div>
+          <span class="footer-brand-tag">BOTANICAL COFFEE & SLOW BAKERY</span>
+          <p class="footer-desc">
+            An oasis of calm and deliberate craftsmanship. Single-origin coffees roasted in micro-batches and served with quiet mindfulness.
           </p>
-
-          <button type="button" class="mat-btn mat-btn-maroon" onclick="document.getElementById('viewing').scrollIntoView({behavior:'smooth'})">
-            Reserve Sanctuary Allocation →
-          </button>
-        </div>
-      </article>
-    </div>
-
-    <!-- 4 Collection Plates -->
-    <div class="mat-plates">
-      <article class="mat-plate is-sand">
-        <svg class="mat-damask mat-plate-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-        <div class="mat-plate-in">
-          <span style="font-size:24px;color:var(--copper);">✦</span>
-          <h3>Gated Sanctuaries</h3>
-          <p>Full perimeter masonry walls, manned gatehouse porticos, avenue plantation, and private tarmac roads.</p>
-          <a href="#sanctuaries" class="mat-btn mat-btn-sm mat-btn-copper">Explore Grids</a>
-        </div>
-      </article>
-
-      <article class="mat-plate is-rose">
-        <svg class="mat-damask mat-plate-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-        <div class="mat-plate-in">
-          <span style="font-size:24px;color:var(--copper);">✦</span>
-          <h3>Arterial Grids (30M)</h3>
-          <p>Sanctioned 30 M.T. town planning roads, clubhouse pavilions, and water percolation networks.</p>
-          <a href="#sanctuaries" class="mat-btn mat-btn-sm mat-btn-copper">Explore Grids</a>
-        </div>
-      </article>
-
-      <article class="mat-plate is-maroon">
-        <svg class="mat-damask mat-plate-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-        <div class="mat-plate-in">
-          <span style="font-size:24px;color:var(--gold);">✦</span>
-          <h3>Expressway Corridors</h3>
-          <p>High-visibility national highway frontages with turning loops and high commercial valuation density.</p>
-          <a href="#sanctuaries" class="mat-btn mat-btn-sm mat-btn-copper">Explore Grids</a>
-        </div>
-      </article>
-
-      <article class="mat-plate is-plum">
-        <svg class="mat-damask mat-plate-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-        <div class="mat-plate-in">
-          <span style="font-size:24px;color:var(--gold);">✦</span>
-          <h3>Scenic Valley Parcels</h3>
-          <p>Large continuous acreages for private legacy estates, equestrian clubs, or luxury retreats.</p>
-          <a href="#sanctuaries" class="mat-btn mat-btn-sm mat-btn-copper">Explore Grids</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- 7. HERITAGE & TITLE PROTOCOL PLATE -->
-  <section class="mat-heritage" id="custody" aria-label="Heritage & Title Custody">
-    <svg class="mat-damask mat-heritage-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-    <div class="mat-her-fil is-tl mat-filigree" data-corner="tl" data-seed="21"></div>
-    <div class="mat-her-fil is-tr mat-filigree" data-corner="tr" data-seed="22"></div>
-    <div class="mat-her-fil is-bl mat-filigree" data-corner="bl" data-seed="23"></div>
-    <div class="mat-her-fil is-br mat-filigree" data-corner="br" data-seed="24"></div>
-
-    <div class="mat-heritage-in">
-      <p class="mat-kicker">✦ THE CUSTODY GUARANTEE ✦</p>
-      <h2 class="mat-h2">Uncompromising Title Integrity</h2>
-      <div class="mat-flourish mat-heritage-flourish" data-seed="9"></div>
-
-      <p class="mat-heritage-p">
-        Every acre curated through AURA PRIME is held to institutional standards. We do not transact disputed agricultural parcels. Every sovereign plot is accompanied by a 30-year forensic title report issued by Senior Bar Counsel, statutory Town Planning master plan sanctions, and bank escrow protections.
-      </p>
-
-      <p class="mat-heritage-p">
-        Whether you are acquiring a single private residence in Sri Sri Amrutha Varshini or a 50-acre arterial layout, title deed execution is guaranteed unencumbered with immediate freehold mutation.
-      </p>
-
-      <button type="button" class="mat-btn mat-btn-maroon" onclick="document.getElementById('viewing').scrollIntoView({behavior:'smooth'})">
-        Request Confidential Legal Package →
-      </button>
-
-      <svg class="mat-emblem" viewBox="-50 -50 100 100" width="64" height="64" style="margin-top:24px;">
-        <circle r="44" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.2" />
-        <circle r="36" fill="none" stroke="currentColor" stroke-width="1.4" />
-        <circle r="6" fill="currentColor" />
-      </svg>
-    </div>
-  </section>
-
-  <!-- 8. PRIVATE INSPECTION CONCIERGE -->
-  <section class="mat-sellers" id="viewing" style="background:var(--cream);border-top:1px solid var(--line);">
-    <div class="mat-head">
-      <p class="mat-kicker">✦ CONCIERGE DESK ✦</p>
-      <h2 class="mat-h2">Arrange a Private Site Inspection</h2>
-      <p class="mat-lede">Directly accompanied by our Senior Managing Partner with drone boundary verification.</p>
-    </div>
-
-    <div style="max-width:680px;margin:0 auto;text-align:left;background:var(--paper);border:1px solid var(--line);padding:36px;box-shadow:inset 0 0 0 1px var(--line),inset 0 0 0 6px var(--cream);">
-      <form onsubmit="event.preventDefault(); showToast('Inspection request received. Our desk will contact you within 2 hours.'); this.reset();">
-        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:18px;">
-          <label style="font:500 11px/1 var(--caps);letter-spacing:0.12em;color:var(--soft);">PATRON FULL NAME</label>
-          <input type="text" required placeholder="Lord Alistair Sterling" style="height:44px;padding:0 14px;border:1px solid var(--line);background:var(--cream);font:400 16px/1 var(--display);color:var(--ink);outline:none;">
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:18px;">
-          <label style="font:500 11px/1 var(--caps);letter-spacing:0.12em;color:var(--soft);">CONFIDENTIAL EMAIL / PHONE</label>
-          <input type="text" required placeholder="patron@sterlingholdings.com" style="height:44px;padding:0 14px;border:1px solid var(--line);background:var(--cream);font:400 16px/1 var(--display);color:var(--ink);outline:none;">
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
-          <label style="font:500 11px/1 var(--caps);letter-spacing:0.12em;color:var(--soft);">TARGET ENCLAVE</label>
-          <select style="height:44px;padding:0 14px;border:1px solid var(--line);background:var(--cream);font:500 14px/1 var(--label);color:var(--ink);outline:none;">
-            <option>Sri Sri Amrutha Varshini (40 Acres Gated)</option>
-            <option>The Sodhi-Akru Master Grid (266 Plots)</option>
-            <option>Aerovista Gated Township (Aerotropolis)</option>
-            <option>Greenfield Highway Plots (Expressway Frontage)</option>
-            <option>Emerald Horizon 50-Acre Scenic Parcel</option>
-          </select>
-        </div>
-
-        <button type="submit" class="mat-btn mat-btn-gold mat-btn-wide">
-          Dispatch Private Viewing Request →
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- 9. MASTER HEIRLOOM FOOTER -->
-  <footer class="mat-footer">
-    <svg class="mat-brocade mat-footer-edge" aria-hidden="true"><rect width="100%" height="100%" fill="url(#brocadePattern)" /></svg>
-    <svg class="mat-damask mat-footer-damask" aria-hidden="true"><rect width="100%" height="100%" fill="url(#damaskPattern)" /></svg>
-
-    <div class="mat-footer-brand">
-      <svg class="mat-emblem" viewBox="-50 -50 100 100" width="48" height="48">
-        <circle r="44" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.2" />
-        <circle r="36" fill="none" stroke="currentColor" stroke-width="1.4" />
-        <circle r="6" fill="currentColor" />
-      </svg>
-      <div class="mat-footer-name">AURA PRIME</div>
-      <p class="mat-footer-tag">SOVEREIGN ARCHITECTURAL LAND ATELIER</p>
-      <div class="mat-flourish mat-footer-flourish" data-seed="17"></div>
-    </div>
-
-    <div class="mat-footer-in">
-      <div class="mat-footer-cols">
         <div>
-          <p>SANCTUARIES</p>
-          <a href="#sanctuaries">Amrutha Varshini</a>
-          <a href="#sanctuaries">Sodhi-Akru Grid</a>
-          <a href="#sanctuaries">Aerovista Township</a>
-          <a href="#sanctuaries">Greenfield Highway</a>
-          <a href="#sanctuaries">Emerald Horizon</a>
+          <h4 class="footer-col-title">PAGES</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">The Atelier</a>
+            <a href="menu.html" class="footer-link">Artisanal Menu</a>
+            <a href="story.html" class="footer-link">Roastery & Terroir</a>
+            <a href="#" onclick="openReservationModal(); return false;" class="footer-link">Table Reservation</a>
+          </div>
         </div>
+
         <div>
-          <p>CUSTODY</p>
-          <a href="#custody">30-Year Search</a>
-          <a href="#custody">Banking Escrow</a>
-          <a href="#custody">RERA Registry</a>
-          <a href="#custody">Freehold Mutation</a>
+          <h4 class="footer-col-title">HOURS</h4>
+          <div class="footer-links">
+            <span class="footer-link">Mon – Fri: 07:30 – 18:00</span>
+            <span class="footer-link">Saturday: 08:00 – 19:00</span>
+            <span class="footer-link">Sunday: 08:30 – 17:00</span>
+            <span class="footer-link" style="color:var(--c-accent);">Slow Bar Bench: 14:00 – 17:00</span>
+          </div>
         </div>
+
         <div>
-          <p>DESKS</p>
-          <a href="#viewing">Zurich · St. Peterstrasse</a>
-          <a href="#viewing">Jaipur · C-Scheme</a>
-          <a href="#viewing">Dubai · DIFC Gate</a>
-          <a href="#viewing">London · Mayfair</a>
+          <h4 class="footer-col-title">LOCATIONS</h4>
+          <div class="footer-links">
+            <span class="footer-link">Kyoto · Nakagyo Ward, 402</span>
+            <span class="footer-link">Tokyo · Aoyama Minato, 3-12</span>
+            <span class="footer-link">Zurich · St. Peterstrasse 19</span>
+            <span class="footer-link">concierge@kohi-atelier.com</span>
+          </div>
         </div>
       </div>
 
-      <div class="mat-news">
-        <p>Private Legal Releases</p>
-        <div class="mat-news-row">
-          <input type="email" placeholder="patron@sovereigntrust.com">
-          <button type="button" class="mat-btn mat-btn-gold mat-btn-sm" onclick="showToast('Subscribed to Private Releases.')">JOIN</button>
-        </div>
-        <small>Encrypted correspondence. Zero public marketing dissemination.</small>
+      <div class="footer-lower">
+        <span>© 2026 KŌHĪ Atelier. Hand-roasted & baked daily. All rights reserved.</span>
+        <span>SPECIALTY COFFEE ASSOCIATION (SCA) CERTIFIED ROASTER</span>
       </div>
-    </div>
-
-    <div class="mat-footer-bottom">
-      <span>© 2026 AURA PRIME Sovereign Estates Atelier. All rights reserved. Freehold title deed verification guaranteed.</span>
-      <span>ISO 9001:2015 · RERA SANCTIONED · ESCROW VERIFIED</span>
     </div>
   </footer>
 
-  <!-- 10. SAVED PORTFOLIO BAG DRAWER -->
-  <div class="mat-drawer-wrap" id="bagDrawerWrap">
-    <div class="mat-scrim" onclick="toggleDrawer(false)"></div>
-    <aside class="mat-drawer" role="dialog" aria-modal="true" aria-label="Sovereign Portfolio">
-      <div class="mat-drawer-head">
-        <p>Portfolio <span id="drawerCount">0</span></p>
-        <button type="button" aria-label="Close" onclick="toggleDrawer(false)">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18" /></svg>
-        </button>
-      </div>
-      <svg class="mat-brocade mat-drawer-edge" aria-hidden="true"><rect width="100%" height="100%" fill="url(#brocadePattern)" /></svg>
-      
-      <div class="mat-drawer-empty" id="drawerEmpty">
-        <span style="font-size:36px;color:var(--gold);">✦</span>
-        <p>No parcels selected yet. Inspect enclaves above to allocate.</p>
-      </div>
+  <!-- 8. TASTING TRAY FLYOUT DRAWER -->
+  <div class="tray-drawer-overlay" id="trayDrawerOverlay" onclick="toggleTray(false)"></div>
+  <aside class="tray-drawer" id="trayDrawer" role="dialog" aria-modal="true" aria-label="Tasting Flight Tray">
+    <div class="tray-head">
+      <h3 class="tray-title">Your Tasting Flight</h3>
+      <button type="button" onclick="toggleTray(false)" style="font-size:1.5rem;line-height:1;">&times;</button>
+    </div>
+    
+    <div class="tray-items-list" id="trayItemsList"></div>
 
-      <ul class="mat-drawer-list" id="drawerList" style="display:none;"></ul>
+    <div class="tray-foot">
+      <div class="tray-total-line">
+        <span>TRAY TOTAL:</span>
+        <span class="tray-total-amount" id="trayTotalAmount">$0.00</span>
+      </div>
+      <button type="button" class="btn-primary" onclick="toggleTray(false); openReservationModal();">
+        Proceed with Table Reservation →
+      </button>
+      <small style="text-align:center;color:var(--c-ink-light);font-size:0.75rem;">Your flight will be prepared fresh at your reserved seating time.</small>
+    </div>
+  </aside>
 
-      <div class="mat-drawer-foot">
-        <div class="mat-drawer-total">
-          <span>Total Allocation</span>
-          <b id="drawerTotal">$0</b>
+  <!-- 9. TABLE & BENCH RESERVATION MODAL -->
+  <div class="kohi-modal-overlay" id="reservationModal">
+    <div class="kohi-modal-window">
+      <button type="button" class="modal-close-btn" onclick="closeReservationModal()" aria-label="Close Modal">&times;</button>
+      <span class="caps-title text-accent" style="font-size:0.6875rem;">✦ PRIVATE APPOINTMENT ✦</span>
+      <h2 style="font-family:var(--font-display);font-size:1.875rem;font-weight:400;margin-top:4px;">Reserve an Atelier Table</h2>
+      <p style="font-size:0.875rem;color:var(--c-ink-muted);">We reserve select tables to guarantee a peaceful, unhurried sensory experience.</p>
+
+      <form class="modal-form" onsubmit="handleReservationSubmit(event)">
+        <div class="form-group">
+          <label for="resName">FULL NAME</label>
+          <input type="text" id="resName" class="form-input" required placeholder="Elena Rostova">
         </div>
-        <button type="button" class="mat-btn mat-btn-gold mat-btn-wide" onclick="toggleDrawer(false); document.getElementById('viewing').scrollIntoView({behavior:'smooth'});">
-          Schedule Private Viewing →
-        </button>
-        <small>Authenticated legal package dispatched prior to physical viewing.</small>
-      </div>
-    </aside>
-  </div>
 
-  <!-- 11. INTERACTIVE DOSSIER MODAL -->
-  <div class="atelier-modal-overlay" id="dossierModal">
-    <div class="atelier-modal-window">
-      <button class="modal-close-cross" onclick="closeDossierModal()" aria-label="Close Modal">&times;</button>
-      <div class="modal-body-split">
-        <div class="modal-media-col">
-          <img id="modalImg" src="" alt="Master Layout View" class="modal-large-img">
+        <div class="form-group">
+          <label for="resEmail">EMAIL FOR CONFIRMATION</label>
+          <input type="email" id="resEmail" class="form-input" required placeholder="elena@rostova.com">
         </div>
-        <div class="modal-info-col">
-          <span class="modal-kicker-tag" id="modalBadge">AUTHENTICATED MASTER PLAN</span>
-          <h3 class="modal-title-text" id="modalHeading">Sri Sri Amrutha Varshini</h3>
-          <p class="modal-description" id="modalText"></p>
-          <div class="modal-specs-grid" id="modalSpecs"></div>
-          <div class="modal-pricing-row">
-            <span class="p-caption">SANCTUARY VALUATION</span>
-            <span class="p-value" id="modalPrice"></span>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-group">
+            <label for="resTime">TIME SLOT</label>
+            <select id="resTime" class="form-input">
+              <option>09:30 AM (Morning Brew)</option>
+              <option>11:30 AM (Brunch Pairing)</option>
+              <option selected>02:30 PM (Barista Slow Bar)</option>
+              <option>04:30 PM (Sunset Tasting)</option>
+            </select>
           </div>
-          <button class="mat-btn mat-btn-maroon mat-btn-wide" onclick="closeDossierModal(); document.getElementById('viewing').scrollIntoView({behavior: 'smooth'})">
-            Schedule Private Site Inspection →
-          </button>
+
+          <div class="form-group">
+            <label for="resGuests">GUESTS</label>
+            <select id="resGuests" class="form-input">
+              <option>1 Guest (Solo Mindfulness)</option>
+              <option selected>2 Guests</option>
+              <option>3 - 4 Guests</option>
+            </select>
+          </div>
         </div>
-      </div>
+
+        <button type="submit" class="btn-primary" style="margin-top:10px;">
+          Confirm Private Reservation →
+        </button>
+      </form>
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div class="mat-toast" id="matToast" role="status" aria-live="polite"></div>
-
-  <script src="app.js"></script>
+  <script src="cafe-app.js"></script>
 </body>
 </html>

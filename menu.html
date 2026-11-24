@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KŌHĪ ATELIER — Curated Brew & Bakery Menu</title>
+  <meta name="description" content="Explore single-origin geishas, Kyoto slow drip infusions, and wild-fermented viennoiserie.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="cafe-style.css">
+  <style>
+    .menu-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 40px auto 60px;
+    }
+    .menu-category-tab {
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--c-border-strong);
+      background-color: var(--c-bg-card);
+      font-family: var(--font-caps);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c-ink-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .menu-category-tab:hover, .menu-category-tab.active {
+      background-color: var(--c-ink);
+      color: #FFFFFF;
+      border-color: var(--c-ink);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT STRIP -->
+  <div class="kohi-strip">
+    <div class="site-container strip-inner">
+      <div class="strip-left">
+        <span style="color:var(--c-accent);">✦</span>
+        <span>Single-Origin Filter Flight: 3 Micro-Lots Brewed in Hario Switch Glass</span>
+      </div>
+      <div class="strip-right">
+        <span>CURRENCY:</span>
+        <select id="currencySelector" class="curr-select" aria-label="Currency Selector">
+          <option value="USD" selected>USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="AED">AED (AED)</option>
+          <option value="JPY">JPY (¥)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="kohi-header">
+    <div class="site-container header-inner">
+      <a href="index.html" class="brand-anchor">
+        <div class="brand-emblem">K</div>
+        <div class="brand-texts">
+          <span class="brand-name">KŌHĪ</span>
+          <span class="brand-sub">COFFEE ATELIER & BAKERY</span>
+        </div>
+      </a>
+
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">The Atelier</a>
+        <a href="menu.html" class="nav-link active">Artisanal Menu</a>
+        <a href="story.html" class="nav-link">Roastery & Craft</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="tray-btn" aria-label="Tasting Flight Tray" onclick="toggleTray(true)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+          </svg>
+          <span class="tray-badge" id="trayBadgeCount">0</span>
+        </button>
+        <button type="button" class="btn-primary" onclick="openReservationModal()">Reserve a Table</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU HERO BANNER -->
+  <section style="padding: 72px 0 40px; text-align: center; border-bottom: 1px solid var(--c-border); background-color: var(--c-bg-subtle);">
+    <div class="site-container" style="max-width: 720px;">
+      <span class="caps-title text-accent" style="font-size:0.6875rem;display:block;margin-bottom:12px;">✦ THE SEASONAL TASTING CARD ✦</span>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2.8rem, 4.5vw, 4.2rem);font-weight:400;margin-bottom:16px;">
+        Artisanal <span class="italic-serif text-cinnamon">Brews</span> & Viennoiserie
+      </h1>
+      <p style="font-size:1.0625rem;color:var(--c-ink-muted);line-height:1.6;">
+        Every coffee bean is micro-roasted in small 5kg cast-iron drums. Our viennoiserie is rolled daily using 100% Normandy grass-fed cultured butter.
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="menu-filter-bar">
+        <button class="menu-category-tab active" data-category="all">All Offerings</button>
+        <button class="menu-category-tab" data-category="pourover">Single Origin Pour-Overs</button>
+        <button class="menu-category-tab" data-category="espresso">Signature Espresso</button>
+        <button class="menu-category-tab" data-category="cold">Cold Extraction</button>
+        <button class="menu-category-tab" data-category="bakery">Slow Bakery</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU ITEMS GRID -->
+  <section style="padding: 80px 0 120px;">
+    <div class="site-container">
+      <div class="creations-grid">
+
+        <!-- ITEM 1 -->
+        <article class="creation-card menu-item-card" data-category="pourover">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80" alt="Gesha Village Pour Over" class="card-img" loading="lazy">
+            <span class="card-tag">POUR-OVER</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">Ethiopia · Gesha Village (1,950m)</span>
+              <span class="card-price price-dynamic" data-usd="9.50">$9.50</span>
+            </div>
+            <h3 class="card-title">Gesha Village Lot 74</h3>
+            <p class="card-notes">Natural anaerobic process. Bergamot, candied jasmine, white peach and raw honeycomb finish.</p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Bergamot</span>
+              <span class="taste-pill">Jasmine</span>
+              <span class="taste-pill">Honeycomb</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Gesha Village Lot 74', 9.50, 'Ethiopia 1,950m')">+ Add to Tasting Tray</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ITEM 2 -->
+        <article class="creation-card menu-item-card" data-category="pourover">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=80" alt="Panama Boquete Geisha" class="card-img" loading="lazy">
+            <span class="card-tag">POUR-OVER</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">Panama · Boquete Valley (1,800m)</span>
+              <span class="card-price price-dynamic" data-usd="12.00">$12.00</span>
+            </div>
+            <h3 class="card-title">Hacienda La Esmeralda</h3>
+            <p class="card-notes">Legendary washed Geisha. Crisp lemongrass acidity, orange blossom nectar, and silk mouthfeel.</p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Orange Blossom</span>
+              <span class="taste-pill">Lemongrass</span>
+              <span class="taste-pill">Silky</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Hacienda La Esmeralda', 12.00, 'Panama Washed')">+ Add to Tasting Tray</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ITEM 3 -->
+        <article class="creation-card menu-item-card" data-category="espresso">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=80" alt="Cortado Espresso" class="card-img" loading="lazy">
+            <span class="card-tag">ESPRESSO & MILK</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">Colombia Huila · Double Shot</span>
+              <span class="card-price price-dynamic" data-usd="5.50">$5.50</span>
+            </div>
+            <h3 class="card-title">Cardamom Oat Cortado</h3>
+            <p class="card-notes">Velvety 1:1 espresso to steamed minor figures oat milk, kissed with crushed green cardamom pods.</p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Cacao Nib</span>
+              <span class="taste-pill">Cardamom</span>
+              <span class="taste-pill">Velvety</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Cardamom Oat Cortado', 5.50, 'Colombia Huila')">+ Add to Tasting Tray</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ITEM 4 -->
+        <article class="creation-card menu-item-card" data-category="espresso">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=900&q=80" alt="Matcha Latte Art" class="card-img" loading="lazy">
+            <span class="card-tag">JAPANESE MATCHA</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">Kyoto Uji · First Harvest Stone-Ground</span>
+              <span class="card-price price-dynamic" data-usd="6.50">$6.50</span>
+            </div>
+            <h3 class="card-title">Ceremonial Uji Matcha Latte</h3>
+            <p class="card-notes">Hand-whisked chasen bamboo foam with sweet grass notes, creamy steamed milk, and zero bitterness.</p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Sweet Grass</span>
+              <span class="taste-pill">Chestnut</span>
+              <span class="taste-pill">Umami</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Ceremonial Uji Matcha', 6.50, 'Kyoto First Harvest')">+ Add to Tasting Tray</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ITEM 5 -->
+        <article class="creation-card menu-item-card" data-category="cold">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=80" alt="Kyoto Cold Drip" class="card-img" loading="lazy">
+            <span class="card-tag">18-HOUR COLD DRIP</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">Slow Gravity Tower · Ice Melt</span>
+              <span class="card-price price-dynamic" data-usd="7.50">$7.50</span>
+            </div>
+            <h3 class="card-title">Kyoto Slow Drip Elixir</h3>
+            <p class="card-notes">Extracted drop by drop over 18 hours. Wine-like clarity, dark chocolate liquor finish, served over clear hand-carved ice sphere.</p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Wine Clarity</span>
+              <span class="taste-pill">Cacao Truffle</span>
+              <span class="taste-pill">Cold Clean</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Kyoto Slow Drip Elixir', 7.50, '18h Cold Gravity')">+ Add to Tasting Tray</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ITEM 6 -->
+        <article class="creation-card menu-item-card" data-category="bakery">
+          <div class="card-media-box">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Miso Kouign-Amann" class="card-img" loading="lazy">
+            <span class="card-tag">SLOW BAKERY</span>
+          </div>
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-origin">Normandy Butter · 48h Lamination</span>
+              <span class="card-price price-dynamic" data-usd="6.50">$6.50</span>
+            </div>
+            <h3 class="card-title">Miso Salted Caramel Kouign</h3>
+            <p class="card-notes">Crispy caramelized outer sugar crust with soft, buttery layered center infused with sweet white miso.</p>
+            <div class="taste-radar-row">
+              <span class="taste-pill">Caramelized</span>
+              <span class="taste-pill">Miso Salt</span>
+              <span class="taste-pill">Crispy Flakes</span>
+            </div>
+            <div class="card-foot-line">
+              <button type="button" class="btn-add-tray" onclick="addToTray('Miso Salted Caramel Kouign', 6.50, 'Slow French Bakery')">+ Add to Tasting Tray</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="kohi-footer">
+    <div class="site-container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">KŌHĪ</div>
+          <span class="footer-brand-tag">BOTANICAL COFFEE & SLOW BAKERY</span>
+          <p class="footer-desc">An oasis of calm and deliberate craftsmanship. All single-origin lots roasted in small batches.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">PAGES</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">The Atelier</a>
+            <a href="menu.html" class="footer-link">Artisanal Menu</a>
+            <a href="story.html" class="footer-link">Roastery & Terroir</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-col-title">HOURS</h4>
+          <div class="footer-links">
+            <span class="footer-link">Mon – Fri: 07:30 – 18:00</span>
+            <span class="footer-link">Saturday: 08:00 – 19:00</span>
+            <span class="footer-link">Sunday: 08:30 – 17:00</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-col-title">ATELIER DESK</h4>
+          <div class="footer-links">
+            <span class="footer-link">concierge@kohi-atelier.com</span>
+            <span class="footer-link">Kyoto · Tokyo · Zurich</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-lower">
+        <span>© 2026 KŌHĪ Atelier. Hand-roasted & baked daily. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TASTING TRAY FLYOUT DRAWER -->
+  <div class="tray-drawer-overlay" id="trayDrawerOverlay" onclick="toggleTray(false)"></div>
+  <aside class="tray-drawer" id="trayDrawer" role="dialog" aria-modal="true" aria-label="Tasting Flight Tray">
+    <div class="tray-head">
+      <h3 class="tray-title">Your Tasting Flight</h3>
+      <button type="button" onclick="toggleTray(false)" style="font-size:1.5rem;line-height:1;">&times;</button>
+    </div>
+    <div class="tray-items-list" id="trayItemsList"></div>
+    <div class="tray-foot">
+      <div class="tray-total-line">
+        <span>TRAY TOTAL:</span>
+        <span class="tray-total-amount" id="trayTotalAmount">$0.00</span>
+      </div>
+      <button type="button" class="btn-primary" onclick="toggleTray(false); openReservationModal();">Proceed with Table Reservation →</button>
+    </div>
+  </aside>
+
+  <!-- RESERVATION MODAL -->
+  <div class="kohi-modal-overlay" id="reservationModal">
+    <div class="kohi-modal-window">
+      <button type="button" class="modal-close-btn" onclick="closeReservationModal()">&times;</button>
+      <span class="caps-title text-accent" style="font-size:0.6875rem;">✦ PRIVATE APPOINTMENT ✦</span>
+      <h2 style="font-family:var(--font-display);font-size:1.875rem;font-weight:400;margin-top:4px;">Reserve an Atelier Table</h2>
+      <p style="font-size:0.875rem;color:var(--c-ink-muted);">We reserve select tables to guarantee a peaceful, unhurried sensory experience.</p>
+      <form class="modal-form" onsubmit="handleReservationSubmit(event)">
+        <div class="form-group">
+          <label for="resName">FULL NAME</label>
+          <input type="text" id="resName" class="form-input" required placeholder="Elena Rostova">
+        </div>
+        <div class="form-group">
+          <label for="resEmail">EMAIL FOR CONFIRMATION</label>
+          <input type="email" id="resEmail" class="form-input" required placeholder="elena@rostova.com">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-group">
+            <label for="resTime">TIME SLOT</label>
+            <select id="resTime" class="form-input">
+              <option>09:30 AM (Morning Brew)</option>
+              <option selected>02:30 PM (Barista Slow Bar)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="resGuests">GUESTS</label>
+            <select id="resGuests" class="form-input">
+              <option selected>2 Guests</option>
+              <option>3 - 4 Guests</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top:10px;">Confirm Private Reservation →</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="cafe-app.js"></script>
+</body>
+</html>
