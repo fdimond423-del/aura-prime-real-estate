@@ -3,43 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA PRIME — Sovereign Architectural Sanctuaries & Plotted Estates</title>
-  <meta name="description" content="A private client architectural atelier curating legally vetted sovereign plotted sanctuaries, master communities, and expressway acreage.">
+  <title>AURA PRIME — Sovereign Architectural Sanctuaries & Plotted Communities</title>
+  <meta name="description" content="An architectural land atelier curating legally vetted sovereign plotted communities, arterial grids, and expressway frontage across premier growth corridors.">
   
-  <!-- Fonts: Cinzel (Architectural Roman), Cormorant Garamond (Editorial Serif & Italics), Jost (Modern Precision Sans) -->
+  <!-- Fonts from Kedhar Workshop: Cinzel (Caps), Cormorant Garamond (Editorial Display & Italics), Jost (Modern Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="heirloom-theme">
+<body class="atelier-paper-theme">
 
-  <!-- Interactive Tactile Cursor -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <!-- Interactive Subtle Tactile Cursor -->
+  <div class="atelier-cursor-dot" id="cursorDot"></div>
+  <div class="atelier-cursor-ring" id="cursorRing"></div>
 
-  <!-- Ambient Archival Linen Texture & Vignette -->
-  <div class="canvas-grain-overlay"></div>
-  <div class="ambient-warm-glow glow-1"></div>
-  <div class="ambient-warm-glow glow-2"></div>
-
-  <!-- 1. HEIRLOOM ANNOUNCEMENT TICKER -->
-  <div class="heirloom-top-ticker">
-    <div class="site-container ticker-content">
-      <div class="ticker-left">
-        <span class="ticker-symbol">✦</span>
-        <span class="ticker-item active">Private Allocations Open for 2026 Sovereign Acreages</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">100% Freehold Vetted Titles with Legal Escrow Custody</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">Sri Sri Amrutha Varshini: Grand Boulevard Phase Live</span>
+  <!-- 1. TOP LINEN ANNOUNCEMENT BAR -->
+  <div class="atelier-announcement-ribbon">
+    <div class="site-container ribbon-inner">
+      <div class="ribbon-left">
+        <span class="ribbon-flower">✦</span>
+        <span class="ribbon-text">Fresh Registrations Opened for 2026 Sovereign Acreages · 100% Freehold Vetted Deeds</span>
       </div>
-      <div class="ticker-right">
-        <!-- Live Currency Switcher -->
+      <div class="ribbon-right">
         <div class="currency-dock">
-          <span class="currency-tag">CURRENCY</span>
-          <select id="currencySelect" class="heirloom-select">
+          <span class="curr-label">CURRENCY:</span>
+          <select id="currencySelect" class="heirloom-dropdown">
             <option value="USD" selected>USD ($)</option>
             <option value="EUR">EUR (€)</option>
             <option value="AED">AED (AED)</option>
@@ -50,139 +40,136 @@
     </div>
   </div>
 
-  <!-- 2. MASTER EDITORIAL NAVIGATION -->
-  <header class="editorial-header" id="editorialHeader">
-    <div class="site-container header-inner">
-      <a href="#hero" class="brand-insignia">
-        <div class="insignia-mark">
-          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-            <circle cx="20" cy="20" r="18" stroke="#c69a48" stroke-width="1.2" stroke-dasharray="2 3"/>
-            <polygon points="20,6 32,15 32,25 20,34 8,25 8,15" stroke="#c69a48" stroke-width="1.5" fill="rgba(198, 154, 72, 0.06)"/>
-            <circle cx="20" cy="20" r="2.5" fill="#f7f4ed"/>
+  <!-- 2. ATELIER EDITORIAL HEADER -->
+  <header class="atelier-navbar" id="atelierNavbar">
+    <div class="site-container nav-inner">
+      <a href="#hero" class="atelier-brand">
+        <div class="brand-crest">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="#6b1d22" stroke-width="1.2" stroke-dasharray="2 3"/>
+            <polygon points="20,7 31,15 31,25 20,33 9,25 9,15" stroke="#6b1d22" stroke-width="1.4" fill="rgba(107, 29, 34, 0.05)"/>
+            <circle cx="20" cy="20" r="2.5" fill="#241a15"/>
           </svg>
         </div>
-        <div class="insignia-text">
-          <span class="insignia-title">AURA PRIME</span>
-          <span class="insignia-sub">ESTATE ATELIER · JAIPUR & ZURICH</span>
+        <div class="brand-titles">
+          <span class="brand-heading">AURA PRIME</span>
+          <span class="brand-tagline">ARCHITECTURAL ATELIER · JAIPUR & ZURICH</span>
         </div>
       </a>
 
-      <!-- Clean Minimal Nav Links -->
-      <nav class="editorial-nav">
-        <a href="#hero" class="nav-anchor active">The Atelier</a>
-        <a href="#enclaves" class="nav-anchor">Curated Sanctuaries</a>
-        <a href="#protocol" class="nav-anchor">Title & Escrow Protocol</a>
-        <a href="#calculator" class="nav-anchor">Yield Simulator</a>
-        <a href="#advisory" class="nav-anchor">Private Viewing</a>
+      <nav class="atelier-menu">
+        <a href="#hero" class="menu-link active">The Atelier</a>
+        <a href="#enclaves" class="menu-link">Curated Sanctuaries</a>
+        <a href="#protocol" class="menu-link">Legal Custody</a>
+        <a href="#calculator" class="menu-link">Yield Simulator</a>
+        <a href="#viewing" class="menu-link">Private Viewing</a>
       </nav>
 
-      <div class="header-cta-group">
-        <a href="#advisory" class="btn-heirloom-gold">
-          <span>Schedule Viewing</span>
-          <span class="arrow-glyph">→</span>
+      <div class="nav-right-cta">
+        <a href="#viewing" class="btn-wine-pill">
+          <span>Arrange Viewing</span>
+          <span class="arrow-sym">→</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- 3. SECTION 01: HERO WITH ROTATING WAX SEAL & PERSPECTIVE SPOTLIGHT -->
-  <section class="hero-atelier-section" id="hero">
-    <div class="site-container hero-inner-grid">
+  <!-- 3. SECTION 01: HERO WITH ROTATING WAX SEAL & REAL ENTRANCE IMAGE -->
+  <section class="atelier-hero-section" id="hero">
+    <div class="site-container hero-layout-grid">
       
-      <!-- Left Editorial Column -->
-      <div class="hero-text-column">
-        <div class="editorial-kicker">
-          <span class="kicker-line"></span>
-          <span class="kicker-text">EST. 2026 · PRIVATE CLIENT DESK</span>
+      <!-- Left Column: Editorial Headline -->
+      <div class="hero-editorial-col">
+        <div class="atelier-kicker-row">
+          <span class="kicker-rule"></span>
+          <span class="kicker-label">HAND-SURVEYED ACREAGES · EST. 2026</span>
         </div>
 
-        <h1 class="hero-main-title">
+        <h1 class="hero-headline">
           Architectural <span class="italic-serif">Sanctuaries</span><br>
-          for the <span class="gold-serif">Visionary</span> Patron.
+          curated for <span class="wine-serif">Generational Wealth</span>.
         </h1>
 
-        <p class="hero-lead-paragraph">
-          Curating legally unencumbered plotted communities, sovereign arterial acreages, and gated master plans. Designed with tree-lined asphalt boulevards, underground conduits, and direct escrow custody.
+        <p class="hero-summary-copy">
+          We curate legally unencumbered residential plotted enclaves, arterial highway corridors, and master communities. Delivered with tree-lined asphalt boulevards, underground conduits, and sovereign escrow custody.
         </p>
 
-        <div class="hero-cta-stack">
-          <a href="#enclaves" class="btn-heirloom-gold">
+        <div class="hero-btn-row">
+          <a href="#enclaves" class="btn-wine-solid">
             <span>Explore Curated Sanctuaries</span>
-            <span class="arrow-glyph">→</span>
+            <span class="arrow-sym">→</span>
           </a>
-          <a href="#protocol" class="btn-heirloom-outline">
-            <span>Verify Legal Custody</span>
+          <a href="#protocol" class="btn-paper-outline">
+            <span>Review Title & Escrow Protocol</span>
           </a>
         </div>
 
-        <!-- Historical Stats Bar -->
-        <div class="hero-stats-row">
-          <div class="stat-cell">
-            <span class="stat-value">$4.2B+</span>
-            <span class="stat-caption">Transacted Capital</span>
+        <!-- 3 Classical Metrics -->
+        <div class="hero-metrics-shelf">
+          <div class="m-cell">
+            <span class="m-num">$4.2B+</span>
+            <span class="m-caption">Transacted Capital</span>
           </div>
-          <div class="stat-sep">/</div>
-          <div class="stat-cell">
-            <span class="stat-value">100%</span>
-            <span class="stat-caption">Clear Freehold Titles</span>
+          <div class="m-divider">/</div>
+          <div class="m-cell">
+            <span class="m-num">100%</span>
+            <span class="m-caption">Clear Freehold Deeds</span>
           </div>
-          <div class="stat-sep">/</div>
-          <div class="stat-cell">
-            <span class="stat-value">48+</span>
-            <span class="stat-caption">Private Enclaves</span>
+          <div class="m-divider">/</div>
+          <div class="m-cell">
+            <span class="m-num">48+</span>
+            <span class="m-caption">Private Enclaves</span>
           </div>
         </div>
       </div>
 
-      <!-- Right Visual Column with Rotating Seal & Sri Sri Amrutha Varshini Feature -->
-      <div class="hero-visual-column">
+      <!-- Right Column: Featured Sri Sri Amrutha Varshini Card with Rotating Seal -->
+      <div class="hero-showcase-col">
         
         <!-- Rotating Circular Architectural Wax Seal -->
-        <div class="rotating-seal-badge" title="Authenticated Legal Title">
-          <svg class="seal-svg" viewBox="0 0 160 160">
+        <div class="rotating-wax-seal" title="Authenticated Legal Title">
+          <svg class="seal-svg-ring" viewBox="0 0 160 160">
             <defs>
-              <path id="sealPath" d="M 80, 80 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" />
+              <path id="circleSealPath" d="M 80, 80 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" />
             </defs>
-            <circle cx="80" cy="80" r="72" stroke="rgba(198, 154, 72, 0.35)" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
-            <text class="seal-text">
-              <textPath href="#sealPath" startOffset="0%">
+            <circle cx="80" cy="80" r="70" stroke="rgba(107, 29, 34, 0.3)" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+            <text class="seal-text-path">
+              <textPath href="#circleSealPath" startOffset="0%">
                 ✦ SRI SRI AMRUTHA VARSHINI ✦ SOVEREIGN SANCTUARY ✦
               </textPath>
             </text>
           </svg>
-          <div class="seal-center-crest">
-            <span class="crest-monogram">AV</span>
+          <div class="seal-inner-monogram">
+            <span>AV</span>
           </div>
         </div>
 
-        <!-- Signature Frame: Sri Sri Amrutha Varshini Grand Entrance Portal -->
-        <div class="heirloom-feature-frame" id="heroFeatureCard">
-          <div class="card-hairline-border"></div>
-          <div class="feature-image-wrapper">
-            <img src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini Grand Architectural Entrance" class="feature-img">
-            <div class="feature-image-vignette"></div>
-            <div class="feature-tag-pill">
-              <span class="pill-dot"></span>
+        <!-- Signature Card: Sri Sri Amrutha Varshini -->
+        <div class="heirloom-showcase-card">
+          <div class="showcase-media-frame">
+            <img src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini Grand Architectural Entrance" class="showcase-img">
+            <div class="showcase-badge-pill">
+              <span class="badge-dot"></span>
               <span>FEATURED MASTERPIECE // SRI SRI AMRUTHA VARSHINI</span>
             </div>
           </div>
-          
-          <div class="feature-card-meta">
-            <div class="meta-row-top">
-              <span class="meta-coords">GPS // 12° 58' 44" N, 77° 35' 12" E</span>
-              <span class="meta-valuation price-dynamic" data-usd="2400000">$2,400,000</span>
+
+          <div class="showcase-content-box">
+            <div class="showcase-meta-top">
+              <span class="coords-text">GPS // 12° 58' 44" N, 77° 35' 12" E</span>
+              <span class="showcase-price price-dynamic" data-usd="2400000">$2,400,000</span>
             </div>
-            <h3 class="meta-title">The Grand Boulevard Enclave</h3>
-            <p class="meta-summary">
-              40-acre gated sanctuary with iconic entrance gatehouse, 24/7 security checkpoint portico, avenue tree boulevards, and fully demarcated private plots.
+            <h3 class="showcase-title">The Grand Boulevard Enclave</h3>
+            <p class="showcase-desc">
+              40-acre gated residential sanctuary featuring an iconic entrance gatehouse, 24/7 security checkpoint portico, manicured avenue trees, and fully demarcated private plots.
             </p>
-            <div class="meta-row-bottom">
-              <div class="meta-badges">
-                <span class="h-badge">Gated Security</span>
-                <span class="h-badge">Bitumen Roads</span>
-                <span class="h-badge text-gold">Immediate Registry</span>
+            <div class="showcase-meta-bottom">
+              <div class="pill-group">
+                <span class="subtle-pill">Gated Security</span>
+                <span class="subtle-pill">Bitumen Roads</span>
+                <span class="subtle-pill pill-wine">Immediate Registry</span>
               </div>
-              <button class="btn-heirloom-text" onclick="openDossierModal('amrutha-varshini')">
+              <button class="btn-link-arrow" onclick="openDossierModal('amrutha-varshini')">
                 <span>View Full Dossier</span>
                 <span>→</span>
               </button>
@@ -195,55 +182,62 @@
     </div>
   </section>
 
-  <!-- 4. SECTION 02: CURATED SANCTUARIES & MASTER LAYOUTS -->
-  <section class="sanctuaries-collection-section" id="enclaves">
+  <!-- 4. SECTION 02: CURATED SANCTUARIES (THE EDITORIAL COLLECTION) -->
+  <section class="sanctuaries-section" id="enclaves">
     <div class="site-container">
       
-      <div class="collection-header">
-        <div class="editorial-kicker">
-          <span class="kicker-line"></span>
-          <span class="kicker-text">PORTFOLIO OF ENCLAVES</span>
+      <div class="section-intro-block">
+        <div class="atelier-kicker-row center-kicker">
+          <span class="kicker-rule"></span>
+          <span class="kicker-label">THE 2026 COLLECTION</span>
+          <span class="kicker-rule"></span>
         </div>
-        <h2 class="collection-title">
-          Curated <span class="italic-serif">Master Grids</span> & Plotted Enclaves
+        <h2 class="section-main-heading">
+          Curated <span class="italic-serif">Master Grids</span> & Plotted Communities
         </h2>
-        <p class="collection-subtitle">
+        <p class="section-lead-copy">
           Spacious geometric master plans with dedicated arterial access, compound perimeter walling, and underground services.
         </p>
 
         <!-- Category Filter Tabs -->
-        <div class="category-filter-bar">
-          <button class="filter-btn active" data-filter="all">All Sanctuaries</button>
-          <button class="filter-btn" data-filter="gated">Gated Townships</button>
-          <button class="filter-btn" data-filter="arterial">Arterial Grids (30M)</button>
-          <button class="filter-btn" data-filter="expressway">Expressway Corridors</button>
+        <div class="editorial-tabs-row">
+          <button class="tab-pill active" data-filter="all">All Sanctuaries</button>
+          <button class="tab-pill" data-filter="gated">Gated Communities</button>
+          <button class="tab-pill" data-filter="arterial">Arterial Grids (30M)</button>
+          <button class="tab-pill" data-filter="expressway">Expressway Corridors</button>
         </div>
       </div>
 
-      <!-- Spacious Editorial Card Grid (Breathable & Uncrowded) -->
-      <div class="enclaves-editorial-grid" id="enclavesGrid">
+      <!-- 3-Column Spacious Paper Cards Grid -->
+      <div class="sanctuaries-grid" id="sanctuariesGrid">
 
         <!-- CARD 1: Sri Sri Amrutha Varshini -->
-        <article class="enclave-card" data-category="gated" data-key="amrutha-varshini">
-          <div class="enclave-card-image">
-            <img src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini Entrance Portico" class="card-img">
-            <span class="card-category-tag">SIGNATURE GATED SANCTUARY</span>
+        <article class="sanctuary-paper-card" data-category="gated" data-key="amrutha-varshini">
+          <div class="card-media-wrapper">
+            <img src="assets/images/amrutha-varshini-entrance.jpg" alt="Sri Sri Amrutha Varshini Entrance Portico" class="paper-card-img">
+            <span class="card-tag-label">SIGNATURE GATED SANCTUARY</span>
           </div>
-          <div class="enclave-card-body">
-            <div class="card-header-row">
-              <span class="card-location">South Corridor · 40 Acres</span>
-              <span class="card-price price-dynamic" data-usd="2400000">$2,400,000</span>
+          <div class="card-text-wrapper">
+            <div class="card-meta-line">
+              <span class="meta-sub">South Corridor · 40 Acres</span>
+              <span class="card-valuation price-dynamic" data-usd="2400000">$2,400,000</span>
             </div>
-            <h3 class="card-title">Sri Sri Amrutha Varshini</h3>
-            <p class="card-excerpt">
-              Landmark architectural entrance portal, 24/7 security watchtower, avenue plantation, asphalt roadways, and rainwater percolation grid.
+            <h3 class="enclave-name">Sri Sri Amrutha Varshini</h3>
+            <p class="enclave-bio">
+              Monumental architectural entrance gatehouse, 24/7 security watchtower, avenue plantation, asphalt roadways, and rainwater percolation grid.
             </p>
-            <div class="card-details-list">
-              <div class="detail-item"><span>Road Width:</span> <strong>60 Ft Main / 40 Ft Arterial</strong></div>
-              <div class="detail-item"><span>Registry:</span> <strong>Clear 30-Year Title Chain</strong></div>
+            <div class="specs-mini-table">
+              <div class="spec-row">
+                <span>Road Width</span>
+                <strong>60 Ft Main / 40 Ft Arterial</strong>
+              </div>
+              <div class="spec-row">
+                <span>Title Chain</span>
+                <strong>30-Year Forensic Search Clear</strong>
+              </div>
             </div>
-            <div class="card-action-bar">
-              <button class="btn-heirloom-outline-sm" onclick="openDossierModal('amrutha-varshini')">
+            <div class="card-cta-line">
+              <button class="btn-paper-link" onclick="openDossierModal('amrutha-varshini')">
                 <span>Inspect Master Plan</span>
                 <span>→</span>
               </button>
@@ -252,26 +246,32 @@
         </article>
 
         <!-- CARD 2: The Sodhi-Akru Master Grid -->
-        <article class="enclave-card" data-category="arterial" data-key="sodhi-akru">
-          <div class="enclave-card-image">
-            <img src="assets/images/plot-master-plan.jpg" alt="Sodhi-Akru Approved Master Layout Grid" class="card-img">
-            <span class="card-category-tag">30 M.T. ARTERIAL GRID</span>
+        <article class="sanctuary-paper-card" data-category="arterial" data-key="sodhi-akru">
+          <div class="card-media-wrapper">
+            <img src="assets/images/plot-master-plan.jpg" alt="Sodhi-Akru Approved Master Layout Grid" class="paper-card-img">
+            <span class="card-tag-label">30 M.T. ARTERIAL GRID</span>
           </div>
-          <div class="enclave-card-body">
-            <div class="card-header-row">
-              <span class="card-location">Way to Sodhi & Akru</span>
-              <span class="card-price price-dynamic" data-usd="1850000">$1,850,000</span>
+          <div class="card-text-wrapper">
+            <div class="card-meta-line">
+              <span class="meta-sub">Way to Sodhi & Akru</span>
+              <span class="card-valuation price-dynamic" data-usd="1850000">$1,850,000</span>
             </div>
-            <h3 class="card-title">The Sodhi-Akru Master Grid</h3>
-            <p class="card-excerpt">
-              30 M.T. wide future arterial highway connection, 12 M.T. internal boulevards, clubhouse, swimming pavilion, and 266 approved geometric plots.
+            <h3 class="enclave-name">The Sodhi-Akru Master Grid</h3>
+            <p class="enclave-bio">
+              Approved geometric master community with direct 30 M.T. future road access, internal 12 M.T. boulevards, clubhouse, swimming pavilion, and 266 approved plots.
             </p>
-            <div class="card-details-list">
-              <div class="detail-item"><span>Arterial Road:</span> <strong>30 M.T. Highway Access</strong></div>
-              <div class="detail-item"><span>Amenities:</span> <strong>Clubhouse & Water Pavilion</strong></div>
+            <div class="specs-mini-table">
+              <div class="spec-row">
+                <span>Arterial Access</span>
+                <strong>30 M.T. Future Road</strong>
+              </div>
+              <div class="spec-row">
+                <span>Plot Allocation</span>
+                <strong>266 Approved Plots</strong>
+              </div>
             </div>
-            <div class="card-action-bar">
-              <button class="btn-heirloom-outline-sm" onclick="openDossierModal('sodhi-akru')">
+            <div class="card-cta-line">
+              <button class="btn-paper-link" onclick="openDossierModal('sodhi-akru')">
                 <span>Inspect Master Plan</span>
                 <span>→</span>
               </button>
@@ -280,26 +280,32 @@
         </article>
 
         <!-- CARD 3: Aerovista Gated Township -->
-        <article class="enclave-card" data-category="gated" data-key="aerovista">
-          <div class="enclave-card-image">
-            <img src="assets/images/plot-layout-3d.jpg" alt="Aerovista 3D Township Layout" class="card-img">
-            <span class="card-category-tag">3D PLOTTED TOWNSHIP</span>
+        <article class="sanctuary-paper-card" data-category="gated" data-key="aerovista">
+          <div class="card-media-wrapper">
+            <img src="assets/images/plot-layout-3d.jpg" alt="Aerovista 3D Township Layout" class="paper-card-img">
+            <span class="card-tag-label">3D PLOTTED TOWNSHIP</span>
           </div>
-          <div class="enclave-card-body">
-            <div class="card-header-row">
-              <span class="card-location">Aerotropolis Growth Corridor</span>
-              <span class="card-price price-dynamic" data-usd="3100000">$3,100,000</span>
+          <div class="card-text-wrapper">
+            <div class="card-meta-line">
+              <span class="meta-sub">Aerotropolis Growth Corridor</span>
+              <span class="card-valuation price-dynamic" data-usd="3100000">$3,100,000</span>
             </div>
-            <h3 class="card-title">Aerovista Gated Township</h3>
-            <p class="card-excerpt">
+            <h3 class="enclave-name">Aerovista Gated Township</h3>
+            <p class="enclave-bio">
               Bitumen roads, underground storm drainage, perimeter security fencing, and landscaped garden parks with high commercial appreciation potential.
             </p>
-            <div class="card-details-list">
-              <div class="detail-item"><span>Zoning:</span> <strong>Town Planning Sanctioned</strong></div>
-              <div class="detail-item"><span>Appreciation:</span> <strong>16.2% Historic CAGR</strong></div>
+            <div class="specs-mini-table">
+              <div class="spec-row">
+                <span>Zoning</span>
+                <strong>Town Planning Sanctioned</strong>
+              </div>
+              <div class="spec-row">
+                <span>Historic Growth</span>
+                <strong>16.2% Annual CAGR</strong>
+              </div>
             </div>
-            <div class="card-action-bar">
-              <button class="btn-heirloom-outline-sm" onclick="openDossierModal('aerovista')">
+            <div class="card-cta-line">
+              <button class="btn-paper-link" onclick="openDossierModal('aerovista')">
                 <span>Inspect Master Plan</span>
                 <span>→</span>
               </button>
@@ -308,26 +314,32 @@
         </article>
 
         <!-- CARD 4: Greenfield Expressway Plots -->
-        <article class="enclave-card" data-category="expressway" data-key="highway">
-          <div class="enclave-card-image">
-            <img src="assets/images/plot-highway-green.jpg" alt="Greenfield Expressway Commercial Plots" class="card-img">
-            <span class="card-category-tag">EXPRESSWAY FRONTAGE</span>
+        <article class="sanctuary-paper-card" data-category="expressway" data-key="highway">
+          <div class="card-media-wrapper">
+            <img src="assets/images/plot-highway-green.jpg" alt="Greenfield Expressway Commercial Plots" class="paper-card-img">
+            <span class="card-tag-label">EXPRESSWAY CORRIDOR</span>
           </div>
-          <div class="enclave-card-body">
-            <div class="card-header-row">
-              <span class="card-location">National High-Speed Corridor</span>
-              <span class="card-price price-dynamic" data-usd="2250000">$2,250,000</span>
+          <div class="card-text-wrapper">
+            <div class="card-meta-line">
+              <span class="meta-sub">National High-Speed Corridor</span>
+              <span class="card-valuation price-dynamic" data-usd="2250000">$2,250,000</span>
             </div>
-            <h3 class="card-title">Greenfield Highway Plots</h3>
-            <p class="card-excerpt">
+            <h3 class="enclave-name">Greenfield Highway Plots</h3>
+            <p class="enclave-bio">
               Direct access from 4-lane high-speed expressway, landscaped central green median, high visibility frontage, and multi-use zoning.
             </p>
-            <div class="card-details-list">
-              <div class="detail-item"><span>Connectivity:</span> <strong>Expressway Exit Immediate</strong></div>
-              <div class="detail-item"><span>Frontage:</span> <strong>300 Ft Wide Frontage</strong></div>
+            <div class="specs-mini-table">
+              <div class="spec-row">
+                <span>Frontage</span>
+                <strong>300 Ft Wide Expressway Edge</strong>
+              </div>
+              <div class="spec-row">
+                <span>Use Case</span>
+                <strong>Commercial / High-Yield Estate</strong>
+              </div>
             </div>
-            <div class="card-action-bar">
-              <button class="btn-heirloom-outline-sm" onclick="openDossierModal('highway')">
+            <div class="card-cta-line">
+              <button class="btn-paper-link" onclick="openDossierModal('highway')">
                 <span>Inspect Master Plan</span>
                 <span>→</span>
               </button>
@@ -336,26 +348,32 @@
         </article>
 
         <!-- CARD 5: Emerald Horizon Land -->
-        <article class="enclave-card" data-category="arterial" data-key="emerald">
-          <div class="enclave-card-image">
-            <img src="assets/images/plot-land-boundary.jpg" alt="Emerald Horizon Demarcated Parcel" class="card-img">
-            <span class="card-category-tag">50-ACRE BOUNDARY</span>
+        <article class="sanctuary-paper-card" data-category="arterial" data-key="emerald">
+          <div class="card-media-wrapper">
+            <img src="assets/images/plot-land-boundary.jpg" alt="Emerald Horizon Demarcated Parcel" class="paper-card-img">
+            <span class="card-tag-label">50-ACRE PARCEL</span>
           </div>
-          <div class="enclave-card-body">
-            <div class="card-header-row">
-              <span class="card-location">Scenic Valley View</span>
-              <span class="card-price price-dynamic" data-usd="1950000">$1,950,000</span>
+          <div class="card-text-wrapper">
+            <div class="card-meta-line">
+              <span class="meta-sub">Scenic Valley View</span>
+              <span class="card-valuation price-dynamic" data-usd="1950000">$1,950,000</span>
             </div>
-            <h3 class="card-title">Emerald Horizon Land</h3>
-            <p class="card-excerpt">
+            <h3 class="enclave-name">Emerald Horizon Land</h3>
+            <p class="enclave-bio">
               Unencumbered open land with satellite DGPS coordinates, surveyed fencing, clear single ownership title, and panoramic valley views.
             </p>
-            <div class="card-details-list">
-              <div class="detail-item"><span>Survey:</span> <strong>DGPS Verified Coordinates</strong></div>
-              <div class="detail-item"><span>Title:</span> <strong>Single Owner Clean Deed</strong></div>
+            <div class="specs-mini-table">
+              <div class="spec-row">
+                <span>Boundary</span>
+                <strong>Satellite DGPS Fenced</strong>
+              </div>
+              <div class="spec-row">
+                <span>Title</span>
+                <strong>Single Owner Freehold</strong>
+              </div>
             </div>
-            <div class="card-action-bar">
-              <button class="btn-heirloom-outline-sm" onclick="openDossierModal('emerald')">
+            <div class="card-cta-line">
+              <button class="btn-paper-link" onclick="openDossierModal('emerald')">
                 <span>Inspect Master Plan</span>
                 <span>→</span>
               </button>
@@ -364,26 +382,32 @@
         </article>
 
         <!-- CARD 6: Serene Palms Eco-Layout -->
-        <article class="enclave-card" data-category="gated" data-key="serene">
-          <div class="enclave-card-image">
-            <img src="assets/images/plot-green-township.png" alt="Serene Palms Eco Residential Layout" class="card-img">
-            <span class="card-category-tag">ECO RESIDENTIAL GRID</span>
+        <article class="sanctuary-paper-card" data-category="gated" data-key="serene">
+          <div class="card-media-wrapper">
+            <img src="assets/images/plot-green-township.png" alt="Serene Palms Eco Residential Layout" class="paper-card-img">
+            <span class="card-tag-label">ECO RESIDENTIAL GRID</span>
           </div>
-          <div class="enclave-card-body">
-            <div class="card-header-row">
-              <span class="card-location">Green Zone Sanctioned</span>
-              <span class="card-price price-dynamic" data-usd="1600000">$1,600,000</span>
+          <div class="card-text-wrapper">
+            <div class="card-meta-line">
+              <span class="meta-sub">Green Zone Sanctioned</span>
+              <span class="card-valuation price-dynamic" data-usd="1600000">$1,600,000</span>
             </div>
-            <h3 class="card-title">Serene Palms Layout</h3>
-            <p class="card-excerpt">
+            <h3 class="enclave-name">Serene Palms Layout</h3>
+            <p class="enclave-bio">
               180 demarcated residential plots surrounded by agricultural buffer trees, central community parkland, solar lighting, and rainwater catchment.
             </p>
-            <div class="card-details-list">
-              <div class="detail-item"><span>Community:</span> <strong>180 Gated Plots</strong></div>
-              <div class="detail-item"><span>Green Area:</span> <strong>30% Dedicated Open Space</strong></div>
+            <div class="specs-mini-table">
+              <div class="spec-row">
+                <span>Community</span>
+                <strong>180 Gated Plots</strong>
+              </div>
+              <div class="spec-row">
+                <span>Green Dedication</span>
+                <strong>30% Dedicated Open Reserve</strong>
+              </div>
             </div>
-            <div class="card-action-bar">
-              <button class="btn-heirloom-outline-sm" onclick="openDossierModal('serene')">
+            <div class="card-cta-line">
+              <button class="btn-paper-link" onclick="openDossierModal('serene')">
                 <span>Inspect Master Plan</span>
                 <span>→</span>
               </button>
@@ -395,43 +419,43 @@
     </div>
   </section>
 
-  <!-- 5. SECTION 03: SOVEREIGN TITLE & ESCROW PROTOCOL -->
-  <section class="heirloom-protocol-section" id="protocol">
+  <!-- 5. SECTION 03: LEGAL CUSTODY & CAPITAL YIELD SIMULATOR -->
+  <section class="protocol-section" id="protocol">
     <div class="site-container">
-      <div class="protocol-split-wrapper">
+      <div class="protocol-layout-split">
         
-        <div class="protocol-text-side">
-          <div class="editorial-kicker">
-            <span class="kicker-line"></span>
-            <span class="kicker-text">LEGAL CUSTODY GUARANTEE</span>
+        <div class="protocol-copy-side">
+          <div class="atelier-kicker-row">
+            <span class="kicker-rule"></span>
+            <span class="kicker-label">LEGAL SECURITY GUARANTEE</span>
           </div>
-          <h2 class="protocol-heading">
+          <h2 class="protocol-title">
             Uncompromising <span class="italic-serif">Legal Security</span> & Title Integrity
           </h2>
-          <p class="protocol-lead">
-            Every sovereign acre placed through AURA PRIME is pre-vetted by senior bar counsel, protected by institutional escrow, and confirmed with irrevocable freehold deed registration.
+          <p class="protocol-bio">
+            Every sovereign acre placed through AURA PRIME is pre-vetted by senior bar counsel, protected by institutional banking escrow, and registered with irrevocable freehold deed ownership.
           </p>
 
-          <div class="heirloom-pillars-list">
-            <div class="pillar-box">
+          <div class="pillars-stack">
+            <div class="pillar-card">
               <span class="pillar-roman">I.</span>
-              <div class="pillar-desc">
+              <div class="pillar-body">
                 <h4>30-Year Forensic Title Search</h4>
                 <p>Complete historical chain-of-custody scrutiny, revenue record authentication, and Encumbrance Certificates (EC).</p>
               </div>
             </div>
 
-            <div class="pillar-box">
+            <div class="pillar-card">
               <span class="pillar-roman">II.</span>
-              <div class="pillar-desc">
+              <div class="pillar-body">
                 <h4>Statutory Approvals & RERA Registry</h4>
                 <p>Town Planning master layouts with sanctioned road widths, green space dedications, and zero zoning violations.</p>
               </div>
             </div>
 
-            <div class="pillar-box">
+            <div class="pillar-card">
               <span class="pillar-roman">III.</span>
-              <div class="pillar-desc">
+              <div class="pillar-body">
                 <h4>Institutional Banking Escrow</h4>
                 <p>Patron capital remains held in neutral Tier-1 banking escrow accounts until physical deed registration execution.</p>
               </div>
@@ -439,55 +463,55 @@
           </div>
         </div>
 
-        <!-- Right Side: Interactive Yield & Capital Carry Simulator -->
-        <div class="heirloom-simulator-card" id="calculator">
-          <div class="sim-header">
-            <span class="sim-tag">ATELIER CAPITAL SIMULATOR</span>
-            <h3 class="sim-title">Appreciation & Equity Trajectory</h3>
-            <p class="sim-sub">Model long-term compounding across prime growth corridors.</p>
+        <!-- Right Side: Yield Simulator Card -->
+        <div class="simulator-paper-card" id="calculator">
+          <div class="sim-card-header">
+            <span class="sim-kicker">CAPITAL YIELD SIMULATOR</span>
+            <h3 class="sim-main-title">Appreciation & Equity Trajectory</h3>
+            <p class="sim-desc">Estimate long-term compounding across prime growth corridors.</p>
           </div>
 
-          <div class="sim-inputs">
+          <div class="sim-card-body">
             <!-- Allocation Slider -->
-            <div class="sim-group">
-              <div class="sim-label-line">
+            <div class="range-group">
+              <div class="range-labels">
                 <span>CAPITAL ALLOCATION</span>
-                <span class="sim-val price-dynamic" id="allocVal" data-usd="2000000">$2,000,000</span>
+                <span class="range-val price-dynamic" id="allocVal" data-usd="2000000">$2,000,000</span>
               </div>
-              <input type="range" id="allocSlider" min="500000" max="10000000" step="250000" value="2000000" class="heirloom-slider">
+              <input type="range" id="allocSlider" min="500000" max="10000000" step="250000" value="2000000" class="paper-range-slider">
             </div>
 
             <!-- Holding Period Slider -->
-            <div class="sim-group">
-              <div class="sim-label-line">
-                <span>HOLDING PERIOD (HORIZON)</span>
-                <span class="sim-val" id="yearsVal">7 Years</span>
+            <div class="range-group">
+              <div class="range-labels">
+                <span>HOLDING HORIZON</span>
+                <span class="range-val" id="yearsVal">7 Years</span>
               </div>
-              <input type="range" id="yearsSlider" min="3" max="15" step="1" value="7" class="heirloom-slider">
+              <input type="range" id="yearsSlider" min="3" max="15" step="1" value="7" class="paper-range-slider">
             </div>
 
             <!-- CAGR Slider -->
-            <div class="sim-group">
-              <div class="sim-label-line">
+            <div class="range-group">
+              <div class="range-labels">
                 <span>PROJECTED CAGR APPRECIATION</span>
-                <span class="sim-val text-gold" id="cagrVal">14.5%</span>
+                <span class="range-val text-wine" id="cagrVal">14.5%</span>
               </div>
-              <input type="range" id="cagrSlider" min="8" max="22" step="0.5" value="14.5" class="heirloom-slider">
+              <input type="range" id="cagrSlider" min="8" max="22" step="0.5" value="14.5" class="paper-range-slider">
             </div>
 
-            <!-- Calculated Output Tiles -->
-            <div class="sim-output-grid">
-              <div class="output-tile">
-                <span class="out-label">PROJECTED MATURITY CAPITAL</span>
-                <span class="out-number text-gold price-dynamic" id="maturityCapital" data-usd="5143000">$5,143,000</span>
+            <!-- Calculated Results Dock -->
+            <div class="sim-results-dock">
+              <div class="res-block">
+                <span class="res-sub">PROJECTED MATURITY CAPITAL</span>
+                <span class="res-amount text-wine price-dynamic" id="maturityCapital" data-usd="5143000">$5,143,000</span>
               </div>
-              <div class="output-tile">
-                <span class="out-label">NET GAIN ACCRUAL</span>
-                <span class="out-number text-cypress price-dynamic" id="netGain" data-usd="3143000">+$3,143,000</span>
+              <div class="res-block">
+                <span class="res-sub">NET GAIN ACCRUAL</span>
+                <span class="res-amount text-olive price-dynamic" id="netGain" data-usd="3143000">+$3,143,000</span>
               </div>
             </div>
 
-            <button class="btn-heirloom-gold-full" onclick="document.getElementById('advisory').scrollIntoView({behavior: 'smooth'})">
+            <button class="btn-wine-full" onclick="document.getElementById('viewing').scrollIntoView({behavior: 'smooth'})">
               <span>Reserve Sanctuary Allocation</span>
               <span>→</span>
             </button>
@@ -498,68 +522,68 @@
     </div>
   </section>
 
-  <!-- 6. SECTION 04: PRIVATE VIEWING & VIP CONCIERGE -->
-  <section class="private-viewing-section" id="advisory">
+  <!-- 6. SECTION 04: PRIVATE VIEWING CONCIERGE -->
+  <section class="viewing-section" id="viewing">
     <div class="site-container">
-      <div class="viewing-container">
+      <div class="viewing-grid-split">
         
-        <div class="viewing-copy-col">
-          <div class="editorial-kicker">
-            <span class="kicker-line"></span>
-            <span class="kicker-text">CONCIERGE DESK</span>
+        <div class="viewing-info-col">
+          <div class="atelier-kicker-row">
+            <span class="kicker-rule"></span>
+            <span class="kicker-label">CONCIERGE DESK</span>
           </div>
-          <h2 class="viewing-title">
+          <h2 class="viewing-heading">
             Arrange a <span class="italic-serif">Private Site Inspection</span>
           </h2>
-          <p class="viewing-desc">
+          <p class="viewing-copy">
             Directly accompanied by our Senior Real Estate Managing Partner. On-site drone boundary verification, cadastral review, and confidential legal package release.
           </p>
 
-          <div class="concierge-details">
-            <div class="c-item">
-              <span class="c-label">CONFIDENTIAL LINE</span>
-              <span class="c-val">+91 98200 44810 · Zurich: +41 22 819 1920</span>
+          <div class="contact-channels">
+            <div class="channel-row">
+              <span class="chan-label">CONFIDENTIAL LINE</span>
+              <span class="chan-val">+91 98200 44810 · Zurich: +41 22 819 1920</span>
             </div>
-            <div class="c-item">
-              <span class="c-label">DIRECT CORRESPONDENCE</span>
-              <span class="c-val">patron@auraprime-estates.com</span>
+            <div class="channel-row">
+              <span class="chan-label">DIRECT CORRESPONDENCE</span>
+              <span class="chan-val">patron@auraprime-estates.com</span>
             </div>
-            <div class="c-item">
-              <span class="c-label">RESPONSE PROTOCOL</span>
-              <span class="c-val">Authenticated file release dispatched within 2 hours</span>
+            <div class="channel-row">
+              <span class="chan-label">RESPONSE PROTOCOL</span>
+              <span class="chan-val">Authenticated file release dispatched within 2 hours</span>
             </div>
           </div>
         </div>
 
         <div class="viewing-form-col">
-          <form id="viewingForm" class="heirloom-form" onsubmit="handleFormSubmit(event)">
-            <div class="form-title-bar">
+          <form id="viewingForm" class="paper-booking-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-header">
               <h3>Private Allocation Request</h3>
               <p>Kindly provide your credentials for secure document dispatch.</p>
             </div>
 
-            <div class="form-group">
+            <div class="form-item">
               <label for="fullName">FULL LEGAL NAME</label>
-              <input type="text" id="fullName" required placeholder="Lord Alistair Sterling" class="heirloom-input">
+              <input type="text" id="fullName" required placeholder="Lord Alistair Sterling" class="paper-field">
             </div>
 
-            <div class="form-group">
+            <div class="form-item">
               <label for="emailAddr">CONFIDENTIAL EMAIL</label>
-              <input type="email" id="emailAddr" required placeholder="patron@sterlingholdings.com" class="heirloom-input">
+              <input type="email" id="emailAddr" required placeholder="patron@sterlingholdings.com" class="paper-field">
             </div>
 
-            <div class="form-row-2">
-              <div class="form-group">
+            <div class="form-split-2">
+              <div class="form-item">
                 <label for="capitalRange">CAPITAL TIER</label>
-                <select id="capitalRange" class="heirloom-input">
+                <select id="capitalRange" class="paper-field">
                   <option value="1.5M-3M">$1,500,000 – $3,000,000</option>
                   <option value="3M-5M" selected>$3,000,000 – $5,000,000</option>
                   <option value="5M+">$5,000,000+ Sovereign Tier</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div class="form-item">
                 <label for="sanctuaryTarget">DESIRED ENCLAVE</label>
-                <select id="sanctuaryTarget" class="heirloom-input">
+                <select id="sanctuaryTarget" class="paper-field">
                   <option value="amrutha">Sri Sri Amrutha Varshini</option>
                   <option value="sodhi">The Sodhi-Akru Master Grid</option>
                   <option value="aerovista">Aerovista Gated Township</option>
@@ -568,11 +592,11 @@
               </div>
             </div>
 
-            <button type="submit" class="btn-heirloom-gold-full">
+            <button type="submit" class="btn-wine-full">
               <span>Request Authenticated Legal Package</span>
               <span>→</span>
             </button>
-            <span class="form-footnote">✦ 256-Bit SSL Encrypted Escrow · Strict Non-Disclosure Agreement</span>
+            <span class="form-disclaimer">✦ 256-Bit SSL Encrypted Escrow · Strict Non-Disclosure Agreement</span>
           </form>
         </div>
 
@@ -581,64 +605,64 @@
   </section>
 
   <!-- 7. MASTER HEIRLOOM FOOTER -->
-  <footer class="heirloom-footer">
+  <footer class="atelier-footer">
     <div class="site-container">
-      <div class="footer-grid">
-        <div class="footer-col-main">
-          <div class="footer-brand-title">AURA PRIME</div>
-          <span class="footer-brand-tag">SOVEREIGN ARCHITECTURAL ATELIER</span>
-          <p class="footer-motto">
+      <div class="footer-upper">
+        <div class="footer-left">
+          <div class="footer-brand-name">AURA PRIME</div>
+          <span class="footer-brand-sub">SOVEREIGN ARCHITECTURAL ATELIER</span>
+          <p class="footer-bio-text">
             Representing high-net-worth patrons, multi-generational family offices, and sovereign trusts across prime real estate growth corridors worldwide.
           </p>
         </div>
 
-        <div class="footer-col">
-          <span class="footer-col-head">SANCTUARIES</span>
-          <a href="#enclaves" class="footer-nav-link">Sri Sri Amrutha Varshini</a>
-          <a href="#enclaves" class="footer-nav-link">The Sodhi-Akru Master Grid</a>
-          <a href="#enclaves" class="footer-nav-link">Aerovista Gated Township</a>
-          <a href="#enclaves" class="footer-nav-link">Greenfield Highway Plots</a>
-          <a href="#enclaves" class="footer-nav-link">Emerald Horizon Acreage</a>
+        <div class="footer-col-nav">
+          <span class="col-heading">SANCTUARIES</span>
+          <a href="#enclaves" class="footer-anchor">Sri Sri Amrutha Varshini</a>
+          <a href="#enclaves" class="footer-anchor">The Sodhi-Akru Master Grid</a>
+          <a href="#enclaves" class="footer-anchor">Aerovista Gated Township</a>
+          <a href="#enclaves" class="footer-anchor">Greenfield Highway Plots</a>
+          <a href="#enclaves" class="footer-anchor">Emerald Horizon Acreage</a>
         </div>
 
-        <div class="footer-col">
-          <span class="footer-col-head">PRIVATE BANKING DESKS</span>
-          <span class="footer-desk-line">Zurich · St. Peterstrasse 17 · +41 22 819 1920</span>
-          <span class="footer-desk-line">Dubai · DIFC Gate Precinct 4 · +971 4 312 8800</span>
-          <span class="footer-desk-line">London · Berkeley Square, Mayfair · +44 20 7946 0912</span>
-          <span class="footer-desk-line">Mumbai · Bandra Kurla Complex · +91 22 6600 4800</span>
+        <div class="footer-col-desks">
+          <span class="col-heading">INTERNATIONAL DESKS</span>
+          <span class="desk-entry">Zurich · St. Peterstrasse 17 · +41 22 819 1920</span>
+          <span class="desk-entry">Dubai · DIFC Gate Precinct 4 · +971 4 312 8800</span>
+          <span class="desk-entry">London · Berkeley Square, Mayfair · +44 20 7946 0912</span>
+          <span class="desk-entry">Mumbai · Bandra Kurla Complex · +91 22 6600 4800</span>
         </div>
       </div>
 
-      <div class="footer-bottom-bar">
-        <span class="footer-copy">© 2026 AURA PRIME Sovereign Estates Atelier. All rights reserved. Irrevocable title deed verification guaranteed.</span>
-        <div class="footer-cert-tags">
-          <span class="cert-pill">ISO 9001:2015</span>
-          <span class="cert-pill">RERA Sanctioned</span>
-          <span class="cert-pill">Sovereign Escrow</span>
+      <div class="footer-lower">
+        <span class="legal-copy">© 2026 AURA PRIME Sovereign Estates Atelier. All rights reserved. Irrevocable title deed verification guaranteed.</span>
+        <div class="cert-pills">
+          <span class="c-pill">ISO 9001:2015</span>
+          <span class="c-pill">RERA Sanctioned</span>
+          <span class="c-pill">Sovereign Escrow</span>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- 8. INTERACTIVE DOSSIER MODAL -->
-  <div class="heirloom-modal-backdrop" id="dossierModal">
-    <div class="heirloom-modal-card">
-      <button class="modal-close-trigger" onclick="closeDossierModal()" aria-label="Close Modal">&times;</button>
-      <div class="modal-split">
-        <div class="modal-image-pane">
-          <img id="modalImg" src="" alt="Master Layout View" class="modal-img">
+  <div class="atelier-modal-overlay" id="dossierModal">
+    <div class="atelier-modal-window">
+      <button class="modal-close-cross" onclick="closeDossierModal()" aria-label="Close Modal">&times;</button>
+      <div class="modal-body-split">
+        <div class="modal-media-col">
+          <img id="modalImg" src="" alt="Master Layout View" class="modal-large-img">
         </div>
-        <div class="modal-text-pane">
-          <span class="modal-badge-top" id="modalBadge">AUTHENTICATED MASTER PLAN</span>
-          <h3 class="modal-heading" id="modalHeading">Sri Sri Amrutha Varshini</h3>
-          <p class="modal-text" id="modalText"></p>
-          <div class="modal-specs-table" id="modalSpecs"></div>
-          <div class="modal-valuation-line">
-            <span class="v-label">SANCTUARY VALUATION</span>
-            <span class="v-number text-gold" id="modalPrice"></span>
+        <div class="modal-info-col">
+          <span class="modal-kicker-tag" id="modalBadge">AUTHENTICATED MASTER PLAN</span>
+          <h3 class="modal-title-text" id="modalHeading">Sri Sri Amrutha Varshini</h3>
+          <p class="modal-description" id="modalText"></p>
+          <div class="modal-specs-grid" id="modalSpecs"></div>
+          <div class="modal-pricing-row">
+            <span class="p-caption">SANCTUARY VALUATION</span>
+            <span class="p-value text-wine" id="modalPrice"></span>
           </div>
-          <button class="btn-heirloom-gold-full" onclick="closeDossierModal(); document.getElementById('advisory').scrollIntoView({behavior: 'smooth'})">
+          <button class="btn-wine-full" onclick="closeDossierModal(); document.getElementById('viewing').scrollIntoView({behavior: 'smooth'})">
             <span>Inquire Allocation Registry</span>
             <span>→</span>
           </button>

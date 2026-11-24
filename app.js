@@ -1,9 +1,10 @@
 /**
- * AURA PRIME — Heirloom Luxury Atelier Engine
- * Harmonious Warm Gold & Archival Typography Interactions
+ * AURA PRIME — Sovereign Land Atelier Engine
+ * Interactions: Currency Switching, Category Filtering, Compounding Yield Simulator,
+ * Archival Dossier Modal, Tactile Cursor, and Concierge Form.
  */
 
-// CURRENCY CONFIGURATION
+// 1. CURRENCY CONVERSION CONFIGURATION
 const CURRENCY_RATES = {
   USD: { rate: 1.0, symbol: '$', code: 'USD' },
   EUR: { rate: 0.92, symbol: '€', code: 'EUR' },
@@ -13,35 +14,54 @@ const CURRENCY_RATES = {
 
 let activeCurrency = 'USD';
 
-// SANCTUARIES DATASET
+function formatCurrency(amountUsd, currency = activeCurrency) {
+  const cfg = CURRENCY_RATES[currency] || CURRENCY_RATES.USD;
+  const converted = Math.round(amountUsd * cfg.rate);
+  return `${cfg.symbol}${converted.toLocaleString('en-US')}`;
+}
+
+function updateAllPrices() {
+  document.querySelectorAll('.price-dynamic').forEach(el => {
+    const usd = parseFloat(el.getAttribute('data-usd'));
+    if (!isNaN(usd)) {
+      if (el.id === 'netGain') {
+        el.textContent = `+${formatCurrency(usd)}`;
+      } else {
+        el.textContent = formatCurrency(usd);
+      }
+    }
+  });
+}
+
+// 2. SANCTUARIES MASTER REPOSITORY
 const ENCLAVES_DATA = {
   'amrutha-varshini': {
     title: 'Sri Sri Amrutha Varshini',
     badge: 'SIGNATURE GATED SANCTUARY // 40 ACRES',
     image: 'assets/images/amrutha-varshini-entrance.jpg',
-    desc: 'An iconic residential sanctuary featuring a monumental entrance portico, 24/7 security checkpoint, avenue tree boulevards, asphalt road network, underground drainage, and comprehensive perimeter boundary security.',
+    desc: 'Monumental architectural entrance gatehouse, 24/7 security watchtower portico, manicured avenue trees, asphalt roadways, rainwater percolation grid, and clear 30-year forensic title documentation ready for immediate deed registry.',
     usdPrice: 2400000,
     specs: [
       { label: 'LOCATION', value: 'South Growth Corridor' },
       { label: 'COORDINATES', value: '12° 58\' 44" N, 77° 35\' 12" E' },
       { label: 'TOTAL ACREAGE', value: '40 Demarcated Acres' },
-      { label: 'LEGAL CUSTODY', value: '100% Freehold Vetted Deed' },
-      { label: 'ROAD NETWORK', value: '60 Ft Main / 40 Ft Arterial' },
-      { label: 'REGISTRATION', value: 'Immediate Execution Ready' }
+      { label: 'ROAD WIDTH', value: '60 Ft Main / 40 Ft Arterial' },
+      { label: 'LEGAL STATUS', value: '100% Freehold Vetted Deed' },
+      { label: 'REGISTRY', value: 'Immediate Execution Ready' }
     ]
   },
   'sodhi-akru': {
     title: 'The Sodhi-Akru Master Grid',
     badge: '30 M.T. ARTERIAL COMMUNITY // 266 PLOTS',
     image: 'assets/images/plot-master-plan.jpg',
-    desc: 'Approved geometric master community with direct 30 M.T. future road access, internal 12 M.T. and 7.5 M.T. boulevard grid, central water pavilion, clubhouse facility, and 266 approved demarcated residential plots.',
+    desc: 'Approved geometric master community with direct 30 M.T. future road access, internal 12 M.T. and 7.5 M.T. boulevards, clubhouse pavilion, swimming pool, and 266 approved plotted parcels with complete underground services.',
     usdPrice: 1850000,
     specs: [
-      { label: 'ARTERIAL ACCESS', value: '30 M.T. Future Road' },
-      { label: 'INTERNAL GRID', value: '12.00 & 7.50 M.T. Boulevards' },
-      { label: 'PLOT COUNT', value: '266 Approved Plots' },
-      { label: 'AMENITIES', value: 'Clubhouse, Pool, Central Park' },
-      { label: 'APPROVAL', value: 'Master Layout Sanctioned' },
+      { label: 'ACCESS ROAD', value: '30 M.T. Future Arterial' },
+      { label: 'INTERNAL ROADS', value: '12.00 & 7.50 M.T. Boulevards' },
+      { label: 'ALLOCATION', value: '266 Approved Plots' },
+      { label: 'AMENITIES', value: 'Clubhouse & Swimming Pavilion' },
+      { label: 'STATUTORY', value: 'Master Layout Sanctioned' },
       { label: 'ESCROW', value: 'Tier-1 Banking Settlement' }
     ]
   },
@@ -49,297 +69,308 @@ const ENCLAVES_DATA = {
     title: 'Aerovista Gated Township',
     badge: '3D PLOTTED TOWNSHIP',
     image: 'assets/images/plot-layout-3d.jpg',
-    desc: 'Grand landmark entrance arch with asphalt road network, underground storm drainage, tree avenues, and 24/7 solar perimeter security in the aerotropolis corridor.',
+    desc: 'Grand landmark entrance arch with bitumen asphalt roadways, underground storm drainage, avenue trees, and 24/7 solar perimeter security located directly in the aerotropolis high-growth corridor.',
     usdPrice: 3100000,
     specs: [
+      { label: 'CORRIDOR', value: 'Aerotropolis High-Speed Zone' },
       { label: 'INFRASTRUCTURE', value: 'Bitumen Asphalt & Drainage' },
       { label: 'SECURITY', value: '24/7 Monitored Access Gate' },
-      { label: 'HISTORIC CAGR', value: '16.2% Appreciation Rate' },
-      { label: 'STATUTORY', value: 'Town Planning & RERA Approved' }
+      { label: 'HISTORIC CAGR', value: '16.2% Annual Appreciation' },
+      { label: 'ZONING', value: 'Town Planning Sanctioned' },
+      { label: 'TENURE', value: 'Perpetual Freehold' }
     ]
   },
   'highway': {
     title: 'Greenfield Highway Plots',
-    badge: 'EXPRESSWAY CORRIDOR FRONTAGE',
+    badge: 'EXPRESSWAY CORRIDOR // 300 FT FRONTAGE',
     image: 'assets/images/plot-highway-green.jpg',
-    desc: 'Direct 4-lane high-speed expressway frontage with high commercial appreciation, landscaped green medians, and scenic open buffer zones suitable for mixed-use or trophy residential estates.',
+    desc: 'Prime plotted frontage facing 4-lane high-speed national expressway. Features wide median greenery, high-volume commercial accessibility, heavy transport turning circles, and high equity appreciation trajectory.',
     usdPrice: 2250000,
     specs: [
-      { label: 'FRONTAGE', value: '300 Ft Wide Expressway Edge' },
-      { label: 'SUITABILITY', value: 'Commercial / Hospitality / Estate' },
-      { label: 'BOUNDARY', value: 'Clear DGPS Fenced Perimeter' },
-      { label: 'TITLE CHAIN', value: 'Single Owner Freehold Chain' }
+      { label: 'FRONTAGE', value: '300 Ft Direct Expressway Edge' },
+      { label: 'ZONING', value: 'Commercial / High-Yield Estate' },
+      { label: 'CONNECTIVITY', value: 'National Expressway Interchange' },
+      { label: 'TITLE', value: 'Unencumbered Commercial Sanction' }
     ]
   },
   'emerald': {
     title: 'Emerald Horizon Land',
     badge: '50-ACRE SCENIC PARCEL',
     image: 'assets/images/plot-land-boundary.jpg',
-    desc: 'Scenic open valley land with precision satellite DGPS boundary survey, clear single ownership title, and panoramic valley views ideal for private generational compounds.',
+    desc: 'Pristine 50-acre land parcel with satellite DGPS coordinates, surveyed fencing, clear single ownership title, natural gentle grading, and uninhibited panoramic valley views ideal for private sanctuaries.',
     usdPrice: 1950000,
     specs: [
       { label: 'ACREAGE', value: '50 Continuous Acres' },
-      { label: 'SURVEY DATA', value: 'Satellite DGPS Geotagged' },
-      { label: 'TITLE CHAIN', value: '30-Year Forensic Search Clear' },
-      { label: 'PURPOSE', value: 'Private Estate / Agricultural Buffer' }
+      { label: 'SURVEY', value: 'Satellite DGPS Demarcated' },
+      { label: 'BOUNDARY', value: 'Stone Pillar Fencing Complete' },
+      { label: 'OWNERSHIP', value: 'Single Owner Freehold Title' }
     ]
   },
   'serene': {
     title: 'Serene Palms Layout',
     badge: 'ECO RESIDENTIAL GRID // 180 PLOTS',
     image: 'assets/images/plot-green-township.png',
-    desc: '180 demarcated residential plots surrounded by agricultural buffer trees, central community parkland, solar street lighting, and rainwater catchment systems.',
+    desc: 'Eco-conscious master community with 180 demarcated residential plots, 30% dedicated green open reserves, solar street illumination, rainwater percolation pits, and boundary security.',
     usdPrice: 1600000,
     specs: [
-      { label: 'COMMUNITY', value: '180 Demarcated Plots' },
-      { label: 'GREEN SPACE', value: '30% Dedicated Open Reserve' },
-      { label: 'SERVICES', value: 'Solar Grid & Rainwater Network' },
-      { label: 'LEGAL', value: 'Green Zone Sanctioned Freehold' }
+      { label: 'PLOTS COUNT', value: '180 Demarcated Units' },
+      { label: 'GREEN BUFFER', value: '30% Dedicated Open Reserve' },
+      { label: 'SERVICES', value: 'Solar Grid & Rainwater Harvesting' },
+      { label: 'CUSTODY', value: 'Forensic Bar Counsel Certified' }
     ]
   }
 };
 
-// ==========================================
-// 1. TACTILE CURSOR TRACKER
-// ==========================================
-const cursorDot = document.getElementById('cursorDot');
-const cursorRing = document.getElementById('cursorRing');
+// 3. CATEGORY FILTER TABS
+function initCategoryFilter() {
+  const tabs = document.querySelectorAll('.tab-pill');
+  const cards = document.querySelectorAll('.sanctuary-paper-card');
 
-let mouseX = -100;
-let mouseY = -100;
-let ringX = -100;
-let ringY = -100;
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
-window.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  if (cursorDot) {
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
-  }
-}, { passive: true });
+      const filter = tab.getAttribute('data-filter');
 
-function animateCursor() {
-  ringX += (mouseX - ringX) * 0.16;
-  ringY += (mouseY - ringY) * 0.16;
-  if (cursorRing) {
-    cursorRing.style.left = `${ringX}px`;
-    cursorRing.style.top = `${ringY}px`;
-  }
-  requestAnimationFrame(animateCursor);
-}
-requestAnimationFrame(animateCursor);
-
-// Add active state on hover
-const interactiveSelector = 'a, button, input, select, .enclave-card, .heirloom-feature-frame';
-document.addEventListener('mouseover', (e) => {
-  if (e.target.closest(interactiveSelector)) {
-    document.body.classList.add('cursor-active');
-  }
-});
-document.addEventListener('mouseout', (e) => {
-  if (e.target.closest(interactiveSelector)) {
-    document.body.classList.remove('cursor-active');
-  }
-});
-
-// ==========================================
-// 2. LIVE MULTI-CURRENCY CONVERTER
-// ==========================================
-const currencySelect = document.getElementById('currencySelect');
-
-function formatCurrency(amountUSD, currencyCode) {
-  const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.USD;
-  const converted = Math.round(amountUSD * config.rate);
-
-  if (currencyCode === 'AED') {
-    return `AED ${converted.toLocaleString('en-US')}`;
-  }
-  return `${config.symbol}${converted.toLocaleString('en-US')}`;
-}
-
-function updatePrices() {
-  const priceElements = document.querySelectorAll('.price-dynamic');
-  priceElements.forEach((el) => {
-    const usdVal = parseFloat(el.getAttribute('data-usd'));
-    if (!isNaN(usdVal)) {
-      el.textContent = formatCurrency(usdVal, activeCurrency);
-    }
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(12px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 20);
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
   });
 }
 
-if (currencySelect) {
-  currencySelect.addEventListener('change', (e) => {
-    activeCurrency = e.target.value;
-    updatePrices();
-    updateSimulator();
+// 4. CAPITAL YIELD SIMULATOR
+function initYieldSimulator() {
+  const allocSlider = document.getElementById('allocSlider');
+  const yearsSlider = document.getElementById('yearsSlider');
+  const cagrSlider = document.getElementById('cagrSlider');
+
+  const allocVal = document.getElementById('allocVal');
+  const yearsVal = document.getElementById('yearsVal');
+  const cagrVal = document.getElementById('cagrVal');
+
+  const maturityEl = document.getElementById('maturityCapital');
+  const netGainEl = document.getElementById('netGain');
+
+  function calculateYield() {
+    const principalUsd = parseFloat(allocSlider.value);
+    const years = parseInt(yearsSlider.value, 10);
+    const cagr = parseFloat(cagrSlider.value) / 100;
+
+    // Compound Interest: A = P * (1 + r)^t
+    const maturityUsd = Math.round(principalUsd * Math.pow(1 + cagr, years));
+    const netGainUsd = maturityUsd - principalUsd;
+
+    allocVal.setAttribute('data-usd', principalUsd);
+    allocVal.textContent = formatCurrency(principalUsd);
+
+    yearsVal.textContent = `${years} Years`;
+    cagrVal.textContent = `${(cagr * 100).toFixed(1)}%`;
+
+    maturityEl.setAttribute('data-usd', maturityUsd);
+    maturityEl.textContent = formatCurrency(maturityUsd);
+
+    netGainEl.setAttribute('data-usd', netGainUsd);
+    netGainEl.textContent = `+${formatCurrency(netGainUsd)}`;
+  }
+
+  if (allocSlider && yearsSlider && cagrSlider) {
+    allocSlider.addEventListener('input', calculateYield);
+    yearsSlider.addEventListener('input', calculateYield);
+    cagrSlider.addEventListener('input', calculateYield);
+    calculateYield();
+  }
+}
+
+// 5. ARCHIVAL DOSSIER MODAL
+function openDossierModal(key) {
+  const data = ENCLAVES_DATA[key];
+  if (!data) return;
+
+  const modal = document.getElementById('dossierModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalBadge = document.getElementById('modalBadge');
+  const modalHeading = document.getElementById('modalHeading');
+  const modalText = document.getElementById('modalText');
+  const modalSpecs = document.getElementById('modalSpecs');
+  const modalPrice = document.getElementById('modalPrice');
+
+  modalImg.src = data.image;
+  modalImg.alt = data.title;
+  modalBadge.textContent = data.badge;
+  modalHeading.textContent = data.title;
+  modalText.textContent = data.desc;
+  modalPrice.textContent = formatCurrency(data.usdPrice);
+
+  // Generate specs
+  modalSpecs.innerHTML = data.specs.map(s => `
+    <div class="modal-spec-item">
+      <span class="s-label">${s.label}</span>
+      <span class="s-value">${s.value}</span>
+    </div>
+  `).join('');
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDossierModal() {
+  const modal = document.getElementById('dossierModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close on backdrop click
+document.addEventListener('click', (e) => {
+  const modal = document.getElementById('dossierModal');
+  if (e.target === modal) {
+    closeDossierModal();
+  }
+});
+
+// Close on ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeDossierModal();
+  }
+});
+
+// 6. CUSTOM TACTILE CURSOR
+function initTactileCursor() {
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let ringX = 0;
+  let ringY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = `${mouseX}px`;
+    dot.style.top = `${mouseY}px`;
+  });
+
+  function renderCursor() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    ring.style.left = `${ringX}px`;
+    ring.style.top = `${ringY}px`;
+    requestAnimationFrame(renderCursor);
+  }
+  requestAnimationFrame(renderCursor);
+
+  // Hover states
+  const interactives = document.querySelectorAll('a, button, select, input, .sanctuary-paper-card, .heirloom-showcase-card');
+  interactives.forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('active-hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('active-hover'));
   });
 }
 
-// ==========================================
-// 3. ENCLAVE CATEGORY FILTER TABS
-// ==========================================
-const filterButtons = document.querySelectorAll('.filter-btn');
-const enclaveCards = document.querySelectorAll('.enclave-card');
+// 7. PRIVATE VIEWING CONCIERGE FORM HANDLER
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('fullName').value;
+  const email = document.getElementById('emailAddr').value;
+  const target = document.getElementById('sanctuaryTarget').selectedOptions[0].text;
 
-filterButtons.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    filterButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+  // Create subtle toast notification
+  showAtelierToast(`Dossier Request Dispatched for ${name}. Legal deed dossier for ${target} will arrive at ${email} within 2 hours.`);
+  
+  e.target.reset();
+}
 
-    const filterVal = btn.getAttribute('data-filter');
+function showAtelierToast(message) {
+  let toast = document.getElementById('atelierToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'atelierToast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '28px';
+    toast.style.right = '28px';
+    toast.style.maxWidth = '420px';
+    toast.style.backgroundColor = '#241a15';
+    toast.style.color = '#f5f0e8';
+    toast.style.border = '1px solid #6b1d22';
+    toast.style.borderRadius = '6px';
+    toast.style.padding = '16px 22px';
+    toast.style.fontFamily = "'Jost', sans-serif";
+    toast.style.fontSize = '0.875rem';
+    toast.style.lineHeight = '1.5';
+    toast.style.boxShadow = '0 12px 32px rgba(36, 26, 21, 0.25)';
+    toast.style.zIndex = '10000';
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(16px)';
+    toast.style.transition = 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+    document.body.appendChild(toast);
+  }
 
-    enclaveCards.forEach((card) => {
-      const cardCategory = card.getAttribute('data-category');
-      if (filterVal === 'all' || cardCategory === filterVal) {
-        card.style.display = 'flex';
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(12px)';
-        setTimeout(() => {
-          card.style.transition = 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, 20);
-      } else {
-        card.style.display = 'none';
+  toast.innerHTML = `<strong style="color: #dfd3c3; font-family: 'Cinzel', serif; display: block; margin-bottom: 4px; font-size: 0.75rem; letter-spacing: 0.1em;">✦ DISPATCH CONFIRMATION</strong>${message}`;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(16px)';
+  }, 6000);
+}
+
+// 8. INITIALIZE ON LOAD
+document.addEventListener('DOMContentLoaded', () => {
+  // Currency switcher
+  const currencySelect = document.getElementById('currencySelect');
+  if (currencySelect) {
+    currencySelect.addEventListener('change', (e) => {
+      activeCurrency = e.target.value;
+      updateAllPrices();
+      // Also update yield calculator
+      const allocSlider = document.getElementById('allocSlider');
+      if (allocSlider) {
+        allocSlider.dispatchEvent(new Event('input'));
+      }
+    });
+  }
+
+  initCategoryFilter();
+  initYieldSimulator();
+  initTactileCursor();
+
+  // Active navigation highlight
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navLinks = document.querySelectorAll('.atelier-menu .menu-link');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 120;
+      if (window.pageYOffset >= top) {
+        current = sec.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
       }
     });
   });
-});
-
-// ==========================================
-// 4. CAPITAL YIELD SIMULATOR
-// ==========================================
-const allocSlider = document.getElementById('allocSlider');
-const yearsSlider = document.getElementById('yearsSlider');
-const cagrSlider = document.getElementById('cagrSlider');
-
-const allocVal = document.getElementById('allocVal');
-const yearsVal = document.getElementById('yearsVal');
-const cagrVal = document.getElementById('cagrVal');
-
-const maturityCapital = document.getElementById('maturityCapital');
-const netGain = document.getElementById('netGain');
-
-function updateSimulator() {
-  if (!allocSlider || !yearsSlider || !cagrSlider) return;
-
-  const P = parseFloat(allocSlider.value);
-  const years = parseInt(yearsSlider.value, 10);
-  const cagr = parseFloat(cagrSlider.value) / 100;
-
-  // Compounded Capital: A = P * (1 + r)^n
-  const A = Math.round(P * Math.pow(1 + cagr, years));
-  const gain = A - P;
-
-  if (allocVal) {
-    allocVal.setAttribute('data-usd', P);
-    allocVal.textContent = formatCurrency(P, activeCurrency);
-  }
-  if (yearsVal) {
-    yearsVal.textContent = `${years} Years`;
-  }
-  if (cagrVal) {
-    cagrVal.textContent = `${(cagr * 100).toFixed(1)}%`;
-  }
-
-  if (maturityCapital) {
-    maturityCapital.setAttribute('data-usd', A);
-    maturityCapital.textContent = formatCurrency(A, activeCurrency);
-  }
-  if (netGain) {
-    netGain.setAttribute('data-usd', gain);
-    netGain.textContent = `+${formatCurrency(gain, activeCurrency)}`;
-  }
-}
-
-if (allocSlider && yearsSlider && cagrSlider) {
-  [allocSlider, yearsSlider, cagrSlider].forEach((slider) => {
-    slider.addEventListener('input', updateSimulator);
-  });
-}
-
-// ==========================================
-// 5. INTERACTIVE DOSSIER MODAL
-// ==========================================
-const dossierModal = document.getElementById('dossierModal');
-const modalImg = document.getElementById('modalImg');
-const modalBadge = document.getElementById('modalBadge');
-const modalHeading = document.getElementById('modalHeading');
-const modalText = document.getElementById('modalText');
-const modalSpecs = document.getElementById('modalSpecs');
-const modalPrice = document.getElementById('modalPrice');
-
-window.openDossierModal = function(key) {
-  const item = ENCLAVES_DATA[key] || ENCLAVES_DATA['amrutha-varshini'];
-  if (!dossierModal) return;
-
-  if (modalImg) modalImg.src = item.image;
-  if (modalBadge) modalBadge.textContent = item.badge;
-  if (modalHeading) modalHeading.textContent = item.title;
-  if (modalText) modalText.textContent = item.desc;
-
-  if (modalPrice) {
-    modalPrice.textContent = formatCurrency(item.usdPrice, activeCurrency);
-  }
-
-  if (modalSpecs) {
-    modalSpecs.innerHTML = item.specs.map(s => `
-      <div class="spec-cell">
-        <span style="display: block; font-size: 10px; letter-spacing: 0.12em; color: var(--t-muted);">${s.label}</span>
-        <strong style="font-size: 13px; color: var(--t-ivory); font-weight: 500;">${s.value}</strong>
-      </div>
-    `).join('');
-  }
-
-  dossierModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-};
-
-window.closeDossierModal = function() {
-  if (!dossierModal) return;
-  dossierModal.classList.remove('active');
-  document.body.style.overflow = '';
-};
-
-if (dossierModal) {
-  dossierModal.addEventListener('click', (e) => {
-    if (e.target === dossierModal) closeDossierModal();
-  });
-}
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeDossierModal();
-});
-
-// ==========================================
-// 6. VIP ALLOCATION FORM SUBMISSION
-// ==========================================
-window.handleFormSubmit = function(e) {
-  e.preventDefault();
-  const name = document.getElementById('fullName')?.value;
-  const email = document.getElementById('emailAddr')?.value;
-  const enclave = document.getElementById('sanctuaryTarget')?.value;
-
-  const formCol = document.querySelector('.viewing-form-col');
-  if (formCol) {
-    formCol.innerHTML = `
-      <div style="background: var(--c-surface); border: 1px solid var(--b-gold-hover); border-radius: var(--radius-lg); padding: 50px 36px; text-align: center;">
-        <div style="width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid var(--c-gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; color: var(--c-gold); font-size: 22px;">✦</div>
-        <h3 style="font-family: var(--font-roman); font-size: 24px; color: var(--t-ivory); margin-bottom: 12px;">Sovereign Package Dispatched</h3>
-        <p style="font-size: 14.5px; color: var(--t-sand); line-height: 1.65; max-width: 440px; margin: 0 auto 24px auto;">
-          Thank you, <strong>${name}</strong>. The authenticated title deed chain and private site inspection credentials for <strong>${enclave.toUpperCase()}</strong> have been dispatched to <strong>${email}</strong>.
-        </p>
-        <span style="font-size: 11px; letter-spacing: 0.15em; color: var(--c-gold); border: 1px solid var(--b-gold-subtle); padding: 6px 14px; border-radius: 20px;">
-          PATRON RECORD // AP-2026-${Math.floor(1000 + Math.random() * 9000)}
-        </span>
-      </div>
-    `;
-  }
-};
-
-// INITIALIZE ON LOAD
-document.addEventListener('DOMContentLoaded', () => {
-  updatePrices();
-  updateSimulator();
 });
