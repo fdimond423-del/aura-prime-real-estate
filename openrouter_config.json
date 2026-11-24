@@ -1,0 +1,78 @@
+{
+  "provider": "OpenRouter",
+  "apiKeySource": ".agents/mcp_config.json",
+  "activeTier": "free",
+  "preferredModel": "particle-ai/particle-1:free",
+  "freeModels": [
+    {
+      "id": "particle-ai/particle-1:free",
+      "name": "Particle AI: Particle-1 (free)",
+      "category": "Coding & Software Engineering",
+      "contextWindow": 1048576,
+      "description": "Agentic coding model post-trained on DeepSeek V4.1 Flash. Fast and reliable for coding tasks."
+    },
+    {
+      "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "name": "NVIDIA: Nemotron 3 Ultra (free)",
+      "category": "Frontier Reasoning & Orchestration",
+      "contextWindow": 1000000,
+      "description": "550B total / 55B active MoE model with strong reasoning capabilities."
+    },
+    {
+      "id": "nvidia/nemotron-3.5-super-vl:free",
+      "name": "NVIDIA: Nemotron 3.5 Super VL (free)",
+      "category": "Vision & Multimodal",
+      "contextWindow": 1000000,
+      "description": "Multimodal MoE model accepting text, image, and video."
+    },
+    {
+      "id": "baidu/ernie-5.5-flash-preview:free",
+      "name": "Baidu: ERNIE-5.5-Flash-Preview (free)",
+      "category": "Knowledge Work & Deep Research",
+      "contextWindow": 1024000,
+      "description": "Foundation model with 280B parameters, strong at coding and research."
+    },
+    {
+      "id": "inclusionai/ling-3.2-flash:free",
+      "name": "inclusionAI: Ling 3.2 Flash (free)",
+      "category": "Reasoning & Vision",
+      "contextWindow": 1048576,
+      "description": "Hybrid reasoning model supporting 1M tokens context and image inputs."
+    },
+    {
+      "id": "nvidia/nemotron-3.5-lightning:free",
+      "name": "NVIDIA: Nemotron 3.5 Lightning (free)",
+      "category": "High Throughput Agentic",
+      "contextWindow": 1000000,
+      "description": "Lightweight 30B MoE model for fast throughput."
+    },
+    {
+      "id": "google/gemma-4-31b-it:free",
+      "name": "Google: Gemma 4 31B (free)",
+      "category": "Multimodal & General",
+      "contextWindow": 262144,
+      "description": "Google DeepMind 30.7B dense multimodal model with 256K context."
+    },
+    {
+      "id": "google/gemma-4-26b-a4b-it:free",
+      "name": "Google: Gemma 4 26B A4B (free)",
+      "category": "General & Instruction Tuned",
+      "contextWindow": 262144,
+      "description": "Google DeepMind instruction-tuned MoE model."
+    },
+    {
+      "id": "liquid/lfm-3-1.7b:free",
+      "name": "LiquidAI: LFM3-1.7B (free)",
+      "category": "Lightweight & Fast",
+      "contextWindow": 262144,
+      "description": "Compact 1.7B text model post-trained for agents and structured outputs."
+    },
+    {
+      "id": "recursive/flint-v1.0:free",
+      "name": "Recursive: Flint (free)",
+      "category": "Autonomous Coding",
+      "contextWindow": 262144,
+      "description": "MoE model built by Eureka Machine specifically for coding agents."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# Sensitive API Keys & Configurations
+.agents/
+.abacusai/
+.env
+.env.local
+*.key
+mcp_config.json
+
+# Editor & AI Tool State
+.aisha/
+.claude/
+.cursor/
+.kiro/
+.uix/
+.vscode/
+
+# Python Cache & Node Modules
+__pycache__/
+*.pyc
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
