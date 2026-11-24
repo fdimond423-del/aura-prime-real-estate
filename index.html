@@ -3,621 +3,851 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KŌHĪ ATELIER — Artisanal Coffee & Slow Botanical Bakery</title>
-  <meta name="description" content="A minimalist Japanese-Nordic coffeehouse and micro-roastery curating single-origin slow drips, botanical infusions, and slow-fermented viennoiserie.">
+  <title>Olivia & Adrian — The Wedding Celebration · August 08, 2028</title>
+  <meta name="description" content="A complete, romantic wedding website celebrating the marriage of Olivia & Adrian at The Plaza Hotel, New York.">
   
-  <!-- Fonts: Cormorant Garamond (Editorial Display), Cinzel (Caps), Jost (Clean Body) -->
+  <!-- Fonts: Alex Brush (Calligraphy Script), Playfair Display (Serif), Cinzel (Caps), Jost (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- GSAP Core & ScrollTrigger CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  
-  <link rel="stylesheet" href="cafe-style.css">
+  <link rel="stylesheet" href="wedding-style.css">
 </head>
 <body>
 
-  <!-- FLUID CUSTOM CURSOR -->
-  <div class="kohi-cursor-dot" id="cursorDot"></div>
-  <div class="kohi-cursor-ring" id="cursorRing"></div>
+  <!-- 1. ORGANIC FALLING ROSE PETALS CANVAS -->
+  <canvas id="petalCanvas"></canvas>
 
-  <!-- AMBIENT STEAM CANVAS BACKGROUND -->
-  <canvas id="steamCanvas"></canvas>
+  <!-- 2. INTERACTIVE WAX-SEAL INTRO INVITATION OVERLAY -->
+  <div class="wedding-intro-overlay" id="weddingIntroOverlay">
+    <div class="intro-vignette-bg"></div>
 
-  <!-- 1. ANNOUNCEMENT MARQUEE STRIP -->
-  <div class="kohi-strip">
-    <div class="site-container strip-inner">
-      <div class="strip-left">
-        <span style="color:var(--c-accent);">✦</span>
-        <span>Spring Harvest Geisha Just Arrived from Gesha Village, Ethiopia · Micro-Batch No. 048</span>
+    <!-- Decorative Corner Bouquets -->
+    <svg class="intro-floral-corner intro-floral-tl" viewBox="0 0 200 200" fill="none">
+      <path d="M20,20 C60,20 100,50 120,90 C80,110 40,90 20,20 Z" fill="rgba(92, 29, 36, 0.25)"/>
+      <circle cx="50" cy="50" r="18" fill="rgba(217, 155, 155, 0.4)"/>
+      <circle cx="85" cy="40" r="12" fill="rgba(197, 160, 89, 0.3)"/>
+      <circle cx="40" cy="85" r="14" fill="rgba(92, 29, 36, 0.3)"/>
+    </svg>
+    <svg class="intro-floral-corner intro-floral-br" viewBox="0 0 200 200" fill="none">
+      <path d="M20,20 C60,20 100,50 120,90 C80,110 40,90 20,20 Z" fill="rgba(92, 29, 36, 0.25)"/>
+      <circle cx="50" cy="50" r="18" fill="rgba(217, 155, 155, 0.4)"/>
+      <circle cx="85" cy="40" r="12" fill="rgba(197, 160, 89, 0.3)"/>
+      <circle cx="40" cy="85" r="14" fill="rgba(92, 29, 36, 0.3)"/>
+    </svg>
+
+    <div class="intro-stage">
+      <span class="intro-header-kicker">✦ A LOVE NOTE FROM ✦</span>
+      <h1 class="intro-names">Olivia & Adrian</h1>
+      <span class="intro-date-badge">SATURDAY · 08 AUGUST 2028 · NEW YORK</span>
+
+      <!-- 3D Wax Seal Envelope -->
+      <div class="envelope-3d-wrapper" id="envelopeWrapper">
+        <div class="envelope-flap"></div>
+        
+        <!-- Inside Letter Card -->
+        <div class="envelope-letter">
+          <span class="letter-monogram">O & A</span>
+          <h2 class="letter-title">You Are Cordially Invited</h2>
+          <p class="letter-text">
+            Together with our families, we invite you to share in our joy as we exchange our vows and begin our forever.
+          </p>
+          <button type="button" class="btn-open-wedding" onclick="enterWeddingLanding()">
+            ENTER OUR WEDDING →
+          </button>
+        </div>
+
+        <!-- Deep Burgundy Wax Seal -->
+        <button type="button" class="wax-seal-button" id="waxSealBtn" aria-label="Open Wedding Invitation">
+          <span class="wax-seal-crest">O&A</span>
+          <svg class="wax-seal-ribbon" viewBox="0 0 40 40" fill="none">
+            <path d="M12 0 L20 28 L28 0 Z" fill="#4A101A"/>
+            <path d="M16 0 L20 24 L24 0 Z" fill="#8B2535"/>
+          </svg>
+        </button>
       </div>
-      <div class="strip-right">
-        <span>CURRENCY:</span>
-        <select id="currencySelector" class="curr-select" aria-label="Currency Selector">
-          <option value="USD" selected>USD ($)</option>
-          <option value="EUR">EUR (€)</option>
-          <option value="GBP">GBP (£)</option>
-          <option value="AED">AED (AED)</option>
-          <option value="JPY">JPY (¥)</option>
-        </select>
+
+      <div class="intro-instruction">
+        <span>✦</span> CLICK WAX SEAL TO OPEN INVITATION <span>✦</span>
+      </div>
+
+      <div class="intro-music-note">
+        <span>♫</span> Soft romantic ambient harp plays upon opening
+      </div>
+
+      <div>
+        <button type="button" class="btn-intro-skip" onclick="skipIntro()">Skip directly to wedding website →</button>
       </div>
     </div>
   </div>
 
-  <!-- 2. EDITORIAL NAVBAR -->
-  <header class="kohi-header" id="kohiHeader">
+  <!-- 3. PERSISTENT FLOATING AUDIO PLAYER -->
+  <aside class="floating-audio-bar" id="floatingAudioBar" aria-label="Wedding Music Player">
+    <button type="button" class="audio-btn-circle" id="audioToggleBtn" title="Play / Pause Wedding Melody">
+      ▶
+    </button>
+    <div class="audio-info-col">
+      <span class="audio-track-title">CANON IN D · HARP ARPEGGIO</span>
+      <span class="audio-track-sub">Romantic Wedding Theme</span>
+    </div>
+    <div class="sound-bars-anim">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+  </aside>
+
+  <!-- 4. EDITORIAL HEADER & NAVIGATION -->
+  <header class="wedding-header" id="weddingHeader">
     <div class="site-container header-inner">
-      <a href="index.html" class="brand-anchor">
-        <div class="brand-emblem">K</div>
-        <div class="brand-texts">
-          <span class="brand-name">KŌHĪ</span>
-          <span class="brand-sub">COFFEE ATELIER & BAKERY</span>
+      <a href="#home" class="brand-monogram-box">
+        <div class="monogram-seal-sm">OA</div>
+        <div class="brand-text-col">
+          <div class="brand-names">Olivia & Adrian</div>
+          <div class="brand-date">08 AUGUST 2028</div>
         </div>
       </a>
 
-      <!-- 3-Page Clean Nav -->
-      <nav class="header-nav">
-        <a href="index.html" class="nav-link active">The Atelier</a>
-        <a href="menu.html" class="nav-link">Artisanal Menu</a>
-        <a href="story.html" class="nav-link">Roastery & Craft</a>
+      <!-- Full Menu Navigation -->
+      <nav class="wedding-nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#story">Our Story</a>
+        <a href="#details">The Details</a>
+        <a href="#location">Location</a>
+        <a href="#schedule">Timeline</a>
+        <a href="#accommodation">Accommodation</a>
+        <a href="#registry">Registry</a>
+        <a href="#faq">FAQ</a>
       </nav>
 
-      <div class="header-actions">
-        <!-- Tasting Tray Flyout Trigger -->
-        <button type="button" class="tray-btn" aria-label="Tasting Flight Tray" onclick="toggleTray(true)">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-            <line x1="6" y1="1" x2="6" y2="4" />
-            <line x1="10" y1="1" x2="10" y2="4" />
-            <line x1="14" y1="1" x2="14" y2="4" />
-          </svg>
-          <span class="tray-badge" id="trayBadgeCount">0</span>
-        </button>
-
-        <button type="button" class="btn-primary" onclick="openReservationModal()">
-          Reserve a Table
-        </button>
+      <div>
+        <a href="#rsvp" class="btn-header-rsvp">Kindly Reply</a>
       </div>
     </div>
   </header>
 
-  <!-- 3. HERO SECTION (AMBIENT 4K VIDEO & ROTATING STAMP) -->
-  <section class="kohi-hero" id="hero">
-    <div class="site-container hero-grid">
+  <!-- 5. HERO SECTION (LAKE COMO / PLAZA VILLA SCENERY & FLORAL ARCHES) -->
+  <section class="wedding-hero" id="home">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80" alt="Scenic Wedding Estate Background" class="hero-backdrop-img">
+    <div class="hero-vignette-overlay"></div>
+    <div class="hero-floral-frame hero-floral-left"></div>
+    <div class="hero-floral-frame hero-floral-right"></div>
+
+    <div class="hero-content-box">
+      <div class="hero-kicker-crest">
+        <span class="hero-kicker-line"></span>
+        <span class="hero-kicker-text">THE WEDDING CELEBRATION OF</span>
+        <span class="hero-kicker-line rev"></span>
+      </div>
+
+      <h1 class="hero-main-title">Olivia & Adrian</h1>
+
+      <div class="hero-date-row">
+        08 AUGUST 2028
+      </div>
+
+      <div class="hero-venue-tag">
+        THE PLAZA HOTEL & GRAND TERRACE · FIFTH AVENUE, NEW YORK
+      </div>
+
+      <!-- Real-Time Live Countdown Timer -->
+      <div class="countdown-card-wrapper">
+        <span class="countdown-kicker">✦ COUNTING DOWN TO FOREVER ✦</span>
+        <div class="countdown-grid">
+          <div class="countdown-tile">
+            <span class="countdown-number" id="countdownDays">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-tile">
+            <span class="countdown-number" id="countdownHours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-tile">
+            <span class="countdown-number" id="countdownMins">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-tile">
+            <span class="countdown-number" id="countdownSecs">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-cta-buttons">
+        <a href="#rsvp" class="btn-primary-wedding">Kindly Reply (RSVP) →</a>
+        <a href="#details" class="btn-secondary-wedding">Explore Schedule & Venue</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECTION: OUR STORY -->
+  <section class="wedding-section" id="story">
+    <div class="site-container">
       
-      <!-- Left Column: Editorial Headline -->
-      <div class="hero-text-col">
-        <div class="hero-kicker-row">
-          <span class="kicker-dot"></span>
-          <span class="kicker-text">Slow Coffee · Single Origins · Pure Terroir</span>
+      <div class="sec-head-center">
+        <span class="sec-kicker">✦ HOW OUR JOURNEY BEGAN ✦</span>
+        <h2 class="sec-title-script">Our Story</h2>
+        <p class="sec-lead">From serendipitous coffee conversations to a lifetime of adventures, hand in hand.</p>
+      </div>
+
+      <div class="story-grid">
+        
+        <!-- Polaroid Frame with Specular Tilt -->
+        <div class="story-polaroid-stack">
+          <div class="polaroid-frame">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80" alt="Olivia and Adrian Engagement" class="polaroid-img" loading="lazy">
+            <div class="polaroid-caption">Olivia & Adrian · Sunset in Como</div>
+          </div>
         </div>
 
-        <h1 class="hero-title">
-          Where <span class="italic-serif">Craft</span> Meets<br>
-          the Art of the <span class="italic-serif text-cinnamon">Slow Pour</span>.
-        </h1>
+        <!-- Narrative Column -->
+        <div class="story-narrative-col">
+          <blockquote class="story-quote">
+            “What began as simple conversations soon turned into a love story we never saw coming.”
+          </blockquote>
 
-        <p class="hero-copy">
-          We honor single-origin coffees with restrained Japanese roasting methods and wild-fermented French viennoiserie. Every extraction is weighed to the tenth of a gram.
+          <p class="story-body">
+            We were two people walking different paths, who found in each other a sense of ease, kindness, and belonging. What started with an impromptu conversation on a rainy autumn evening in Soho quickly became our favorite daily chapter.
+          </p>
+          <p class="story-body">
+            Over the years, we discovered our shared passion for quiet morning coffees, spontaneous travels, and cooking dinners filled with laughter. On a sun-drenched terrace overlooking Lake Como, Adrian asked, and through happy tears, Olivia whispered yes.
+          </p>
+
+          <!-- Milestone Timeline -->
+          <div class="story-milestones">
+            <div class="milestone-item">
+              <span class="milestone-dot"></span>
+              <div class="milestone-content">
+                <h4>OCTOBER 2021 · FIRST HELLO IN SOHO</h4>
+                <p>An unexpected meeting at a quaint corner bookstore cafe in Manhattan.</p>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-dot"></span>
+              <div class="milestone-content">
+                <h4>JUNE 2024 · THE LAKE COMO PROPOSAL</h4>
+                <p>A sunset wooden boat tour under the historic arches of Villa Balbiano.</p>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-dot"></span>
+              <div class="milestone-content">
+                <h4>AUGUST 08, 2028 · OUR WEDDING DAY</h4>
+                <p>Surrounded by our dearest family and friends as we say forever.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <a href="#details" class="btn-primary-wedding">View Wedding Details →</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. SECTION: THE DETAILS (DATE, VENUE, & DRESS CODE) -->
+  <section class="wedding-section alt-bg" id="details">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">✦ CELEBRATION SCHEDULE & VENUES ✦</span>
+        <h2 class="sec-title-script">The Details</h2>
+        <p class="sec-lead">Three curated chapters of our wedding weekend in the heart of New York City.</p>
+      </div>
+
+      <!-- 3-Column Events Grid matching Storyboard -->
+      <div class="details-events-grid">
+        
+        <!-- Event 1: Welcoming Drinks -->
+        <article class="event-card">
+          <div class="event-icon-disc">🥂</div>
+          <span class="event-card-type">FRIDAY EVENING</span>
+          <h3 class="event-card-title">Welcoming Drinks</h3>
+          <div class="event-card-time">Friday, 07 August 2028 · 6:30 PM</div>
+          <p class="event-card-place">
+            The Palm Court & Rose Terrace<br>
+            Cocktails, light Italian canapés & reunion greetings.
+          </p>
+        </article>
+
+        <!-- Event 2: The Ceremony -->
+        <article class="event-card">
+          <div class="event-icon-disc">💍</div>
+          <span class="event-card-type">THE MAIN VOWS</span>
+          <h3 class="event-card-title">The Ceremony</h3>
+          <div class="event-card-time">Saturday, 08 August 2028 · 4:00 PM</div>
+          <p class="event-card-place">
+            The Grand Floral Courtyard<br>
+            Please arrive by 3:00 PM for welcome champagne.
+          </p>
+        </article>
+
+        <!-- Event 3: The Reception -->
+        <article class="event-card">
+          <div class="event-icon-disc">🎻</div>
+          <span class="event-card-type">DINNER & DANCE</span>
+          <h3 class="event-card-title">The Reception</h3>
+          <div class="event-card-time">Saturday, 08 August 2028 · 7:30 PM</div>
+          <p class="event-card-place">
+            The Grand Plaza Ballroom<br>
+            Four-course dinner, heartfelt toasts, and midnight dancing.
+          </p>
+        </article>
+
+      </div>
+
+      <!-- Dress Code Card with Swatches -->
+      <div class="dress-code-banner">
+        <div class="dress-code-visual">
+          <span class="dress-code-tag">ATTIRE GUIDELINES</span>
+          <h3 class="dress-code-name">Garden Formal</h3>
+          <p style="font-size:0.875rem;color:var(--c-text-muted);">
+            We warmly invite our guests to embrace formal garden elegance.
+          </p>
+          
+          <!-- Palette Swatches matching Storyboard -->
+          <div class="color-swatch-row">
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #5C1D24;"></div>
+              <span class="swatch-label">Burgundy</span>
+            </div>
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #D99B9B;"></div>
+              <span class="swatch-label">Dusty Rose</span>
+            </div>
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #D4AF37;"></div>
+              <span class="swatch-label">Warm Gold</span>
+            </div>
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #F7F0E8; border:1px solid #e0d0c0;"></div>
+              <span class="swatch-label">Almond</span>
+            </div>
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #738276;"></div>
+              <span class="swatch-label">Eucalyptus</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dress-code-guide">
+          <p>
+            Our wedding palette is inspired by antique botanical gardens, rich velvet burgundy roses, and warm champagne accents.
+          </p>
+          <ul>
+            <li><strong>For the Ladies:</strong> Floor-length evening gowns, romantic chiffon dresses, or refined formal cocktail attire in garden-inspired palettes.</li>
+            <li><strong>For the Gentlemen:</strong> Tailored dark tuxedos or formal dark suits with crisp dress shirts and ties or bowties.</li>
+            <li><strong>Footwear Tip:</strong> The ceremony takes place in the courtyard garden; block heels or heel protectors are recommended.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. SECTION: LOCATION & TRAVEL -->
+  <section class="wedding-section" id="location">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">✦ VENUE & TRAVEL CONCIERGE ✦</span>
+        <h2 class="sec-title-script">Location & Travel</h2>
+        <p class="sec-lead">An iconic Manhattan landmark where timeless French Renaissance architecture meets Central Park serenity.</p>
+      </div>
+
+      <div class="location-grid">
+        
+        <!-- Architectural Venue Imagery -->
+        <div class="location-img-box">
+          <img src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1200&q=80" alt="The Plaza Hotel New York" class="location-venue-img" loading="lazy">
+          <div class="venue-badge-overlay">
+            THE PLAZA HOTEL · FIFTH AVENUE AT CENTRAL PARK SOUTH
+          </div>
+        </div>
+
+        <div class="location-info-col">
+          <h3>The Plaza Hotel</h3>
+          <span class="location-address">768 5th Ave, New York, NY 10019</span>
+          
+          <p class="location-desc">
+            The Plaza Hotel is easily reached from John F. Kennedy International Airport (JFK) and LaGuardia Airport (LGA) by taxi, rideshare, or private car service. Located directly across from Central Park, it offers guests an unforgettable weekend of romance and discovery.
+          </p>
+
+          <div class="travel-hints-list">
+            <div class="travel-hint-row">
+              <span class="travel-hint-icon">✈</span>
+              <span><strong>Airports:</strong> 40 mins from JFK International · 25 mins from LGA</span>
+            </div>
+            <div class="travel-hint-row">
+              <span class="travel-hint-icon">🚗</span>
+              <span><strong>Parking:</strong> Complimentary valet parking provided at the main Fifth Avenue entrance.</span>
+            </div>
+            <div class="travel-hint-row">
+              <span class="travel-hint-icon">🚕</span>
+              <span><strong>Transfers:</strong> Private hotel car service can be booked via concierge.</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:16px;flex-wrap:wrap;">
+            <a href="https://maps.google.com/?q=The+Plaza+Hotel+New+York" target="_blank" rel="noopener noreferrer" class="btn-primary-wedding">
+              View on Google Maps →
+            </a>
+            <a href="#accommodation" class="btn-secondary-wedding">
+              Guest Room Block
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 9. SECTION: WEDDING DAY TIMELINE (SCHEDULE) -->
+  <section class="wedding-section alt-bg" id="schedule">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">✦ THE RHYTHM OF OUR DAY ✦</span>
+        <h2 class="sec-title-script">Wedding Day Timeline</h2>
+        <p class="sec-lead">A step-by-step itinerary of celebrations on Saturday, August 08, 2028.</p>
+      </div>
+
+      <!-- Vertical Timeline Flow matching Storyboard -->
+      <div class="timeline-vertical-flow">
+        
+        <!-- Step 1 -->
+        <div class="timeline-row-item">
+          <div class="timeline-time-badge">
+            <span class="time-clock">3:00 PM</span>
+            <span class="time-phase">GUEST ARRIVAL</span>
+          </div>
+          <div class="timeline-node-dot">🥂</div>
+          <div class="timeline-content-card">
+            <h3 class="timeline-event-name">Welcome Champagne & Strings</h3>
+            <p class="timeline-event-sub">
+              Guests are welcomed to the Rose Terrace with chilled vintage champagne and acoustic harp quartet melodies.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-row-item reverse">
+          <div class="timeline-time-badge">
+            <span class="time-clock">4:00 PM</span>
+            <span class="time-phase">THE CEREMONY</span>
+          </div>
+          <div class="timeline-node-dot">💍</div>
+          <div class="timeline-content-card">
+            <h3 class="timeline-event-name">Exchange of Vows</h3>
+            <p class="timeline-event-sub">
+              Processional and sacred ceremonial exchange beneath the botanical floral gazebo in the courtyard.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-row-item">
+          <div class="timeline-time-badge">
+            <span class="time-clock">5:00 PM</span>
+            <span class="time-phase">COCKTAIL HOUR</span>
+          </div>
+          <div class="timeline-node-dot">🍸</div>
+          <div class="timeline-content-card">
+            <h3 class="timeline-event-name">Aperitivo on the Terrace</h3>
+            <p class="timeline-event-sub">
+              Signature couple cocktails, Bellinis, artisanal cheeses, and Mediterranean hors d’oeuvres as the sun sets.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-row-item reverse">
+          <div class="timeline-time-badge">
+            <span class="time-clock">7:30 PM</span>
+            <span class="time-phase">RECEPTION DINNER</span>
+          </div>
+          <div class="timeline-node-dot">🍽️</div>
+          <div class="timeline-content-card">
+            <h3 class="timeline-event-name">Candlelit Four-Course Banquet</h3>
+            <p class="timeline-event-sub">
+              Guests are seated under crystal chandeliers in the Grand Ballroom for formal toasts and culinary artistry.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="timeline-row-item">
+          <div class="timeline-time-badge">
+            <span class="time-clock">8:30 PM</span>
+            <span class="time-phase">CAKE CUTTING</span>
+          </div>
+          <div class="timeline-node-dot">🎂</div>
+          <div class="timeline-content-card">
+            <h3 class="timeline-event-name">Cake & Champagne Tower</h3>
+            <p class="timeline-event-sub">
+              The ceremonial cutting of our five-tier vanilla bean and raspberry botanic cake, followed by dessert service.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="timeline-row-item reverse">
+          <div class="timeline-time-badge">
+            <span class="time-clock">9:00 PM</span>
+            <span class="time-phase">DANCING TILL LATE</span>
+          </div>
+          <div class="timeline-node-dot">🪩</div>
+          <div class="timeline-content-card">
+            <h3 class="timeline-event-name">First Dance & Live Band</h3>
+            <p class="timeline-event-sub">
+              The 10-piece swing and contemporary band opens the dance floor. Midnight espresso bar and celebration!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 10. SECTION: ACCOMMODATION -->
+  <section class="wedding-section" id="accommodation">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">✦ STAYING IN THE CITY ✦</span>
+        <h2 class="sec-title-script">Accommodation</h2>
+        <p class="sec-lead">Preferred guest rates have been arranged for our wedding party and traveling guests.</p>
+      </div>
+
+      <div class="accommodation-box">
+        <div class="accom-media">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80" alt="The Plaza Hotel Suite" class="accom-img" loading="lazy">
+        </div>
+
+        <div class="accom-content">
+          <span class="accom-kicker">PREFERRED ROOM BLOCK</span>
+          <h3 class="accom-title">The Plaza Hotel, New York</h3>
+          <p class="accom-desc">
+            A room block has been reserved at The Plaza Hotel for our guests at a preferred wedding rate. Early reservation is warmly recommended as rooms are subject to summer availability.
+          </p>
+
+          <div class="room-block-pill">
+            <div>
+              <span class="room-code-tag">WEDDING PROMO CODE:</span>
+              <div class="room-code-val">OLIVIAADRIAN2028</div>
+            </div>
+            <button type="button" class="btn-open-wedding" onclick="showWeddingToast('✦ Promo Code OLIVIAADRIAN2028 copied to clipboard!')">
+              Copy Code
+            </button>
+          </div>
+
+          <p style="font-size:0.8125rem;color:var(--c-text-muted);margin-bottom:20px;">
+            ✦ Reserve by <strong>June 15, 2028</strong> to secure the special courtesy discount of 25% on Deluxe Rooms and Suites.
+          </p>
+
+          <div>
+            <a href="https://www.theplazany.com" target="_blank" rel="noopener noreferrer" class="btn-primary-wedding">
+              Book Plaza Hotel Room →
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 11. SECTION: REGISTRY & HONEYMOON FUND -->
+  <section class="wedding-section alt-bg" id="registry">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">✦ WITH HEARTFELT GRATITUDE ✦</span>
+        <h2 class="sec-title-script">Registry</h2>
+        <p class="sec-lead">
+          Your presence at our celebration is the greatest gift of all. For those who wish to give, we have arranged a honeymoon fund to help us create lasting memories together.
         </p>
-
-        <div class="hero-cta-group">
-          <a href="menu.html" class="btn-primary">
-            Explore Brew Menu →
-          </a>
-          <a href="story.html" class="btn-outline">
-            Our Roasting Philosophy
-          </a>
-        </div>
-
-        <div class="hero-metrics">
-          <div class="metric-item">
-            <span class="metric-val">100%</span>
-            <span class="metric-lbl">Direct Farm Trade</span>
-          </div>
-          <div style="color:var(--c-border-strong);">/</div>
-          <div class="metric-item">
-            <span class="metric-val">88+</span>
-            <span class="metric-lbl">SCA Cup Score</span>
-          </div>
-          <div style="color:var(--c-border-strong);">/</div>
-          <div class="metric-item">
-            <span class="metric-val">72h</span>
-            <span class="metric-lbl">Slow Cold Infusions</span>
-          </div>
-        </div>
       </div>
 
-      <!-- Right Column: Ambient Auto-Playing 4K Video Frame -->
-      <div class="hero-media-col">
+      <div class="registry-grid">
         
-        <!-- Rotating Botanical Coffee Seal -->
-        <div class="rotating-cafe-stamp" id="heroStamp">
-          <svg class="stamp-svg-ring" viewBox="0 0 160 160">
-            <defs>
-              <path id="stampPathCircle" d="M 80, 80 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" />
-            </defs>
-            <circle cx="80" cy="80" r="72" stroke="rgba(198, 138, 76, 0.45)" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
-            <text font-family="Cinzel" font-size="10.5" font-weight="600" letter-spacing="2.4" fill="var(--c-accent)">
-              <textPath href="#stampPathCircle">✦ KŌHĪ ATELIER ✦ SINGLE ORIGIN SLOW DRIP </textPath>
-            </text>
-          </svg>
-          <div class="stamp-center-bean">☕</div>
-        </div>
-
-        <div class="hero-video-frame">
-          <video class="hero-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-coffee-maker-pouring-fresh-coffee-into-a-cup-41132-large.mp4" type="video/mp4">
-          </video>
-          <div class="video-overlay-tint"></div>
-          
-          <span class="video-badge">
-            LIVE ATELIER // TOKYO SLOW EXTRACTION
-          </span>
-
-          <div class="video-caption-box">
-            <div>
-              <h3 class="v-cap-title">Kyoto Slow Drip Tower</h3>
-              <p class="v-cap-sub">Single drop per second · 18 hours cold infusion</p>
-            </div>
-            <a href="menu.html" class="btn-outline btn-sm">Explore</a>
+        <article class="registry-card">
+          <div>
+            <div class="registry-icon">🌅</div>
+            <h3 class="registry-title">Amalfi & Como Honeymoon</h3>
+            <p class="registry-desc">
+              Help us celebrate with private wooden boat excursions along the dramatic cliffs of Positano and candlelit coastal dinners.
+            </p>
           </div>
-        </div>
+          <button type="button" class="btn-primary-wedding" onclick="openGiftModal('Amalfi & Como Honeymoon Fund')">
+            Contribute to Fund →
+          </button>
+        </article>
+
+        <article class="registry-card">
+          <div>
+            <div class="registry-icon">🏡</div>
+            <h3 class="registry-title">Our Future Home Sanctuary</h3>
+            <p class="registry-desc">
+              Contributions toward furnishing our first home together, creating our botanical greenhouse garden, and timeless heirloom kitchen pieces.
+            </p>
+          </div>
+          <button type="button" class="btn-primary-wedding" onclick="openGiftModal('Our Future Home Sanctuary')">
+            Contribute to Fund →
+          </button>
+        </article>
+
+        <article class="registry-card">
+          <div>
+            <div class="registry-icon">🌿</div>
+            <h3 class="registry-title">Botanical & Wildlife Gift</h3>
+            <p class="registry-desc">
+              A charitable donation in honor of our wedding day supporting the Central Park Conservancy and Wildlife Botanical Preservation.
+            </p>
+          </div>
+          <button type="button" class="btn-primary-wedding" onclick="openGiftModal('Botanical & Wildlife Fund')">
+            Contribute to Fund →
+          </button>
+        </article>
 
       </div>
 
     </div>
   </section>
 
-  <!-- 4. EDITORIAL PHILOSOPHY (MINIMALIST STATEMENT) -->
-  <section class="kohi-philosophy">
-    <div class="site-container philosophy-inner">
-      <span class="caps-title text-accent" style="font-size:0.6875rem;display:block;margin-bottom:14px;">✦ SLOW LIVING PHILOSOPHY ✦</span>
-      <p class="philo-quote">
-        “Coffee is not a rush for fuel; it is a quiet sensory ceremony. From mountain mist in Yirgacheffe to the gentle bloom of the kettle, we preserve every drop of terroir.”
-      </p>
-      <span class="philo-author">— KENJIRO NAKAMURA · HEAD ROASTER</span>
-    </div>
-  </section>
-
-  <!-- 5. SIGNATURE CREATIONS (UNCROWDED 3-COLUMN CARDS WITH 3D TILT & SPECULAR GLARE) -->
-  <section class="kohi-creations">
+  <!-- 12. SECTION: FREQUENTLY ASKED QUESTIONS (FAQ) -->
+  <section class="wedding-section" id="faq">
     <div class="site-container">
       
-      <div class="section-head-block">
-        <span class="caps-title text-accent" style="font-size:0.6875rem;display:block;margin-bottom:10px;">✦ SEASONAL HIGHLIGHTS ✦</span>
-        <h2 class="section-title">The Master <span class="italic-serif text-cinnamon">Creations</span></h2>
-        <p class="section-lead">Three signature pairings curated weekly by our head barista and pastry chef.</p>
+      <div class="sec-head-center">
+        <span class="sec-kicker">✦ HELPFUL DETAILS ✦</span>
+        <h2 class="sec-title-script">Frequently Asked Questions</h2>
+        <p class="sec-lead">Everything you need to know about celebrating our special day with ease.</p>
       </div>
 
-      <div class="creations-grid">
-
-        <!-- CARD 1: Geisha Pour-Over -->
-        <article class="creation-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="card-media-box">
-            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80" alt="Ethiopia Gesha Village Pour Over" class="card-img" loading="lazy">
-            <span class="card-tag">SINGLE ORIGIN GEISHA</span>
-          </div>
-          <div class="card-content">
-            <div class="card-header-line">
-              <span class="card-origin">Ethiopia · Bench Maji (1,950m)</span>
-              <span class="card-price price-dynamic" data-usd="9.50">$9.50</span>
-            </div>
-            <h3 class="card-title">Gesha Village Lot 74</h3>
-            <p class="card-notes">
-              Natural anaerobic fermentation yielding delicate bergamot aromatics, jasmine blossom, and wildflower honey finish.
+      <div class="faq-accordion-container">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-card is-active">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">IS THERE PARKING AT THE VENUE?</span>
+            <span class="faq-plus-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              Yes! Complimentary white-glove valet parking is provided directly at the Fifth Avenue entrance of The Plaza Hotel for all our wedding guests throughout the ceremony and evening reception.
             </p>
-            <div class="taste-radar-row">
-              <span class="taste-pill">Bergamot</span>
-              <span class="taste-pill">Jasmine</span>
-              <span class="taste-pill">Peach Nectar</span>
-            </div>
-            <div class="card-foot-line">
-              <button type="button" class="btn-add-tray" onclick="addToTray('Gesha Village Lot 74', 9.50, 'Ethiopia 1,950m')">
-                + Add to Tasting Tray
-              </button>
-            </div>
           </div>
-        </article>
+        </div>
 
-        <!-- CARD 2: Miso Kouign-Amann -->
-        <article class="creation-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="card-media-box">
-            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Artisanal Viennoiserie" class="card-img" loading="lazy">
-            <span class="card-tag">SLOW BAKERY</span>
-          </div>
-          <div class="card-content">
-            <div class="card-header-line">
-              <span class="card-origin">Normandy Butter · 48h Lamination</span>
-              <span class="card-price price-dynamic" data-usd="6.50">$6.50</span>
-            </div>
-            <h3 class="card-title">Miso Salted Caramel Kouign</h3>
-            <p class="card-notes">
-              Caramelized Brittany pastry infused with organic Kyoto red miso and Maldon sea salt flake crust.
+        <!-- FAQ 2 -->
+        <div class="faq-card">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">CAN I BRING A PLUS-ONE?</span>
+            <span class="faq-plus-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              Due to intimate historic venue capacity restrictions, we can only accommodate guests who are formally named on your invitation envelope. If your invite includes a companion, it will be noted during the digital RSVP process.
             </p>
-            <div class="taste-radar-row">
-              <span class="taste-pill">Caramelized Crust</span>
-              <span class="taste-pill">Umami Miso</span>
-              <span class="taste-pill">Flaky 32-Layers</span>
-            </div>
-            <div class="card-foot-line">
-              <button type="button" class="btn-add-tray" onclick="addToTray('Miso Salted Caramel Kouign', 6.50, 'Handmade French Viennoiserie')">
-                + Add to Tasting Tray
-              </button>
-            </div>
           </div>
-        </article>
+        </div>
 
-        <!-- CARD 3: Cold Drip & Tonic -->
-        <article class="creation-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="card-media-box">
-            <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=80" alt="Kyoto Cold Drip with Botanical Tonic" class="card-img" loading="lazy">
-            <span class="card-tag">BOTANICAL FUSION</span>
-          </div>
-          <div class="card-content">
-            <div class="card-header-line">
-              <span class="card-origin">18-Hour Slow Drip · Yuzu Essence</span>
-              <span class="card-price price-dynamic" data-usd="8.00">$8.00</span>
-            </div>
-            <h3 class="card-title">Kyoto Yuzu Cold Tonic</h3>
-            <p class="card-notes">
-              Concentrated cold drip layered over artisanal quinine botanical water, candied yuzu peel, and fresh rosemary sprig.
+        <!-- FAQ 3 -->
+        <div class="faq-card">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">ARE CHILDREN INVITED?</span>
+            <span class="faq-plus-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              While we adore your little ones, our ceremony and reception are strictly adult-only occasions. We hope this allows all parents a relaxed evening of celebration and dancing!
             </p>
-            <div class="taste-radar-row">
-              <span class="taste-pill">Effervescent</span>
-              <span class="taste-pill">Citrus Peel</span>
-              <span class="taste-pill">Bitter Cacao</span>
-            </div>
-            <div class="card-foot-line">
-              <button type="button" class="btn-add-tray" onclick="addToTray('Kyoto Yuzu Cold Tonic', 8.00, 'Cold Extraction & Botanical')">
-                + Add to Tasting Tray
-              </button>
-            </div>
           </div>
-        </article>
+        </div>
 
-      </div>
+        <!-- FAQ 4 -->
+        <div class="faq-card">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">HOW AND WHEN DO I RSVP?</span>
+            <span class="faq-plus-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              Please submit your digital RSVP using the form below no later than <strong>22 July 2028</strong>. This allows us to finalize seating arrangements and dietary courses with our culinary team.
+            </p>
+          </div>
+        </div>
 
-      <div style="text-align:center;margin-top:48px;">
-        <a href="menu.html" class="btn-outline">
-          Inspect Full 24-Item Brew & Bakery Menu →
-        </a>
+        <!-- FAQ 5 -->
+        <div class="faq-card">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">ARE THE CEREMONY AND RECEPTION AT THE SAME VENUE?</span>
+            <span class="faq-plus-icon">+</span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              Yes, both events take place seamlessly at The Plaza Hotel. The ceremony will be held in the outdoor floral courtyard, followed immediately by cocktail hour on the terrace and dinner in the Grand Ballroom.
+            </p>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </section>
 
-  <!-- 6. SIGNATURE CORE FEATURE: PINNED SCROLL-SCRUBBED ANATOMY ASSEMBLY SEQUENCE -->
-  <!-- Designed per `designing-animated-websites` specification -->
-  <section class="anatomy-pinned-section" id="anatomySection">
-    <div class="site-container anatomy-pinned-container">
+  <!-- 13. SECTION: KINDLY REPLY (RSVP FORM) -->
+  <section class="wedding-section alt-bg" id="rsvp">
+    <div class="site-container">
       
-      <div class="anatomy-header">
-        <span class="slide-step-badge">✦ SIGNATURE SCROLL-SCRUBBED ASSEMBLY ✦</span>
-        <h2 class="section-title">Anatomy of an <span class="italic-serif text-cinnamon">Extraction</span></h2>
-        <p class="section-lead">Scroll to deconstruct our single-origin pour-over into 4 physical layers of craft. Scroll up to reassemble.</p>
-      </div>
+      <div class="rsvp-wrapper-box" id="rsvpWrapper">
+        <span class="rsvp-ribbon-tag">✦ KINDLY RESPOND ✦</span>
 
-      <div class="anatomy-stage-box">
-        
-        <!-- Left: 3D Visual Extraction Stack -->
-        <div class="anatomy-visual-core" id="anatomyCore">
-          <!-- Layer 1: Terroir Cherry -->
-          <div class="anatomy-layer" id="layer1" style="z-index: 4;">
-            <div class="layer-icon-disc">🍒</div>
-            <div class="layer-info">
-              <h4>01. Terroir Cherry</h4>
-              <p>Gesha Village · 1,950m Altitude</p>
-            </div>
-          </div>
-
-          <!-- Layer 2: Precision Grind -->
-          <div class="anatomy-layer" id="layer2" style="z-index: 3;">
-            <div class="layer-icon-disc">⚙️</div>
-            <div class="layer-info">
-              <h4>02. 800µm Grind Size</h4>
-              <p>Unimodal Cast-Iron Conical Burrs</p>
-            </div>
-          </div>
-
-          <!-- Layer 3: 93.5°C Bloom Water -->
-          <div class="anatomy-layer" id="layer3" style="z-index: 2;">
-            <div class="layer-icon-disc">💧</div>
-            <div class="layer-info">
-              <h4>03. 93.5°C Bloom</h4>
-              <p>Volcanic Mineralized Alpine Water</p>
-            </div>
-          </div>
-
-          <!-- Layer 4: Golden Cup Liquid Silk -->
-          <div class="anatomy-layer" id="layer4" style="z-index: 1;">
-            <div class="layer-icon-disc">☕</div>
-            <div class="layer-info">
-              <h4>04. Liquid Silk Extraction</h4>
-              <p>22.4% Target Yield · 1.38% TDS</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Synchronized Narrative Slide Cards -->
-        <div class="anatomy-narrative-col" id="narrativeCol">
-          
-          <div class="anatomy-card-slide active" data-step="0">
-            <span class="slide-step-badge">STEP 01 / HIGH-ELEVATION TERROIR</span>
-            <h3 class="slide-title">Volcanic Mountain Soils & Wild Shade</h3>
-            <p class="slide-body">
-              Grown under dense indigenous canopies in Ethiopia's Bench Maji region. Slow ripening at 1,950 meters concentrates organic acids and creates dense, sugars-rich cherries hand-harvested at peak brix.
-            </p>
-          </div>
-
-          <div class="anatomy-card-slide" data-step="1">
-            <span class="slide-step-badge">STEP 02 / UNIMODAL PARTICLE ARCHITECTURE</span>
-            <h3 class="slide-title">Cast-Iron Micro Mill Precision</h3>
-            <p class="slide-body">
-              Milled at exactly 800 microns using custom-hardened cast iron conical burrs. The unimodal particle distribution eliminates micro-fines, guaranteeing clean, crystalline floral notes without astringency.
-            </p>
-          </div>
-
-          <div class="anatomy-card-slide" data-step="2">
-            <span class="slide-step-badge">STEP 03 / THE 93.5°C BLOOM DANCE</span>
-            <h3 class="slide-title">45-Second Degassing & Gentle Saturation</h3>
-            <p class="slide-body">
-              A 60g pour of hot mineralized water unlocks trapped carbon dioxide. The coffee bed swells into a fragrant dome, releasing honeysuckle and bergamot aromas into the atelier air.
-            </p>
-          </div>
-
-          <div class="anatomy-card-slide" data-step="3">
-            <span class="slide-step-badge">STEP 04 / THE FINAL EXTRACTION</span>
-            <h3 class="slide-title">Crystalline Clarity in Handcrafted Ceramic</h3>
-            <p class="slide-body">
-              Filtered through unbleached abaca paper fibers into hand-thrown Karatsu stoneware cups. Silky body, vibrant lingering stone fruit sweetness, and an immaculate tea-like finish.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 7. PINNED HORIZONTAL TASTING GALLERY DECK -->
-  <section class="horizontal-deck-section" id="horizontalDeck">
-    <div class="site-container" style="margin-bottom:32px;">
-      <span class="slide-step-badge">✦ HORIZONTAL REPERTOIRE DECK ✦</span>
-      <h2 class="section-title">Panoramic Atelier <span class="italic-serif text-cinnamon">Showcase</span></h2>
-      <p class="section-lead">Glide through the ceremonial rituals and craft techniques defining the KŌHĪ standard.</p>
-    </div>
-
-    <div class="deck-container">
-      <div class="deck-track" id="deckTrack">
-        
-        <!-- Slide 1 -->
-        <div class="deck-slide-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="deck-slide-media">
-            <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=80" alt="Kyoto Cold Drip Tower" class="deck-slide-img" loading="lazy">
-          </div>
-          <div class="deck-slide-body">
-            <span class="card-tag">18-HOUR COLD EXTRACTION</span>
-            <h3 style="font-family:var(--font-display);font-size:1.4rem;margin:10px 0 6px;">Kyoto Cold Drip Tower</h3>
-            <p style="font-size:0.875rem;color:var(--c-ink-muted);line-height:1.6;">A majestic borosilicate glass apparatus filtering chilled spring water drop by drop through fine grounds.</p>
-          </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="deck-slide-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="deck-slide-media">
-            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Slow Viennoiserie" class="deck-slide-img" loading="lazy">
-          </div>
-          <div class="deck-slide-body">
-            <span class="card-tag">72-HOUR LEVAIN FERMENT</span>
-            <h3 style="font-family:var(--font-display);font-size:1.4rem;margin:10px 0 6px;">Heritage Sourdough Viennoiserie</h3>
-            <p style="font-size:0.875rem;color:var(--c-ink-muted);line-height:1.6;">Laminated with 84% butterfat Normandy cultured butter for unparalleled flakiness and deep aroma.</p>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="deck-slide-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="deck-slide-media">
-            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80" alt="Ceremonial Tasting Bar" class="deck-slide-img" loading="lazy">
-          </div>
-          <div class="deck-slide-body">
-            <span class="card-tag">8-SEAT INTIMATE BENCH</span>
-            <h3 style="font-family:var(--font-display);font-size:1.4rem;margin:10px 0 6px;">Hinoki Wood Tasting Bar</h3>
-            <p style="font-size:0.875rem;color:var(--c-ink-muted);line-height:1.6;">A Japanese cypress wood counter where guests converse directly with the roaster and barista team.</p>
-          </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="deck-slide-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="deck-slide-media">
-            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80" alt="Micro-Roasting Drum" class="deck-slide-img" loading="lazy">
-          </div>
-          <div class="deck-slide-body">
-            <span class="card-tag">CAST-IRON DIRECT DRUM</span>
-            <h3 style="font-family:var(--font-display);font-size:1.4rem;margin:10px 0 6px;">Micro-Roasting in Cast Iron</h3>
-            <p style="font-size:0.875rem;color:var(--c-ink-muted);line-height:1.6;">Small 1.2kg micro-lots roasted with gentle conductive heat to preserve floral sweetness and crisp acidity.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. BENTO ATELIER EXPERIENCE -->
-  <section class="kohi-experience">
-    <div class="site-container">
-      <div class="bento-grid">
-        
-        <!-- Large Tile: Sunlit Roastery -->
-        <div class="bento-main-tile">
-          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80" alt="Sunlit Roastery Space" class="bento-tile-img" loading="lazy">
-          <div class="bento-tile-overlay">
-            <span class="bento-tile-kicker">✦ THE ROASTERY ATELIER ✦</span>
-            <h2 class="bento-tile-title">Ceremonial Slow Bar & Tasting Bench</h2>
-            <p class="bento-tile-copy">
-              Sit at our 8-seat Japanese Hinoki wood counter for a 45-minute omakase coffee tasting flight prepared right in front of you.
-            </p>
-            <div>
-              <button type="button" class="btn-primary" onclick="openReservationModal()">
-                Book Barista Tasting Bench
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Side Stack -->
-        <div class="bento-side-stack">
-          <div class="bento-sub-card">
-            <div class="sub-card-icon">🌱</div>
-            <h3 class="sub-card-title">Single-Origin Traceability</h3>
-            <p class="sub-card-copy">
-              Direct-trade agreements with smallholder farmers in Colombia, Ethiopia, and Panama, paying 300% above Fair Trade minimums.
-            </p>
-          </div>
-
-          <div class="bento-sub-card">
-            <div class="sub-card-icon">🥐</div>
-            <h3 class="sub-card-title">Slow Sourdough Fermentation</h3>
-            <p class="sub-card-copy">
-              Our viennoiserie dough rests for 72 hours with natural heritage levain, baked fresh three times daily at 7 AM, 11 AM, and 2 PM.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. EDITORIAL FOOTER -->
-  <footer class="kohi-footer">
-    <div class="site-container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand-title">KŌHĪ</div>
-          <span class="footer-brand-tag">BOTANICAL COFFEE & SLOW BAKERY</span>
-          <p class="footer-desc">
-            An oasis of calm and deliberate craftsmanship. Single-origin coffees roasted in micro-batches and served with quiet mindfulness.
+        <div class="sec-head-center" style="margin-bottom:28px;">
+          <h2 class="sec-title-script">Kindly Reply</h2>
+          <p class="sec-lead" style="font-family:var(--font-caps);letter-spacing:0.18em;font-size:0.75rem;color:var(--c-burgundy);text-transform:uppercase;">
+            WE WOULD BE DELIGHTED TO CELEBRATE WITH YOU.<br>
+            PLEASE RESPOND BY 22 JULY 2028.
           </p>
         </div>
 
-        <div>
-          <h4 class="footer-col-title">PAGES</h4>
-          <div class="footer-links">
-            <a href="index.html" class="footer-link">The Atelier</a>
-            <a href="menu.html" class="footer-link">Artisanal Menu</a>
-            <a href="story.html" class="footer-link">Roastery & Terroir</a>
-            <a href="#" onclick="openReservationModal(); return false;" class="footer-link">Table Reservation</a>
+        <form class="rsvp-form-grid" onsubmit="handleRSVPSubmit(event)">
+          
+          <div class="rsvp-field-group">
+            <label for="rsvpName" class="rsvp-label">FULL NAME(S)</label>
+            <input type="text" id="rsvpName" class="rsvp-input" required placeholder="Lord & Lady Sterling">
           </div>
-        </div>
 
-        <div>
-          <h4 class="footer-col-title">HOURS</h4>
-          <div class="footer-links">
-            <span class="footer-link">Mon – Fri: 07:30 – 18:00</span>
-            <span class="footer-link">Saturday: 08:00 – 19:00</span>
-            <span class="footer-link">Sunday: 08:30 – 17:00</span>
-            <span class="footer-link" style="color:var(--c-accent);">Slow Bar Bench: 14:00 – 17:00</span>
+          <div class="rsvp-field-group">
+            <label for="rsvpEmail" class="rsvp-label">EMAIL ADDRESS</label>
+            <input type="email" id="rsvpEmail" class="rsvp-input" required placeholder="sterling@family.com">
           </div>
-        </div>
 
-        <div>
-          <h4 class="footer-col-title">LOCATIONS</h4>
-          <div class="footer-links">
-            <span class="footer-link">Kyoto · Nakagyo Ward, 402</span>
-            <span class="footer-link">Tokyo · Aoyama Minato, 3-12</span>
-            <span class="footer-link">Zurich · St. Peterstrasse 19</span>
-            <span class="footer-link">concierge@kohi-atelier.com</span>
+          <div class="rsvp-field-group">
+            <label class="rsvp-label">WILL YOU BE ATTENDING?</label>
+            <div class="attendance-choice-row">
+              <label class="attendance-pill-radio">
+                <input type="radio" name="attendance" value="Joyfully Accepts" checked>
+                <span class="attendance-pill-text">🥂 Joyfully Accepts</span>
+              </label>
+              <label class="attendance-pill-radio">
+                <input type="radio" name="attendance" value="Regretfully Declines">
+                <span class="attendance-pill-text">💌 Regretfully Declines</span>
+              </label>
+            </div>
           </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="rsvp-field-group">
+              <label for="rsvpGuests" class="rsvp-label">NUMBER OF GUESTS</label>
+              <select id="rsvpGuests" class="rsvp-select">
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+              </select>
+            </div>
+
+            <div class="rsvp-field-group">
+              <label for="rsvpDietary" class="rsvp-label">DIETARY REQUIREMENTS</label>
+              <select id="rsvpDietary" class="rsvp-select">
+                <option>No Restrictions</option>
+                <option>Vegetarian</option>
+                <option>Vegan</option>
+                <option>Gluten-Free</option>
+                <option>Pescatarian / Halal</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="rsvp-field-group">
+            <label for="rsvpSong" class="rsvp-label">WHAT SONG WILL GET YOU ON THE DANCE FLOOR?</label>
+            <input type="text" id="rsvpSong" class="rsvp-input" placeholder="e.g. Frank Sinatra - Fly Me to the Moon">
+          </div>
+
+          <div class="rsvp-field-group">
+            <label for="rsvpMessage" class="rsvp-label">A NOTE FOR THE COUPLE (OPTIONAL)</label>
+            <textarea id="rsvpMessage" class="rsvp-textarea" rows="3" placeholder="Share your warm wishes or memories..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-rsvp-submit">
+            SUBMIT RSVP WITH LOVE →
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 14. SECTION: ROMANTIC MOMENTS GALLERY -->
+  <section class="wedding-section" id="gallery">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">✦ CHERISHED MEMORIES ✦</span>
+        <h2 class="sec-title-script">Moments in Love</h2>
+        <p class="sec-lead">A glimpse into our sweetest memories leading up to our wedding day.</p>
+      </div>
+
+      <div class="gallery-mosaic-grid">
+        <div class="gallery-tile tall">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Romantic Arch" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">VILLA BALBIANO GARDENS</div>
+        </div>
+        <div class="gallery-tile">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Wedding Rings" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">THE RINGS</div>
+        </div>
+        <div class="gallery-tile">
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" alt="Couple in Sunset" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">LAKE COMO SUNSET</div>
+        </div>
+        <div class="gallery-tile tall">
+          <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=800&q=80" alt="Wedding Table Arrangement" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">BOTANICAL TABLES</div>
+        </div>
+        <div class="gallery-tile">
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Champagne Flutes" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">VINTAGE TOASTS</div>
+        </div>
+        <div class="gallery-tile">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Rose Petals" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">BURGUNDY ROSES</div>
         </div>
       </div>
 
-      <div class="footer-lower">
-        <span>© 2026 KŌHĪ Atelier. Hand-roasted & baked daily. All rights reserved.</span>
-        <span>SPECIALTY COFFEE ASSOCIATION (SCA) CERTIFIED ROASTER</span>
+    </div>
+  </section>
+
+  <!-- 15. MASTER FOOTER -->
+  <footer class="wedding-footer">
+    <div class="site-container">
+      <div class="footer-monogram">O & A</div>
+      <div class="footer-names">Olivia & Adrian</div>
+      <div class="footer-tagline">AUGUST 08, 2028 · THE PLAZA HOTEL, NEW YORK</div>
+
+      <div class="footer-links-row">
+        <a href="#home">Home</a>
+        <a href="#story">Our Story</a>
+        <a href="#details">The Details</a>
+        <a href="#location">Location</a>
+        <a href="#schedule">Timeline</a>
+        <a href="#accommodation">Accommodation</a>
+        <a href="#registry">Registry</a>
+        <a href="#faq">FAQ</a>
+        <a href="#rsvp">RSVP</a>
+      </div>
+
+      <div class="footer-bottom-line">
+        © 2028 Olivia & Adrian Wedding Atelier. Made with everlasting love for our cherished family and friends.
       </div>
     </div>
   </footer>
 
-  <!-- 10. TASTING TRAY FLYOUT DRAWER -->
-  <div class="tray-drawer-overlay" id="trayDrawerOverlay" onclick="toggleTray(false)"></div>
-  <aside class="tray-drawer" id="trayDrawer" role="dialog" aria-modal="true" aria-label="Tasting Flight Tray">
-    <div class="tray-head">
-      <h3 class="tray-title">Your Tasting Flight</h3>
-      <button type="button" onclick="toggleTray(false)" style="font-size:1.5rem;line-height:1;">&times;</button>
-    </div>
-    
-    <div class="tray-items-list" id="trayItemsList"></div>
-
-    <div class="tray-foot">
-      <div class="tray-total-line">
-        <span>TRAY TOTAL:</span>
-        <span class="tray-total-amount" id="trayTotalAmount">$0.00</span>
-      </div>
-      <button type="button" class="btn-primary" onclick="toggleTray(false); openReservationModal();">
-        Proceed with Table Reservation →
-      </button>
-      <small style="text-align:center;color:var(--c-ink-light);font-size:0.75rem;">Your flight will be prepared fresh at your reserved seating time.</small>
-    </div>
-  </aside>
-
-  <!-- 11. TABLE & BENCH RESERVATION MODAL -->
-  <div class="kohi-modal-overlay" id="reservationModal">
-    <div class="kohi-modal-window">
-      <button type="button" class="modal-close-btn" onclick="closeReservationModal()" aria-label="Close Modal">&times;</button>
-      <span class="caps-title text-accent" style="font-size:0.6875rem;">✦ PRIVATE APPOINTMENT ✦</span>
-      <h2 style="font-family:var(--font-display);font-size:1.875rem;font-weight:400;margin-top:4px;">Reserve an Atelier Table</h2>
-      <p style="font-size:0.875rem;color:var(--c-ink-muted);">We reserve select tables to guarantee a peaceful, unhurried sensory experience.</p>
-
-      <form class="modal-form" onsubmit="handleReservationSubmit(event)">
-        <div class="form-group">
-          <label for="resName">FULL NAME</label>
-          <input type="text" id="resName" class="form-input" required placeholder="Elena Rostova">
-        </div>
-
-        <div class="form-group">
-          <label for="resEmail">EMAIL FOR CONFIRMATION</label>
-          <input type="email" id="resEmail" class="form-input" required placeholder="elena@rostova.com">
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-          <div class="form-group">
-            <label for="resTime">TIME SLOT</label>
-            <select id="resTime" class="form-input">
-              <option>09:30 AM (Morning Brew)</option>
-              <option>11:30 AM (Brunch Pairing)</option>
-              <option selected>02:30 PM (Barista Slow Bar)</option>
-              <option>04:30 PM (Sunset Tasting)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="resGuests">GUESTS</label>
-            <select id="resGuests" class="form-input">
-              <option>1 Guest (Solo Mindfulness)</option>
-              <option selected>2 Guests</option>
-              <option>3 - 4 Guests</option>
-            </select>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-primary" style="margin-top:10px;">
-          Confirm Private Reservation →
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <script src="cafe-app.js"></script>
+  <script src="wedding-app.js"></script>
 </body>
 </html>
