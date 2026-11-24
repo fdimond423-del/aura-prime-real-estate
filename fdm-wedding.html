@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Wedding Invitation Websites | Fenil Digital Marketing</title>
+<meta name="description" content="Beautiful animated wedding invitation websites crafted for Indian couples. Rangmahal, Phulkari, Kolam and more. Built and delivered in 2 days. Order via WhatsApp."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fdf8f2;
+  --blush:#f9ede4;
+  --maroon:#7c1f2e;
+  --maroon-light:#9e3041;
+  --gold:#c9962a;
+  --gold-light:#e8b84b;
+  --orange:#F28A1E;
+  --dark:#1a1a1a;
+  --text:#3d2b1f;
+  --text-light:#6b5248;
+  --border:#e8d5c4;
+  --white:#ffffff;
+  --shadow:0 4px 24px rgba(124,31,46,0.08);
+  --shadow-hover:0 12px 40px rgba(124,31,46,0.18);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--blush)}
+::-webkit-scrollbar-thumb{background:var(--maroon);border-radius:3px}
+
+/* ══════════ HEADER ══════════ */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(253,248,242,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+.site-header.scrolled{box-shadow:var(--shadow)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-text strong{font-family:'Cinzel',serif;font-size:13px;color:var(--maroon);letter-spacing:0.04em}
+.logo-text span{font-size:9px;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:13px;color:var(--text-light);text-decoration:none;font-weight:500;letter-spacing:0.02em;transition:color 0.2s}
+nav a:hover{color:var(--maroon)}
+.nav-cta{background:var(--maroon);color:var(--white)!important;padding:8px 20px;border-radius:4px;font-size:13px;font-weight:600;text-decoration:none;letter-spacing:0.04em;transition:background 0.2s,transform 0.2s}
+.nav-cta:hover{background:var(--maroon-light);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--maroon);border-radius:2px;transition:all 0.3s}
+
+/* ══════════ HERO / PRODUCT ══════════ */
+.hero{padding:100px 24px 60px;max-width:1200px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--text-light);margin-bottom:20px;letter-spacing:0.03em}
+.breadcrumb a{color:var(--text-light);text-decoration:none}
+.breadcrumb a:hover{color:var(--maroon)}
+.breadcrumb span{margin:0 6px;opacity:0.5}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+
+/* phone mockup */
+.mockup-wrap{position:sticky;top:84px}
+.phone-stage{position:relative;width:100%;max-width:340px;margin:0 auto}
+.phone-frame{position:relative;background:#1a1a1a;border-radius:36px;padding:12px;box-shadow:0 24px 64px rgba(0,0,0,0.25),0 0 0 1px rgba(255,255,255,0.08)}
+.phone-screen{background:var(--blush);border-radius:26px;overflow:hidden;aspect-ratio:9/19.5;position:relative}
+.phone-preview{width:100%;height:100%;object-fit:cover}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:24px;background:#1a1a1a;border-radius:0 0 16px 16px;z-index:2}
+/* animated preview inside phone */
+.preview-canvas{width:100%;height:100%;background:linear-gradient(160deg,#f9ede4 0%,#f3ddd0 50%,#e8c8b8 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden}
+.preview-canvas .prev-petal{position:absolute;width:8px;height:12px;border-radius:50% 20% 50% 20%;background:rgba(201,150,42,0.3);animation:prevfall linear infinite}
+@keyframes prevfall{0%{transform:translateY(-20px) rotate(0deg);opacity:0.8}100%{transform:translateY(110%) rotate(360deg);opacity:0}}
+.prev-arch{width:120px;height:150px;border:2px solid var(--gold);border-radius:60px 60px 0 0;position:relative;display:flex;align-items:center;justify-content:center}
+.prev-names{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--maroon);text-align:center;line-height:1.3}
+.prev-date{font-size:10px;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-top:4px}
+.prev-badge{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(124,31,46,0.9);color:white;font-size:9px;letter-spacing:0.1em;padding:4px 12px;border-radius:20px;white-space:nowrap;text-transform:uppercase}
+/* floating labels */
+.phone-badges{position:absolute;right:-16px;top:20%;display:flex;flex-direction:column;gap:8px}
+.pbadge{background:white;border-radius:8px;padding:6px 10px;box-shadow:0 4px 16px rgba(0,0,0,0.12);font-size:10px;font-weight:600;color:var(--maroon);display:flex;align-items:center;gap:5px;animation:floatbadge 3s ease-in-out infinite alternate}
+.pbadge:nth-child(2){animation-delay:0.5s}
+.pbadge:nth-child(3){animation-delay:1s}
+@keyframes floatbadge{0%{transform:translateY(0)}100%{transform:translateY(-6px)}}
+.pbadge-icon{width:14px;height:14px}
+
+/* product info */
+.product-info{}
+.template-eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.tag{display:inline-flex;align-items:center;gap:5px;background:var(--blush);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--maroon);font-weight:500;letter-spacing:0.03em}
+.tag svg{width:12px;height:12px}
+.product-title{font-family:'Cinzel',serif;font-size:42px;font-weight:700;color:var(--maroon);line-height:1.1;margin-bottom:8px;letter-spacing:0.02em}
+.product-subtitle{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--text-light);font-style:italic;margin-bottom:16px;line-height:1.5}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.stars{display:flex;gap:2px}
+.stars svg{width:14px;height:14px;fill:var(--gold)}
+.rating-text{font-size:12px;color:var(--text-light)}
+.product-desc{font-size:15px;color:var(--text-light);line-height:1.7;margin-bottom:24px;border-left:3px solid var(--gold);padding-left:16px}
+
+/* pricing box */
+.pricing-box{background:white;border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.price-main{font-family:'Cinzel',serif;font-size:36px;font-weight:700;color:var(--maroon)}
+.price-sub{font-size:12px;color:var(--text-light)}
+.price-incl{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:0.03em;text-transform:uppercase;margin-bottom:16px}
+.addon-box{background:var(--blush);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.addon-check{width:18px;height:18px;border:2px solid var(--maroon);border-radius:4px;flex-shrink:0;position:relative;transition:background 0.2s}
+.addon-check.checked{background:var(--maroon)}
+.addon-check.checked::after{content:'';position:absolute;left:3px;top:0px;width:5px;height:9px;border:2px solid white;border-left:none;border-top:none;transform:rotate(45deg)}
+.addon-info{flex:1}
+.addon-title{font-size:13px;font-weight:600;color:var(--text)}
+.addon-desc{font-size:11px;color:var(--text-light)}
+.addon-price{font-size:14px;font-weight:700;color:var(--maroon)}
+
+/* form fields */
+.order-form{}
+.form-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.field-wrap{display:flex;flex-direction:column;gap:4px}
+.field-wrap.full{grid-column:span 2}
+.field-label{font-size:11px;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em}
+.field-input{border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);background:white;outline:none;transition:border-color 0.2s}
+.field-input:focus{border-color:var(--maroon)}
+.field-input::placeholder{color:#b0a09a}
+
+/* buy buttons */
+.buy-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;border-radius:8px;font-size:15px;font-weight:700;letter-spacing:0.04em;cursor:pointer;border:none;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;margin-bottom:10px}
+.buy-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.buy-btn.primary{background:var(--maroon);color:white}
+.buy-btn.wa{background:#25D366;color:white}
+.buy-divider{text-align:center;font-size:12px;color:var(--text-light);margin:8px 0;position:relative}
+.buy-divider::before,.buy-divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--border)}
+.buy-divider::before{left:0}
+.buy-divider::after{right:0}
+.payment-icons{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;flex-wrap:wrap}
+.pi{background:white;border:1px solid var(--border);border-radius:4px;padding:4px 8px;font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--text-light)}
+.delivery-note{text-align:center;font-size:12px;color:var(--text-light);margin-top:12px;display:flex;align-items:center;justify-content:center;gap:5px}
+.delivery-note svg{color:var(--gold)}
+
+/* ══════════ SECTION BASE ══════════ */
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.section-label::before,.section-label::after{content:'';display:block;width:20px;height:1px;background:var(--gold)}
+h2.section-title{font-family:'Cinzel',serif;font-size:32px;font-weight:700;color:var(--maroon);margin-bottom:8px;letter-spacing:0.02em}
+p.section-desc{font-size:15px;color:var(--text-light);max-width:560px;line-height:1.7;margin-bottom:40px}
+
+/* ══════════ SCREENSHOT GALLERY ══════════ */
+.gallery-section{background:var(--blush)}
+.gallery-track-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:16px;cursor:grab;user-select:none}
+.gallery-track-wrap:active{cursor:grabbing}
+.gallery-track{display:flex;gap:16px;padding:4px 2px}
+.gallery-card{flex-shrink:0;width:200px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform 0.3s,box-shadow 0.3s;position:relative;background:white}
+.gallery-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:var(--shadow-hover)}
+.gallery-card-screen{width:100%;aspect-ratio:9/16;background:linear-gradient(160deg,#f9ede4,#e8c8b8);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.gcap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);color:white;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:20px 10px 10px;font-weight:600}
+/* individual screen previews */
+.sc-doors{background:linear-gradient(135deg,#2d1a0e 0%,#5c2e18 50%,#2d1a0e 100%)}
+.sc-names{background:linear-gradient(135deg,#f9ede4,#f0d5c0)}
+.sc-blessing{background:linear-gradient(135deg,#fff7ec,#ffe4c0)}
+.sc-event1{background:linear-gradient(135deg,#2e1a0e,#5c3418)}
+.sc-event2{background:linear-gradient(135deg,#1a2e0e,#3c5c18)}
+.sc-gallery{background:linear-gradient(135deg,#f9ede4,#dfc0a0)}
+.sc-frame{background:linear-gradient(135deg,#f5f0e8,#e0d0b0)}
+.sc-rsvp{background:linear-gradient(135deg,#0e2e1a,#185c34)}
+.sc-info{background:linear-gradient(135deg,#fdf8f2,#f3e4d0)}
+.sc-countdown{background:linear-gradient(135deg,#1a0e2e,#341858)}
+/* door SVG preview */
+.mini-door{display:flex;gap:4px;align-items:flex-end}
+.door-panel{width:28px;height:52px;background:linear-gradient(to bottom,#c9962a,#8b5e1a);border-radius:14px 14px 0 0;border:1px solid #e8b84b;position:relative}
+.door-panel::after{content:'';position:absolute;inset:4px;border-radius:10px 10px 0 0;border:1px solid rgba(255,255,255,0.2)}
+.mini-mandala{width:36px;height:36px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gold)}
+.mini-namestxt{font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:var(--maroon);text-align:center}
+.mini-event-card{width:80%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:6px;text-align:center}
+.mini-event-name{font-size:9px;color:rgba(255,255,255,0.9);letter-spacing:0.08em;text-transform:uppercase}
+.mini-event-date{font-size:11px;color:#e8b84b;font-family:'Cormorant Garamond',serif;font-style:italic}
+.mini-diya{display:flex;gap:4px;align-items:center;justify-content:center}
+.diya-svg{width:12px;height:12px}
+.mini-countnum{font-family:'Cinzel',serif;font-size:16px;color:#e8b84b;letter-spacing:0.1em}
+.mini-countlabel{font-size:7px;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.1em}
+
+/* ══════════ FEATURES ══════════ */
+.features-section{}
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.feature-item{display:flex;align-items:flex-start;gap:14px;padding:16px;background:white;border:1px solid var(--border);border-radius:10px;transition:box-shadow 0.3s,transform 0.3s}
+.feature-item:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.feat-icon{width:36px;height:36px;border-radius:8px;background:var(--blush);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feat-icon svg{width:18px;height:18px;stroke:var(--maroon);fill:none;stroke-width:1.5}
+.feat-text strong{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.feat-text span{font-size:12px;color:var(--text-light);line-height:1.5}
+
+/* ══════════ WHAT YOU GET / NEED ══════════ */
+.what-section{background:var(--blush)}
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.what-col h3{font-family:'Cinzel',serif;font-size:18px;color:var(--maroon);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.what-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.what-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text)}
+.what-list li svg{width:16px;height:16px;flex-shrink:0;margin-top:1px}
+
+/* ══════════ TEMPLATES GRID ══════════ */
+.templates-section{}
+.templates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tpl-card{border-radius:16px;overflow:hidden;position:relative;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;text-decoration:none;display:block}
+.tpl-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.tpl-thumb{aspect-ratio:3/4;position:relative;overflow:hidden}
+.tpl-bg{width:100%;height:100%;transition:transform 0.5s}
+.tpl-card:hover .tpl-bg{transform:scale(1.06)}
+.tpl-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.1) 60%,transparent 100%)}
+.tpl-info{position:absolute;bottom:0;left:0;right:0;padding:20px;color:white}
+.tpl-name{font-family:'Cinzel',serif;font-size:18px;font-weight:700;margin-bottom:4px}
+.tpl-style{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.8}
+.tpl-badge{position:absolute;top:12px;right:12px;background:var(--gold);color:white;font-size:9px;font-weight:700;letter-spacing:0.1em;padding:4px 8px;border-radius:4px;text-transform:uppercase}
+
+/* ══════════ HOW IT WORKS ══════════ */
+.how-section{background:var(--blush)}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative}
+.how-steps::before{content:'';position:absolute;top:40px;left:calc(16% + 20px);right:calc(16% + 20px);height:2px;background:linear-gradient(to right,var(--gold),transparent,var(--gold));opacity:0.4}
+.how-step{text-align:center;position:relative}
+.step-num{width:64px;height:64px;border-radius:50%;background:white;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;z-index:1}
+.step-num span{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--gold)}
+.step-title{font-family:'Cinzel',serif;font-size:15px;color:var(--maroon);margin-bottom:8px}
+.step-desc{font-size:13px;color:var(--text-light);line-height:1.6}
+
+/* ══════════ TRUST STRIP ══════════ */
+.trust-strip{background:var(--maroon);padding:32px 24px}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:60px;flex-wrap:wrap}
+.trust-item{text-align:center}
+.trust-num{font-family:'Cinzel',serif;font-size:32px;font-weight:700;color:var(--gold-light);line-height:1}
+.trust-label{font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+
+/* ══════════ FAQ ══════════ */
+.faq-section{}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:4px}
+.faq-item{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:white}
+.faq-q{padding:18px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;user-select:none}
+.faq-q:hover{background:var(--blush)}
+.faq-q-text{font-size:14px;font-weight:600;color:var(--text)}
+.faq-arrow{width:20px;height:20px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s,background 0.2s}
+.faq-arrow svg{width:10px;height:10px;stroke:var(--maroon);fill:none;stroke-width:2.5;transition:transform 0.3s}
+.faq-item.open .faq-arrow{background:var(--maroon)}
+.faq-item.open .faq-arrow svg{stroke:white;transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
+.faq-a-inner{padding:0 20px 18px;font-size:14px;color:var(--text-light);line-height:1.7}
+.faq-item.open .faq-a{max-height:300px}
+
+/* ══════════ FOOTER ══════════ */
+.site-footer{background:#1a0e08;color:rgba(255,255,255,0.75);padding:60px 24px 32px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px;margin-bottom:48px}
+.footer-brand{}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px;text-decoration:none}
+.footer-logo img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.footer-logo-text strong{display:block;font-family:'Cinzel',serif;font-size:14px;color:white;letter-spacing:0.05em}
+.footer-logo-text span{font-size:9px;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase}
+.footer-tagline{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.5);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:15px;margin-bottom:16px}
+.footer-contact a{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;transition:color 0.2s;margin-bottom:8px}
+.footer-contact a:hover{color:var(--gold-light)}
+.footer-contact svg{width:14px;height:14px;flex-shrink:0}
+.footer-col h4{font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;transition:color 0.2s}
+.footer-col ul li a:hover{color:white}
+.footer-wa-btn{display:flex;align-items:center;gap:10px;background:#25D366;color:white;padding:14px 20px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;transition:transform 0.2s,box-shadow 0.2s;margin-top:4px}
+.footer-wa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3)}
+.footer-wa-btn svg{width:20px;height:20px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.4)}
+.footer-founder{font-size:12px;color:rgba(255,255,255,0.4)}
+.footer-founder strong{color:var(--orange)}
+
+/* ══════════ FLOATING WA ══════════ */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:900;text-decoration:none}
+.wa-float-btn{width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.3s;animation:wapulse 2.5s ease-in-out infinite}
+.wa-float-btn:hover{transform:scale(1.1)}
+.wa-float-btn svg{width:28px;height:28px;fill:white}
+@keyframes wapulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,0.65),0 0 0 8px rgba(37,211,102,0.12)}}
+
+/* ══════════ SCROLL ANIMATIONS ══════════ */
+[data-anim]{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease}
+[data-anim="left"]{transform:translateX(-28px)}
+[data-anim="right"]{transform:translateX(28px)}
+[data-anim="scale"]{transform:scale(0.9);opacity:0}
+[data-anim].visible{opacity:1;transform:none}
+.stagger-wrap [data-anim]:nth-child(1){transition-delay:0s}
+.stagger-wrap [data-anim]:nth-child(2){transition-delay:0.1s}
+.stagger-wrap [data-anim]:nth-child(3){transition-delay:0.2s}
+.stagger-wrap [data-anim]:nth-child(4){transition-delay:0.3s}
+.stagger-wrap [data-anim]:nth-child(5){transition-delay:0.4s}
+.stagger-wrap [data-anim]:nth-child(6){transition-delay:0.5s}
+.stagger-wrap [data-anim]:nth-child(7){transition-delay:0.6s}
+.stagger-wrap [data-anim]:nth-child(8){transition-delay:0.7s}
+.stagger-wrap [data-anim]:nth-child(9){transition-delay:0.8s}
+.stagger-wrap [data-anim]:nth-child(10){transition-delay:0.9s}
+.stagger-wrap [data-anim]:nth-child(11){transition-delay:1s}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .mockup-wrap{position:static;margin-bottom:32px}
+  .phone-stage{max-width:260px}
+  .features-grid{grid-template-columns:1fr}
+  .templates-grid{grid-template-columns:1fr 1fr}
+  .what-grid{grid-template-columns:1fr}
+  .how-steps{grid-template-columns:1fr}
+  .how-steps::before{display:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+  nav{display:none}
+  .hamburger{display:flex}
+}
+@media(max-width:600px){
+  .product-title{font-size:30px}
+  h2.section-title{font-size:24px}
+  .templates-grid{grid-template-columns:1fr}
+  .form-fields{grid-template-columns:1fr}
+  .field-wrap.full{grid-column:span 1}
+  .footer-top{grid-template-columns:1fr}
+  .trust-inner{gap:32px}
+  .phone-badges{display:none}
+}
+
+/* mobile nav overlay */
+.mobile-nav{display:none;position:fixed;inset:0;z-index:999;background:rgba(253,248,242,0.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-family:'Cinzel',serif;font-size:22px;color:var(--maroon);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.mobile-nav a:hover{color:var(--gold)}
+.mobile-nav-close{position:absolute;top:20px;right:24px;cursor:pointer;font-size:28px;color:var(--maroon);background:none;border:none;line-height:1}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a class="logo-wrap" href="fdm-wedding.html">
+      <img class="logo-img" src="assets/fdm-logo.jpg" alt="FDM Logo"/>
+      <div class="logo-text">
+        <strong>Fenil Digital Marketing</strong>
+        <span>Wedding Websites</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#templates">Templates</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="rangmahal-demo.html">Live Demo</a>
+      <a class="nav-cta" href="https://wa.me/918200095497?text=Hi!%20I%27d%20like%20to%20order%20a%20wedding%20website.">Order Now</a>
+    </nav>
+    <div class="hamburger" id="hamburger" role="button" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+  <a href="#templates" onclick="closeMobileNav()">Templates</a>
+  <a href="#how-it-works" onclick="closeMobileNav()">How It Works</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="rangmahal-demo.html" onclick="closeMobileNav()">Live Demo</a>
+  <a href="https://wa.me/918200095497?text=Hi!%20I%27d%20like%20to%20order%20a%20wedding%20website." style="color:#25D366">Order via WhatsApp</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<main>
+<section class="hero">
+  <div class="breadcrumb">
+    <a href="fdm-wedding.html">Home</a><span>/</span>
+    <a href="#templates">Templates</a><span>/</span>
+    Rangmahal
+  </div>
+  <div class="hero-grid">
+
+    <!-- PHONE MOCKUP -->
+    <div class="mockup-wrap" data-anim="left">
+      <div class="phone-stage">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="preview-canvas" id="previewCanvas">
+              <!-- petals inserted by JS -->
+              <div class="prev-arch" id="prevArch">
+                <div class="prev-names" id="prevNames">Priya<br/>&amp; Arjun</div>
+              </div>
+              <div class="prev-date">12 February 2025</div>
+              <div class="prev-badge">Scroll to open doors</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-badges">
+          <div class="pbadge">
+            <svg class="pbadge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            60 FPS animations
+          </div>
+          <div class="pbadge">
+            <svg class="pbadge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+            Mobile optimised
+          </div>
+          <div class="pbadge">
+            <svg class="pbadge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Free hosting
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="product-info" data-anim="right">
+      <div class="template-eyebrow">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Hindu Wedding
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Rajasthani Palace
+        </span>
+      </div>
+
+      <h1 class="product-title">Rangmahal</h1>
+      <p class="product-subtitle">Royal palace doors swing open as guests scroll, revealing your names in a courtyard of petals and candlelight.</p>
+
+      <div class="rating-row">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="rating-text">4.9 &bull; 120+ weddings delivered</span>
+      </div>
+
+      <p class="product-desc">
+        Carved palace doors in 3D open as your guests scroll. Four colour-coded event cards, a swipeable pre-wedding gallery, a marble couple frame, one-tap WhatsApp RSVP, a dusk-sky countdown with diyas, and a hand-drawn Ganesha blessing — all in one seamless experience.
+      </p>
+
+      <!-- PRICING -->
+      <div class="pricing-box">
+        <div class="price-row">
+          <span class="price-main">&#8377;2,999</span>
+          <span class="price-sub">one time</span>
+        </div>
+        <div class="price-incl">Includes hosting for 1 year &bull; Unlimited shares</div>
+
+        <div class="addon-box" id="addonBox" onclick="toggleAddon()">
+          <div class="addon-check" id="addonCheck"></div>
+          <div class="addon-info">
+            <div class="addon-title">Done-for-you setup</div>
+            <div class="addon-desc">We fill in all your details, photos &amp; song — just share on WhatsApp</div>
+          </div>
+          <div class="addon-price">+&#8377;1,499</div>
+        </div>
+
+        <form class="order-form" onsubmit="submitOrder(event)">
+          <div class="form-fields">
+            <div class="field-wrap">
+              <label class="field-label">Your Name</label>
+              <input class="field-input" type="text" placeholder="Fenil Limbachiya" required/>
+            </div>
+            <div class="field-wrap">
+              <label class="field-label">Mobile Number</label>
+              <input class="field-input" type="tel" placeholder="9876543210" required/>
+            </div>
+            <div class="field-wrap">
+              <label class="field-label">Email (optional)</label>
+              <input class="field-input" type="email" placeholder="you@email.com"/>
+            </div>
+            <div class="field-wrap">
+              <label class="field-label">Wedding Date (optional)</label>
+              <input class="field-input" type="date"/>
+            </div>
+            <div class="field-wrap full">
+              <label class="field-label">Template</label>
+              <select class="field-input">
+                <option value="rangmahal">Rangmahal — Rajasthani Palace</option>
+                <option value="phulkari">Phulkari — Punjabi Folk</option>
+                <option value="kolam">Kolam — South Indian</option>
+                <option value="noor">Noor — Mughal / Muslim</option>
+                <option value="capella">Capella — Goan</option>
+                <option value="pichola">Pichola — Lake Udaipur</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="button" class="buy-btn primary" onclick="submitOrder(event)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Order Now — &#8377;2,999
+          </button>
+
+          <div class="buy-divider">or order directly on WhatsApp</div>
+
+          <a class="buy-btn wa" href="https://wa.me/918200095497?text=Hi!%20I%27d%20like%20to%20order%20the%20Rangmahal%20wedding%20website.%20My%20name%20is%20" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Message on WhatsApp
+          </a>
+        </form>
+
+        <div class="payment-icons">
+          <span class="pi">UPI</span>
+          <span class="pi">RuPay</span>
+          <span class="pi">Visa</span>
+          <span class="pi">Mastercard</span>
+          <span class="pi">Net Banking</span>
+          <span class="pi">EMI</span>
+        </div>
+        <div class="delivery-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Delivered within 2 working days
+        </div>
+      </div>
+
+      <a href="rangmahal-demo.html" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:1.5px solid var(--maroon);border-radius:8px;color:var(--maroon);text-decoration:none;font-weight:600;font-size:14px;letter-spacing:0.04em;transition:background 0.2s">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Live Demo
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCREENSHOT GALLERY ══ -->
+<section class="gallery-section" id="screenshotGallery">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:32px">
+      <div class="section-label">Preview</div>
+      <h2 class="section-title">What your guests will see</h2>
+      <p class="section-desc" style="margin:0 auto 0">Every screen, beautifully crafted — scroll to explore all 10 views your guests experience.</p>
+    </div>
+    <div class="gallery-track-wrap" id="galleryWrap">
+      <div class="gallery-track" id="galleryTrack">
+
+        <!-- Screen 1: Doors -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-doors" style="justify-content:center">
+            <div class="mini-door">
+              <div class="door-panel"></div>
+              <div style="width:8px"></div>
+              <div class="door-panel"></div>
+            </div>
+          </div>
+          <div class="gcap">Palace Doors</div>
+        </div>
+
+        <!-- Screen 2: Names -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-names" style="flex-direction:column;gap:8px">
+            <div class="mini-mandala">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#c9962a" stroke-width="1.2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/></svg>
+            </div>
+            <div class="mini-namestxt">Priya<br/>&amp; Arjun</div>
+            <div style="font-size:9px;color:var(--gold);letter-spacing:0.1em">12 &bull; 02 &bull; 2025</div>
+          </div>
+          <div class="gcap">Names Reveal</div>
+        </div>
+
+        <!-- Screen 3: Ganesha Blessing -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-blessing" style="flex-direction:column;gap:6px">
+            <svg viewBox="0 0 48 56" width="52" height="60" fill="none">
+              <ellipse cx="24" cy="32" rx="14" ry="16" stroke="#c9962a" stroke-width="1.2" fill="#fff7ec"/>
+              <ellipse cx="24" cy="20" rx="8" ry="9" stroke="#c9962a" stroke-width="1.2" fill="#fff7ec"/>
+              <path d="M16 20 Q10 16 10 10 Q14 14 20 16" stroke="#c9962a" stroke-width="1" fill="none"/>
+              <path d="M32 20 Q38 16 38 10 Q34 14 28 16" stroke="#c9962a" stroke-width="1" fill="none"/>
+              <ellipse cx="20" cy="22" rx="2" ry="2.5" fill="#c9962a" opacity="0.7"/>
+              <ellipse cx="28" cy="22" rx="2" ry="2.5" fill="#c9962a" opacity="0.7"/>
+              <circle cx="24" cy="22" r="1" fill="#c9962a"/>
+              <path d="M22 29 Q24 32 26 29" stroke="#c9962a" stroke-width="1" fill="none" stroke-linecap="round"/>
+              <path d="M18 36 Q24 42 30 36" stroke="#c9962a" stroke-width="1" fill="none"/>
+              <path d="M14 30 Q10 28 12 24 Q16 28 14 30Z" stroke="#c9962a" stroke-width="1" fill="#fff7ec"/>
+              <path d="M34 30 Q38 28 36 24 Q32 28 34 30Z" stroke="#c9962a" stroke-width="1" fill="#fff7ec"/>
+            </svg>
+            <div style="font-size:8px;color:var(--maroon);letter-spacing:0.06em;text-align:center">Shubh Vivah</div>
+          </div>
+          <div class="gcap">Ganesha Blessing</div>
+        </div>
+
+        <!-- Screen 4: Mehendi event -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-event1" style="flex-direction:column;gap:6px">
+            <div class="mini-event-card" style="background:rgba(255,180,80,0.2);border-color:rgba(255,180,80,0.4)">
+              <div class="mini-event-name" style="color:#ffa040">Mehendi</div>
+              <div class="mini-event-date">10 Feb 2025</div>
+              <div style="font-size:8px;color:rgba(255,255,255,0.6);margin-top:2px">7:00 PM &bull; Home</div>
+            </div>
+          </div>
+          <div class="gcap">Mehendi Card</div>
+        </div>
+
+        <!-- Screen 5: Sangeet event -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-event2" style="flex-direction:column;gap:6px">
+            <div class="mini-event-card" style="background:rgba(80,180,80,0.2);border-color:rgba(80,180,80,0.4)">
+              <div class="mini-event-name" style="color:#80d080">Sangeet</div>
+              <div class="mini-event-date">11 Feb 2025</div>
+              <div style="font-size:8px;color:rgba(255,255,255,0.6);margin-top:2px">8:00 PM &bull; Venue</div>
+            </div>
+          </div>
+          <div class="gcap">Sangeet Card</div>
+        </div>
+
+        <!-- Screen 6: Gallery -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-gallery" style="flex-direction:column;gap:4px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;width:80%">
+              <div style="background:rgba(124,31,46,0.15);border-radius:4px;aspect-ratio:1"></div>
+              <div style="background:rgba(201,150,42,0.15);border-radius:4px;aspect-ratio:1"></div>
+              <div style="background:rgba(201,150,42,0.15);border-radius:4px;aspect-ratio:1"></div>
+              <div style="background:rgba(124,31,46,0.15);border-radius:4px;aspect-ratio:1"></div>
+            </div>
+            <div style="font-size:8px;color:var(--maroon);letter-spacing:0.06em">Pre-Wedding</div>
+          </div>
+          <div class="gcap">Photo Gallery</div>
+        </div>
+
+        <!-- Screen 7: Couple Frame -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-frame" style="flex-direction:column;gap:6px">
+            <svg viewBox="0 0 60 72" width="54" height="66" fill="none">
+              <path d="M30 4 Q46 4 54 16 L58 68 Q30 72 2 68 L6 16 Q14 4 30 4Z" stroke="#c9962a" stroke-width="1.5" fill="#f5f0e8"/>
+              <path d="M30 8 Q44 8 50 18 L54 64 Q30 68 6 64 L10 18 Q16 8 30 8Z" stroke="#e8b84b" stroke-width="1" fill="none" stroke-dasharray="2 2"/>
+              <ellipse cx="30" cy="38" rx="14" ry="18" fill="rgba(201,150,42,0.1)" stroke="#c9962a" stroke-width="1"/>
+              <text x="30" y="40" text-anchor="middle" font-family="Georgia,serif" font-size="6" fill="#7c1f2e">P &amp; A</text>
+            </svg>
+          </div>
+          <div class="gcap">Marble Frame</div>
+        </div>
+
+        <!-- Screen 8: RSVP -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-rsvp" style="flex-direction:column;gap:8px">
+            <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px 12px;width:80%;text-align:center">
+              <div style="font-size:8px;color:rgba(255,255,255,0.7);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">Will you attend?</div>
+              <div style="display:flex;gap:4px;justify-content:center">
+                <div style="background:#25D366;color:white;font-size:8px;padding:3px 8px;border-radius:4px;font-weight:600">Yes</div>
+                <div style="background:rgba(255,255,255,0.15);color:white;font-size:8px;padding:3px 8px;border-radius:4px">No</div>
+              </div>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="gcap">WhatsApp RSVP</div>
+        </div>
+
+        <!-- Screen 9: Good to Know -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-info" style="flex-direction:column;gap:6px">
+            <div style="display:flex;flex-direction:column;gap:4px;width:80%">
+              <div style="background:var(--blush);border-radius:4px;padding:5px 8px;display:flex;align-items:center;gap:5px">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/><path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>
+                <span style="font-size:8px;color:var(--text)">Grand Ballroom, Jaipur</span>
+              </div>
+              <div style="background:var(--blush);border-radius:4px;padding:5px 8px;display:flex;align-items:center;gap:5px">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                <span style="font-size:8px;color:var(--text)">Valet parking available</span>
+              </div>
+              <div style="background:var(--blush);border-radius:4px;padding:5px 8px;display:flex;align-items:center;gap:5px">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span style="font-size:8px;color:var(--text)">Hotel rooms at &#8377;2,500</span>
+              </div>
+            </div>
+          </div>
+          <div class="gcap">Good to Know</div>
+        </div>
+
+        <!-- Screen 10: Countdown -->
+        <div class="gallery-card" data-anim>
+          <div class="gallery-card-screen sc-countdown" style="flex-direction:column;gap:8px">
+            <div style="display:flex;gap:8px;align-items:flex-start">
+              <div style="text-align:center">
+                <div class="mini-countnum" id="cdDays">42</div>
+                <div class="mini-countlabel">Days</div>
+              </div>
+              <div class="mini-countnum" style="margin-top:2px;opacity:0.5">:</div>
+              <div style="text-align:center">
+                <div class="mini-countnum" id="cdHrs">08</div>
+                <div class="mini-countlabel">Hrs</div>
+              </div>
+              <div class="mini-countnum" style="margin-top:2px;opacity:0.5">:</div>
+              <div style="text-align:center">
+                <div class="mini-countnum" id="cdMin">24</div>
+                <div class="mini-countlabel">Min</div>
+              </div>
+            </div>
+            <div class="mini-diya">
+              <svg class="diya-svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <ellipse cx="12" cy="18" rx="6" ry="3" fill="#c9962a" opacity="0.8"/>
+                <path d="M8 18 Q12 10 16 18Z" fill="#c9962a" opacity="0.9"/>
+                <ellipse cx="12" cy="10" rx="1.5" ry="3" fill="#ff9020" opacity="0.9"/>
+                <ellipse cx="12" cy="8" rx="0.8" ry="1.5" fill="#ffe090"/>
+              </svg>
+              <svg class="diya-svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <ellipse cx="12" cy="18" rx="6" ry="3" fill="#c9962a" opacity="0.8"/>
+                <path d="M8 18 Q12 10 16 18Z" fill="#c9962a" opacity="0.9"/>
+                <ellipse cx="12" cy="10" rx="1.5" ry="3" fill="#ff9020" opacity="0.9"/>
+                <ellipse cx="12" cy="8" rx="0.8" ry="1.5" fill="#ffe090"/>
+              </svg>
+              <svg class="diya-svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <ellipse cx="12" cy="18" rx="6" ry="3" fill="#c9962a" opacity="0.8"/>
+                <path d="M8 18 Q12 10 16 18Z" fill="#c9962a" opacity="0.9"/>
+                <ellipse cx="12" cy="10" rx="1.5" ry="3" fill="#ff9020" opacity="0.9"/>
+                <ellipse cx="12" cy="8" rx="0.8" ry="1.5" fill="#ffe090"/>
+              </svg>
+            </div>
+            <div style="font-size:8px;color:rgba(255,255,255,0.5);letter-spacing:0.08em">Until the wedding</div>
+          </div>
+          <div class="gcap">Live Countdown</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section class="features-section" id="features">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:40px" data-anim>
+      <div class="section-label">What's Inside</div>
+      <h2 class="section-title">11 features, beautifully animated</h2>
+    </div>
+    <div class="features-grid stagger-wrap">
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg></div>
+        <div class="feat-text"><strong>3D Palace Doors on Scroll</strong><span>Left and right doors rotate open in perspective as guests scroll, with drifting marigold and rose petals</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg></div>
+        <div class="feat-text"><strong>Ganesha Blessing</strong><span>Hand-drawn line-art Ganesha with editable mantra, stroke-dash animated on scroll</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="feat-text"><strong>Up to 4 Colour-Coded Events</strong><span>Mehendi, Haldi, Sangeet, Wedding — each card in its own rich colour palette</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="feat-text"><strong>Swipeable Pre-Wedding Gallery</strong><span>Touch-friendly horizontal photo gallery with parallax offset effect</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="feat-text"><strong>Couple Photo in Marble Frame</strong><span>Carved multi-foil arch SVG clip-path in white marble and gold — mathematically generated</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg></div>
+        <div class="feat-text"><strong>One-Tap WhatsApp RSVP</strong><span>Guests tap a single button — no forms, no logins. Reply comes straight to your WhatsApp</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="feat-text"><strong>Live Countdown with Diyas</strong><span>Animated oil-lamp diyas flicker below the countdown; switches to "Just Married" after the wedding</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <div class="feat-text"><strong>Tap-to-Play Background Music</strong><span>Your favourite song plays on visitor's first tap — with an elegant play/pause indicator</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.57 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div class="feat-text"><strong>Good-to-Know Tiles</strong><span>Hashtag, weather, accommodation, parking, dress code — all in swipeable info cards</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        <div class="feat-text"><strong>Instagram Wedding Handle</strong><span>Direct link to your #WeddingHashtag Instagram feed so guests can follow along live</span></div>
+      </div>
+      <div class="feature-item" data-anim>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="feat-text"><strong>Elder-Friendly &amp; Accessible</strong><span>Large readable text, reduce-motion support, high contrast — built for every generation of guests</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT YOU GET / NEED ══ -->
+<section class="what-section" id="whatyouget">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:40px" data-anim>
+      <div class="section-label">The Package</div>
+      <h2 class="section-title">What you get &amp; what we need</h2>
+    </div>
+    <div class="what-grid">
+      <div data-anim="left">
+        <h3>What you get</h3>
+        <ul class="what-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Fully animated wedding website (all 10 screens)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Hosting on our servers for 1 full year (free)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Shareable link — send to as many guests as you want
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Your couple names, dates, photos and song embedded
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Up to 4 event cards with venue and time
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            WhatsApp RSVP wired to your mobile number
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Up to 10 pre-wedding photos in gallery
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Delivery in 2 working days via WhatsApp
+          </li>
+        </ul>
+      </div>
+      <div data-anim="right">
+        <h3>What we need from you</h3>
+        <ul class="what-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Bride &amp; groom full names
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Wedding date (and event dates if different)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Venue names and cities for each event
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            5 to 10 pre-wedding photos (JPG/PNG, WhatsApp quality is fine)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Your favourite song (YouTube link or MP3)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            WhatsApp number for RSVP replies
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Optional: mantra text, good-to-know details, Instagram handle
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST STRIP ══ -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item" data-anim="scale">
+      <div class="trust-num" id="trustWeddings">0</div>
+      <div class="trust-label">Weddings Delivered</div>
+    </div>
+    <div class="trust-item" data-anim="scale">
+      <div class="trust-num" id="trustCities">0</div>
+      <div class="trust-label">Cities Across India</div>
+    </div>
+    <div class="trust-item" data-anim="scale">
+      <div class="trust-num" id="trustRating">0</div>
+      <div class="trust-label">Average Rating</div>
+    </div>
+    <div class="trust-item" data-anim="scale">
+      <div class="trust-num" id="trustDays">0</div>
+      <div class="trust-label">Days Max Delivery</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TEMPLATES ══ -->
+<section class="templates-section" id="templates">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:40px" data-anim>
+      <div class="section-label">All Templates</div>
+      <h2 class="section-title">Choose your wedding style</h2>
+      <p class="section-desc" style="margin:0 auto 0">Each template is hand-crafted for a specific wedding tradition — animations, colours and motifs chosen by designers, not algorithms.</p>
+    </div>
+    <div class="templates-grid stagger-wrap">
+
+      <a class="tpl-card" href="rangmahal-demo.html" data-anim>
+        <div class="tpl-thumb">
+          <div class="tpl-bg" style="background:linear-gradient(145deg,#2d1a0e,#7c3a1a,#c9962a,#2d1a0e);height:100%;width:100%"></div>
+          <div class="tpl-overlay"></div>
+          <div class="tpl-info">
+            <div class="tpl-name">Rangmahal</div>
+            <div class="tpl-style">Rajasthani Palace &bull; Hindu</div>
+          </div>
+          <div class="tpl-badge">Popular</div>
+        </div>
+      </a>
+
+      <a class="tpl-card" href="https://wa.me/918200095497?text=I%27m%20interested%20in%20the%20Phulkari%20template" data-anim>
+        <div class="tpl-thumb">
+          <div class="tpl-bg" style="background:linear-gradient(145deg,#1a0a3c,#8b1a6b,#e040a0,#ff8c42);height:100%;width:100%"></div>
+          <div class="tpl-overlay"></div>
+          <div class="tpl-info">
+            <div class="tpl-name">Phulkari</div>
+            <div class="tpl-style">Punjabi Folk &bull; Hindu / Sikh</div>
+          </div>
+          <div class="tpl-badge">Coming Soon</div>
+        </div>
+      </a>
+
+      <a class="tpl-card" href="https://wa.me/918200095497?text=I%27m%20interested%20in%20the%20Kolam%20template" data-anim>
+        <div class="tpl-thumb">
+          <div class="tpl-bg" style="background:linear-gradient(145deg,#0a1a0a,#1a5c2e,#c9962a,#f5e6c8);height:100%;width:100%"></div>
+          <div class="tpl-overlay"></div>
+          <div class="tpl-info">
+            <div class="tpl-name">Kolam</div>
+            <div class="tpl-style">South Indian &bull; Hindu</div>
+          </div>
+          <div class="tpl-badge">Coming Soon</div>
+        </div>
+      </a>
+
+      <a class="tpl-card" href="https://wa.me/918200095497?text=I%27m%20interested%20in%20the%20Noor%20template" data-anim>
+        <div class="tpl-thumb">
+          <div class="tpl-bg" style="background:linear-gradient(145deg,#0a0a1a,#1a1a5c,#5c3a8c,#c9962a);height:100%;width:100%"></div>
+          <div class="tpl-overlay"></div>
+          <div class="tpl-info">
+            <div class="tpl-name">Noor</div>
+            <div class="tpl-style">Mughal &bull; Muslim Wedding</div>
+          </div>
+          <div class="tpl-badge">Coming Soon</div>
+        </div>
+      </a>
+
+      <a class="tpl-card" href="https://wa.me/918200095497?text=I%27m%20interested%20in%20the%20Capella%20template" data-anim>
+        <div class="tpl-thumb">
+          <div class="tpl-bg" style="background:linear-gradient(145deg,#0a1a2e,#1a4a7c,#4a90d9,#f0e8d0);height:100%;width:100%"></div>
+          <div class="tpl-overlay"></div>
+          <div class="tpl-info">
+            <div class="tpl-name">Capella</div>
+            <div class="tpl-style">Goan &bull; Christian Wedding</div>
+          </div>
+          <div class="tpl-badge">Coming Soon</div>
+        </div>
+      </a>
+
+      <a class="tpl-card" href="https://wa.me/918200095497?text=I%27m%20interested%20in%20the%20Pichola%20template" data-anim>
+        <div class="tpl-thumb">
+          <div class="tpl-bg" style="background:linear-gradient(145deg,#0a2a3c,#1a6c8c,#4ac0d9,#f0f8ff);height:100%;width:100%"></div>
+          <div class="tpl-overlay"></div>
+          <div class="tpl-info">
+            <div class="tpl-name">Pichola</div>
+            <div class="tpl-style">Lake Udaipur &bull; Destination</div>
+          </div>
+          <div class="tpl-badge">Coming Soon</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-section" id="how-it-works">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px" data-anim>
+      <div class="section-label">Process</div>
+      <h2 class="section-title">Ready in 2 working days</h2>
+      <p class="section-desc" style="margin:0 auto 0">No technical knowledge needed. You share your details on WhatsApp — we build and deliver everything.</p>
+    </div>
+    <div class="how-steps stagger-wrap">
+      <div class="how-step" data-anim="scale">
+        <div class="step-num"><span>1</span></div>
+        <div class="step-title">Order</div>
+        <p class="step-desc">Pay online or message us on WhatsApp to book your slot. Pick your template and addon if needed.</p>
+      </div>
+      <div class="how-step" data-anim="scale">
+        <div class="step-num"><span>2</span></div>
+        <div class="step-title">Share Details</div>
+        <p class="step-desc">Send us your names, dates, venues, photos and song via WhatsApp. We handle all the rest.</p>
+      </div>
+      <div class="how-step" data-anim="scale">
+        <div class="step-num"><span>3</span></div>
+        <div class="step-title">Receive &amp; Share</div>
+        <p class="step-desc">Your link arrives within 2 working days. Share it on WhatsApp — your guests open a cinematic invitation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:40px" data-anim>
+      <div class="section-label">Questions</div>
+      <h2 class="section-title">Frequently asked</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How long does it take to build my website?</span>
+          <span class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Most websites are ready within 2 working days of receiving all your content. Rush delivery in 24 hours is available on WhatsApp — just ask.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can I see it on mobile before it goes live?</span>
+          <span class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. We send you a private preview link before the final version. You can request edits within 3 days of receiving it at no extra cost.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Will my guests need to download an app?</span>
+          <span class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">No app needed. The website opens directly in any browser — Chrome, Safari, or any browser. Guests just tap the link you share on WhatsApp or Instagram.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What happens after one year of hosting?</span>
+          <span class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">We will notify you before the year ends. Renewal is &#8377;999 for another year. Your website and all memories remain safe — we will never delete anything without your permission.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can I use a template for a Muslim, Christian or Punjabi wedding?</span>
+          <span class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Yes! We have templates for different traditions — Noor for Muslim weddings, Capella for Christian, Phulkari for Punjabi and more. Message us on WhatsApp and we will recommend the right one for your ceremony.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a class="footer-logo" href="fdm-wedding.html">
+          <img src="assets/fdm-logo.jpg" alt="FDM Logo"/>
+          <div class="footer-logo-text">
+            <strong>Fenil Digital Marketing</strong>
+            <span>All-In-One Digital Solutions</span>
+          </div>
+        </a>
+        <p class="footer-tagline">"Wedding invitation websites, painted by hand.<br/>Designed in India, shared with love."</p>
+        <div class="footer-contact">
+          <a href="https://wa.me/918200095497" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+            +91 82000 95497
+          </a>
+          <a href="tel:+918200095497">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.57 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +91 82000 95497
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Templates</h4>
+        <ul>
+          <li><a href="rangmahal-demo.html">Rangmahal</a></li>
+          <li><a href="https://wa.me/918200095497?text=Phulkari%20template%20inquiry">Phulkari</a></li>
+          <li><a href="https://wa.me/918200095497?text=Kolam%20template%20inquiry">Kolam</a></li>
+          <li><a href="https://wa.me/918200095497?text=Noor%20template%20inquiry">Noor</a></li>
+          <li><a href="https://wa.me/918200095497?text=Capella%20template%20inquiry">Capella</a></li>
+          <li><a href="https://wa.me/918200095497?text=Pichola%20template%20inquiry">Pichola</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#whatyouget">What You Get</a></li>
+          <li><a href="https://wa.me/918200095497">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Order Now</h4>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:12px;line-height:1.6">Questions? Ready to order? Chat with Fenil directly on WhatsApp.</p>
+        <a class="footer-wa-btn" href="https://wa.me/918200095497?text=Hi!%20I%27d%20like%20a%20wedding%20website%20from%20FDM." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Fenil
+        </a>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Fenil Digital Marketing. All rights reserved.</div>
+      <div class="footer-founder">Built &amp; maintained by <strong>Fenil Limbachiya</strong></div>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<!-- ══ FLOATING WA ══ -->
+<a class="wa-float" href="https://wa.me/918200095497?text=Hi!%20I%27d%20like%20to%20order%20a%20wedding%20website." target="_blank" rel="noopener" aria-label="WhatsApp Fenil">
+  <div class="wa-float-btn">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+</a>
+
+<script>
+// ══ HEADER SCROLL ══
+const hdr = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 10);
+}, {passive: true});
+
+// ══ MOBILE NAV ══
+document.getElementById('hamburger').onclick = () => document.getElementById('mobileNav').classList.add('open');
+document.getElementById('mobileNavClose').onclick = closeMobileNav;
+function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open')}
+
+// ══ SCROLL ANIMATIONS ══
+const animEls = document.querySelectorAll('[data-anim]');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+animEls.forEach(el => obs.observe(el));
+
+// ══ PHONE PREVIEW PETALS ══
+(function(){
+  const canvas = document.getElementById('previewCanvas');
+  const colors = ['rgba(201,150,42,0.4)','rgba(124,31,46,0.3)','rgba(232,184,75,0.35)','rgba(249,237,228,0.5)'];
+  for(let i=0;i<12;i++){
+    const p = document.createElement('div');
+    p.className='prev-petal';
+    p.style.cssText=`
+      left:${10+Math.random()*80}%;
+      animation-duration:${2.5+Math.random()*3}s;
+      animation-delay:${-Math.random()*5}s;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      width:${5+Math.random()*6}px;
+      height:${8+Math.random()*8}px;
+      transform:rotate(${Math.random()*360}deg);
+    `;
+    canvas.appendChild(p);
+  }
+})();
+
+// ══ ADDON TOGGLE ══
+let addonActive = false;
+function toggleAddon(){
+  addonActive = !addonActive;
+  document.getElementById('addonCheck').classList.toggle('checked', addonActive);
+  const btn = document.querySelector('.buy-btn.primary');
+  btn.textContent = addonActive ? 'Order Now — ₹4,498' : 'Order Now — ₹2,999';
+  btn.setAttribute('type','button');
+}
+
+// ══ ORDER SUBMIT ══
+function submitOrder(e){
+  e.preventDefault();
+  const name = document.querySelector('input[type=text]').value || '';
+  const phone = document.querySelector('input[type=tel]').value || '';
+  const template = document.querySelector('select').value || 'rangmahal';
+  const price = addonActive ? '4,498' : '2,999';
+  const tplNames = {rangmahal:'Rangmahal',phulkari:'Phulkari',kolam:'Kolam',noor:'Noor',capella:'Capella',pichola:'Pichola'};
+  const msg = encodeURIComponent(
+    `Hi Fenil! I want to order a wedding website.\n\nTemplate: ${tplNames[template]}\nName: ${name}\nPhone: ${phone}\nTotal: ₹${price}${addonActive?' (with done-for-you setup)':''}`
+  );
+  window.open(`https://wa.me/918200095497?text=${msg}`, '_blank');
+}
+
+// ══ GALLERY DRAG SCROLL ══
+(function(){
+  const wrap = document.getElementById('galleryWrap');
+  let isDown = false, startX, scrollLeft;
+  wrap.addEventListener('mousedown', e => { isDown=true; wrap.classList.add('active'); startX=e.pageX-wrap.offsetLeft; scrollLeft=wrap.scrollLeft; });
+  wrap.addEventListener('mouseleave', () => { isDown=false; });
+  wrap.addEventListener('mouseup', () => { isDown=false; });
+  wrap.addEventListener('mousemove', e => { if(!isDown)return; e.preventDefault(); const x=e.pageX-wrap.offsetLeft; wrap.scrollLeft=scrollLeft-(x-startX)*1.5; });
+})();
+
+// ══ FAQ TOGGLE ══
+function toggleFaq(qEl){
+  const item = qEl.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+// ══ COUNTER ANIMATION ══
+function animateCounter(el, target, suffix, duration){
+  const start = performance.now();
+  const isDecimal = target % 1 !== 0;
+  function step(now){
+    const p = Math.min((now-start)/duration, 1);
+    const ease = 1 - Math.pow(1-p, 3);
+    const val = isDecimal ? (target * ease).toFixed(1) : Math.floor(target * ease);
+    el.textContent = val + suffix;
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      animateCounter(document.getElementById('trustWeddings'), 120, '+', 1800);
+      animateCounter(document.getElementById('trustCities'), 28, '+', 1600);
+      animateCounter(document.getElementById('trustRating'), 4.9, '/5', 2000);
+      animateCounter(document.getElementById('trustDays'), 2, '', 1000);
+      counterObs.disconnect();
+    }
+  });
+}, {threshold: 0.3});
+counterObs.observe(document.querySelector('.trust-strip'));
+
+// ══ MINI COUNTDOWN ══
+(function tickCountdown(){
+  const target = new Date('2025-02-12T00:00:00').getTime();
+  function update(){
+    const now = Date.now();
+    const diff = Math.max(0, target - now);
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const pad = n => String(n).padStart(2,'0');
+    const dEl = document.getElementById('cdDays');
+    const hEl = document.getElementById('cdHrs');
+    const mEl = document.getElementById('cdMin');
+    if(dEl) dEl.textContent = pad(d);
+    if(hEl) hEl.textContent = pad(h);
+    if(mEl) mEl.textContent = pad(m);
+  }
+  update();
+  setInterval(update, 60000);
+})();
+</script>
+</body>
+</html>
