@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Webild Studio — Free AI Website & 3D Builder</title>
+<meta name="description" content="Build award-winning 3D, animated, and interactive websites with AI for free. 59 luxury templates, 3D mode, and instant code export."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        dark: '#050608',
+        card: '#0d0f14',
+        border: 'rgba(255, 255, 255, 0.08)',
+        lime: '#98f014',
+        cyan: '#00f0ff',
+        gold: '#d4af37'
+      },
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        mono: ['"Space Grotesk"', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{background:#050608;color:#ffffff;font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#050608}
+::-webkit-scrollbar-thumb{background:#222630;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#98f014}
+.glow-button{background:linear-gradient(135deg,#98f014,#00f0ff);color:#050608;transition:all 0.3s;box-shadow:0 0 24px rgba(152,240,20,0.3)}
+.glow-button:hover{box-shadow:0 0 36px rgba(152,240,20,0.6);transform:translateY(-1px)}
+.glass-panel{background:rgba(13,15,20,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)}
+.glass-panel:hover{border-color:rgba(255,255,255,0.18)}
+.badge-free{background:rgba(152,240,20,0.1);border:1px solid rgba(152,240,20,0.3);color:#98f014}
+/* switch */
+.switch-rail{width:44px;height:24px;border-radius:12px;background:#1a1d26;position:relative;cursor:pointer;transition:background 0.3s}
+.switch-rail.active{background:#98f014}
+.switch-dot{width:18px;height:18px;border-radius:50%;background:#ffffff;position:absolute;top:3px;left:3px;transition:transform 0.3s}
+.switch-rail.active .switch-dot{transform:translateX(20px);background:#050608}
+/* 3D canvas container */
+#canvas-3d-bg{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:1;opacity:0.85;transition:opacity 0.5s}
+#canvas-3d-bg.disabled{opacity:0.05}
+/* modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(16px);z-index:100;display:none;align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{display:flex}
+</style>
+</head>
+<body class="min-h-screen relative">
+
+<!-- 3D WebGL Background Canvas -->
+<div id="canvas-3d-bg"></div>
+
+<!-- Background Gradient Mesh -->
+<div class="fixed inset-0 pointer-events-none z-0">
+  <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan/15 rounded-full blur-[140px]"></div>
+  <div class="absolute top-1/3 -right-40 w-[30rem] h-[30rem] bg-lime/10 rounded-full blur-[160px]"></div>
+  <div class="absolute bottom-10 left-1/4 w-80 h-80 bg-purple-600/10 rounded-full blur-[140px]"></div>
+</div>
+
+<!-- Main UI Wrapper -->
+<div class="relative z-10 flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="glass-panel sticky top-0 z-50 border-b border-border/80">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-lime to-cyan flex items-center justify-center font-bold text-dark text-xl font-mono shadow-lg shadow-lime/20">W</div>
+        <div>
+          <span class="font-bold text-lg tracking-tight">Webild<span class="text-lime">.ai</span></span>
+          <span class="ml-2 text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full badge-free">Free Mode</span>
+        </div>
+      </div>
+
+      <!-- Center Nav / Tabs -->
+      <nav class="hidden md:flex items-center gap-1 bg-dark/60 p-1.5 rounded-full border border-border">
+        <button onclick="switchTab('studio')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition text-white bg-white/10" id="tab-btn-studio">Generator Studio</button>
+        <button onclick="switchTab('templates')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition text-white/60 hover:text-white" id="tab-btn-templates">59 Templates</button>
+        <button onclick="switchTab('viewer')" class="tab-btn px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition text-white/60 hover:text-white" id="tab-btn-viewer">Live Preview</button>
+      </nav>
+
+      <!-- Right Action -->
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 text-xs text-white/70">
+          <span>3D Mode</span>
+          <div class="switch-rail active" id="mode3d-toggle" onclick="toggle3DMode()" title="Toggle WebGL 3D Engine">
+            <div class="switch-dot"></div>
+          </div>
+        </div>
+        <button onclick="exportCode()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-border text-xs font-semibold transition">
+          <svg class="w-4 h-4 text-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Export HTML
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- TAB 1: STUDIO (HERO & PROMPT) -->
+  <main id="tab-studio" class="flex-1 max-w-7xl mx-auto px-6 py-12 w-full flex flex-col justify-center">
+    
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-free text-xs font-mono mb-6">
+        <span>●</span> Complete Webild AI Engine — Zero Paywalls
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
+        Build <span class="bg-gradient-to-r from-lime via-cyan to-white bg-clip-text text-transparent">3D, Animated, Interactive</span> Websites With AI
+      </h1>
+      <p class="text-white/60 text-base sm:text-lg max-w-2xl mx-auto">
+        Describe what you want or pick an award-level template. Generates production-ready websites with real-time 3D models, smooth motion, and instant export.
+      </p>
+    </div>
+
+    <!-- Webild Prompt Box -->
+    <div class="max-w-4xl mx-auto w-full">
+      <div class="glass-panel p-3 rounded-2xl shadow-2xl border border-white/10">
+        <div class="relative">
+          <textarea id="prompt-input" rows="3" placeholder="Describe the website you want to build (e.g. Luxury Real Estate agency with 3D villas, video hero, dark mode, and client reviews)..." class="w-full bg-transparent px-4 py-3 text-white placeholder-white/30 text-base sm:text-lg outline-none resize-none font-sans"></textarea>
+        </div>
+
+        <div class="pt-3 border-t border-border flex flex-wrap items-center justify-between gap-4 px-2">
+          
+          <!-- Presets and Controls -->
+          <div class="flex items-center gap-3 flex-wrap">
+            <select id="industry-select" onchange="applyIndustryPrompt(this.value)" class="bg-dark/80 text-white/80 border border-border text-xs px-3 py-1.5 rounded-lg outline-none cursor-pointer hover:border-lime/40 transition">
+              <option value="">Choose Industry Preset...</option>
+              <option value="luxury-real-estate">Luxury Real Estate</option>
+              <option value="coffee-shop">Specialty Coffee Shop</option>
+              <option value="detailing-studio">Car Detailing Studio</option>
+              <option value="digital-agency">Creative Digital Agency</option>
+              <option value="saas-platform">Modern AI SaaS Platform</option>
+              <option value="clothing-brand">Luxury Fashion Brand</option>
+              <option value="boutique-hotel">Boutique Resort & Hotel</option>
+              <option value="med-spa">Med Spa & Aesthetic Clinic</option>
+            </select>
+
+            <div class="flex items-center gap-1.5 bg-dark/80 px-2 py-1 rounded-lg border border-border text-xs text-white/60">
+              <span>Theme:</span>
+              <button onclick="setTheme('obsidian')" class="w-4 h-4 rounded-full bg-dark border border-white/40" title="Obsidian Dark"></button>
+              <button onclick="setTheme('cyber')" class="w-4 h-4 rounded-full bg-lime" title="Cyber Lime"></button>
+              <button onclick="setTheme('cyan')" class="w-4 h-4 rounded-full bg-cyan" title="Neon Cyan"></button>
+              <button onclick="setTheme('cream')" class="w-4 h-4 rounded-full bg-[#faf8f5]" title="Warm Cream"></button>
+            </div>
+          </div>
+
+          <!-- Generate Button -->
+          <button onclick="generateWebsite()" class="glow-button px-6 py-2.5 rounded-xl font-bold text-sm tracking-wide flex items-center gap-2 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Generate With AI
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick prompts chips -->
+      <div class="flex items-center justify-center gap-2 mt-6 flex-wrap text-xs text-white/50">
+        <span>Try prompts:</span>
+        <button onclick="setPrompt('Luxury villa rental in Bali with 3D infinity pool, private chef booking, and virtual tour')" class="px-3 py-1 rounded-full bg-card hover:bg-white/10 border border-border transition text-white/70">Luxury Villa Bali</button>
+        <button onclick="setPrompt('Cyberpunk creative agency in Tokyo with 3D interactive knot, audio portfolio, and bento grid')" class="px-3 py-1 rounded-full bg-card hover:bg-white/10 border border-border transition text-white/70">Creative Tokyo Agency</button>
+        <button onclick="setPrompt('Artisanal sourdough bakery & espresso bar with floating menu cards and morning specials')" class="px-3 py-1 rounded-full bg-card hover:bg-white/10 border border-border transition text-white/70">Artisanal Bakery</button>
+      </div>
+    </div>
+
+    <!-- Metrics Strip -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto w-full mt-16 pt-10 border-t border-border/60">
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-lime">59</div>
+        <div class="text-xs text-white/50 mt-1 uppercase tracking-wider">Webild Templates</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-cyan">3D Mode</div>
+        <div class="text-xs text-white/50 mt-1 uppercase tracking-wider">Three.js WebGL Engine</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-white">60 FPS</div>
+        <div class="text-xs text-white/50 mt-1 uppercase tracking-wider">Smooth Inertia Scroll</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold font-mono text-gold">100% Free</div>
+        <div class="text-xs text-white/50 mt-1 uppercase tracking-wider">No Subscriptions / Paywalls</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- TAB 2: 59 TEMPLATES BROWSER -->
+  <section id="tab-templates" class="hidden flex-1 max-w-7xl mx-auto px-6 py-10 w-full">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold">59 Production Templates</h2>
+        <p class="text-sm text-white/50 mt-1">Extracted directly from Webild's production catalog. Click any template to generate instantly.</p>
+      </div>
+      <!-- Category Filter Pills -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-2" id="category-pills">
+        <button onclick="filterCategory('All')" class="cat-pill active px-3 py-1 rounded-full text-xs font-semibold bg-lime text-dark">All</button>
+        <button onclick="filterCategory('Real Estate')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-card text-white/70 hover:text-white border border-border">Real Estate</button>
+        <button onclick="filterCategory('Agency')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-card text-white/70 hover:text-white border border-border">Agency</button>
+        <button onclick="filterCategory('Cafe')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-card text-white/70 hover:text-white border border-border">Cafe</button>
+        <button onclick="filterCategory('SaaS')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-card text-white/70 hover:text-white border border-border">SaaS</button>
+        <button onclick="filterCategory('E-commerce')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-card text-white/70 hover:text-white border border-border">E-commerce</button>
+        <button onclick="filterCategory('Portfolio')" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-card text-white/70 hover:text-white border border-border">Portfolio</button>
+      </div>
+    </div>
+
+    <!-- Templates Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="templates-grid">
+      <!-- Injected via JavaScript from catalog -->
+    </div>
+  </section>
+
+  <!-- TAB 3: LIVE PREVIEW & CODE EXPORT -->
+  <section id="tab-viewer" class="hidden flex-1 flex flex-col w-full h-[calc(100vh-80px)] p-4">
+    <!-- Viewport Switcher Toolbar -->
+    <div class="glass-panel rounded-xl p-3 mb-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-lime uppercase font-mono tracking-wider">Live Preview:</span>
+        <span class="text-xs text-white/70 font-medium" id="preview-title">Generated Website</span>
+      </div>
+
+      <!-- Device controls -->
+      <div class="flex items-center gap-1 bg-dark/60 p-1 rounded-lg border border-border">
+        <button onclick="setDeviceView('100%')" class="px-3 py-1 rounded text-xs text-white font-medium bg-white/10" id="dev-desktop">Desktop</button>
+        <button onclick="setDeviceView('768px')" class="px-3 py-1 rounded text-xs text-white/60 hover:text-white" id="dev-tablet">Tablet</button>
+        <button onclick="setDeviceView('390px')" class="px-3 py-1 rounded text-xs text-white/60 hover:text-white" id="dev-mobile">Mobile</button>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex items-center gap-2">
+        <button onclick="openInNewTab()" class="px-3 py-1.5 rounded-lg bg-card hover:bg-white/10 border border-border text-xs font-semibold transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Open Tab
+        </button>
+        <button onclick="exportCode()" class="glow-button px-4 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Export Code
+        </button>
+      </div>
+    </div>
+
+    <!-- Preview Iframe -->
+    <div class="flex-1 bg-dark rounded-xl overflow-hidden border border-border flex items-center justify-center relative shadow-2xl">
+      <iframe id="preview-frame" class="w-full h-full bg-white transition-all duration-300 shadow-xl" src="about:blank"></iframe>
+    </div>
+  </section>
+
+</div>
+
+<!-- Code Export Modal -->
+<div class="modal-overlay" id="export-modal">
+  <div class="glass-panel w-full max-w-4xl max-h-[85vh] rounded-2xl p-6 flex flex-col border border-border shadow-2xl">
+    <div class="flex items-center justify-between pb-4 border-b border-border">
+      <div>
+        <h3 class="text-lg font-bold">Export Website Source Code</h3>
+        <p class="text-xs text-white/50">Single-file standalone production HTML with Tailwind CSS and Three.js 3D Mode included.</p>
+      </div>
+      <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition">&times;</button>
+    </div>
+
+    <div class="flex-1 my-4 overflow-hidden rounded-xl bg-dark/90 border border-border p-4">
+      <pre class="w-full h-[50vh] overflow-auto text-xs font-mono text-lime/90" id="code-output"></pre>
+    </div>
+
+    <div class="flex items-center justify-end gap-3 pt-4 border-t border-border">
+      <button onclick="copyCode()" class="px-4 py-2 rounded-lg bg-card hover:bg-white/10 border border-border text-xs font-semibold transition" id="copy-btn">Copy to Clipboard</button>
+      <button onclick="downloadCode()" class="glow-button px-5 py-2 rounded-lg text-xs font-bold transition">Download index.html</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==========================================
+// 1. THREE.JS 3D MODE BACKGROUND ENGINE
+// ==========================================
+let scene3d, camera3d, renderer3d, knotMesh3d, particles3d;
+let is3DEnabled = true;
+let pointerX = 0, pointerY = 0;
+
+function init3DBackground() {
+  const container = document.getElementById('canvas-3d-bg');
+  scene3d = new THREE.Scene();
+  camera3d = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera3d.position.set(0, 0, 5.2);
+
+  renderer3d = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer3d.setSize(window.innerWidth, window.innerHeight);
+  renderer3d.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer3d.toneMapping = THREE.ACESFilmicToneMapping;
+  container.appendChild(renderer3d.domElement);
+
+  // Lighting
+  scene3d.add(new THREE.AmbientLight(0xffffff, 0.8));
+  const key = new THREE.DirectionalLight(0xffffff, 2.2);
+  key.position.set(5, 5, 5);
+  scene3d.add(key);
+
+  const rim = new THREE.DirectionalLight(0x98f014, 3.0);
+  rim.position.set(-5, -3, -2);
+  scene3d.add(rim);
+
+  const cyanRim = new THREE.DirectionalLight(0x00f0ff, 2.0);
+  cyanRim.position.set(3, -4, 2);
+  scene3d.add(cyanRim);
+
+  // Procedural Glossy Torus Knot
+  const geo = new THREE.TorusKnotGeometry(1.15, 0.36, 128, 32, 2, 3);
+  const mat = new THREE.MeshPhysicalMaterial({
+    color: 0x1f5fe0,
+    emissive: 0x050f26,
+    metalness: 0.88,
+    roughness: 0.16,
+    clearcoat: 1.0,
+    reflectivity: 0.95
+  });
+  knotMesh3d = new THREE.Mesh(geo, mat);
+  scene3d.add(knotMesh3d);
+
+  // Floating Ambient Particles
+  const pCount = 140;
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount * 3; i++) {
+    pPos[i] = (Math.random() - 0.5) * 14;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const pMat = new THREE.PointsMaterial({
+    color: 0x98f014,
+    size: 0.04,
+    transparent: true,
+    opacity: 0.45
+  });
+  particles3d = new THREE.Points(pGeo, pMat);
+  scene3d.add(particles3d);
+
+  window.addEventListener('resize', onWindowResize);
+  window.addEventListener('mousemove', onMouseMove);
+
+  animate3D(0);
+}
+
+function onWindowResize() {
+  camera3d.aspect = window.innerWidth / window.innerHeight;
+  camera3d.updateProjectionMatrix();
+  renderer3d.setSize(window.innerWidth, window.innerHeight);
+}
+
+function onMouseMove(e) {
+  pointerX = (e.clientX / window.innerWidth) * 2 - 1;
+  pointerY = -(e.clientY / window.innerHeight) * 2 + 1;
+}
+
+function animate3D(time) {
+  requestAnimationFrame(animate3D);
+  if (!is3DEnabled) return;
+
+  const t = time * 0.001;
+
+  camera3d.position.x += (pointerX * 0.6 - camera3d.position.x) * 0.04;
+  camera3d.position.y += (pointerY * 0.4 - camera3d.position.y) * 0.04;
+  camera3d.lookAt(0, 0, 0);
+
+  if (knotMesh3d) {
+    knotMesh3d.rotation.y = t * 0.35;
+    knotMesh3d.rotation.x = Math.sin(t * 0.4) * 0.25;
+    knotMesh3d.position.y = Math.sin(t * 1.2) * 0.14;
+  }
+
+  if (particles3d) {
+    particles3d.rotation.y = t * 0.03;
+  }
+
+  renderer3d.render(scene3d, camera3d);
+}
+
+function toggle3DMode() {
+  is3DEnabled = !is3DEnabled;
+  const toggle = document.getElementById('mode3d-toggle');
+  const canvas = document.getElementById('canvas-3d-bg');
+  toggle.classList.toggle('active', is3DEnabled);
+  canvas.classList.toggle('disabled', !is3DEnabled);
+}
+
+// ==========================================
+// 2. TEMPLATES CATALOG & BROWSER
+// ==========================================
+let allTemplates = [];
+let activeCategory = 'All';
+
+async function loadTemplatesCatalog() {
+  try {
+    const res = await fetch('assets/templates-catalog.json');
+    allTemplates = await res.json();
+  } catch (e) {
+    console.warn('Fallback inline catalog');
+    allTemplates = [
+      { id: "1", title: "Luxury Real Estate", category: "Real Estate", description: "Elegant luxury real estate with video scroll hero and parallax property cards.", defaultPrompt: "Create a luxury real estate website with 3D villas and video scroll.", imageSrc: "https://storage.googleapis.com/webild/default/templates/luxury-real-estate-16-10.webp" },
+      { id: "2", title: "Coffee Shop", category: "Cafe", description: "Warm specialty coffee shop with floating menu cards and cursor trail.", defaultPrompt: "Create an artisanal coffee shop website with warm crema aesthetic.", imageSrc: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80" },
+      { id: "3", title: "Detailing Studio", category: "Detailing", description: "Cinematic dark detailing studio with interactive 3D model and PPF packages.", defaultPrompt: "Create a luxury automotive detailing studio website.", imageSrc: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=600&q=80" },
+      { id: "4", title: "Digital Agency", category: "Agency", description: "Modern design studio with vertical marquee, bento services, and 3D showcase.", defaultPrompt: "Create an award-winning creative agency website.", imageSrc: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80" },
+      { id: "5", title: "AI SaaS Platform", category: "SaaS", description: "Modern AI platform landing page with metrics counters and pricing folders.", defaultPrompt: "Create an AI SaaS landing page with dark mode and pricing plans.", imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" }
+    ];
+  }
+  renderTemplates();
+}
+
+function renderTemplates() {
+  const grid = document.getElementById('templates-grid');
+  const filtered = activeCategory === 'All' ? allTemplates : allTemplates.filter(t => t.category.toLowerCase().includes(activeCategory.toLowerCase()));
+
+  grid.innerHTML = filtered.map(t => `
+    <div class="glass-panel rounded-2xl overflow-hidden border border-border group transition duration-300 hover:border-lime/40 hover:-translate-y-1">
+      <div class="aspect-video w-full bg-card relative overflow-hidden">
+        <img src="${t.imageSrc || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80'}" alt="${t.title}" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80'"/>
+        <div class="absolute top-3 left-3 bg-dark/80 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider text-lime border border-white/10">${t.category}</div>
+      </div>
+      <div class="p-5">
+        <h3 class="text-base font-bold text-white mb-1.5">${t.title}</h3>
+        <p class="text-xs text-white/60 line-clamp-2 leading-relaxed mb-4">${t.description}</p>
+        <div class="flex items-center gap-2">
+          <button onclick="useTemplate('${t.title}', '${t.defaultPrompt.replace(/'/g, "\\'")}')" class="flex-1 py-2 rounded-lg bg-lime/10 hover:bg-lime text-lime hover:text-dark font-bold text-xs transition tracking-wide text-center">
+            Use Template
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCategory(cat) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-pill').forEach(btn => {
+    const isAct = btn.textContent.trim().toLowerCase() === cat.toLowerCase();
+    btn.className = isAct ? 'cat-pill active px-3 py-1 rounded-full text-xs font-semibold bg-lime text-dark' : 'cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-card text-white/70 hover:text-white border border-border';
+  });
+  renderTemplates();
+}
+
+function useTemplate(title, prompt) {
+  document.getElementById('prompt-input').value = prompt;
+  switchTab('studio');
+  generateWebsite();
+}
+
+// ==========================================
+// 3. CODE GENERATOR & PREVIEW ENGINE
+// ==========================================
+let currentGeneratedHTML = '';
+
+function setPrompt(text) {
+  document.getElementById('prompt-input').value = text;
+}
+
+function applyIndustryPrompt(val) {
+  const map = {
+    'luxury-real-estate': 'Create an ultra-luxury real estate website featuring modern architectural villas, 3D interactive model preview, property amenity bento grid, and private tour booking.',
+    'coffee-shop': 'Create a warm artisanal specialty coffee shop website with floating espresso roast cards, cursor trail interaction, barista story, and filterable cafe menu.',
+    'detailing-studio': 'Create a high-end dark car detailing and ceramic coating studio website with 3D model hotspot viewer, before/after PPF slider, and booking calculator.',
+    'digital-agency': 'Create an award-winning creative agency website with vertical marquee typography, 3D glossy knot scene, bento case studies, and client metric counters.',
+    'saas-platform': 'Create an enterprise AI SaaS website with glowing hero badges, isometric feature mockups, tabbed pricing calculators, and security badges.',
+    'clothing-brand': 'Create a luxury streetwear brand showcase with lookbook galleries, hanging product cards, dynamic video banner, and limited drop timer.',
+    'boutique-hotel': 'Create a serene Mediterranean boutique resort website with ocean suites showcase, infinity pool gallery, fine dining menu, and instant room reservations.',
+    'med-spa': 'Create a high-end luxury medical aesthetics clinic website with doctor credentials, treatment bento grid, before/after transformations, and VIP appointment scheduler.'
+  };
+  if (map[val]) document.getElementById('prompt-input').value = map[val];
+}
+
+function setTheme(theme) {
+  if (knotMesh3d) {
+    if (theme === 'obsidian') knotMesh3d.material.color.setHex(0x1f5fe0);
+    if (theme === 'cyber') knotMesh3d.material.color.setHex(0x98f014);
+    if (theme === 'cyan') knotMesh3d.material.color.setHex(0x00f0ff);
+    if (theme === 'cream') knotMesh3d.material.color.setHex(0xc9a96e);
+  }
+}
+
+function generateWebsite() {
+  const prompt = document.getElementById('prompt-input').value.trim() || 'Modern Luxury Business';
+  
+  // Extract business name or infer
+  let title = prompt.split(' ')[0] + ' ' + (prompt.split(' ')[1] || 'Studio');
+  title = title.replace(/[^a-zA-Z0-9\s]/g, '');
+
+  const isDark = !prompt.toLowerCase().includes('cream') && !prompt.toLowerCase().includes('white');
+  const bg = isDark ? '#050608' : '#faf8f5';
+  const card = isDark ? '#0d1017' : '#ffffff';
+  const text = isDark ? '#ffffff' : '#1a1a1a';
+  const muted = isDark ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,0.6)';
+  const border = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+  const accent = prompt.toLowerCase().includes('real estate') || prompt.toLowerCase().includes('luxury') ? '#d4af37' : '#98f014';
+
+  currentGeneratedHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>${title} — Powered by Webild AI</title>
+<script src="https://cdn.tailwindcss.com"><\/script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+body { background: ${bg}; color: ${text}; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+.card-3d { transform-style: preserve-3d; transition: transform 0.2s ease, box-shadow 0.3s ease; }
+.card-3d:hover { transform: perspective(1000px) rotateX(-4deg) rotateY(4deg) translateY(-4px); }
+.hero-glow { position: absolute; width: 35rem; height: 35rem; background: radial-gradient(circle, ${accent}22 0%, transparent 70%); filter: blur(80px); pointer-events: none; }
+<\/style>
+</head>
+<body class="min-h-screen relative">
+
+<!-- 3D Canvas Stage -->
+<div id="three-stage" class="fixed inset-0 pointer-events-none z-0 opacity-80"><\/div>
+
+<!-- Top Navbar -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b" style="border-color: ${border}">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="flex items-center gap-2 font-bold text-xl tracking-tight">
+      <span class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm" style="background:${accent};color:#000">${title[0]}</span>
+      <span>${title}</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-8 text-sm font-semibold" style="color:${muted}">
+      <a href="#services" class="hover:text-white transition">Services</a>
+      <a href="#about" class="hover:text-white transition">About</a>
+      <a href="#work" class="hover:text-white transition">Showcase</a>
+      <a href="#reviews" class="hover:text-white transition">Reviews</a>
+    </nav>
+    <a href="#contact" class="px-5 py-2.5 rounded-full font-bold text-xs tracking-wider uppercase transition shadow-lg" style="background:${accent};color:#000">Inquire Now</a>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative pt-40 pb-24 px-6 max-w-7xl mx-auto z-10 min-h-[90vh] flex flex-col justify-center">
+  <div class="hero-glow -top-10 -left-10"></div>
+  <div class="max-w-3xl">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-6" style="background:${accent}18;border:1px solid ${accent}44;color:${accent}">
+      <span>●</span> Award-Level Interactive Experience
+    </div>
+    <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
+      Redefining Excellence in <span style="color:${accent}">${title}</span>
+    </h1>
+    <p class="text-lg sm:text-xl leading-relaxed mb-10" style="color:${muted}">
+      ${prompt}
+    </p>
+    <div class="flex items-center gap-4 flex-wrap">
+      <a href="#contact" class="px-8 py-4 rounded-xl font-bold text-sm transition shadow-2xl" style="background:${accent};color:#000">Get Started Today</a>
+      <a href="#work" class="px-8 py-4 rounded-xl font-bold text-sm border backdrop-blur-md transition hover:bg-white/5" style="border-color:${border}">Explore Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- Bento Grid Features -->
+<section id="services" class="py-24 px-6 max-w-7xl mx-auto z-10 relative">
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">Curated Offerings</h2>
+    <p style="color:${muted}">Crafted with unmatched precision, state-of-the-art technology, and attention to detail.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="card-3d p-8 rounded-3xl border" style="background:${card};border-color:${border}">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg mb-6" style="background:${accent}22;color:${accent}">01</div>
+      <h3 class="text-xl font-bold mb-3">Signature Craft</h3>
+      <p style="color:${muted};font-size:14px;line-height:1.6">Bespoke solutions customized to perfection for discerning clients who demand the very best.</p>
+    </div>
+    <div class="card-3d p-8 rounded-3xl border md:col-span-2 relative overflow-hidden" style="background:${card};border-color:${border}">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg mb-6" style="background:${accent}22;color:${accent}">02</div>
+      <h3 class="text-xl font-bold mb-3">Immersive 3D Architecture</h3>
+      <p style="color:${muted};font-size:14px;line-height:1.6">Next-generation spatial depth with WebGL physics, camera parallax, and real-time GPU responsiveness.</p>
+    </div>
+    <div class="card-3d p-8 rounded-3xl border md:col-span-2" style="background:${card};border-color:${border}">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg mb-6" style="background:${accent}22;color:${accent}">03</div>
+      <h3 class="text-xl font-bold mb-3">Zero-Latency Performance</h3>
+      <p style="color:${muted};font-size:14px;line-height:1.6">Optimized for 60 FPS across all viewports with seamless responsive scalability and accessibility.</p>
+    </div>
+    <div class="card-3d p-8 rounded-3xl border" style="background:${card};border-color:${border}">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg mb-6" style="background:${accent}22;color:${accent}">04</div>
+      <h3 class="text-xl font-bold mb-3">Instant Engagement</h3>
+      <p style="color:${muted};font-size:14px;line-height:1.6">Built-in conversion funnels designed to turn curious visitors into high-value relationships.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t py-12 px-6" style="border-color:${border}">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="font-bold text-lg">${title}</div>
+    <div style="color:${muted};font-size:13px">&copy; 2026 ${title}. Built with Webild AI.</div>
+  </div>
+</footer>
+
+<script>
+// 3D Three.js Scene
+(function() {
+  const container = document.getElementById('three-stage');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 5);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+  const key = new THREE.DirectionalLight(0xffffff, 2.0);
+  key.position.set(5, 5, 5);
+  scene.add(key);
+
+  const geo = new THREE.TorusKnotGeometry(1.1, 0.35, 100, 24);
+  const mat = new THREE.MeshPhysicalMaterial({ color: 0x${accent.replace('#','')}, metalness: 0.85, roughness: 0.18, clearcoat: 1 });
+  const mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
+
+  function render(time) {
+    requestAnimationFrame(render);
+    const t = time * 0.001;
+    mesh.rotation.y = t * 0.4;
+    mesh.rotation.x = Math.sin(t * 0.3) * 0.2;
+    renderer.render(scene, camera);
+  }
+  render(0);
+})();
+<\/script>
+</body>
+</html>`;
+
+  // Update preview iframe
+  const frame = document.getElementById('preview-frame');
+  frame.srcdoc = currentGeneratedHTML;
+  document.getElementById('preview-title').textContent = title;
+  
+  switchTab('viewer');
+}
+
+function switchTab(tab) {
+  document.getElementById('tab-studio').classList.toggle('hidden', tab !== 'studio');
+  document.getElementById('tab-templates').classList.toggle('hidden', tab !== 'templates');
+  document.getElementById('tab-viewer').classList.toggle('hidden', tab !== 'viewer');
+
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.className = 'tab-btn px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition text-white/60 hover:text-white';
+  });
+  const act = document.getElementById(`tab-btn-${tab}`);
+  if (act) act.className = 'tab-btn px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition text-white bg-white/10';
+}
+
+function setDeviceView(width) {
+  const frame = document.getElementById('preview-frame');
+  frame.style.maxWidth = width;
+  document.getElementById('dev-desktop').className = width === '100%' ? 'px-3 py-1 rounded text-xs text-white font-medium bg-white/10' : 'px-3 py-1 rounded text-xs text-white/60 hover:text-white';
+  document.getElementById('dev-tablet').className = width === '768px' ? 'px-3 py-1 rounded text-xs text-white font-medium bg-white/10' : 'px-3 py-1 rounded text-xs text-white/60 hover:text-white';
+  document.getElementById('dev-mobile').className = width === '390px' ? 'px-3 py-1 rounded text-xs text-white font-medium bg-white/10' : 'px-3 py-1 rounded text-xs text-white/60 hover:text-white';
+}
+
+function openInNewTab() {
+  if (!currentGeneratedHTML) generateWebsite();
+  const w = window.open();
+  w.document.write(currentGeneratedHTML);
+  w.document.close();
+}
+
+function exportCode() {
+  if (!currentGeneratedHTML) generateWebsite();
+  document.getElementById('code-output').textContent = currentGeneratedHTML;
+  document.getElementById('export-modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('export-modal').classList.remove('open');
+}
+
+function copyCode() {
+  navigator.clipboard.writeText(currentGeneratedHTML).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
+  });
+}
+
+function downloadCode() {
+  const blob = new Blob([currentGeneratedHTML], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'webild-generated-website.html';
+  a.click();
+}
+
+// Initialize on Load
+window.addEventListener('DOMContentLoaded', () => {
+  init3DBackground();
+  loadTemplatesCatalog();
+});
+</script>
+</body>
+</html>
