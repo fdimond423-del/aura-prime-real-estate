@@ -906,6 +906,324 @@ body {
 }
 
 /* ==========================================================================
+   8B. PINNED 3D EXPLODED DISH DECONSTRUCTION & ATMOSPHERE ENGINES
+   ========================================================================== */
+.ember-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+.atmosphere-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-expo);
+}
+
+.atmosphere-btn:hover {
+  background: var(--accent);
+  color: #080808;
+}
+
+.audio-wave {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 13px;
+}
+
+.audio-wave .bar {
+  width: 2.5px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: height 0.25s ease;
+}
+
+.audio-wave.active .bar:nth-child(1) { animation: waveBar 0.8s infinite ease-in-out alternate; }
+.audio-wave.active .bar:nth-child(2) { animation: waveBar 0.6s infinite ease-in-out alternate 0.15s; }
+.audio-wave.active .bar:nth-child(3) { animation: waveBar 0.9s infinite ease-in-out alternate 0.3s; }
+
+@keyframes waveBar {
+  0% { height: 3px; }
+  100% { height: 13px; }
+}
+
+/* Deconstruct Section */
+.deconstruct-wrapper {
+  position: relative;
+  height: 260vh;
+  background: radial-gradient(circle at 60% 40%, rgba(212, 175, 55, 0.06) 0%, transparent 60%), #09090b;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.deconstruct-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.deconstruct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 50px;
+  align-items: center;
+  width: 100%;
+}
+
+.deconstruct-left {
+  z-index: 10;
+}
+
+.deconstruct-progress-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.deconstruct-meter {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.deconstruct-meter-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  transition: width 0.1s linear;
+}
+
+.deconstruct-meter-label {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.layer-inspect-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.layer-inspect-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: rgba(18, 18, 22, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-expo);
+}
+
+.layer-inspect-item:hover, .layer-inspect-item.active {
+  background: rgba(28, 28, 34, 0.9);
+  border-color: var(--accent-border);
+  transform: translateX(8px);
+}
+
+.layer-num {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-title-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.layer-sub-text {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.flavor-radar-box {
+  margin-top: 24px;
+  padding: 18px 22px;
+  background: rgba(12, 12, 16, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.flavor-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.flavor-val {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.flavor-lbl {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 3D Stage & Exploding Dish */
+.dish-3d-stage {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  perspective: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dish-layers-box {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  transform-style: preserve-3d;
+  transform: rotateX(54deg) rotateZ(-24deg);
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.dish-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Layer 1: Basalt Pedestal */
+.dish-disc--1 {
+  background: radial-gradient(circle at 40% 40%, #26262c 0%, #121215 70%, #08080a 100%);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), inset 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Layer 2: Wild Morel & Bone Marrow Coulis */
+.dish-disc--2 {
+  inset: 25px;
+  background: radial-gradient(circle at 45% 45%, #4a2810 0%, #251206 65%, rgba(18, 9, 3, 0.85) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Layer 3: Binchotan Miyazaki A5 Wagyu Medallion */
+.dish-disc--3 {
+  inset: 50px;
+  background: radial-gradient(circle at 50% 50%, #852a1e 0%, #45120c 60%, #1a0604 100%);
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 20px 45px rgba(212, 175, 55, 0.25), inset 0 0 20px rgba(255, 140, 0, 0.3);
+  overflow: hidden;
+}
+
+.dish-disc--3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 0.92;
+  filter: contrast(1.15) saturate(1.1);
+}
+
+/* Layer 4: Périgord Truffle & Ossetra Caviar */
+.dish-disc--4 {
+  inset: 80px;
+  background: radial-gradient(circle at 50% 50%, rgba(20, 20, 24, 0.95) 0%, rgba(8, 8, 10, 0.98) 100%);
+  border: 1px dashed rgba(212, 175, 55, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.caviar-pearls {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffd700 0%, #b8860b 40%, #111 80%);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* Layer 5: Smoked Cloche Vapor Dome */
+.dish-disc--5 {
+  inset: -15px;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.28) 0%, rgba(212, 175, 55, 0.12) 40%, rgba(255, 255, 255, 0.02) 80%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 45px rgba(255, 255, 255, 0.15), inset 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+/* Layer Callout Tags positioned in 3D */
+.layer-tag-3d {
+  position: absolute;
+  left: 105%;
+  top: 50%;
+  transform: translateY(-50%) rotateZ(24deg) rotateX(-54deg);
+  background: rgba(12, 12, 16, 0.92);
+  border: 1px solid var(--accent-border);
+  padding: 8px 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.dish-disc:hover .layer-tag-3d,
+.dish-disc.is-focused .layer-tag-3d {
+  opacity: 1;
+  transform: translateY(-50%) translateX(10px) rotateZ(24deg) rotateX(-54deg);
+}
+
+/* ==========================================================================
    9. CHEF LEADERSHIP & INTERACTIVE EVENING CALCULATOR + RESERVATION FUNNEL
    ========================================================================== */
 .chef-feature {
@@ -1155,6 +1473,7 @@ input[type="range"]::-webkit-slider-thumb {
 <body>
 
 <div class="grain-overlay"></div>
+<canvas id="emberCanvas" class="ember-canvas"></canvas>
 
 <!-- 1. FLOATING GLASS NAVIGATION -->
 <header class="header" id="siteHeader">
@@ -1163,22 +1482,34 @@ input[type="range"]::-webkit-slider-thumb {
       <div class="brand-monogram">A</div>
       <div>
         <div class="brand-name">AURA GASTRONOMIE</div>
-        <div class="brand-sub">Three Michelin Stars</div>
+        <div class="brand-sub">Three Michelin Stars &bull; Fenil Limbachiya</div>
       </div>
     </a>
 
     <ul class="nav-links">
       <li><a href="#odyssey" class="nav-link">Culinary Deck</a></li>
+      <li><a href="#deconstruct" class="nav-link">3D Anatomy</a></li>
       <li><a href="#craft" class="nav-link">Philosophy</a></li>
       <li><a href="#menu" class="nav-link">Tasting Menu</a></li>
       <li><a href="#sanctuary" class="nav-link">Sanctuary</a></li>
       <li><a href="#reserve" class="nav-link">Reserve</a></li>
     </ul>
 
-    <a href="#reserve" class="btn-gold">
-      <span>Reserve Table</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
-    </a>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="atmosphereToggle" class="atmosphere-btn" aria-label="Toggle Hearth Sound Atmosphere">
+        <span class="audio-wave" id="audioWave">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </span>
+        <span id="atmosphereLabel">Hearth Sound: Off</span>
+      </button>
+
+      <a href="#reserve" class="btn-gold">
+        <span>Reserve Table</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -1464,6 +1795,128 @@ input[type="range"]::-webkit-slider-thumb {
             <span class="dish-price">&#8377;2,800</span>
           </div>
           <p class="dish-desc">21-year single malt infused with charred applewood vapor, saffron bitters, and hand-carved glacier crystal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7B. PINNED 3D EXPLODED DISH DECONSTRUCTION (Anatomy of Miyazaki A5 Wagyu) -->
+<section class="deconstruct-wrapper" id="deconstruct">
+  <div class="deconstruct-sticky">
+    <div class="container">
+      <div class="deconstruct-grid">
+        <div class="deconstruct-left">
+          <div class="deconstruct-progress-track">
+            <span class="deconstruct-meter-label">3D SCROLL ASSEMBLY</span>
+            <div class="deconstruct-meter">
+              <div class="deconstruct-meter-fill" id="deconstructMeter"></div>
+            </div>
+            <span class="deconstruct-meter-label" id="deconstructPercent">0%</span>
+          </div>
+
+          <div class="section-kicker">Signature Dish Deconstructed</div>
+          <h2 class="section-heading" style="font-size: 38px; line-height: 1.2; margin-bottom: 14px;">Anatomy of an Icon</h2>
+          <p class="section-lead" style="margin-bottom: 24px; font-size: 15px;">
+            Scroll downward to expand the signature <strong>Miyazaki A5 Wagyu</strong> into its five constituent culinary planes in 3D perspective space. Scroll upward to reassemble the plate onto its heated volcanic basalt stone.
+          </p>
+
+          <div class="layer-inspect-list" id="layerInspectList">
+            <div class="layer-inspect-item active" data-layer="5">
+              <div class="layer-num">05</div>
+              <div>
+                <div class="layer-title-text">Smoked Applewood Herbaceous Vapor Dome</div>
+                <div class="layer-sub-text">Hand-blown crystal cloche &bull; 42&deg;C aromatic cedar smoke</div>
+              </div>
+            </div>
+
+            <div class="layer-inspect-item" data-layer="4">
+              <div class="layer-num">04</div>
+              <div>
+                <div class="layer-title-text">P&eacute;rigord Winter Truffle &amp; Royal Ossetra</div>
+                <div class="layer-sub-text">Hand-planed black diamonds &bull; wild Sturgeon pearls</div>
+              </div>
+            </div>
+
+            <div class="layer-inspect-item" data-layer="3">
+              <div class="layer-num">03</div>
+              <div>
+                <div class="layer-title-text">Binchotan Charred Miyazaki BMS 12 Medallion</div>
+                <div class="layer-sub-text">45-day pink salt-cave aged &bull; 54&deg;C medium-rare core</div>
+              </div>
+            </div>
+
+            <div class="layer-inspect-item" data-layer="2">
+              <div class="layer-num">02</div>
+              <div>
+                <div class="layer-title-text">72-Hour Wild Kashmir Morel Reduction</div>
+                <div class="layer-sub-text">Smoked bone marrow glaze &bull; aged shallot essence</div>
+              </div>
+            </div>
+
+            <div class="layer-inspect-item" data-layer="1">
+              <div class="layer-num">01</div>
+              <div>
+                <div class="layer-title-text">Hand-Carved Volcanic Basalt Stone Base</div>
+                <div class="layer-sub-text">Icelandic lava stone pre-heated to 58&deg;C thermal retention</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flavor-radar-box">
+            <div class="flavor-stat">
+              <div class="flavor-val">99%</div>
+              <div class="flavor-lbl">Umami Depth</div>
+            </div>
+            <div style="width: 1px; height: 32px; background: var(--border-subtle);"></div>
+            <div class="flavor-stat">
+              <div class="flavor-val">92%</div>
+              <div class="flavor-lbl">Smoke Aromatics</div>
+            </div>
+            <div style="width: 1px; height: 32px; background: var(--border-subtle);"></div>
+            <div class="flavor-stat">
+              <div class="flavor-val">58&deg;C</div>
+              <div class="flavor-lbl">Plating Temp</div>
+            </div>
+            <div style="width: 1px; height: 32px; background: var(--border-subtle);"></div>
+            <div class="flavor-stat">
+              <div class="flavor-val">BMS 12</div>
+              <div class="flavor-lbl">Marbling Score</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="deconstruct-stage">
+          <div class="dish-3d-stage">
+            <div class="dish-layers-box" id="dishLayersBox">
+              <!-- Layer 1: Basalt Pedestal -->
+              <div class="dish-disc dish-disc--1" id="layer1" data-layer-idx="1" title="Layer 1: Heated Basalt Stone Base">
+                <span class="layer-tag-3d">01 Basalt Base &bull; 58&deg;C</span>
+              </div>
+
+              <!-- Layer 2: Morel Reduction -->
+              <div class="dish-disc dish-disc--2" id="layer2" data-layer-idx="2" title="Layer 2: Wild Morel & Marrow Coulis">
+                <span class="layer-tag-3d">02 Morel Glaze</span>
+              </div>
+
+              <!-- Layer 3: Miyazaki Wagyu -->
+              <div class="dish-disc dish-disc--3" id="layer3" data-layer-idx="3" title="Layer 3: Miyazaki A5 Wagyu Medallion">
+                <img src="assets/images/dish-wagyu.jpg" alt="A5 Miyazaki Wagyu Medallion"/>
+                <span class="layer-tag-3d">03 Miyazaki A5 (BMS 12)</span>
+              </div>
+
+              <!-- Layer 4: Truffle & Caviar -->
+              <div class="dish-disc dish-disc--4" id="layer4" data-layer-idx="4" title="Layer 4: Winter Truffle & Caviar">
+                <div class="caviar-pearls"></div>
+                <span class="layer-tag-3d">04 Truffle &amp; Ossetra</span>
+              </div>
+
+              <!-- Layer 5: Smoke Cloche Dome -->
+              <div class="dish-disc dish-disc--5" id="layer5" data-layer-idx="5" title="Layer 5: Applewood Smoke Dome">
+                <span class="layer-tag-3d">05 Applewood Smoke Cloche</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1892,6 +2345,257 @@ function submitReservation(e) {
   );
   window.open(`https://wa.me/918200095497?text=${text}`, '_blank');
 }
+// ENGINE 7: 60 FPS Golden Hearth Embers Canvas Engine
+(function initEmbersCanvas() {
+  const canvas = document.getElementById('emberCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const PARTICLE_COUNT = 60;
+  const particles = [];
+  let mouseWind = 0;
+  let lastScrollY = window.scrollY;
+  let scrollBoost = 0;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 2.2 + 0.8,
+      speedY: Math.random() * 0.9 + 0.4,
+      speedX: (Math.random() - 0.5) * 0.5,
+      alpha: Math.random() * 0.7 + 0.2,
+      fadeSpeed: Math.random() * 0.008 + 0.003,
+      hue: Math.random() > 0.3 ? 42 : 28 // Gold / Amber
+    });
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    const normX = (e.clientX / width - 0.5) * 2;
+    mouseWind = normX * 0.8;
+  }, { passive: true });
+
+  window.addEventListener('scroll', () => {
+    const dy = Math.abs(window.scrollY - lastScrollY);
+    lastScrollY = window.scrollY;
+    scrollBoost = Math.min(dy * 0.08, 4);
+  }, { passive: true });
+
+  function loop() {
+    ctx.clearRect(0, 0, width, height);
+    scrollBoost *= 0.94;
+    mouseWind *= 0.96;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.y -= p.speedY + scrollBoost;
+      p.x += p.speedX + mouseWind;
+      p.alpha -= p.fadeSpeed;
+
+      if (p.y < -10 || p.alpha <= 0) {
+        p.y = height + 10;
+        p.x = Math.random() * width;
+        p.alpha = Math.random() * 0.7 + 0.3;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${p.hue}, 85%, 65%, ${p.alpha})`;
+      ctx.shadowBlur = p.size * 5;
+      ctx.shadowColor = `hsla(${p.hue}, 90%, 50%, 0.8)`;
+      ctx.fill();
+    }
+
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+
+// ENGINE 8: Web Audio Fine Dining Atmosphere Synthesizer (Zero External Load)
+(function initAtmosphereAudio() {
+  const btn = document.getElementById('atmosphereToggle');
+  const wave = document.getElementById('audioWave');
+  const label = document.getElementById('atmosphereLabel');
+  if (!btn) return;
+
+  let audioCtx = null;
+  let isPlaying = false;
+  let masterGain = null;
+  let noiseTimer = null;
+
+  function startAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+    masterGain.gain.exponentialRampToValueAtTime(0.24, audioCtx.currentTime + 1.5);
+    masterGain.connect(audioCtx.destination);
+
+    // Warm hearth drone oscillators (65Hz & 130Hz)
+    const osc1 = audioCtx.createOscillator();
+    const osc2 = audioCtx.createOscillator();
+    const filter = audioCtx.createBiquadFilter();
+
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(65.4, audioCtx.currentTime); // C2 warm tone
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(130.8, audioCtx.currentTime); // C3 harmonic
+
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(260, audioCtx.currentTime);
+
+    osc1.connect(filter);
+    osc2.connect(filter);
+    filter.connect(masterGain);
+    osc1.start();
+    osc2.start();
+
+    // Subtle gentle crackling embers
+    function crackle() {
+      if (!isPlaying) return;
+      const bufferSize = audioCtx.sampleRate * 0.04;
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.2));
+      }
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+      const crackleGain = audioCtx.createGain();
+      crackleGain.gain.setValueAtTime(Math.random() * 0.12 + 0.04, audioCtx.currentTime);
+      noise.connect(crackleGain);
+      crackleGain.connect(masterGain);
+      noise.start();
+
+      const nextDelay = Math.random() * 450 + 150;
+      noiseTimer = setTimeout(crackle, nextDelay);
+    }
+    crackle();
+  }
+
+  function stopAudio() {
+    if (!audioCtx) return;
+    if (noiseTimer) clearTimeout(noiseTimer);
+    masterGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+    setTimeout(() => {
+      audioCtx.close();
+      audioCtx = null;
+    }, 650);
+  }
+
+  btn.addEventListener('click', () => {
+    if (!isPlaying) {
+      startAudio();
+      isPlaying = true;
+      wave.classList.add('active');
+      label.textContent = 'Hearth Sound: On';
+      btn.style.borderColor = 'var(--accent)';
+      btn.style.color = '#fff';
+    } else {
+      stopAudio();
+      isPlaying = false;
+      wave.classList.remove('active');
+      label.textContent = 'Hearth Sound: Off';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }
+  });
+})();
+
+// ENGINE 9: Pinned 3D Exploded Dish Scroll Scrubbing & Layer Inspector
+(function initDeconstructDish() {
+  const section = document.getElementById('deconstruct');
+  const layersBox = document.getElementById('dishLayersBox');
+  const meterFill = document.getElementById('deconstructMeter');
+  const meterPercent = document.getElementById('deconstructPercent');
+  const inspectItems = document.querySelectorAll('.layer-inspect-item');
+
+  if (!section || !layersBox) return;
+
+  const layer1 = document.getElementById('layer1');
+  const layer2 = document.getElementById('layer2');
+  const layer3 = document.getElementById('layer3');
+  const layer4 = document.getElementById('layer4');
+  const layer5 = document.getElementById('layer5');
+
+  const clamp = (v, a = 0, b = 1) => (v < a ? a : v > b ? b : v);
+
+  function update() {
+    const vh = window.innerHeight;
+    const rect = section.getBoundingClientRect();
+    const scrollable = Math.max(section.offsetHeight - vh, 1);
+    const progress = clamp(-rect.top / scrollable);
+
+    // Update Progress bar
+    if (meterFill) meterFill.style.width = `${(progress * 100).toFixed(0)}%`;
+    if (meterPercent) meterPercent.textContent = `${(progress * 100).toFixed(0)}%`;
+
+    // 3D Exploded Layers Z-Transforms
+    // When progress = 0: Compact together
+    // When progress = 1: Exploded apart with high separation
+    const z2 = progress * 65;
+    const z3 = progress * 145;
+    const z4 = progress * 225;
+    const z5 = progress * 305;
+
+    if (layer1) layer1.style.transform = `translateZ(0px)`;
+    if (layer2) layer2.style.transform = `translateZ(${z2.toFixed(1)}px)`;
+    if (layer3) layer3.style.transform = `translateZ(${z3.toFixed(1)}px)`;
+    if (layer4) layer4.style.transform = `translateZ(${z4.toFixed(1)}px)`;
+    if (layer5) layer5.style.transform = `translateZ(${z5.toFixed(1)}px)`;
+
+    // Active Layer Highlight based on scroll progress
+    let activeIdx = 1;
+    if (progress > 0.8) activeIdx = 5;
+    else if (progress > 0.6) activeIdx = 4;
+    else if (progress > 0.4) activeIdx = 3;
+    else if (progress > 0.2) activeIdx = 2;
+
+    inspectItems.forEach(item => {
+      const idx = parseInt(item.getAttribute('data-layer'), 10);
+      if (idx === activeIdx) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener('resize', update);
+  update();
+
+  // Interactive Layer Inspection on Click
+  inspectItems.forEach(item => {
+    item.addEventListener('click', () => {
+      inspectItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const idx = item.getAttribute('data-layer');
+      const targetDisc = document.getElementById(`layer${idx}`);
+
+      document.querySelectorAll('.dish-disc').forEach(d => d.classList.remove('is-focused'));
+      if (targetDisc) {
+        targetDisc.classList.add('is-focused');
+        setTimeout(() => targetDisc.classList.remove('is-focused'), 1600);
+      }
+    });
+  });
+
+  // Direct 3D Disc click opens inspector
+  document.querySelectorAll('.dish-disc').forEach(disc => {
+    disc.addEventListener('click', () => {
+      const idx = disc.getAttribute('data-layer-idx');
+      const item = document.querySelector(`.layer-inspect-item[data-layer="${idx}"]`);
+      if (item) item.click();
+    });
+  });
+})();
 </script>
 </body>
 </html>
