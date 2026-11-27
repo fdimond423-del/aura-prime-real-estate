@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Webild 3D AI Prompt Engine & Storytelling Studio</title>
+<meta name="description" content="Master Webild.io website generation workflow: customizable 3D storytelling prompts, all 59 templates catalog, real-time 3D WebGL orbit & explode viewer, and prompt engineer."/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Three.js WebGL & GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+:root {
+  --bg-pitch: #050608;
+  --bg-surface: #0a0d14;
+  --bg-card: rgba(14, 18, 28, 0.82);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(0, 240, 255, 0.45);
+  
+  --primary-cyan: #00f0ff;
+  --primary-blue: #2563eb;
+  --accent-lime: #98f014;
+  --text-white: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --text-dim: rgba(255, 255, 255, 0.4);
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --glow-cyan: 0 0 35px rgba(0, 240, 255, 0.35);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg-pitch);
+  color: var(--text-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-pitch); }
+::-webkit-scrollbar-thumb { background: #1e2638; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-cyan); }
+
+.font-mono { font-family: 'Space Grotesk', monospace; }
+.text-cyan { color: var(--primary-cyan); }
+.text-lime { color: var(--accent-lime); }
+.text-muted { color: var(--text-muted); }
+
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Header */
+.top-header {
+  position: sticky;
+  top: 0;
+  background: rgba(5, 6, 8, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 50;
+  height: 76px;
+  display: flex;
+  align-items: center;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.brand-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent-lime), var(--primary-cyan));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 800;
+  font-size: 16px;
+  color: #050608;
+}
+
+.brand-text {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: var(--primary-cyan);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s var(--ease-expo);
+  cursor: pointer;
+}
+
+.btn-pill:hover {
+  background: var(--primary-cyan);
+  color: #050608;
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero-box {
+  padding: 70px 0 40px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  background: rgba(152, 240, 20, 0.1);
+  border: 1px solid rgba(152, 240, 20, 0.35);
+  color: var(--accent-lime);
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: clamp(34px, 5vw, 62px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 760px;
+  margin: 0 auto 36px;
+}
+
+/* Main Studio Grid: 3D Live Engine Left | Customizer Right */
+.studio-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+/* 3D Storytelling Viewport Box */
+.viewer-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.viewer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.viewer-title {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.viewer-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewer-btn.active, .viewer-btn:hover {
+  background: var(--primary-cyan);
+  color: #050608;
+  border-color: var(--primary-cyan);
+}
+
+.canvas-container {
+  width: 100%;
+  height: 420px;
+  position: relative;
+  border-radius: 16px;
+  background: radial-gradient(circle at 50% 50%, rgba(20, 30, 55, 0.5) 0%, rgba(5, 8, 17, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+#three-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 3D Hotspot Overlays */
+.hotspot-pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.3);
+  border: 2px solid var(--primary-cyan);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px var(--primary-cyan);
+  transition: transform 0.2s;
+}
+
+.hotspot-pin::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.hotspot-pin:hover {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.viewer-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.range-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.range-label {
+  font-size: 11px;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-cyan);
+  cursor: pointer;
+}
+
+/* Prompt Customizer Box */
+.customizer-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-heading {
+  font-size: 20px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Space Grotesk', monospace;
+}
+
+.field-input, .field-select {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(5, 8, 17, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s;
+}
+
+.field-input:focus, .field-select:focus {
+  border-color: var(--primary-cyan);
+}
+
+.prompt-output-box {
+  background: #020408;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+}
+
+.prompt-textarea {
+  width: 100%;
+  height: 170px;
+  background: transparent;
+  border: none;
+  color: #7dd3fc;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  outline: none;
+  resize: vertical;
+}
+
+.prompt-copy-btn {
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+  color: #fff;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s;
+}
+
+.prompt-copy-btn:hover {
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+
+/* 59 Templates Catalog Section */
+.templates-section {
+  padding: 80px 0 100px;
+}
+
+.filters-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: var(--primary-cyan);
+  color: #050608;
+  border-color: var(--primary-cyan);
+}
+
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.template-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-expo), border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.template-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-cyan);
+  box-shadow: 0 18px 40px -15px rgba(0, 240, 255, 0.2);
+}
+
+.template-media {
+  width: 100%;
+  height: 190px;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.template-media video, .template-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-expo);
+}
+
+.template-card:hover .template-media video {
+  transform: scale(1.05);
+}
+
+.template-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(5, 8, 17, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary-cyan);
+}
+
+.template-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.template-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.template-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.template-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.btn-load-prompt {
+  flex: 1;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: var(--primary-cyan);
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.btn-load-prompt:hover {
+  background: var(--primary-cyan);
+  color: #050608;
+}
+
+.btn-preview-link {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-preview-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .studio-layout { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="top-header">
+  <div class="container header-inner">
+    <a href="#" class="brand">
+      <div class="brand-badge">W</div>
+      <div>
+        <div class="brand-text">WEBILD <span class="text-cyan">PROMPT ENGINE</span></div>
+        <div style="font-size: 10px; color: var(--text-dim); font-family: 'Space Grotesk', monospace;">59 Templates &bull; 3D Storytelling Workflow</div>
+      </div>
+    </a>
+
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="https://wa.me/918200095497?text=Hi%20Fenil!%20I%20want%20to%20build%20a%20Webild%203D%20website." target="_blank" rel="noopener" class="btn-pill">
+        <span>WhatsApp: +91 82000 95497</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <!-- HERO BANNER -->
+  <section class="hero-box">
+    <div class="hero-tag">Reverse-Engineered Webild.io AI System</div>
+    <h1 class="hero-title">
+      Build 3D, Animated, Interactive <br/>
+      <span class="text-cyan">Storytelling Websites</span>
+    </h1>
+    <p class="hero-sub">
+      Select any of the 59 Webild templates, inspect the real-time 3D WebGL orbit & explode storytelling engine, customize your parameters, and generate an award-winning $10k Master Build Prompt instantly.
+    </p>
+  </section>
+
+  <!-- STUDIO WORKSPACE: 3D ENGINE + PROMPT CUSTOMIZER -->
+  <section class="studio-layout">
+    
+    <!-- LEFT: 3D STORYTELLING ENGINE SIMULATOR -->
+    <div class="viewer-card">
+      <div class="viewer-header">
+        <div class="viewer-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-cyan)" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <span>Webild 3D Storytelling Simulator</span>
+        </div>
+        <div class="viewer-actions">
+          <button class="viewer-btn active" id="btn-wireframe">Wireframe</button>
+          <button class="viewer-btn" id="btn-reset-cam">Reset View</button>
+        </div>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="three-canvas"></canvas>
+        <div class="hotspot-pin" id="pin-1" style="top: 30%; left: 45%;" title="Hotspot 1: Level 03 Penthouse Cloud"></div>
+        <div class="hotspot-pin" id="pin-2" style="top: 65%; left: 55%;" title="Hotspot 2: Level 01 Ground Foundation"></div>
+      </div>
+
+      <div class="viewer-controls-bar">
+        <div class="range-wrap">
+          <span class="range-label">Scroll Explode:</span>
+          <input type="range" id="explode-slider" min="0" max="100" value="0"/>
+        </div>
+        <span style="font-size: 11px; font-family: 'Space Grotesk', monospace; color: var(--primary-cyan); font-weight: 700;" id="explode-val-txt">0%</span>
+      </div>
+      <div style="font-size: 11px; color: var(--text-dim); margin-top: 8px;">
+        💡 <strong>3D Storytelling Mode:</strong> Drag mouse to orbit 360&deg; &bull; Slide to deconstruct layers &bull; Click pins for feature callouts.
+      </div>
+    </div>
+
+    <!-- RIGHT: PROMPT CUSTOMIZER GENERATOR -->
+    <div class="customizer-card">
+      <div class="card-heading">
+        <span>Custom Master Prompt Generator</span>
+        <span style="font-size: 12px; font-family: 'Space Grotesk', monospace; color: var(--accent-lime);">AI-Ready</span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">1. Choose Template / Category</label>
+        <select id="tpl-select" class="field-select">
+          <!-- Populated by JS -->
+        </select>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="field-group">
+          <label class="field-label">2. Business / Brand Name</label>
+          <input type="text" id="brand-name-input" class="field-input" value="Aura Prime Growth"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">3. 3D Model Visual Focus</label>
+          <select id="model-type-select" class="field-select">
+            <option value="Architectural High-Rise Skyscraper & Luxury Villa">Architectural High-Rise & Villa</option>
+            <option value="Specialty Ceramic Coffee Cup with Floating Steam">Specialty Coffee Cup & Steam</option>
+            <option value="Exotic Supercar with Aerodynamic Wireframe Cage">Exotic Supercar & Aerodynamics</option>
+            <option value="Holographic AI Geometric Crystal Knot">Holographic AI Crystal Knot</option>
+            <option value="3D Matte Product Bottle & Dropper">3D Matte Cosmetic Bottle</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">4. Generated Webild $10k Master Prompt</label>
+        <div class="prompt-output-box">
+          <textarea id="prompt-output" class="prompt-textarea" readonly></textarea>
+        </div>
+      </div>
+
+      <button class="prompt-copy-btn" id="btn-copy">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        <span id="copy-btn-txt">Copy Master Build Prompt</span>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- 59 TEMPLATES CATALOG -->
+  <section class="templates-section">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h2 style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em;">All 59 Webild Production Templates</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">Extracted directly from Webild.io with exact component recipes and video previews.</p>
+      </div>
+      <div style="font-family: 'Space Grotesk', monospace; font-size: 13px; color: var(--primary-cyan); font-weight: 700;" id="catalog-count">59 Templates Available</div>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="filters-bar" id="filters-container">
+      <button class="filter-btn active" data-cat="all">All (59)</button>
+      <button class="filter-btn" data-cat="Real Estate">Real Estate</button>
+      <button class="filter-btn" data-cat="Agency">Agency</button>
+      <button class="filter-btn" data-cat="Cafe">Cafe & Food</button>
+      <button class="filter-btn" data-cat="Detailing">Automotive</button>
+      <button class="filter-btn" data-cat="SaaS">SaaS & Tech</button>
+      <button class="filter-btn" data-cat="E-commerce">E-Commerce</button>
+      <button class="filter-btn" data-cat="Services">Services</button>
+    </div>
+
+    <!-- Grid Container -->
+    <div class="templates-grid" id="templates-grid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+</main>
+
+<script>
+// ==========================================
+// 1. DATA: WEBILD PROMPTS & TEMPLATES
+// ==========================================
+let templatesData = [];
+
+// ==========================================
+// 2. THREE.JS 3D STORYTELLING SIMULATOR
+// ==========================================
+let scene, camera, renderer, towerMeshGroup, wireMeshGroup;
+let isDragging = false, prevMouse = { x: 0, y: 0 };
+let floors = [];
+
+function init3DSimulator() {
+  const canvas = document.getElementById('three-canvas');
+  const container = canvas.parentElement;
+
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
+  camera.position.set(0, 1.2, 7.5);
+
+  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+  const l1 = new THREE.DirectionalLight(0x00f0ff, 3);
+  l1.position.set(5, 8, 5);
+  scene.add(l1);
+
+  towerMeshGroup = new THREE.Group();
+  scene.add(towerMeshGroup);
+
+  // 4 Floors that can explode
+  const heights = [0.65, 0.65, 0.65, 0.65];
+  const widths = [2.2, 1.9, 1.6, 1.3];
+
+  heights.forEach((h, i) => {
+    const fGroup = new THREE.Group();
+    const w = widths[i];
+
+    const boxGeo = new THREE.BoxGeometry(w, h, w);
+    const boxMat = new THREE.MeshPhysicalMaterial({
+      color: 0x1e3a8a,
+      metalness: 0.9,
+      roughness: 0.15,
+      clearcoat: 1.0,
+      transparent: true,
+      opacity: 0.9
+    });
+    const solid = new THREE.Mesh(boxGeo, boxMat);
+    fGroup.add(solid);
+
+    const edges = new THREE.EdgesGeometry(boxGeo);
+    const lineMat = new THREE.LineBasicMaterial({ color: 0x00f0ff, linewidth: 2 });
+    const wire = new THREE.LineSegments(edges, lineMat);
+    wire.name = 'wire';
+    fGroup.add(wire);
+
+    fGroup.baseY = (i - 1.5) * 0.72;
+    fGroup.position.y = fGroup.baseY;
+    towerMeshGroup.add(fGroup);
+    floors.push(fGroup);
+  });
+
+  // Mouse Orbit Drag
+  canvas.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+  window.addEventListener('mouseup', () => isDragging = false);
+  canvas.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - prevMouse.x;
+    const dy = e.clientY - prevMouse.y;
+    towerMeshGroup.rotation.y += dx * 0.01;
+    towerMeshGroup.rotation.x += dy * 0.01;
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+
+  // Reset Button
+  document.getElementById('btn-reset-cam').addEventListener('click', () => {
+    gsap.to(towerMeshGroup.rotation, { x: 0.2, y: 0.5, duration: 0.8 });
+    document.getElementById('explode-slider').value = 0;
+    updateExplode(0);
+  });
+
+  // Wireframe Toggle
+  let wireVisible = true;
+  document.getElementById('btn-wireframe').addEventListener('click', function() {
+    wireVisible = !wireVisible;
+    this.classList.toggle('active', wireVisible);
+    floors.forEach(f => {
+      const w = f.getObjectByName('wire');
+      if (w) w.visible = wireVisible;
+    });
+  });
+
+  // Explode slider
+  const slider = document.getElementById('explode-slider');
+  slider.addEventListener('input', (e) => {
+    updateExplode(parseFloat(e.target.value));
+  });
+
+  function updateExplode(val) {
+    const progress = val / 100;
+    document.getElementById('explode-val-txt').textContent = `${Math.round(val)}%`;
+    floors[0].position.y = floors[0].baseY - progress * 1.1;
+    floors[1].position.y = floors[1].baseY - progress * 0.35;
+    floors[2].position.y = floors[2].baseY + progress * 0.35;
+    floors[3].position.y = floors[3].baseY + progress * 1.1;
+  }
+
+  function loop() {
+    requestAnimationFrame(loop);
+    if (!isDragging) {
+      towerMeshGroup.rotation.y += 0.004;
+    }
+    renderer.render(scene, camera);
+  }
+  loop();
+}
+
+// ==========================================
+// 3. LOAD CATALOG & BIND PROMPT GENERATOR
+// ==========================================
+async function initApp() {
+  try {
+    const res = await fetch('webild_prompt_library.json');
+    templatesData = await res.json();
+  } catch(e) {
+    console.warn('Fallback loading catalog...');
+  }
+
+  const select = document.getElementById('tpl-select');
+  select.innerHTML = templatesData.map((t, i) => `<option value="${i}">${t.title} (${t.category})</option>`).join('');
+
+  select.addEventListener('change', generatePrompt);
+  document.getElementById('brand-name-input').addEventListener('input', generatePrompt);
+  document.getElementById('model-type-select').addEventListener('change', generatePrompt);
+
+  generatePrompt();
+  renderCatalog('all');
+  initFilters();
+}
+
+function generatePrompt() {
+  const idx = parseInt(document.getElementById('tpl-select').value) || 0;
+  const tpl = templatesData[idx] || {};
+  const brand = document.getElementById('brand-name-input').value.trim() || 'Aura Prime';
+  const model = document.getElementById('model-type-select').value;
+
+  const bg = (tpl.colorTheme && tpl.colorTheme['--background']) ? tpl.colorTheme['--background'] : '#050608';
+  const card = (tpl.colorTheme && tpl.colorTheme['--card']) ? tpl.colorTheme['--card'] : '#0e121c';
+  const accent = (tpl.colorTheme && tpl.colorTheme['--accent']) ? tpl.colorTheme['--accent'] : '#00f0ff';
+  const cta = (tpl.colorTheme && tpl.colorTheme['--primary-cta']) ? tpl.colorTheme['--primary-cta'] : '#2563eb';
+
+  const masterPrompt = 
+`Build an award-winning, $10k-quality, viral storytelling website for "${brand}" in the ${tpl.category || 'High-Ticket'} industry.
+
+1. ARCHITECTURAL BLUEPRINT (Derived from Webild "${tpl.title}"):
+- Section Structure: ${tpl.recipe || tpl.description}
+- Layout Style: Ultra-clean, generous negative space, high visual breathing room (not cramped / not bhara hua).
+
+2. 3D STORYTELLING & MOTION SPEC (Webild 3D Mode Standard):
+- Hero Section: Auto-playing 3D ${model} floating in WebGL canvas with mouse damping parallax, PBR chrome reflection, and neon wireframe glow.
+- Signature Scroll Pinned Assembly: Section pinned with GSAP ScrollTrigger (scrub: 1). As the user scrolls down, the 3D ${model} deconstructs/explodes into distinct architectural layers revealing features at each tier. Scrolling back up cleanly reassembles the model.
+- 3D Interactive Hotspots: Vector3 coordinate pins projected onto screen with pulsing rings; clicking a pin rotates camera to that component with smooth spring physics.
+- Butter-Smooth Scrolling: Lenis inertia smooth-scroll synchronized with GSAP ScrollTrigger.
+- Hover Physics: 3D card tilt with dynamic mouse cursor spotlight tracking (--mouse-x, --mouse-y radial gradient).
+
+3. DESIGN SYSTEM & COLOR TOKENS:
+- Background: ${bg}
+- Surface/Card: ${card}
+- Accent/Glow: ${accent}
+- Primary CTA: ${cta}
+- Typography: "Space Grotesk" for tech display & numbers + "Plus Jakarta Sans" for editorial body.
+- Responsive: 60 FPS compositor animations, mobile optimized, instant 0ms first contentful paint.`;
+
+  document.getElementById('prompt-output').value = masterPrompt;
+}
+
+// 1-Click Copy
+document.getElementById('btn-copy').addEventListener('click', () => {
+  const val = document.getElementById('prompt-output').value;
+  navigator.clipboard.writeText(val).then(() => {
+    const txt = document.getElementById('copy-btn-txt');
+    txt.textContent = 'COPIED TO CLIPBOARD! ✓';
+    setTimeout(() => { txt.textContent = 'Copy Master Build Prompt'; }, 2000);
+  });
+});
+
+// Render Catalog Cards
+function renderCatalog(category) {
+  const grid = document.getElementById('templates-grid');
+  let filtered = templatesData;
+  if (category !== 'all') {
+    filtered = templatesData.filter(t => t.category.toLowerCase().includes(category.toLowerCase()));
+  }
+
+  document.getElementById('catalog-count').textContent = `${filtered.length} Templates Shown`;
+
+  grid.innerHTML = filtered.map((t, i) => {
+    const originalIdx = templatesData.indexOf(t);
+    const mediaHtml = t.videoSrc 
+      ? `<video src="${t.videoSrc}" autoplay loop muted playsinline poster="${t.imageSrc || ''}"></video>`
+      : `<img src="${t.imageSrc || 'https://via.placeholder.com/600x340'}" alt="${t.title}"/>`;
+
+    return `
+      <div class="template-card">
+        <div class="template-media">
+          <span class="template-badge">${t.category}</span>
+          ${mediaHtml}
+        </div>
+        <div class="template-body">
+          <div class="template-title">${t.title}</div>
+          <div class="template-desc">${t.description}</div>
+          <div class="template-actions">
+            <button class="btn-load-prompt" onclick="loadTemplateToPrompt(${originalIdx})">Load Prompt</button>
+            <a href="${t.previewUrl}" target="_blank" rel="noopener" class="btn-preview-link">Preview &nearr;</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function loadTemplateToPrompt(idx) {
+  const select = document.getElementById('tpl-select');
+  select.value = idx;
+  generatePrompt();
+  window.scrollTo({ top: document.querySelector('.customizer-card').offsetTop - 100, behavior: 'smooth' });
+}
+
+function initFilters() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCatalog(btn.dataset.cat);
+    });
+  });
+}
+
+// Initialize on Load
+window.addEventListener('DOMContentLoaded', () => {
+  init3DSimulator();
+  initApp();
+});
+</script>
+</body>
+</html>

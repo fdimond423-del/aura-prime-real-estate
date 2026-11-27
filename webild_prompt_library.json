@@ -1,0 +1,1243 @@
+[
+  {
+    "id": "18",
+    "title": "Luxury Real Estate",
+    "category": "Real Estate",
+    "tags": [
+      "Real Estate",
+      "Luxury",
+      "Property"
+    ],
+    "description": "An elegant luxury real estate template with video scroll hero, text fill about, and parallax contact. Perfect for high-end property agencies, villa rentals, and luxury developments.",
+    "recipe": "Luxury villas template with video scroll hero, text fill about, media columns properties, parallax contact, and footer.",
+    "defaultPrompt": "Create a luxury real estate website.",
+    "colorTheme": {
+      "--background": "#faf8f5",
+      "--card": "#ffffff",
+      "--foreground": "#1a1a1a",
+      "--primary-cta": "#1a1a1a",
+      "--primary-cta-text": "#faf8f5",
+      "--secondary-cta": "#f0ece6",
+      "--secondary-cta-text": "#1a1a1a",
+      "--accent": "#c9a96e",
+      "--background-accent": "#f0ece6"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/luxury-real-estate.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/luxury-real-estate",
+    "masterPrompt": "Create an award-winning, high-converting Luxury Real Estate website (Real Estate).\nLayout & Structure: Luxury villas template with video scroll hero, text fill about, media columns properties, parallax contact, and footer..\nColor System: Background #faf8f5, Card #ffffff, Accent #c9a96e, Foreground #1a1a1a, Primary CTA #1a1a1a.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "23",
+    "title": "Coffee Shop",
+    "category": "Cafe",
+    "tags": [
+      "Food & Drink",
+      "Restaurant",
+      "Local Business"
+    ],
+    "description": "A warm and inviting coffee shop template with floating cards, cursor trail interactions, and filterable menu. Perfect for cafes, bakeries, and specialty coffee shops.",
+    "recipe": "Coffee shop template with billboard hero, cursor trail about, filterable menu grid, event features, contact bar, and footer.",
+    "defaultPrompt": "Create a coffee shop website.",
+    "colorTheme": {
+      "--background": "#F5F0E8",
+      "--card": "#EDE7DB",
+      "--foreground": "#2C1810",
+      "--primary-cta": "#2C1810",
+      "--primary-cta-text": "#F5F0E8",
+      "--secondary-cta": "#FFFFFF",
+      "--secondary-cta-text": "#2C1810",
+      "--accent": "#8B7355",
+      "--background-accent": "#6F4E37"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/coffee-shop.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/coffee-shop",
+    "masterPrompt": "Create an award-winning, high-converting Coffee Shop website (Cafe).\nLayout & Structure: Coffee shop template with billboard hero, cursor trail about, filterable menu grid, event features, contact bar, and footer..\nColor System: Background #F5F0E8, Card #EDE7DB, Accent #8B7355, Foreground #2C1810, Primary CTA #2C1810.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "26",
+    "title": "Detailing Studio",
+    "category": "Detailing",
+    "tags": [
+      "Automotive",
+      "Dark Theme",
+      "Video"
+    ],
+    "description": "A cinematic dark detailing template with a scroll-driven video hero, interactive hotspots, and before/after results. Perfect for detailing, ceramic coating, and PPF studios.",
+    "recipe": "Detailing studio template with video scroll hero, panel reveal statement, video hotspots, results comparison, FAQ, and contact.",
+    "defaultPrompt": "Create a car detailing studio website.",
+    "colorTheme": {
+      "--background": "#010101",
+      "--card": "#1a1a1a",
+      "--foreground": "#ffffff",
+      "--primary-cta": "#ffffff",
+      "--primary-cta-text": "#010101",
+      "--secondary-cta": "#161616",
+      "--secondary-cta-text": "#ffffff",
+      "--accent": "#aaa3ff",
+      "--background-accent": "#aaa3ff"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/detailing-studio.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/detailing-studio",
+    "masterPrompt": "Create an award-winning, high-converting Detailing Studio website (Detailing).\nLayout & Structure: Detailing studio template with video scroll hero, panel reveal statement, video hotspots, results comparison, FAQ, and contact..\nColor System: Background #010101, Card #1a1a1a, Accent #aaa3ff, Foreground #ffffff, Primary CTA #ffffff.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "21",
+    "title": "Digital Agency",
+    "category": "Agency",
+    "tags": [
+      "Agency",
+      "Technology",
+      "Dark Theme"
+    ],
+    "description": "A modern web agency template with vertical marquee hero, bento services, work showcase carousel, and team cards. Perfect for design studios and development agencies.",
+    "recipe": "Web agency template with vertical marquee hero, bento services, media carousel, glow features, trust card, metrics, team, FAQ, and contact.",
+    "defaultPrompt": "Create a web agency website.",
+    "colorTheme": {
+      "--background": "#0a0a0a",
+      "--card": "#161616",
+      "--foreground": "#f0f0f0",
+      "--primary-cta": "#ffffff",
+      "--primary-cta-text": "#0a0a0a",
+      "--secondary-cta": "#1e1e1e",
+      "--secondary-cta-text": "#e0e0e0",
+      "--accent": "#d0d0d0",
+      "--background-accent": "#434343"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/web-agency.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/web-agency",
+    "masterPrompt": "Create an award-winning, high-converting Digital Agency website (Agency).\nLayout & Structure: Web agency template with vertical marquee hero, bento services, media carousel, glow features, trust card, metrics, team, FAQ, and contact..\nColor System: Background #0a0a0a, Card #161616, Accent #d0d0d0, Foreground #f0f0f0, Primary CTA #ffffff.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "10",
+    "title": "Landscaping Services",
+    "category": "Landscaping",
+    "tags": [
+      "Services",
+      "Outdoor",
+      "Local Business"
+    ],
+    "description": "A nature-inspired template for landscaping companies featuring project galleries, service listings, and seasonal promotions. Great for lawn care and outdoor design businesses.",
+    "recipe": "Landscaping company template with overlay hero, services, team, testimonials, FAQ, and contact.",
+    "defaultPrompt": "Create a landscaping company website.",
+    "colorTheme": {
+      "--background": "#f3f0e9",
+      "--card": "#e9e4d8",
+      "--foreground": "#1e2a22",
+      "--primary-cta": "#1e2a22",
+      "--primary-cta-text": "#f3f0e9",
+      "--secondary-cta": "#e4ded0",
+      "--secondary-cta-text": "#1e2a22",
+      "--accent": "#6d7d5f",
+      "--background-accent": "#6fb85e"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/landscaping-services.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/landscaping-services",
+    "masterPrompt": "Create an award-winning, high-converting Landscaping Services website (Landscaping).\nLayout & Structure: Landscaping company template with overlay hero, services, team, testimonials, FAQ, and contact..\nColor System: Background #f3f0e9, Card #e9e4d8, Accent #6d7d5f, Foreground #1e2a22, Primary CTA #1e2a22.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "9",
+    "title": "Roofing Company",
+    "category": "Roofing",
+    "tags": [
+      "Construction",
+      "Services",
+      "Local Business"
+    ],
+    "description": "A professional roofing contractor template with service details, before/after galleries, and free estimate forms. Ideal for roofing and home improvement businesses.",
+    "recipe": "Roofing company template with testimonial hero, about, services, metrics, process, testimonials, FAQ, and contact.",
+    "defaultPrompt": "Create a roofing company website.",
+    "colorTheme": {
+      "--background": "#100f0e",
+      "--card": "#1a1918",
+      "--foreground": "#f5f3f0",
+      "--primary-cta": "#f5692b",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#282624",
+      "--secondary-cta-text": "#f5f3f0",
+      "--accent": "#f5692b",
+      "--background-accent": "#fb923c"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/roofing-company.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/roofing-company",
+    "masterPrompt": "Create an award-winning, high-converting Roofing Company website (Roofing).\nLayout & Structure: Roofing company template with testimonial hero, about, services, metrics, process, testimonials, FAQ, and contact..\nColor System: Background #100f0e, Card #1a1918, Accent #f5692b, Foreground #f5f3f0, Primary CTA #f5692b.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "3",
+    "title": "Creative Portfolio",
+    "category": "Portfolio",
+    "tags": [
+      "Creative",
+      "Portfolio",
+      "Minimal"
+    ],
+    "description": "A stunning creative portfolio template with scroll animations, work showcases, and parallax effects. Perfect for designers, photographers, and creative professionals.",
+    "recipe": "Creative portfolio template with scroll stack hero, testimonials, about parallax, bento features, FAQ, and contact.",
+    "defaultPrompt": "Create a creative portfolio website.",
+    "colorTheme": {
+      "--background": "#ffffff",
+      "--card": "#f5f5f5",
+      "--foreground": "#171717",
+      "--primary-cta": "#171717",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#f5f5f5",
+      "--secondary-cta-text": "#171717",
+      "--accent": "#171717",
+      "--background-accent": "#171717"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/creative-portfolio.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/creative-portfolio",
+    "masterPrompt": "Create an award-winning, high-converting Creative Portfolio website (Portfolio).\nLayout & Structure: Creative portfolio template with scroll stack hero, testimonials, about parallax, bento features, FAQ, and contact..\nColor System: Background #ffffff, Card #f5f5f5, Accent #171717, Foreground #171717, Primary CTA #171717.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "25",
+    "title": "Marketing Agency",
+    "category": "Agency",
+    "tags": [
+      "Agency",
+      "Creative",
+      "Minimal"
+    ],
+    "description": "A minimal, editorial agency template with a brand marquee hero, project grid, and image-led testimonials. Perfect for branding, marketing, and design studios.",
+    "recipe": "Marketing agency template with brand marquee hero, panel gallery, studio split, project grid, testimonials, and brand index footer.",
+    "defaultPrompt": "Create a marketing agency website.",
+    "colorTheme": {
+      "--background": "#fcfcfc",
+      "--card": "#f2f2f2",
+      "--foreground": "#000000",
+      "--primary-cta": "#000000",
+      "--primary-cta-text": "#fcfcfc",
+      "--secondary-cta": "#eeeeee",
+      "--secondary-cta-text": "#000000",
+      "--accent": "#000000",
+      "--background-accent": "#000000"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/marketing-agency.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/marketing-agency",
+    "masterPrompt": "Create an award-winning, high-converting Marketing Agency website (Agency).\nLayout & Structure: Marketing agency template with brand marquee hero, panel gallery, studio split, project grid, testimonials, and brand index footer..\nColor System: Background #fcfcfc, Card #f2f2f2, Accent #000000, Foreground #000000, Primary CTA #000000.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "19",
+    "title": "Personal Blogger",
+    "category": "Personal",
+    "tags": [
+      "Personal",
+      "Blog",
+      "Travel"
+    ],
+    "description": "A playful personal blogger template with interactive stickers, flip cards, and carousel showcases. Perfect for travel bloggers, lifestyle creators, and personal brands.",
+    "recipe": "Personal blogger template with sticker flip hero, bento about, carousel milestones, parallax showcase, and footer.",
+    "defaultPrompt": "Create a personal blogger website.",
+    "colorTheme": {
+      "--background": "#f5f3f0",
+      "--card": "#ffffff",
+      "--foreground": "#1a1a1a",
+      "--primary-cta": "#1a1a1a",
+      "--primary-cta-text": "#f5f3f0",
+      "--secondary-cta": "#f5f3f0",
+      "--secondary-cta-text": "#1a1a1a",
+      "--accent": "#4CAF50",
+      "--background-accent": "#ebe7e1"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/personal-blogger.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/personal-blogger",
+    "masterPrompt": "Create an award-winning, high-converting Personal Blogger website (Personal).\nLayout & Structure: Personal blogger template with sticker flip hero, bento about, carousel milestones, parallax showcase, and footer..\nColor System: Background #f5f3f0, Card #ffffff, Accent #4CAF50, Foreground #1a1a1a, Primary CTA #1a1a1a.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "27",
+    "title": "Clothing Brand",
+    "category": "E-commerce",
+    "tags": [
+      "Fashion",
+      "Store",
+      "E-commerce"
+    ],
+    "description": "A playful clothing store template with hanging product cards, a full-width brand video, and collection grids. Perfect for apparel and streetwear brands.",
+    "recipe": "Clothing brand template with store navbar, hanging cards hero, brand video, product catalog, collection grid, and newsletter.",
+    "defaultPrompt": "Create a clothing brand website.",
+    "colorTheme": {
+      "--background": "#ffffff",
+      "--card": "#f7f7f7",
+      "--foreground": "#482a22",
+      "--primary-cta": "#482a22",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#f8efe8",
+      "--secondary-cta-text": "#482a22",
+      "--accent": "#8a5a44",
+      "--background-accent": "#8a5a44"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/clothing-brand.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/clothing-brand",
+    "masterPrompt": "Create an award-winning, high-converting Clothing Brand website (E-commerce).\nLayout & Structure: Clothing brand template with store navbar, hanging cards hero, brand video, product catalog, collection grid, and newsletter..\nColor System: Background #ffffff, Card #f7f7f7, Accent #8a5a44, Foreground #482a22, Primary CTA #482a22.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "4",
+    "title": "Boutique Hotel",
+    "category": "Hotel",
+    "tags": [
+      "Hospitality",
+      "Luxury",
+      "Dark Theme"
+    ],
+    "description": "An elegant luxury hotel template with video backgrounds, room showcases, and booking integration. Perfect for boutique hotels and luxury resorts.",
+    "recipe": "Luxury hotel template with video expand hero, parallax about, features, media grid, bento cards, and contact.",
+    "defaultPrompt": "Create a luxury hotel website.",
+    "colorTheme": {
+      "--background": "#0f1010",
+      "--card": "#3d3d3d",
+      "--foreground": "#f5f0eb",
+      "--primary-cta": "#ffffff",
+      "--primary-cta-text": "#0a0a0a",
+      "--secondary-cta": "#1a1a1a",
+      "--secondary-cta-text": "#f5f0eb",
+      "--accent": "#d4b896",
+      "--background-accent": "#4f402d"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/boutique-hotel.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/boutique-hotel",
+    "masterPrompt": "Create an award-winning, high-converting Boutique Hotel website (Hotel).\nLayout & Structure: Luxury hotel template with video expand hero, parallax about, features, media grid, bento cards, and contact..\nColor System: Background #0f1010, Card #3d3d3d, Accent #d4b896, Foreground #f5f0eb, Primary CTA #ffffff.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "17",
+    "title": "Med Spa",
+    "category": "Med Spa",
+    "tags": [
+      "Beauty",
+      "Healthcare",
+      "Wellness"
+    ],
+    "description": "A clean and professional med spa template with treatment showcases, team profiles, and booking forms. Perfect for medical spas and aesthetic clinics.",
+    "recipe": "Med spa template with marquee hero, team cards, results comparison, testimonials, FAQ, and contact.",
+    "defaultPrompt": "Create a med spa or aesthetic clinic website.",
+    "colorTheme": {
+      "--background": "#fdf8f8",
+      "--card": "#feeaee",
+      "--foreground": "#2d1f2b",
+      "--primary-cta": "#d5799b",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#f5e8ec",
+      "--secondary-cta-text": "#2d1f2b",
+      "--accent": "#d5799b",
+      "--background-accent": "#d4a0b5"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/med-spa.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/med-spa",
+    "masterPrompt": "Create an award-winning, high-converting Med Spa website (Med Spa).\nLayout & Structure: Med spa template with marquee hero, team cards, results comparison, testimonials, FAQ, and contact..\nColor System: Background #fdf8f8, Card #feeaee, Accent #d5799b, Foreground #2d1f2b, Primary CTA #d5799b.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "14",
+    "title": "SaaS Platform",
+    "category": "SaaS",
+    "tags": [
+      "Technology",
+      "Software",
+      "Dark Theme"
+    ],
+    "description": "A modern SaaS landing page with feature highlights, pricing tables, and customer testimonials. Ideal for software companies and tech startups.",
+    "recipe": "SaaS landing with centered hero, bento features, pricing, testimonials, and contact.",
+    "defaultPrompt": "Create a SaaS development landing page.",
+    "colorTheme": {
+      "--background": "#050012",
+      "--card": "#040121",
+      "--foreground": "#f0e6ff",
+      "--primary-cta": "#c89bff",
+      "--primary-cta-text": "#050012",
+      "--secondary-cta": "#1d123b",
+      "--secondary-cta-text": "#f0e6ff",
+      "--accent": "#684f7b",
+      "--background-accent": "#65417c"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/saas-platform.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/saas-platform",
+    "masterPrompt": "Create an award-winning, high-converting SaaS Platform website (SaaS).\nLayout & Structure: SaaS landing with centered hero, bento features, pricing, testimonials, and contact..\nColor System: Background #050012, Card #040121, Accent #684f7b, Foreground #f0e6ff, Primary CTA #c89bff.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "16",
+    "title": "Perfume Brand",
+    "category": "Beauty",
+    "tags": [
+      "Luxury",
+      "E-commerce",
+      "Premium"
+    ],
+    "description": "A premium skincare brand template with product showcases, ingredient stories, and elegant imagery. Ideal for luxury beauty and skincare brands.",
+    "recipe": "Skincare luxury template with rotated carousel hero, products, craftsmanship features, influencers, metrics, blog, FAQ, and contact.",
+    "defaultPrompt": "Create a luxury skincare brand website.",
+    "colorTheme": {
+      "--background": "#f5f5f5",
+      "--card": "#ffffff",
+      "--foreground": "#1c1c1c",
+      "--primary-cta": "#511f1f",
+      "--primary-cta-text": "#f5f5f5",
+      "--secondary-cta": "#ffffff",
+      "--secondary-cta-text": "#1c1c1c",
+      "--accent": "#8f3838",
+      "--background-accent": "#c9725c"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/perfume-brand.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/perfume-brand",
+    "masterPrompt": "Create an award-winning, high-converting Perfume Brand website (Beauty).\nLayout & Structure: Skincare luxury template with rotated carousel hero, products, craftsmanship features, influencers, metrics, blog, FAQ, and contact..\nColor System: Background #f5f5f5, Card #ffffff, Accent #8f3838, Foreground #1c1c1c, Primary CTA #511f1f.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "11",
+    "title": "Travel Agency",
+    "category": "Travel Agency",
+    "tags": [
+      "Travel",
+      "Luxury",
+      "Premium"
+    ],
+    "description": "An elegant travel agency template with destination showcases, tour packages, and booking integration. Perfect for luxury travel planners and tour operators.",
+    "recipe": "Luxury travel template with carousel hero, about, services, destinations, reviews, and contact.",
+    "defaultPrompt": "Create a luxury travel agency website.",
+    "colorTheme": {
+      "--background": "#f6f0e9",
+      "--card": "#efe7dd",
+      "--foreground": "#3d1f2a",
+      "--primary-cta": "#3d1f2a",
+      "--primary-cta-text": "#f6f0e9",
+      "--secondary-cta": "#efe7dd",
+      "--secondary-cta-text": "#3d1f2a",
+      "--accent": "#8c4a5c",
+      "--background-accent": "#a86b7c"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/travel-agency.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/travel-agency",
+    "masterPrompt": "Create an award-winning, high-converting Travel Agency website (Travel Agency).\nLayout & Structure: Luxury travel template with carousel hero, about, services, destinations, reviews, and contact..\nColor System: Background #f6f0e9, Card #efe7dd, Accent #8c4a5c, Foreground #3d1f2a, Primary CTA #3d1f2a.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "13",
+    "title": "Dental Practice",
+    "category": "Dentist",
+    "tags": [
+      "Healthcare",
+      "Medical",
+      "Professional"
+    ],
+    "description": "A modern dental practice template featuring service listings, team introductions, and patient testimonials. Perfect for dentists and healthcare professionals.",
+    "recipe": "Luxury dental template with hero KPIs, services, about, testimonials, and contact.",
+    "defaultPrompt": "Create a luxury dental practice website.",
+    "colorTheme": {
+      "--background": "#f7f6f7",
+      "--card": "#ffffff",
+      "--foreground": "#0c1325",
+      "--primary-cta": "#0798ff",
+      "--primary-cta-text": "#f7f6f7",
+      "--secondary-cta": "#ffffff",
+      "--secondary-cta-text": "#0c1325",
+      "--accent": "#93c7ff",
+      "--background-accent": "#a8cde8"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/dental-practice.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/dental-practice",
+    "masterPrompt": "Create an award-winning, high-converting Dental Practice website (Dentist).\nLayout & Structure: Luxury dental template with hero KPIs, services, about, testimonials, and contact..\nColor System: Background #f7f6f7, Card #ffffff, Accent #93c7ff, Foreground #0c1325, Primary CTA #0798ff.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "8",
+    "title": "AI Consulting",
+    "category": "Agency",
+    "tags": [
+      "Agency",
+      "Creative",
+      "Dark Theme"
+    ],
+    "description": "A bold dark-themed agency template with neon accents, team showcases, and pricing tables. Perfect for digital agencies and creative studios.",
+    "recipe": "Merydian agency template with billboard hero, about, bento features, glow features, pricing, team, and contact.",
+    "defaultPrompt": "Create a modern digital agency website.",
+    "colorTheme": {
+      "--background": "#0a0a0a",
+      "--card": "#1a1a1a",
+      "--foreground": "#eeeded",
+      "--primary-cta": "#00FFAB",
+      "--primary-cta-text": "#000000",
+      "--secondary-cta": "#1a1a1a",
+      "--secondary-cta-text": "#ffffffe6",
+      "--accent": "#737373",
+      "--background-accent": "#00d5c7"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/ai-consulting.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/ai-consulting",
+    "masterPrompt": "Create an award-winning, high-converting AI Consulting website (Agency).\nLayout & Structure: Merydian agency template with billboard hero, about, bento features, glow features, pricing, team, and contact..\nColor System: Background #0a0a0a, Card #1a1a1a, Accent #737373, Foreground #eeeded, Primary CTA #00FFAB.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "29",
+    "title": "Vita Lenta",
+    "category": "Restaurant",
+    "tags": [
+      "Food & Drink",
+      "Restaurant",
+      "Elegant"
+    ],
+    "description": "An elegant restaurant template with a brand reveal hero, time-of-day features, and a hover-reveal menu. Perfect for restaurants, trattorias, and wine bars.",
+    "recipe": "Restaurant template with brand reveal hero, statement split, image reveals, time-of-day features, hover menu, and rotating-image contact.",
+    "defaultPrompt": "Create a restaurant website.",
+    "colorTheme": {
+      "--background": "#ece5d5",
+      "--card": "#e3dac6",
+      "--foreground": "#222222",
+      "--primary-cta": "#222222",
+      "--primary-cta-text": "#ece5d5",
+      "--secondary-cta": "#e3dac6",
+      "--secondary-cta-text": "#222222",
+      "--accent": "#b28571",
+      "--background-accent": "#b28571"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/vita-lenta.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/vita-lenta",
+    "masterPrompt": "Create an award-winning, high-converting Vita Lenta website (Restaurant).\nLayout & Structure: Restaurant template with brand reveal hero, statement split, image reveals, time-of-day features, hover menu, and rotating-image contact..\nColor System: Background #ece5d5, Card #e3dac6, Accent #b28571, Foreground #222222, Primary CTA #222222.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "28",
+    "title": "Organic Store",
+    "category": "E-commerce",
+    "tags": [
+      "Food & Drink",
+      "Store",
+      "Local Business"
+    ],
+    "description": "A warm, earthy grocery template with a photo ring hero, stacking feature cards, and split testimonials. Perfect for organic shops, farms, and food brands.",
+    "recipe": "Organic store template with photo ring hero, grid reveal about, project rows, stacking cards, testimonials, and CTA.",
+    "defaultPrompt": "Create an organic food store website.",
+    "colorTheme": {
+      "--background": "#f1ece5",
+      "--card": "#e8e2d6",
+      "--foreground": "#5e6b3a",
+      "--primary-cta": "#4b5a2b",
+      "--primary-cta-text": "#f1ece5",
+      "--secondary-cta": "#ffffff",
+      "--secondary-cta-text": "#4a5530",
+      "--accent": "#a3ad73",
+      "--background-accent": "#a3ad73"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/organic-store.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/organic-store",
+    "masterPrompt": "Create an award-winning, high-converting Organic Store website (E-commerce).\nLayout & Structure: Organic store template with photo ring hero, grid reveal about, project rows, stacking cards, testimonials, and CTA..\nColor System: Background #f1ece5, Card #e8e2d6, Accent #a3ad73, Foreground #5e6b3a, Primary CTA #4b5a2b.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "12",
+    "title": "Natural Skincare",
+    "category": "Skincare",
+    "tags": [
+      "Beauty",
+      "E-commerce",
+      "Wellness"
+    ],
+    "description": "A clean, elegant e-commerce template for skincare brands featuring product catalogs, ingredient highlights, and customer reviews. Perfect for beauty and wellness brands.",
+    "recipe": "Skincare brand template with logo hero, products, benefits, FAQ, and reviews.",
+    "defaultPrompt": "Create a skincare brand website.",
+    "colorTheme": {
+      "--background": "#fcf6ec",
+      "--card": "#f3ede2",
+      "--foreground": "#2e2521",
+      "--primary-cta": "#2e2521",
+      "--primary-cta-text": "#fcf6ec",
+      "--secondary-cta": "#ffffff",
+      "--secondary-cta-text": "#2e2521",
+      "--accent": "#b2a28b",
+      "--background-accent": "#b89461"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/natural-skincare.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/natural-skincare",
+    "masterPrompt": "Create an award-winning, high-converting Natural Skincare website (Skincare).\nLayout & Structure: Skincare brand template with logo hero, products, benefits, FAQ, and reviews..\nColor System: Background #fcf6ec, Card #f3ede2, Accent #b2a28b, Foreground #2e2521, Primary CTA #2e2521.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "7",
+    "title": "Plumbing Services",
+    "category": "Plumber",
+    "tags": [
+      "Services",
+      "Local Business",
+      "Dark Theme"
+    ],
+    "description": "A professional plumbing services template with service showcases, customer testimonials, and contact forms. Perfect for plumbers and home service businesses.",
+    "recipe": "Plumbing services template with centered hero, media cards, testimonials, glow features, FAQ, and contact.",
+    "defaultPrompt": "Create a plumbing services website.",
+    "colorTheme": {
+      "--background": "#020617",
+      "--card": "#0f172a",
+      "--foreground": "#f1f5f9",
+      "--primary-cta": "#0ea5e9",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#334155",
+      "--secondary-cta-text": "#f1f5f9",
+      "--accent": "#38bdf8",
+      "--background-accent": "#0284c7"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/plumbing-services.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/plumbing-services",
+    "masterPrompt": "Create an award-winning, high-converting Plumbing Services website (Plumber).\nLayout & Structure: Plumbing services template with centered hero, media cards, testimonials, glow features, FAQ, and contact..\nColor System: Background #020617, Card #0f172a, Accent #38bdf8, Foreground #f1f5f9, Primary CTA #0ea5e9.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "2",
+    "title": "HVAC Management",
+    "category": "HVAC",
+    "tags": [
+      "Services",
+      "Local Business",
+      "Professional"
+    ],
+    "description": "A professional HVAC company template featuring service showcases, customer testimonials, and easy appointment booking. Perfect for heating, ventilation, and air conditioning businesses.",
+    "recipe": "HVAC company template with overlay hero, about, services, why choose us, process, testimonials, FAQ, and contact.",
+    "defaultPrompt": "Create an HVAC company website.",
+    "colorTheme": {
+      "--background": "#f8fafc",
+      "--card": "#ffffff",
+      "--foreground": "#0f172a",
+      "--primary-cta": "#1d4ed8",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#e0e7ff",
+      "--secondary-cta-text": "#1e3a5f",
+      "--accent": "#3b82f6",
+      "--background-accent": "#60a5fa"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/hvac-management.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/hvac-management",
+    "masterPrompt": "Create an award-winning, high-converting HVAC Management website (HVAC).\nLayout & Structure: HVAC company template with overlay hero, about, services, why choose us, process, testimonials, FAQ, and contact..\nColor System: Background #f8fafc, Card #ffffff, Accent #3b82f6, Foreground #0f172a, Primary CTA #1d4ed8.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "24",
+    "title": "Product Showcase",
+    "category": "E-commerce",
+    "tags": [
+      "E-commerce",
+      "Product",
+      "Minimal"
+    ],
+    "description": "A clean product showcase template with overlay parallax hero, highlight sections, and variant product cards. Perfect for furniture brands, product launches, and minimalist e-commerce.",
+    "recipe": "Product showcase template with overlay parallax hero, parallax about, variant cards collection, detailed testimonials, FAQ, and footer.",
+    "defaultPrompt": "Create a product showcase website.",
+    "colorTheme": {
+      "--background": "#f1f1f1",
+      "--card": "#f9f9f9",
+      "--foreground": "#1A1A1A",
+      "--primary-cta": "#1A1A1A",
+      "--primary-cta-text": "#FFFFFF",
+      "--secondary-cta": "#FFFFFF",
+      "--secondary-cta-text": "#1A1A1A",
+      "--accent": "#7A7A72",
+      "--background-accent": "#E5E4DF"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/product-showcase.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/product-showcase",
+    "masterPrompt": "Create an award-winning, high-converting Product Showcase website (E-commerce).\nLayout & Structure: Product showcase template with overlay parallax hero, parallax about, variant cards collection, detailed testimonials, FAQ, and footer..\nColor System: Background #f1f1f1, Card #f9f9f9, Accent #7A7A72, Foreground #1A1A1A, Primary CTA #1A1A1A.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "20",
+    "title": "Wellness Center",
+    "category": "Healthcare",
+    "tags": [
+      "Healthcare",
+      "Wellness",
+      "Premium"
+    ],
+    "description": "A premium health optimization clinic template with statistics hero, feature splits, pricing plans, and journal blog. Perfect for longevity clinics and wellness centers.",
+    "recipe": "Health optimization template with overlay statistics hero, media features, alternating split, pricing cards, blog cards, FAQ, and footer.",
+    "defaultPrompt": "Create a health optimization clinic website.",
+    "colorTheme": {
+      "--background": "#fafaf9",
+      "--card": "#f5f5f4",
+      "--foreground": "#0c0a09",
+      "--primary-cta": "#ea6720",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#e7e5e4",
+      "--secondary-cta-text": "#ffffff",
+      "--accent": "#f59e0b",
+      "--background-accent": "#d97706"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/wellness-center.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/wellness-center",
+    "masterPrompt": "Create an award-winning, high-converting Wellness Center website (Healthcare).\nLayout & Structure: Health optimization template with overlay statistics hero, media features, alternating split, pricing cards, blog cards, FAQ, and footer..\nColor System: Background #fafaf9, Card #f5f5f4, Accent #f59e0b, Foreground #0c0a09, Primary CTA #ea6720.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "1",
+    "title": "AI Email Platform",
+    "category": "SaaS",
+    "tags": [
+      "Technology",
+      "AI",
+      "Email"
+    ],
+    "description": "A modern AI-powered email platform template with feature showcases, pricing tables, and customer testimonials. Perfect for email marketing and automation tools.",
+    "recipe": "AI email platform template with floating cards hero, features grid, pricing, testimonials, blog, and contact.",
+    "defaultPrompt": "Create an AI email platform website.",
+    "colorTheme": {
+      "--background": "#f8fafc",
+      "--card": "#f1f5f9",
+      "--foreground": "#0f172a",
+      "--primary-cta": "#106FEB",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#e2e8f0",
+      "--secondary-cta-text": "#0f172a",
+      "--accent": "#B4D4F8",
+      "--background-accent": "#106FEB"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/ai-email-platform.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/ai-email-platform",
+    "masterPrompt": "Create an award-winning, high-converting AI Email Platform website (SaaS).\nLayout & Structure: AI email platform template with floating cards hero, features grid, pricing, testimonials, blog, and contact..\nColor System: Background #f8fafc, Card #f1f5f9, Accent #B4D4F8, Foreground #0f172a, Primary CTA #106FEB.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "15",
+    "title": "Real Estate Agency",
+    "category": "Real Estate",
+    "tags": [
+      "Real Estate",
+      "Luxury",
+      "Property"
+    ],
+    "description": "A sophisticated real estate template with property listings, virtual tours, and agent profiles. Ideal for luxury real estate agencies and property developers.",
+    "recipe": "Luxury real estate template with gallery hero, properties, about, services, team, metrics, testimonials, and contact.",
+    "defaultPrompt": "Create a luxury real estate agency website.",
+    "colorTheme": {
+      "--background": "#f0f0f0",
+      "--card": "#fafafa",
+      "--foreground": "#1a1a1a",
+      "--primary-cta": "#1a1a1a",
+      "--primary-cta-text": "#f0f0f0",
+      "--secondary-cta": "#e8e8e8",
+      "--secondary-cta-text": "#1a1a1a",
+      "--accent": "#c89b3c",
+      "--background-accent": "#c89b3c"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/real-estate-agency.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/real-estate-agency",
+    "masterPrompt": "Create an award-winning, high-converting Real Estate Agency website (Real Estate).\nLayout & Structure: Luxury real estate template with gallery hero, properties, about, services, team, metrics, testimonials, and contact..\nColor System: Background #f0f0f0, Card #fafafa, Accent #c89b3c, Foreground #1a1a1a, Primary CTA #1a1a1a.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "5",
+    "title": "Auto Detailing",
+    "category": "Detailing",
+    "tags": [
+      "Automotive",
+      "Services",
+      "Dark Theme"
+    ],
+    "description": "A sleek auto detailing template with service showcases, before/after comparisons, and booking forms. Perfect for car detailing and automotive care businesses.",
+    "recipe": "Auto detailing template with features hero, sticky cards, testimonials, comparison, team, FAQ, and contact.",
+    "defaultPrompt": "Create an auto detailing business website.",
+    "colorTheme": {
+      "--background": "#0a0a0a",
+      "--card": "#1a1a1a",
+      "--foreground": "#f5f5f5",
+      "--primary-cta": "#ff7a1a",
+      "--primary-cta-text": "#ffffff",
+      "--secondary-cta": "#1a1a1a",
+      "--secondary-cta-text": "#f5f5f5",
+      "--accent": "#ff7a1a",
+      "--background-accent": "#e8651a"
+    },
+    "videoSrc": "https://storage.googleapis.com/webild/default/templates/auto-detailing.mp4",
+    "previewUrl": "https://webild-mcp-components.vercel.app/templates/auto-detailing",
+    "masterPrompt": "Create an award-winning, high-converting Auto Detailing website (Detailing).\nLayout & Structure: Auto detailing template with features hero, sticky cards, testimonials, comparison, team, FAQ, and contact..\nColor System: Background #0a0a0a, Card #1a1a1a, Accent #ff7a1a, Foreground #f5f5f5, Primary CTA #ff7a1a.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "30",
+    "title": "Burger Restaurant",
+    "category": "Restaurant & Cafe",
+    "tags": [
+      "burgers",
+      "fast casual",
+      "takeaway",
+      "bold"
+    ],
+    "description": "For burger joints and casual food spots, with loud colours, big food photos and an order-now flow.",
+    "recipe": "Bold burger joint with online ordering",
+    "defaultPrompt": "Create a burger restaurant website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Burger Restaurant website (Restaurant & Cafe).\nLayout & Structure: Bold burger joint with online ordering.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "31",
+    "title": "Brunch Cafe",
+    "category": "Restaurant & Cafe",
+    "tags": [
+      "brunch",
+      "cafe",
+      "breakfast",
+      "bakery"
+    ],
+    "description": "For brunch cafes with a sunny, friendly look, a hearty menu and table booking.",
+    "recipe": "Friendly all-day brunch cafe",
+    "defaultPrompt": "Create a brunch cafe website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Brunch Cafe website (Restaurant & Cafe).\nLayout & Structure: Friendly all-day brunch cafe.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "32",
+    "title": "Craft Soda Brand",
+    "category": "Online Store",
+    "tags": [
+      "beverage",
+      "soda",
+      "drinks",
+      "dtc"
+    ],
+    "description": "For small drinks brands selling craft soda by the crate, with a playful look built around the can.",
+    "recipe": "Craft drinks brand with crate orders",
+    "defaultPrompt": "Create a craft soda brand website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Craft Soda Brand website (Online Store).\nLayout & Structure: Craft drinks brand with crate orders.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "33",
+    "title": "Matcha Cafe",
+    "category": "Restaurant & Cafe",
+    "tags": [
+      "matcha",
+      "tea",
+      "cafe",
+      "minimal"
+    ],
+    "description": "For tea and matcha cafes with a soft green, minimal look, a drinks menu and a location finder.",
+    "recipe": "Minimal matcha and tea cafe",
+    "defaultPrompt": "Create a matcha cafe website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Matcha Cafe website (Restaurant & Cafe).\nLayout & Structure: Minimal matcha and tea cafe.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "34",
+    "title": "Plumber",
+    "category": "Trades",
+    "tags": [
+      "plumbing",
+      "emergency",
+      "boilers",
+      "fixed prices"
+    ],
+    "description": "For plumbers and heating engineers, with a clear, trustworthy look, fixed prices and fast online booking.",
+    "recipe": "Plumber with fixed prices and booking",
+    "defaultPrompt": "Create a plumbing company website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Plumber website (Trades).\nLayout & Structure: Plumber with fixed prices and booking.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "35",
+    "title": "Roofing Contractor",
+    "category": "Trades",
+    "tags": [
+      "roofing",
+      "contractor",
+      "repairs",
+      "inspections"
+    ],
+    "description": "For roofing contractors, with a solid, dependable look, project photos and a free inspection offer.",
+    "recipe": "Roofing contractor with free inspections",
+    "defaultPrompt": "Create a roofing contractor website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Roofing Contractor website (Trades).\nLayout & Structure: Roofing contractor with free inspections.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "36",
+    "title": "Cleaning Company",
+    "category": "Home Services",
+    "tags": [
+      "cleaning",
+      "house cleaning",
+      "office",
+      "quotes"
+    ],
+    "description": "For house and office cleaning companies, with a bright, friendly look, recent jobs and a quick quote form.",
+    "recipe": "House and office cleaning quotes",
+    "defaultPrompt": "Create a cleaning company website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Cleaning Company website (Home Services).\nLayout & Structure: House and office cleaning quotes.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "37",
+    "title": "Photography Studio",
+    "category": "Creative",
+    "tags": [
+      "photography",
+      "portraits",
+      "studio",
+      "gallery"
+    ],
+    "description": "For photographers and small studios, with a warm editorial look, a large gallery and session booking.",
+    "recipe": "Photographer portfolio and session booking",
+    "defaultPrompt": "Create a photography studio website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Photography Studio website (Creative).\nLayout & Structure: Photographer portfolio and session booking.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "38",
+    "title": "Gym",
+    "category": "Fitness",
+    "tags": [
+      "gym",
+      "strength",
+      "classes",
+      "personal training"
+    ],
+    "description": "For gyms and strength clubs, with a raw, high-contrast look, class info and a free trial session.",
+    "recipe": "Strength gym with free trial booking",
+    "defaultPrompt": "Create a gym website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Gym website (Fitness).\nLayout & Structure: Strength gym with free trial booking.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "39",
+    "title": "Seaside Hotel",
+    "category": "Hospitality & Events",
+    "tags": [
+      "hotel",
+      "villas",
+      "holiday",
+      "coastal"
+    ],
+    "description": "For small hotels and villa rentals by the sea, with a calm, airy look and a direct booking button.",
+    "recipe": "Seaside villa and boutique hotel",
+    "defaultPrompt": "Create a seaside hotel website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Seaside Hotel website (Hospitality & Events).\nLayout & Structure: Seaside villa and boutique hotel.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "40",
+    "title": "Construction Company",
+    "category": "Trades",
+    "tags": [
+      "construction",
+      "building",
+      "commercial",
+      "projects"
+    ],
+    "description": "For construction firms building for developers and public owners, with a strong, industrial look and a bid request.",
+    "recipe": "Construction firm with project portfolio",
+    "defaultPrompt": "Create a construction company website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Construction Company website (Trades).\nLayout & Structure: Construction firm with project portfolio.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "41",
+    "title": "Logistics Company",
+    "category": "Logistics",
+    "tags": [
+      "freight",
+      "trucking",
+      "warehousing",
+      "delivery"
+    ],
+    "description": "For freight and trucking companies, with a no-nonsense look, service overview and quote or tracking actions.",
+    "recipe": "Freight and trucking with quotes",
+    "defaultPrompt": "Create a logistics company website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Logistics Company website (Logistics).\nLayout & Structure: Freight and trucking with quotes.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "42",
+    "title": "Law Firm",
+    "category": "Professional Services",
+    "tags": [
+      "law",
+      "legal",
+      "family law",
+      "estate"
+    ],
+    "description": "For solo lawyers and small firms, with a calm, trustworthy look, practice areas and consultation booking.",
+    "recipe": "Law firm with practice areas",
+    "defaultPrompt": "Create a law firm website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Law Firm website (Professional Services).\nLayout & Structure: Law firm with practice areas.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "43",
+    "title": "Web Design Agency",
+    "category": "Professional Services",
+    "tags": [
+      "web design",
+      "agency",
+      "studio",
+      "branding"
+    ],
+    "description": "For web design studios selling sites, shops and branding, with a crisp modern look and a project start form.",
+    "recipe": "Web design studio showcasing work",
+    "defaultPrompt": "Create a web design agency website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Web Design Agency website (Professional Services).\nLayout & Structure: Web design studio showcasing work.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "44",
+    "title": "Software Startup",
+    "category": "Tech & SaaS",
+    "tags": [
+      "saas",
+      "software",
+      "support",
+      "pricing"
+    ],
+    "description": "For software products with a clean, product-led page covering features, how it works, pricing and a free trial.",
+    "recipe": "Software startup page with pricing",
+    "defaultPrompt": "Create a software startup website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Software Startup website (Tech & SaaS).\nLayout & Structure: Software startup page with pricing.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "45",
+    "title": "Solar Installer",
+    "category": "Home Services",
+    "tags": [
+      "solar",
+      "energy",
+      "installation",
+      "batteries"
+    ],
+    "description": "For solar and battery installers, with a bright, optimistic look, install photos and a free quote form.",
+    "recipe": "Solar panel installer with free quotes",
+    "defaultPrompt": "Create a solar installer website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Solar Installer website (Home Services).\nLayout & Structure: Solar panel installer with free quotes.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "46",
+    "title": "Watch Maison",
+    "category": "Online Store",
+    "tags": [
+      "watches",
+      "luxury",
+      "heritage",
+      "collection"
+    ],
+    "description": "For luxury watchmakers, with a dark, refined look, a product hero and a private fitting booking.",
+    "recipe": "Luxury watchmaker with collection",
+    "defaultPrompt": "Create a luxury watch brand website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Watch Maison website (Online Store).\nLayout & Structure: Luxury watchmaker with collection.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "47",
+    "title": "Fine Jewellery",
+    "category": "Online Store",
+    "tags": [
+      "jewellery",
+      "rings",
+      "bespoke",
+      "luxury"
+    ],
+    "description": "For fine jewellers selling rings and bespoke pieces, with a soft, elegant look and fitting appointments.",
+    "recipe": "Fine jeweller with bespoke rings",
+    "defaultPrompt": "Create a fine jewellery website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Fine Jewellery website (Online Store).\nLayout & Structure: Fine jeweller with bespoke rings.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "48",
+    "title": "Day Spa",
+    "category": "Health & Beauty",
+    "tags": [
+      "spa",
+      "wellness",
+      "treatments",
+      "relaxation"
+    ],
+    "description": "For day spas and wellness clubs, with a quiet, spacious look, a treatment list and visit booking.",
+    "recipe": "Day spa with treatments and gift cards",
+    "defaultPrompt": "Create a day spa website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Day Spa website (Health & Beauty).\nLayout & Structure: Day spa with treatments and gift cards.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "49",
+    "title": "Supplements Brand",
+    "category": "Online Store",
+    "tags": [
+      "supplements",
+      "wellness",
+      "subscription",
+      "dtc"
+    ],
+    "description": "For supplement and wellness brands, with a clean, fresh look, a shop section and subscription options.",
+    "recipe": "Plant supplements with subscriptions",
+    "defaultPrompt": "Create a supplements brand website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Supplements Brand website (Online Store).\nLayout & Structure: Plant supplements with subscriptions.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "50",
+    "title": "AI Company",
+    "category": "Tech & SaaS",
+    "tags": [
+      "ai",
+      "agents",
+      "customer support",
+      "startup"
+    ],
+    "description": "For AI startups selling an agent product, with a modern, dark look, product features and a demo request.",
+    "recipe": "AI agent startup with demo booking",
+    "defaultPrompt": "Create an AI company website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting AI Company website (Tech & SaaS).\nLayout & Structure: AI agent startup with demo booking.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "51",
+    "title": "Real Estate Broker",
+    "category": "Real Estate",
+    "tags": [
+      "real estate",
+      "homes",
+      "listings",
+      "valuation"
+    ],
+    "description": "For local real estate brokers, with a friendly, clear look, featured listings and a valuation request.",
+    "recipe": "Local broker with listings and valuations",
+    "defaultPrompt": "Create a real estate broker website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Real Estate Broker website (Real Estate).\nLayout & Structure: Local broker with listings and valuations.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "52",
+    "title": "Medical Clinic",
+    "category": "Health & Beauty",
+    "tags": [
+      "clinic",
+      "family doctor",
+      "healthcare",
+      "appointments"
+    ],
+    "description": "For private clinics and family practices, with a calm, reassuring look, services and appointment booking.",
+    "recipe": "Private family clinic with booking",
+    "defaultPrompt": "Create a medical clinic website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Medical Clinic website (Health & Beauty).\nLayout & Structure: Private family clinic with booking.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "53",
+    "title": "Financial Planning",
+    "category": "Professional Services",
+    "tags": [
+      "finance",
+      "wealth",
+      "retirement",
+      "advisor"
+    ],
+    "description": "For fee-only financial planners and advisers, with a clean, trustworthy look, services, fees and call booking.",
+    "recipe": "Fee-only financial planner",
+    "defaultPrompt": "Create a financial planning website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Financial Planning website (Professional Services).\nLayout & Structure: Fee-only financial planner.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "54",
+    "title": "Accounting Software",
+    "category": "Tech & SaaS",
+    "tags": [
+      "accounting",
+      "saas",
+      "invoicing",
+      "small business"
+    ],
+    "description": "For accounting and bookkeeping apps, with a crisp product look, feature tour, pricing and a free trial.",
+    "recipe": "Bookkeeping app with free trial",
+    "defaultPrompt": "Create an accounting software website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Accounting Software website (Tech & SaaS).\nLayout & Structure: Bookkeeping app with free trial.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "55",
+    "title": "Management Consulting",
+    "category": "Professional Services",
+    "tags": [
+      "consulting",
+      "operations",
+      "strategy",
+      "b2b"
+    ],
+    "description": "For management consultancies working with mid-size firms, with a sharp, animated look and results-led content.",
+    "recipe": "Operations and strategy consultancy",
+    "defaultPrompt": "Create a management consulting website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Management Consulting website (Professional Services).\nLayout & Structure: Operations and strategy consultancy.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "56",
+    "title": "Designer Portfolio",
+    "category": "Creative",
+    "tags": [
+      "portfolio",
+      "motion design",
+      "3d",
+      "video"
+    ],
+    "description": "For motion designers and video creators, with a dark showreel-first layout and project categories.",
+    "recipe": "Showreel portfolio for motion designers",
+    "defaultPrompt": "Create a designer portfolio website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Designer Portfolio website (Creative).\nLayout & Structure: Showreel portfolio for motion designers.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "57",
+    "title": "Sports Car Brand",
+    "category": "Automotive",
+    "tags": [
+      "cars",
+      "3d",
+      "luxury",
+      "performance"
+    ],
+    "description": "For sports car makers and dealers, with a studio-lit 3D car, model comparison and performance numbers.",
+    "recipe": "Sports car showroom with 3D models",
+    "defaultPrompt": "Create a sports car brand website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Sports Car Brand website (Automotive).\nLayout & Structure: Sports car showroom with 3D models.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "58",
+    "title": "Racing Driver",
+    "category": "Sports",
+    "tags": [
+      "racing",
+      "athlete",
+      "personal brand",
+      "merch"
+    ],
+    "description": "For racing drivers and athletes, with a bold portrait hero, race calendar, story and a merch store.",
+    "recipe": "Driver personal brand with store",
+    "defaultPrompt": "Create a racing driver website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Racing Driver website (Sports).\nLayout & Structure: Driver personal brand with store.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "59",
+    "title": "Soda Brand",
+    "category": "Online Store",
+    "tags": [
+      "beverage",
+      "soda",
+      "3d",
+      "dtc"
+    ],
+    "description": "For drinks brands, with a 3D can that changes with each flavour, a playful look and an online shop.",
+    "recipe": "Soda brand with 3D flavour cans",
+    "defaultPrompt": "Create a soda brand website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Soda Brand website (Online Store).\nLayout & Structure: Soda brand with 3D flavour cans.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "60",
+    "title": "Music Artist",
+    "category": "Creative",
+    "tags": [
+      "music",
+      "artist",
+      "rapper",
+      "personal brand"
+    ],
+    "description": "For recording artists and rappers, with a moody textured look, a depth portrait hero, album eras, ventures and a tour photo wall.",
+    "recipe": "Recording artist personal site",
+    "defaultPrompt": "Create a music artist website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Music Artist website (Creative).\nLayout & Structure: Recording artist personal site.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  },
+  {
+    "id": "61",
+    "title": "Web Agency",
+    "category": "Creative",
+    "tags": [
+      "web design",
+      "studio",
+      "portfolio",
+      "3d"
+    ],
+    "description": "For web design studios with a dark, immersive look, a 3D wall of their sites in the hero, services, a work reel and client quotes.",
+    "recipe": "Immersive web design studio site",
+    "defaultPrompt": "Create a web agency website.",
+    "colorTheme": {},
+    "masterPrompt": "Create an award-winning, high-converting Web Agency website (Creative).\nLayout & Structure: Immersive web design studio site.\nColor System: Background #050811, Card #0d1426, Accent #00f0ff, Foreground #ffffff, Primary CTA #2563eb.\n3D & Motion: Auto-playing 3D model in Hero with mouse orbit, scroll-scrubbed camera timeline with pinned GSAP ScrollTrigger, Lenis smooth scrolling, interactive hotspots, and 3D card tilt."
+  }
+]
