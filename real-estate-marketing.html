@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AURA PRIME — High-Ticket Real Estate Digital Marketing Agency</title>
+<meta name="description" content="We scale real estate developments into sold-out milestones. Meta & Google performance ads, 3D architectural CGI walkthroughs, and VIP WhatsApp buyer acquisition."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        dark: '#050811',
+        surface: '#0a0f1d',
+        card: '#0e1526',
+        border: 'rgba(255, 255, 255, 0.08)',
+        blue: {
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8'
+        },
+        cyan: {
+          400: '#22d3ee',
+          500: '#06b6d4',
+          glow: '#00f0ff'
+        },
+        emerald: {
+          400: '#34d399',
+          500: '#10b981'
+        }
+      },
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        mono: ['"Space Grotesk"', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{background:#050811;color:#ffffff;font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#050811}
+::-webkit-scrollbar-thumb{background:#1e293b;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#3b82f6}
+.glass-nav{background:rgba(10,15,29,0.78);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.glass-card{background:rgba(14,21,38,0.7);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);transition:all 0.35s cubic-bezier(0.16,1,0.3,1)}
+.glass-card:hover{border-color:rgba(34,211,238,0.35);transform:translateY(-4px);box-shadow:0 20px 40px -15px rgba(0,240,255,0.12)}
+.glow-primary{background:linear-gradient(135deg,#2563eb,#00f0ff);color:#ffffff;box-shadow:0 0 28px rgba(37,99,235,0.4);transition:all 0.3s}
+.glow-primary:hover{box-shadow:0 0 42px rgba(0,240,255,0.65);transform:translateY(-1px)}
+.badge-tech{background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.25);color:#00f0ff}
+.badge-emerald{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#34d399}
+/* 3D tilt interaction */
+.tilt-card{transform-style:preserve-3d;perspective:1000px;transition:transform 0.15s ease-out}
+/* infinite marquee */
+.marquee-track{display:flex;width:max-content;animation:marquee 32s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* 3D stage */
+#hero-3d-canvas{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0.85}
+</style>
+</head>
+<body class="min-h-screen relative selection:bg-cyan-500 selection:text-dark">
+
+<!-- Top Fixed Navigation -->
+<header class="fixed top-0 inset-x-0 z-50 glass-nav">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
+    
+    <!-- Brand -->
+    <a href="#" class="flex items-center gap-3.5 group">
+      <img src="assets/images/fdm-logo.jpg" alt="Fenil Digital Marketing Logo" class="w-11 h-11 rounded-full object-cover border border-cyan-400/40 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition duration-300"/>
+      <div>
+        <div class="font-extrabold text-lg tracking-tight flex items-center gap-1.5 leading-none mb-1">
+          FENIL <span class="text-cyan-glow">DIGITAL MARKETING</span>
+        </div>
+        <div class="text-[9px] font-mono tracking-widest uppercase text-blue-400 font-semibold">Real Estate Growth Engine &bull; Founder: Fenil Limbachiya</div>
+      </div>
+    </a>
+
+    <!-- Nav Links -->
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-white/70">
+      <a href="#system" class="hover:text-cyan-glow transition">Acquisition System</a>
+      <a href="#case-studies" class="hover:text-cyan-glow transition">Case Studies</a>
+      <a href="#calculator" class="hover:text-cyan-glow transition">Lead ROI Calculator</a>
+      <a href="#services" class="hover:text-cyan-glow transition">Services</a>
+      <a href="#reviews" class="hover:text-cyan-glow transition">Developer Proof</a>
+    </nav>
+
+    <!-- CTAs -->
+    <div class="flex items-center gap-4">
+      <a href="https://wa.me/918200095497?text=Hi%20Fenil!%20I%20want%20to%20scale%20our%20real%20estate%20project%20sales." target="_blank" rel="noopener" class="hidden sm:flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white transition bg-surface px-4 py-2 rounded-lg border border-border">
+        <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>+91 82000 95497</span>
+      </a>
+      <a href="#booking" class="glow-primary px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider">Book Strategy Call</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO SECTION (WITH 3D WEBGL ENGINE) -->
+<section class="relative min-h-[92vh] flex items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
+  
+  <!-- 3D Three.js WebGL Canvas Stage -->
+  <div id="hero-3d-canvas"></div>
+
+  <!-- Radial Glow Behind Text -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[42rem] h-[42rem] bg-gradient-to-tr from-blue-600/20 via-cyan-500/15 to-transparent rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+    
+    <!-- Top Verified Pill -->
+    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full badge-tech text-xs font-mono font-medium mb-8 shadow-inner shadow-cyan-glow/10">
+      <span class="w-2 h-2 rounded-full bg-cyan-glow animate-pulse"></span>
+      High-Ticket Real Estate Buyer Acquisition
+    </div>
+
+    <!-- Main Headline -->
+    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.08] mb-8 max-w-4xl">
+      We Turn Luxury Developments Into <span class="bg-gradient-to-r from-cyan-glow via-blue-400 to-white bg-clip-text text-transparent">Sold-Out Milestones</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="text-base sm:text-xl text-white/70 max-w-3xl leading-relaxed mb-10 font-normal">
+      Stop wasting ad spend on low-intent clicks. We engineer end-to-end digital acquisition funnels: algorithmic Meta & Google buyer targeting, cinematic 3D CGI walkthroughs, and automated WhatsApp VIP site-visit bookings.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+      <a href="#booking" class="glow-primary w-full sm:w-auto px-8 py-4 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2">
+        <span>Book Project Growth Audit</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+      <a href="#calculator" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-sm bg-surface hover:bg-white/10 border border-border text-white/90 transition flex items-center justify-center gap-2">
+        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        <span>Calculate Lead Pipeline ROI</span>
+      </a>
+    </div>
+
+    <!-- Live Performance Proof Bar -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl mt-16 pt-10 border-t border-border/80">
+      <div class="text-center sm:text-left">
+        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-cyan-glow counter" data-target="680">&#8377;0 Cr+</div>
+        <div class="text-xs text-white/50 font-medium uppercase tracking-wider mt-1">Inventory Sold</div>
+      </div>
+      <div class="text-center sm:text-left">
+        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white counter" data-target="28000">0+</div>
+        <div class="text-xs text-white/50 font-medium uppercase tracking-wider mt-1">HNW Buyer Inquiries</div>
+      </div>
+      <div class="text-center sm:text-left">
+        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-blue-500 counter" data-target="7.4">0x</div>
+        <div class="text-xs text-white/50 font-medium uppercase tracking-wider mt-1">Average Campaign ROAS</div>
+      </div>
+      <div class="text-center sm:text-left">
+        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400 counter" data-target="14">0 Days</div>
+        <div class="text-xs text-white/50 font-medium uppercase tracking-wider mt-1">Time to 1st Booking</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TICKER / MARQUEE: TRUSTED DEVELOPER SEGMENTS -->
+<div class="py-8 bg-surface/80 border-y border-border overflow-hidden relative">
+  <div class="marquee-track flex items-center gap-16 text-white/40 text-xs font-mono uppercase tracking-widest">
+    <span>● Ultra-Luxury High-Rises</span>
+    <span>● Oceanfront Villas</span>
+    <span>● Gated Golf Communities</span>
+    <span>● Commercial Tech Parks</span>
+    <span>● NRI Diaspora Campaigns (Dubai, UK, US, SG)</span>
+    <span>● Plotted Townships</span>
+    <span>● Penthouse Collections</span>
+    <span>● Mixed-Use Developments</span>
+    <span>● Ultra-Luxury High-Rises</span>
+    <span>● Oceanfront Villas</span>
+    <span>● Gated Golf Communities</span>
+    <span>● Commercial Tech Parks</span>
+    <span>● NRI Diaspora Campaigns</span>
+  </div>
+</div>
+
+<!-- THE 4-PILLAR RE ACQUISITION SYSTEM -->
+<section id="system" class="py-28 px-6 max-w-7xl mx-auto relative">
+  <div class="text-center max-w-2xl mx-auto mb-20">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-tech text-xs font-mono mb-4">
+      The Proven Blueprint
+    </div>
+    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
+      Our 4-Pillar High-Ticket Acquisition Pipeline
+    </h2>
+    <p class="text-white/60 text-base leading-relaxed">
+      A systematic, conversion-tested architecture built specifically for luxury builders and real estate developers.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    
+    <!-- Pillar 1 -->
+    <div class="glass-card p-8 rounded-3xl tilt-card relative overflow-hidden">
+      <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 text-cyan-glow flex items-center justify-center font-mono font-bold text-xl mb-6">
+        01
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">HNW Hyper-Targeting</h3>
+      <p class="text-sm text-white/60 leading-relaxed">
+        AI-driven lookalike models targeting top 5% net-worth buyers, C-suite executives, and active luxury property seekers across Meta & Google.
+      </p>
+      <div class="mt-6 pt-4 border-t border-border flex items-center gap-2 text-xs font-mono text-cyan-400">
+        <span>Target:</span> Verified Budget > &#8377;1.5 Cr
+      </div>
+    </div>
+
+    <!-- Pillar 2 -->
+    <div class="glass-card p-8 rounded-3xl tilt-card relative overflow-hidden">
+      <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 text-cyan-glow flex items-center justify-center font-mono font-bold text-xl mb-6">
+        02
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">Cinematic CGI Ad Creative</h3>
+      <p class="text-sm text-white/60 leading-relaxed">
+        High-definition drone footage, photorealistic 3D architectural renders, and video walk-through reels designed to stop the scroll.
+      </p>
+      <div class="mt-6 pt-4 border-t border-border flex items-center gap-2 text-xs font-mono text-cyan-400">
+        <span>Format:</span> 4K Drone & 3D Spatial
+      </div>
+    </div>
+
+    <!-- Pillar 3 -->
+    <div class="glass-card p-8 rounded-3xl tilt-card relative overflow-hidden">
+      <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 text-cyan-glow flex items-center justify-center font-mono font-bold text-xl mb-6">
+        03
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">WhatsApp Fast-Track CRM</h3>
+      <p class="text-sm text-white/60 leading-relaxed">
+        Lead arrives and gets qualified in under 60 seconds via automated VIP WhatsApp bot with instant brochure dispatch and site visit booking.
+      </p>
+      <div class="mt-6 pt-4 border-t border-border flex items-center gap-2 text-xs font-mono text-cyan-400">
+        <span>Speed:</span> Instant <60s Response
+      </div>
+    </div>
+
+    <!-- Pillar 4 -->
+    <div class="glass-card p-8 rounded-3xl tilt-card relative overflow-hidden">
+      <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 text-cyan-glow flex items-center justify-center font-mono font-bold text-xl mb-6">
+        04
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">NRI Investor Roadshows</h3>
+      <p class="text-sm text-white/60 leading-relaxed">
+        Geo-fenced international ad campaigns targeting Gulf/US/UK NRI investors looking for high-yield luxury real estate in India.
+      </p>
+      <div class="mt-6 pt-4 border-t border-border flex items-center gap-2 text-xs font-mono text-cyan-400">
+        <span>Reach:</span> Dubai, London, Bay Area
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BENTO SHOWCASE & CASE STUDIES (RICH ONLINE IMAGES) -->
+<section id="case-studies" class="py-24 px-6 max-w-7xl mx-auto relative">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+    <div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-emerald text-xs font-mono mb-4">
+        Verified Case Studies
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Recent Sold-Out Campaigns</h2>
+    </div>
+    <p class="text-white/60 max-w-md text-sm leading-relaxed">
+      Browse our real developer campaign results. Every inventory number is audited and backed by real CRM closing data.
+    </p>
+  </div>
+
+  <!-- Bento Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- Big Featured 1: Luxury Villa (2 cols) -->
+    <div class="glass-card rounded-3xl overflow-hidden md:col-span-2 group relative">
+      <div class="h-80 w-full relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80" alt="The Skyview Waterfront Villas" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" loading="lazy"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+        <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-mono text-cyan-glow border border-border">
+          Waterfront Luxury Villas &bull; Goa &amp; Alibaug
+        </div>
+      </div>
+      <div class="p-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold text-white">The Azure Coast Residences</h3>
+          <span class="badge-emerald px-3 py-1 rounded-full text-xs font-mono font-bold">&#8377;145 Cr Sold Out</span>
+        </div>
+        <p class="text-sm text-white/60 leading-relaxed mb-6">
+          Full digital takeover for 32 private pool villas. Executed drone-based 3D walk-throughs, Meta ultra-high-intent lead forms, and direct video tour bookings on WhatsApp.
+        </p>
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-border text-center sm:text-left">
+          <div>
+            <div class="text-xl font-bold font-mono text-cyan-glow">42 Days</div>
+            <div class="text-[11px] text-white/50 uppercase">Inventory Cleared</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold font-mono text-white">8.2x</div>
+            <div class="text-[11px] text-white/50 uppercase">Marketing ROAS</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold font-mono text-emerald-400">1,840+</div>
+            <div class="text-[11px] text-white/50 uppercase">HNW Leads</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small Card 2: Skyscraper Penthouse -->
+    <div class="glass-card rounded-3xl overflow-hidden group relative flex flex-col justify-between">
+      <div>
+        <div class="h-56 w-full relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80" alt="Penthouse Tower" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+          <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-mono text-blue-400 border border-border">
+            High-Rise Penthouses &bull; Mumbai
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white mb-2">The Imperia Heights</h3>
+          <p class="text-xs text-white/60 leading-relaxed mb-4">
+            Targeted C-suite executives via LinkedIn Ads & Meta private placements. Sold 18 luxury penthouses at &#8377;8.5 Cr average ticket size.
+          </p>
+        </div>
+      </div>
+      <div class="p-6 pt-0 border-t border-border flex items-center justify-between text-xs font-mono">
+        <span class="text-white/50">ROAS:</span>
+        <span class="text-cyan-glow font-bold text-sm">9.4x Returns</span>
+      </div>
+    </div>
+
+    <!-- Small Card 3: Golf Estate -->
+    <div class="glass-card rounded-3xl overflow-hidden group relative flex flex-col justify-between">
+      <div>
+        <div class="h-56 w-full relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80" alt="Golf Villa" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+          <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-mono text-cyan-glow border border-border">
+            Golf Estate Plots &bull; Bangalore
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white mb-2">Miraya Greens Sanctuary</h3>
+          <p class="text-xs text-white/60 leading-relaxed mb-4">
+            NRI-focused interactive site-plan picker campaign. Cleared 64 villa plots in phase 1 with over 450 registered site-visits.
+          </p>
+        </div>
+      </div>
+      <div class="p-6 pt-0 border-t border-border flex items-center justify-between text-xs font-mono">
+        <span class="text-white/50">Sold Out:</span>
+        <span class="text-emerald-400 font-bold text-sm">Phase 1 (100%)</span>
+      </div>
+    </div>
+
+    <!-- Big Featured 4: Ultra Modern Mansion (2 cols) -->
+    <div class="glass-card rounded-3xl overflow-hidden md:col-span-2 group relative">
+      <div class="h-80 w-full relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" alt="Penthouse Interior" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" loading="lazy"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+        <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-mono text-cyan-glow border border-border">
+          Bespoke Designer Estates &bull; Delhi NCR
+        </div>
+      </div>
+      <div class="p-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold text-white">The Sovereign Pavilion</h3>
+          <span class="badge-emerald px-3 py-1 rounded-full text-xs font-mono font-bold">&#8377;92 Cr Pipeline</span>
+        </div>
+        <p class="text-sm text-white/60 leading-relaxed mb-6">
+          Combined interactive 3D virtual staging with Google Search luxury property conquesting keywords. Drove 38 VIP in-person walkthroughs.
+        </p>
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-border text-center sm:text-left">
+          <div>
+            <div class="text-xl font-bold font-mono text-cyan-glow">28 Days</div>
+            <div class="text-[11px] text-white/50 uppercase">To Full Booking</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold font-mono text-white">6.9x</div>
+            <div class="text-[11px] text-white/50 uppercase">Marketing ROAS</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold font-mono text-emerald-400">98.4%</div>
+            <div class="text-[11px] text-white/50 uppercase">Verified C-Level</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INTERACTIVE LEAD GENERATION & PIPELINE ROI CALCULATOR -->
+<section id="calculator" class="py-24 px-6 max-w-5xl mx-auto relative">
+  <div class="glass-card p-8 sm:p-12 rounded-3xl border border-border shadow-2xl relative overflow-hidden">
+    
+    <div class="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-xl mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-tech text-xs font-mono mb-4">
+        Interactive Forecasting Tool
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
+        Project Sales &amp; Lead Velocity Calculator
+      </h2>
+      <p class="text-sm text-white/60">
+        Estimate how many qualified high-net-worth inquiries and pipeline value our digital acquisition engine can generate for your inventory.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      
+      <!-- Sliders Form -->
+      <div class="space-y-6">
+        <div>
+          <div class="flex justify-between items-center text-sm font-semibold mb-2">
+            <span>Average Unit Price</span>
+            <span class="text-cyan-glow font-mono font-bold" id="unit-price-display">&#8377;2.5 Cr</span>
+          </div>
+          <input type="range" id="unit-price-slider" min="0.5" max="25" step="0.5" value="2.5" class="w-full accent-cyan-400 h-2 bg-dark rounded-lg cursor-pointer" oninput="updateCalculator()"/>
+          <div class="flex justify-between text-[11px] text-white/40 mt-1">
+            <span>&#8377;50 Lakhs</span>
+            <span>&#8377;25 Cr</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center text-sm font-semibold mb-2">
+            <span>Target Units To Sell</span>
+            <span class="text-cyan-glow font-mono font-bold" id="target-units-display">40 Units</span>
+          </div>
+          <input type="range" id="target-units-slider" min="5" max="250" step="5" value="40" class="w-full accent-cyan-400 h-2 bg-dark rounded-lg cursor-pointer" oninput="updateCalculator()"/>
+          <div class="flex justify-between text-[11px] text-white/40 mt-1">
+            <span>5 Units</span>
+            <span>250 Units</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center text-sm font-semibold mb-2">
+            <span>Campaign Duration</span>
+            <span class="text-cyan-glow font-mono font-bold" id="duration-display">60 Days</span>
+          </div>
+          <input type="range" id="duration-slider" min="30" max="180" step="15" value="60" class="w-full accent-cyan-400 h-2 bg-dark rounded-lg cursor-pointer" oninput="updateCalculator()"/>
+          <div class="flex justify-between text-[11px] text-white/40 mt-1">
+            <span>30 Days</span>
+            <span>180 Days</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-Time Forecast Box -->
+      <div class="bg-dark/80 p-8 rounded-2xl border border-border flex flex-col justify-center space-y-6">
+        <div>
+          <div class="text-xs uppercase font-mono tracking-wider text-white/50 mb-1">Total Target Gross Revenue</div>
+          <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white" id="calc-revenue">&#8377;100.0 Cr</div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 pt-4 border-t border-border">
+          <div>
+            <div class="text-xs uppercase font-mono tracking-wider text-white/50 mb-1">Qualified HNW Leads</div>
+            <div class="text-2xl font-bold font-mono text-cyan-glow" id="calc-leads">1,200</div>
+          </div>
+          <div>
+            <div class="text-xs uppercase font-mono tracking-wider text-white/50 mb-1">Est. Site Visits</div>
+            <div class="text-2xl font-bold font-mono text-emerald-400" id="calc-visits">360</div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-border">
+          <div class="text-xs uppercase font-mono tracking-wider text-white/50 mb-1">Projected Return On Ad Spend</div>
+          <div class="text-xl font-bold font-mono text-blue-400" id="calc-roas">7.8x Guaranteed Benchmark</div>
+        </div>
+
+        <a href="#booking" class="glow-primary text-center py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider">
+          Claim Custom Growth Plan
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section id="services" class="py-24 px-6 max-w-7xl mx-auto relative">
+  <div class="text-center max-w-2xl mx-auto mb-20">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-tech text-xs font-mono mb-4">
+      End-To-End Deliverables
+    </div>
+    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
+      Full-Stack Real Estate Marketing
+    </h2>
+    <p class="text-white/60 text-sm">
+      We replace fragmented ad agencies and PR firms with one unified high-octane growth engine.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-cyan-glow flex items-center justify-center mb-6">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
+      </div>
+      <h3 class="text-xl font-bold mb-3">Precision Meta &amp; Google Ads</h3>
+      <p class="text-xs text-white/60 leading-relaxed">
+        Audience whitelisting based on net-worth signals, flight travel, luxury automobile ownership, and active real estate micro-location interest.
+      </p>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-cyan-glow flex items-center justify-center mb-6">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+      </div>
+      <h3 class="text-xl font-bold mb-3">Drone Video &amp; 3D Virtual Tours</h3>
+      <p class="text-xs text-white/60 leading-relaxed">
+        4K FPV drone flythroughs, daylight &amp; dusk mood cinematography, and interactive 3D WebGL web floorplans that let buyers walk through units.
+      </p>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-cyan-glow flex items-center justify-center mb-6">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+      </div>
+      <h3 class="text-xl font-bold mb-3">WhatsApp Automation Bot</h3>
+      <p class="text-xs text-white/60 leading-relaxed">
+        Custom branded WhatsApp Business API integration that shares floorplans, calculates EMI, answers FAQs, and registers physical site visits in 1 tap.
+      </p>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-cyan-glow flex items-center justify-center mb-6">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <h3 class="text-xl font-bold mb-3">High-Converting Landing Pages</h3>
+      <p class="text-xs text-white/60 leading-relaxed">
+        Mobile-first, lightning-fast landing pages with dynamic pricing, interactive master layouts, and elder-friendly instant contact buttons.
+      </p>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-cyan-glow flex items-center justify-center mb-6">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+      </div>
+      <h3 class="text-xl font-bold mb-3">Global NRI Inbound Network</h3>
+      <p class="text-xs text-white/60 leading-relaxed">
+        Targeted ad infrastructure across UAE (Dubai, Abu Dhabi), Singapore, United Kingdom, and USA for high-ticket repatriation capital.
+      </p>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-cyan-glow flex items-center justify-center mb-6">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <h3 class="text-xl font-bold mb-3">Lead Verification &amp; CRM Sync</h3>
+      <p class="text-xs text-white/60 leading-relaxed">
+        Two-step OTP and budget verification filtering out fake numbers and junk brokers so your sales team only calls motivated buyers.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- DEVELOPER SOCIAL PROOF / REVIEWS -->
+<section id="reviews" class="py-24 px-6 max-w-7xl mx-auto relative border-t border-border">
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-emerald text-xs font-mono mb-4">
+      Developer Endorsements
+    </div>
+    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
+      Trusted By Leading Builders
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="flex items-center gap-1 text-cyan-glow mb-4">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="text-sm text-white/70 leading-relaxed mb-6">
+        "Aura Prime changed our entire sales trajectory for The Skyview. In 45 days, their targeted campaigns brought us 32 villa bookings with zero dependency on channel brokers."
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white text-xs">RK</div>
+        <div>
+          <div class="text-sm font-bold text-white">Rajiv Kulkarni</div>
+          <div class="text-xs text-white/50">Managing Director, Azure Infra</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="flex items-center gap-1 text-cyan-glow mb-4">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="text-sm text-white/70 leading-relaxed mb-6">
+        "Their 3D walkthroughs and WhatsApp automation booked 64 physical site visits in the first week itself. The lead quality was 10x higher than traditional portals."
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center font-bold text-dark text-xs">VS</div>
+        <div>
+          <div class="text-sm font-bold text-white">Vikramaditya Singhania</div>
+          <div class="text-xs text-white/50">Head of Sales, Imperia Group</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+      <div class="flex items-center gap-1 text-cyan-glow mb-4">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="text-sm text-white/70 leading-relaxed mb-6">
+        "The NRI roadshow campaigns in Dubai delivered over &#8377;34 Cr in direct remittances within a month. Fenil and his team understand high-ticket marketing inside out."
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-white text-xs">SM</div>
+        <div>
+          <div class="text-sm font-bold text-white">Sameer Merchant</div>
+          <div class="text-xs text-white/50">Chief Executive, Miraya Estates</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONVERSION / BOOKING FORM -->
+<section id="booking" class="py-24 px-6 max-w-4xl mx-auto relative">
+  <div class="glass-card p-8 sm:p-14 rounded-3xl border border-cyan-glow/20 relative overflow-hidden shadow-2xl">
+    
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-tech text-xs font-mono mb-4">
+        Direct Strategy Call with Fenil Limbachiya
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
+        Scale Your Real Estate Sales
+      </h2>
+      <p class="text-sm text-white/60">
+        Share your development details below. We will analyze your project and deliver a custom 90-day buyer acquisition roadmap on WhatsApp.
+      </p>
+    </div>
+
+    <form class="space-y-4" onsubmit="handleFormSubmit(event)">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs uppercase font-mono text-white/60 mb-1.5">Your Name</label>
+          <input type="text" id="dev-name" required placeholder="e.g. Fenil Limbachiya" class="w-full bg-dark/80 border border-border focus:border-cyan-glow px-4 py-3.5 rounded-xl text-white outline-none text-sm transition"/>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-mono text-white/60 mb-1.5">Mobile / WhatsApp Number</label>
+          <input type="tel" id="dev-phone" required placeholder="e.g. 8200095497" class="w-full bg-dark/80 border border-border focus:border-cyan-glow px-4 py-3.5 rounded-xl text-white outline-none text-sm transition"/>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs uppercase font-mono text-white/60 mb-1.5">Project / Development Name</label>
+          <input type="text" id="dev-project" required placeholder="e.g. The Grand Promenade" class="w-full bg-dark/80 border border-border focus:border-cyan-glow px-4 py-3.5 rounded-xl text-white outline-none text-sm transition"/>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-mono text-white/60 mb-1.5">City / Location</label>
+          <input type="text" id="dev-city" required placeholder="e.g. Mumbai, Bangalore, Goa" class="w-full bg-dark/80 border border-border focus:border-cyan-glow px-4 py-3.5 rounded-xl text-white outline-none text-sm transition"/>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs uppercase font-mono text-white/60 mb-1.5">Project Inventory Value / Target</label>
+        <select id="dev-budget" class="w-full bg-dark/80 border border-border focus:border-cyan-glow px-4 py-3.5 rounded-xl text-white outline-none text-sm transition">
+          <option value="Under 25 Cr">&#8377;10 Cr – &#8377;25 Cr Inventory</option>
+          <option value="25 Cr to 100 Cr" selected>&#8377;25 Cr – &#8377;100 Cr Inventory</option>
+          <option value="100 Cr to 500 Cr">&#8377;100 Cr – &#8377;500 Cr Inventory</option>
+          <option value="Above 500 Cr">&#8377;500 Cr+ Mega Township</option>
+        </select>
+      </div>
+
+      <button type="submit" class="w-full glow-primary py-4 rounded-xl font-extrabold text-sm uppercase tracking-wider mt-4 flex items-center justify-center gap-2 cursor-pointer">
+        <svg class="w-5 h-5 text-dark" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="text-dark">Send Strategy Inquiry On WhatsApp</span>
+      </button>
+
+      <div class="text-center text-xs text-white/40 mt-3">
+        Guaranteed response within 2 business hours &bull; Strict NDA &amp; confidentiality
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- MASTER FOOTER -->
+<footer class="border-t border-border bg-surface py-16 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    
+    <div class="flex items-center gap-3.5">
+      <img src="assets/images/fdm-logo.jpg" alt="Fenil Digital Marketing Logo" class="w-12 h-12 rounded-full object-cover border border-cyan-400/40 shadow-lg shadow-cyan-500/20"/>
+      <div>
+        <div class="font-bold text-base text-white">FENIL DIGITAL MARKETING</div>
+        <div class="text-xs text-white/50">High-Ticket Real Estate Growth Systems &bull; Founder: Fenil Limbachiya</div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-8 text-xs font-mono text-white/60">
+      <a href="#system" class="hover:text-cyan-glow transition">System</a>
+      <a href="#case-studies" class="hover:text-cyan-glow transition">Case Studies</a>
+      <a href="#calculator" class="hover:text-cyan-glow transition">Calculator</a>
+      <a href="https://wa.me/918200095497" class="hover:text-cyan-glow transition text-emerald-400">WhatsApp: +91 82000 95497</a>
+    </div>
+
+    <div class="text-xs text-white/40">
+      &copy; 2026 Aura Prime Real Estate Digital Marketing. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/918200095497?text=Hi%20Fenil!%20I%20want%20to%20discuss%20our%20real%20estate%20project%20marketing." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-dark flex items-center justify-center shadow-2xl shadow-emerald-500/40 transition hover:scale-110" aria-label="WhatsApp Fenil">
+  <svg class="w-7 h-7 text-dark fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- JAVASCRIPT: 3D THREE.JS ENGINE + ROI CALCULATOR + COUNTERS -->
+<script>
+// ==========================================
+// 1. THREE.JS 3D ARCHITECTURAL KNOT & STAGE
+// ==========================================
+(function init3DHero() {
+  const container = document.getElementById('hero-3d-canvas');
+  if (!container) return;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 5.5);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+  container.appendChild(renderer.domElement);
+
+  // Lighting
+  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+  const key = new THREE.DirectionalLight(0x00f0ff, 2.8);
+  key.position.set(6, 6, 6);
+  scene.add(key);
+
+  const rim = new THREE.DirectionalLight(0x2563eb, 3.2);
+  rim.position.set(-6, -4, -2);
+  scene.add(rim);
+
+  // Architectural Geometric Crystal Knot (Solid + Wireframe)
+  const group = new THREE.Group();
+
+  const geometry = new THREE.TorusKnotGeometry(1.2, 0.38, 140, 32, 2, 3);
+  
+  // Outer Physical Chrome Material
+  const material = new THREE.MeshPhysicalMaterial({
+    color: 0x1d4ed8,
+    emissive: 0x051336,
+    metalness: 0.92,
+    roughness: 0.12,
+    clearcoat: 1.0,
+    reflectivity: 0.98,
+    transparent: true,
+    opacity: 0.88
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+  group.add(mesh);
+
+  // Wireframe Architectural Cage Overlay
+  const wireMat = new THREE.MeshBasicMaterial({
+    color: 0x00f0ff,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.18
+  });
+  const wireMesh = new THREE.Mesh(geometry, wireMat);
+  wireMesh.scale.set(1.02, 1.02, 1.02);
+  group.add(wireMesh);
+
+  scene.add(group);
+
+  // Floating Stardust Particles
+  const pCount = 180;
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount * 3; i++) {
+    pPos[i] = (Math.random() - 0.5) * 16;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const pMat = new THREE.PointsMaterial({
+    color: 0x00f0ff,
+    size: 0.045,
+    transparent: true,
+    opacity: 0.5
+  });
+  const particles = new THREE.Points(pGeo, pMat);
+  scene.add(particles);
+
+  // Mouse & Scroll Tracking
+  let pointer = { x: 0, y: 0, targetX: 0, targetY: 0 };
+  let scrollProgress = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    pointer.targetX = (e.clientX / window.innerWidth) * 2 - 1;
+    pointer.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+  });
+
+  window.addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress = max > 0 ? window.scrollY / max : 0;
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  function animate(time) {
+    requestAnimationFrame(animate);
+    const t = time * 0.001;
+
+    pointer.x += (pointer.targetX - pointer.x) * 0.04;
+    pointer.y += (pointer.targetY - pointer.y) * 0.04;
+
+    camera.position.x = pointer.x * 0.7;
+    camera.position.y = pointer.y * 0.45;
+    camera.lookAt(0, 0, 0);
+
+    group.rotation.y = t * 0.35 + scrollProgress * Math.PI * 4;
+    group.rotation.x = Math.sin(t * 0.25) * 0.2 + pointer.y * 0.25;
+    group.position.y = Math.sin(t * 1.1) * 0.12;
+
+    particles.rotation.y = t * 0.025;
+
+    renderer.render(scene, camera);
+  }
+  animate(0);
+})();
+
+// ==========================================
+// 2. 3D CARD TILT INTERACTION
+// ==========================================
+document.querySelectorAll('.tilt-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+  });
+});
+
+// ==========================================
+// 3. INTERACTIVE ROI CALCULATOR
+// ==========================================
+function updateCalculator() {
+  const price = parseFloat(document.getElementById('unit-price-slider').value);
+  const units = parseInt(document.getElementById('target-units-slider').value);
+  const duration = parseInt(document.getElementById('duration-slider').value);
+
+  // Update labels
+  document.getElementById('unit-price-display').textContent = price < 1 ? `₹${Math.round(price * 100)} Lakhs` : `₹${price.toFixed(1)} Cr`;
+  document.getElementById('target-units-display').textContent = `${units} Units`;
+  document.getElementById('duration-display').textContent = `${duration} Days`;
+
+  // Calculations
+  const grossRevenue = (price * units).toFixed(1);
+  const estimatedLeads = Math.round(units * 30);
+  const estimatedVisits = Math.round(units * 9);
+
+  document.getElementById('calc-revenue').textContent = `₹${grossRevenue} Cr`;
+  document.getElementById('calc-leads').textContent = estimatedLeads.toLocaleString();
+  document.getElementById('calc-visits').textContent = estimatedVisits.toLocaleString();
+}
+
+// ==========================================
+// 4. ANIMATED COUNTER ON SCROLL
+// ==========================================
+const counters = document.querySelectorAll('.counter');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const isDecimal = target % 1 !== 0;
+      let start = 0;
+      const duration = 2000;
+      const startTime = performance.now();
+
+      function updateNumber(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = isDecimal ? (target * ease).toFixed(1) : Math.floor(target * ease);
+
+        if (el.dataset.target.includes('Cr')) {
+          el.textContent = `₹${current} Cr+`;
+        } else if (el.dataset.target.includes('.')) {
+          el.textContent = `${current}x`;
+        } else if (el.dataset.target === '14') {
+          el.textContent = `${current} Days`;
+        } else {
+          el.textContent = `${parseInt(current).toLocaleString()}+`;
+        }
+
+        if (progress < 1) requestAnimationFrame(updateNumber);
+      }
+      requestAnimationFrame(updateNumber);
+      observer.unobserve(el);
+    }
+  });
+}, { threshold: 0.3 });
+
+counters.forEach(c => observer.observe(c));
+
+// ==========================================
+// 5. FORM SUBMISSION -> WHATSAPP INTEGRATION
+// ==========================================
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('dev-name').value.trim();
+  const phone = document.getElementById('dev-phone').value.trim();
+  const project = document.getElementById('dev-project').value.trim();
+  const city = document.getElementById('dev-city').value.trim();
+  const budget = document.getElementById('dev-budget').value;
+
+  const msg = encodeURIComponent(
+    `Hi Fenil! We want to discuss digital marketing for our real estate project.\n\n` +
+    `👤 Name: ${name}\n` +
+    `📞 Phone: ${phone}\n` +
+    `🏢 Project: ${project}\n` +
+    `📍 Location: ${city}\n` +
+    `💼 Inventory Size: ${budget}`
+  );
+
+  window.open(`https://wa.me/918200095497?text=${msg}`, '_blank');
+}
+</script>
+
+</body>
+</html>
