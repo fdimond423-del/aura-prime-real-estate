@@ -1223,6 +1223,118 @@ body {
   transform: translateY(-50%) translateX(10px) rotateZ(24deg) rotateX(-54deg);
 }
 
+.stage-orbit-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: rgba(12, 12, 16, 0.88);
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+}
+
+/* Dish Quick-View Modal */
+.dish-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.88);
+  backdrop-filter: blur(14px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.dish-modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dish-modal-card {
+  position: relative;
+  background: #0f0f13;
+  border: 1px solid var(--accent-border);
+  border-radius: 24px;
+  max-width: 680px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), var(--accent-glow);
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.35s var(--ease-expo);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.dish-modal-overlay.is-open .dish-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.dish-modal-media {
+  position: relative;
+  height: 100%;
+  min-height: 280px;
+}
+
+.dish-modal-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dish-modal-body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dish-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--border-medium);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dish-modal-close:hover {
+  background: var(--accent);
+  color: #080808;
+  transform: scale(1.08);
+}
+
+@media (max-width: 640px) {
+  .dish-modal-card { grid-template-columns: 1fr; }
+  .dish-modal-media { height: 180px; min-height: auto; }
+  .dish-modal-body { padding: 22px; }
+}
+
 /* ==========================================================================
    9. CHEF LEADERSHIP & INTERACTIVE EVENING CALCULATOR + RESERVATION FUNNEL
    ========================================================================== */
@@ -1916,6 +2028,11 @@ input[type="range"]::-webkit-slider-thumb {
                 <span class="layer-tag-3d">05 Applewood Smoke Cloche</span>
               </div>
             </div>
+
+            <div class="stage-orbit-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+              <span>Click &amp; Drag to Orbit 3D Plate</span>
+            </div>
           </div>
         </div>
       </div>
@@ -2595,7 +2712,184 @@ function submitReservation(e) {
       if (item) item.click();
     });
   });
+
+  // 3D Drag Orbit Rotation for Dish
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let currentRotX = 54;
+  let currentRotZ = -24;
+  let targetRotX = 54;
+  let targetRotZ = -24;
+
+  const stage = document.querySelector('.dish-3d-stage');
+  if (stage) {
+    stage.style.cursor = 'grab';
+
+    stage.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      stage.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      startX = e.clientX;
+      startY = e.clientY;
+      targetRotZ += dx * 0.45;
+      targetRotX -= dy * 0.45;
+      targetRotX = Math.max(15, Math.min(85, targetRotX));
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        stage.style.cursor = 'grab';
+      }
+    });
+
+    // Touch support for mobile devices
+    stage.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      targetRotZ += dx * 0.45;
+      targetRotX -= dy * 0.45;
+      targetRotX = Math.max(15, Math.min(85, targetRotX));
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    // Smooth lerp loop for rotation
+    function orbitLoop() {
+      currentRotX += (targetRotX - currentRotX) * 0.12;
+      currentRotZ += (targetRotZ - currentRotZ) * 0.12;
+      layersBox.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateZ(${currentRotZ.toFixed(2)}deg)`;
+      requestAnimationFrame(orbitLoop);
+    }
+    requestAnimationFrame(orbitLoop);
+  }
+})();
+
+// ENGINE 10: Interactive Dish Quick-View Modal
+(function initDishModal() {
+  const modal = document.getElementById('dishModal');
+  const closeBtn = document.getElementById('dishModalClose');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalPairing = document.getElementById('modalPairing');
+  const modalTag = document.getElementById('modalTag');
+  const reserveBtn = document.getElementById('modalReserveBtn');
+
+  if (!modal) return;
+
+  const dishDetails = {
+    'A5 Miyazaki Wagyu Binchotan': {
+      img: 'assets/images/dish-wagyu.jpg',
+      tag: 'Terroir & Land \u2022 Chapter I',
+      price: '\u20B96,800',
+      pairing: '2015 Domaine de la Roman\u00E9e-Conti Richebourg',
+      desc: 'Forty-five-day Himalayan salt-cave aged BMS 12 tenderloin seared over Kishu binchotan white oak, 72-hour wild Kashmir morel jus, and shallot ash.'
+    },
+    'Hokkaido Scallop & Ossetra': {
+      img: 'assets/images/dish-seafood.jpg',
+      tag: 'Deep Ocean \u2022 Chapter II',
+      price: '\u20B95,400',
+      pairing: '2012 Salon Cuv\u00E9e S Le Mesnil Blanc de Blancs',
+      desc: 'Hand-dived wild cold-water scallops cured in kelp dashi, topped with golden Ossetra sturgeon caviar and warm sea urchin emulsion.'
+    },
+    'P\u00E9rigord Black Truffle Sphere': {
+      img: 'assets/images/restaurant-hero.jpg',
+      tag: 'Atelier Signature \u2022 Chapter III',
+      price: '\u20B94,200',
+      pairing: '2018 Ch\u00E2teau d\u2019Yquem Sauternes',
+      desc: 'Cultured butter brioche filled with 36-month aged Comt\u00E9 foam, shaved black winter diamonds, and pine needle vapor.'
+    },
+    'Nebula Smoked Yamazaki': {
+      img: 'assets/images/restaurant-cocktail.jpg',
+      tag: 'Cellar Alchemy \u2022 Chapter IV',
+      price: '\u20B92,800',
+      pairing: 'Charred Applewood Molecular Cloche',
+      desc: '21-year Yamazaki single malt infused with tableside cedar vapor, saffron bitters, and hand-carved glacier crystal.'
+    }
+  };
+
+  document.querySelectorAll('.dish-card, .deck-slide-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const titleEl = card.querySelector('.dish-name, .deck-slide-title');
+      if (!titleEl) return;
+      const title = titleEl.textContent.trim();
+      const info = dishDetails[title] || {
+        img: card.querySelector('img') ? card.querySelector('img').src : 'assets/images/dish-wagyu.jpg',
+        tag: 'Grand Cru Highlight',
+        price: card.querySelector('.dish-price') ? card.querySelector('.dish-price').textContent : 'Aura Selection',
+        pairing: 'Grand Cru Sommelier Allocation',
+        desc: card.querySelector('.dish-desc, .deck-slide-text') ? card.querySelector('.dish-desc, .deck-slide-text').textContent : 'Artisanal course.'
+      };
+
+      modalImg.src = info.img;
+      modalTitle.textContent = title;
+      modalTag.textContent = info.tag;
+      modalPrice.textContent = info.price;
+      modalPairing.textContent = info.pairing;
+      modalDesc.textContent = info.desc;
+
+      modal.classList.add('is-open');
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('is-open'));
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('is-open');
+  });
+  if (reserveBtn) {
+    reserveBtn.addEventListener('click', () => {
+      modal.classList.remove('is-open');
+    });
+  }
 })();
 </script>
+
+<!-- DISH QUICK-VIEW MODAL -->
+<div class="dish-modal-overlay" id="dishModal">
+  <div class="dish-modal-card">
+    <button class="dish-modal-close" id="dishModalClose" aria-label="Close Modal">&times;</button>
+    <div class="dish-modal-media">
+      <img id="modalImg" src="assets/images/dish-wagyu.jpg" alt="Dish Highlight"/>
+    </div>
+    <div class="dish-modal-body">
+      <div>
+        <div class="chapter-num" id="modalTag">Signature Course</div>
+        <h3 class="font-serif" id="modalTitle" style="font-size: 26px; color: #fff; margin: 8px 0;">A5 Miyazaki Wagyu Binchotan</h3>
+        <p class="text-muted" id="modalDesc" style="font-size: 14px; margin-bottom: 18px; line-height: 1.6;">Charcoal seared BMS 12 tenderloin, 72-hour wild Kashmir morel jus, smoked bone marrow glaze, and shallot ash.</p>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; margin-bottom: 20px;">
+          <div class="font-mono text-gold" style="font-size: 11px; text-transform: uppercase;">Sommelier Pairing</div>
+          <div id="modalPairing" style="font-size: 13px; font-weight: 600; color: #f4f4f5; margin-top: 4px;">2015 Domaine de la Roman&eacute;e-Conti Richebourg</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+        <span class="font-mono text-gold" id="modalPrice" style="font-size: 22px; font-weight: 700;">&#8377;6,800</span>
+        <a href="#reserve" class="btn-gold" id="modalReserveBtn" style="padding: 10px 18px; font-size: 13px;">
+          <span>Request in Seating</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

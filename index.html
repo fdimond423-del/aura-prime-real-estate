@@ -1,1111 +1,2895 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Olivia & Adrian — Royal Wedding Celebration · 08 August 2028</title>
-  <meta name="description" content="An ultra-premium cinematic wedding invitation celebrating the union of Olivia & Adrian at The Plaza Hotel, New York.">
-  
-  <!-- Fonts: Alex Brush (Calligraphy Script), Playfair Display (Serif), Cinzel (Roman Caps), Jost (Body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
-  <!-- GSAP Core & ScrollTrigger CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  
-  <link rel="stylesheet" href="wedding-style.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AURA GASTRONOMIE — Three-Star Molecular Dining &amp; Wine Vault</title>
+<meta name="description" content="An award-winning culinary journey through fire, aging, and cellar craftsmanship curated by Executive Chef Fenil Limbachiya."/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* ==========================================================================
+   AURA GASTRONOMIE — CINEMATIC LONG-FORM ARCHITECTURE
+   Theme: Luxe Monolith Gold (#080808 / #d4af37 / #f3e5ab)
+   Zero-dependency vanilla CSS + 60 FPS Compositor Engines
+   ========================================================================== */
+
+:root {
+  --bg-pitch: #080808;
+  --bg-main: #0c0c0f;
+  --bg-surface: #121216;
+  --bg-card: rgba(18, 18, 22, 0.82);
+  --bg-card-hover: rgba(28, 28, 34, 0.94);
+  --bg-glass: rgba(10, 10, 14, 0.78);
+
+  --accent: #d4af37;
+  --accent-secondary: #f3e5ab;
+  --accent-hover: #e5c14d;
+  --accent-soft: rgba(212, 175, 55, 0.12);
+  --accent-border: rgba(212, 175, 55, 0.35);
+  --accent-glow: 0 0 32px rgba(212, 175, 55, 0.38);
+
+  --text-pure: #ffffff;
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-dim: #71717a;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --border-active: rgba(212, 175, 55, 0.45);
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.18, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg-pitch);
+  color: var(--text-pure);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--bg-pitch);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-pitch); }
+::-webkit-scrollbar-thumb { background: #24242a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Filmic Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Typography & Utilities */
+.font-serif { font-family: 'Playfair Display', serif; }
+.font-mono { font-family: 'Space Grotesk', monospace; }
+.text-gold { color: var(--accent); }
+.text-cream { color: var(--accent-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-dim { color: var(--text-dim); }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ==========================================================================
+   1. FLOATING GLASS NAVIGATION HEADER
+   ========================================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 82px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 100;
+  transition: height 0.35s var(--ease-expo), border-color 0.35s;
+}
+
+.header.is-scrolled {
+  height: 70px;
+  border-bottom-color: var(--accent-border);
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--text-pure);
+}
+
+.brand-monogram {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-border);
+  background: radial-gradient(circle at 30% 30%, rgba(212,175,55,0.22), rgba(12,12,15,0.95));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  transition: transform 0.35s var(--ease-expo);
+}
+
+.brand-link:hover .brand-monogram {
+  transform: scale(1.08);
+}
+
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+}
+
+.brand-sub {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+  position: relative;
+  padding: 6px 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s var(--ease-expo);
+}
+
+.nav-link:hover {
+  color: var(--text-pure);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Magnetic Gold CTA */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #d4af37 0%, #b58d22 100%);
+  color: #080808;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 22px rgba(212, 175, 55, 0.32);
+  transition: transform 0.25s var(--ease-expo), box-shadow 0.25s var(--ease-expo);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 34px rgba(212, 175, 55, 0.55);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-medium);
+  color: var(--text-pure);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.25s var(--ease-expo);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ==========================================================================
+   2. HERO MULTI-PLANE 3D PARALLAX & CAMERA PUSH (Engine 1)
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1200px;
+  padding: 130px 24px 90px;
+}
+
+.plane {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.plane--back {
+  position: absolute;
+  inset: -6%;
+  z-index: 1;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.42) contrast(1.08) saturate(0.95);
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(8,8,8,0.25) 0%, rgba(8,8,8,0.88) 70%, #080808 100%);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  background: rgba(18, 18, 22, 0.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--accent-border);
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+  margin-bottom: 28px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6.8vw, 86px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  color: var(--text-pure);
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto 38px;
+  line-height: 1.7;
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Floating Front Status Plane */
+.plane--front {
+  position: absolute;
+  bottom: 42px;
+  right: 48px;
+  z-index: 12;
+  background: rgba(18, 18, 22, 0.85);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--accent-border);
+  border-radius: 16px;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+/* ==========================================================================
+   3. DUAL-TRACK INFINITE MARQUEE RAIL
+   ========================================================================== */
+.marquee-rail {
+  padding: 20px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-main);
+  overflow: hidden;
+  position: relative;
+  z-index: 15;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 44px;
+  width: max-content;
+  animation: marquee-scroll 34s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.marquee-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   4. PINNED HORIZONTAL DECK SLIDER (Engine 2: deck.js)
+   ========================================================================== */
+.deck-wrapper {
+  position: relative;
+  height: 360vh;
+  background: var(--bg-pitch);
+}
+
+.deck-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.deck-header-overlay {
+  position: absolute;
+  top: 104px;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.deck-progress-bar {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.14);
+  z-index: 20;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.deck-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.08s linear;
+}
+
+.deck-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 28px 60px;
+  will-change: transform, opacity;
+}
+
+.deck-slide-card {
+  max-width: 1180px;
+  width: 100%;
+  height: 68vh;
+  min-height: 460px;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-medium);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  background: var(--bg-surface);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+.deck-slide-media {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.deck-slide-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85) contrast(1.06);
+}
+
+.deck-slide-copy {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #121216 0%, #0b0b0e 100%);
+}
+
+.chapter-num {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.deck-slide-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.deck-slide-text {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 26px;
+}
+
+.deck-slide-meta {
+  display: flex;
+  gap: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  color: var(--accent-secondary);
+}
+
+/* ==========================================================================
+   5. STRATEGY & CULINARY SNAKE (Engine 3: Staggered 3D Perspective Drop-In)
+   ========================================================================== */
+.section {
+  padding: 110px 0;
+  position: relative;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4.2vw, 52px);
+  font-weight: 700;
+  line-height: 1.12;
+  margin-bottom: 16px;
+}
+
+.section-lead {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.7;
+}
+
+.snake-wrap {
+  position: relative;
+  margin-top: 64px;
+}
+
+.snake-svg-bg {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.snake-path {
+  fill: none;
+  stroke: rgba(212, 175, 55, 0.35);
+  stroke-width: 1.5;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  transition: stroke-dashoffset 2.2s var(--ease-expo);
+}
+
+.snake-wrap.is-drawn .snake-path {
+  stroke-dashoffset: 0;
+}
+
+.snake-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  perspective: 1200px;
+}
+
+.snake-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 32px 26px;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.snake-card:hover {
+  border-color: var(--accent-border);
+  background: var(--bg-card-hover);
+}
+
+.snake-step {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.snake-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.snake-desc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   6. GROWTH & DISTINCTION METRICS (Engine 5: Spring-Eased Counters)
+   ========================================================================== */
+.metrics-band {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 76px 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.metric-card {
+  text-align: center;
+  padding: 20px;
+  border-right: 1px solid var(--border-subtle);
+}
+
+.metric-card:last-child {
+  border-right: none;
+}
+
+.metric-val {
+  font-family: 'Space Grotesk', monospace;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.metric-lbl {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   7. CULINARY SHOWCASE & FILTERABLE MENU (Engine 4)
+   ========================================================================== */
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 36px 0 44px;
+}
+
+.filter-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 10px 22px;
+  border-radius: 9999px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-expo);
+}
+
+.filter-chip.active, .filter-chip:hover {
+  background: var(--accent);
+  color: #080808;
+  border-color: var(--accent);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.dish-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  transition: transform 0.35s var(--ease-expo), border-color 0.3s, opacity 0.3s;
+}
+
+.dish-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-4px);
+}
+
+.dish-thumb {
+  width: 108px;
+  height: 108px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.dish-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.dish-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.dish-price {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.dish-desc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   8. BENTO ATMOSPHERE & 3D SPOTLIGHT TILT (Engine 6)
+   ========================================================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.span-8 { grid-column: span 8; }
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+
+.tilt-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 360px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 36px;
+  background: var(--bg-card);
+  transform-style: preserve-3d;
+  transition: transform 0.18s ease-out, border-color 0.3s;
+}
+
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.16), transparent 75%);
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tilt-card:hover::before {
+  opacity: 1;
+}
+
+.tilt-card:hover {
+  border-color: var(--accent-border);
+}
+
+.tilt-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.tilt-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.58) contrast(1.08);
+  transition: transform 0.7s var(--ease-expo);
+}
+
+.tilt-card:hover .tilt-bg img {
+  transform: scale(1.06);
+}
+
+.tilt-grad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8,8,8,0.08) 0%, rgba(8,8,8,0.7) 55%, rgba(8,8,8,0.96) 100%);
+  z-index: 2;
+}
+
+.tilt-content {
+  position: relative;
+  z-index: 5;
+}
+
+.tilt-tag {
+  display: inline-block;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.tilt-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.tilt-desc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  max-width: 480px;
+}
+
+/* ==========================================================================
+   8B. PINNED 3D EXPLODED DISH DECONSTRUCTION & ATMOSPHERE ENGINES
+   ========================================================================== */
+.ember-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+.atmosphere-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-expo);
+}
+
+.atmosphere-btn:hover {
+  background: var(--accent);
+  color: #080808;
+}
+
+.audio-wave {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 13px;
+}
+
+.audio-wave .bar {
+  width: 2.5px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: height 0.25s ease;
+}
+
+.audio-wave.active .bar:nth-child(1) { animation: waveBar 0.8s infinite ease-in-out alternate; }
+.audio-wave.active .bar:nth-child(2) { animation: waveBar 0.6s infinite ease-in-out alternate 0.15s; }
+.audio-wave.active .bar:nth-child(3) { animation: waveBar 0.9s infinite ease-in-out alternate 0.3s; }
+
+@keyframes waveBar {
+  0% { height: 3px; }
+  100% { height: 13px; }
+}
+
+/* Deconstruct Section */
+.deconstruct-wrapper {
+  position: relative;
+  height: 260vh;
+  background: radial-gradient(circle at 60% 40%, rgba(212, 175, 55, 0.06) 0%, transparent 60%), #09090b;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.deconstruct-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.deconstruct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 50px;
+  align-items: center;
+  width: 100%;
+}
+
+.deconstruct-left {
+  z-index: 10;
+}
+
+.deconstruct-progress-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.deconstruct-meter {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.deconstruct-meter-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  transition: width 0.1s linear;
+}
+
+.deconstruct-meter-label {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.layer-inspect-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.layer-inspect-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: rgba(18, 18, 22, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-expo);
+}
+
+.layer-inspect-item:hover, .layer-inspect-item.active {
+  background: rgba(28, 28, 34, 0.9);
+  border-color: var(--accent-border);
+  transform: translateX(8px);
+}
+
+.layer-num {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-title-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.layer-sub-text {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.flavor-radar-box {
+  margin-top: 24px;
+  padding: 18px 22px;
+  background: rgba(12, 12, 16, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.flavor-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.flavor-val {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.flavor-lbl {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 3D Stage & Exploding Dish */
+.dish-3d-stage {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  perspective: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dish-layers-box {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  transform-style: preserve-3d;
+  transform: rotateX(54deg) rotateZ(-24deg);
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.dish-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Layer 1: Basalt Pedestal */
+.dish-disc--1 {
+  background: radial-gradient(circle at 40% 40%, #26262c 0%, #121215 70%, #08080a 100%);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), inset 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Layer 2: Wild Morel & Bone Marrow Coulis */
+.dish-disc--2 {
+  inset: 25px;
+  background: radial-gradient(circle at 45% 45%, #4a2810 0%, #251206 65%, rgba(18, 9, 3, 0.85) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Layer 3: Binchotan Miyazaki A5 Wagyu Medallion */
+.dish-disc--3 {
+  inset: 50px;
+  background: radial-gradient(circle at 50% 50%, #852a1e 0%, #45120c 60%, #1a0604 100%);
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 20px 45px rgba(212, 175, 55, 0.25), inset 0 0 20px rgba(255, 140, 0, 0.3);
+  overflow: hidden;
+}
+
+.dish-disc--3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 0.92;
+  filter: contrast(1.15) saturate(1.1);
+}
+
+/* Layer 4: Périgord Truffle & Ossetra Caviar */
+.dish-disc--4 {
+  inset: 80px;
+  background: radial-gradient(circle at 50% 50%, rgba(20, 20, 24, 0.95) 0%, rgba(8, 8, 10, 0.98) 100%);
+  border: 1px dashed rgba(212, 175, 55, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.caviar-pearls {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffd700 0%, #b8860b 40%, #111 80%);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* Layer 5: Smoked Cloche Vapor Dome */
+.dish-disc--5 {
+  inset: -15px;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.28) 0%, rgba(212, 175, 55, 0.12) 40%, rgba(255, 255, 255, 0.02) 80%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 45px rgba(255, 255, 255, 0.15), inset 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+/* Layer Callout Tags positioned in 3D */
+.layer-tag-3d {
+  position: absolute;
+  left: 105%;
+  top: 50%;
+  transform: translateY(-50%) rotateZ(24deg) rotateX(-54deg);
+  background: rgba(12, 12, 16, 0.92);
+  border: 1px solid var(--accent-border);
+  padding: 8px 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.dish-disc:hover .layer-tag-3d,
+.dish-disc.is-focused .layer-tag-3d {
+  opacity: 1;
+  transform: translateY(-50%) translateX(10px) rotateZ(24deg) rotateX(-54deg);
+}
+
+.stage-orbit-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: rgba(12, 12, 16, 0.88);
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+}
+
+/* Dish Quick-View Modal */
+.dish-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.88);
+  backdrop-filter: blur(14px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.dish-modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dish-modal-card {
+  position: relative;
+  background: #0f0f13;
+  border: 1px solid var(--accent-border);
+  border-radius: 24px;
+  max-width: 680px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), var(--accent-glow);
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.35s var(--ease-expo);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.dish-modal-overlay.is-open .dish-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.dish-modal-media {
+  position: relative;
+  height: 100%;
+  min-height: 280px;
+}
+
+.dish-modal-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dish-modal-body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dish-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--border-medium);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dish-modal-close:hover {
+  background: var(--accent);
+  color: #080808;
+  transform: scale(1.08);
+}
+
+@media (max-width: 640px) {
+  .dish-modal-card { grid-template-columns: 1fr; }
+  .dish-modal-media { height: 180px; min-height: auto; }
+  .dish-modal-body { padding: 22px; }
+}
+
+/* ==========================================================================
+   9. CHEF LEADERSHIP & INTERACTIVE EVENING CALCULATOR + RESERVATION FUNNEL
+   ========================================================================== */
+.chef-feature {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 100px 0;
+}
+
+.chef-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.chef-portrait-wrap {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  position: relative;
+  aspect-ratio: 4/5;
+  max-height: 520px;
+}
+
+.chef-portrait-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(35%) contrast(1.08);
+}
+
+.chef-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--text-pure);
+  margin: 24px 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent);
+}
+
+/* Calculator & Booking Split */
+.funnel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-top: 50px;
+  align-items: start;
+}
+
+.panel-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 22px;
+  padding: 36px;
+}
+
+.slider-row {
+  margin-bottom: 24px;
+}
+
+.slider-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.slider-val {
+  font-family: 'Space Grotesk', monospace;
+  color: var(--accent);
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+.summary-box {
+  background: rgba(8, 8, 8, 0.72);
+  border: 1px solid var(--accent-border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 12px;
+}
+
+.summary-price {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full {
+  grid-column: span 2;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(8, 8, 8, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s;
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   10. MASTER CINEMATIC FOOTER & FLOATING WHATSAPP
+   ========================================================================== */
+.footer {
+  background: #050506;
+  border-top: 1px solid var(--border-subtle);
+  padding: 64px 0 42px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.back-top-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.3s var(--ease-expo), background 0.3s;
+}
+
+.back-top-btn:hover {
+  transform: translateY(-4px);
+  background: var(--accent);
+  color: #080808;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 28px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 99;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+  transition: transform 0.3s var(--ease-expo);
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .snake-grid { grid-template-columns: repeat(2, 1fr); }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .metric-card { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+  .deck-slide-card { grid-template-columns: 1fr; height: auto; max-height: 75vh; }
+  .deck-slide-media { height: 220px; }
+  .deck-slide-copy { padding: 28px; }
+  .span-8, .span-4, .span-6 { grid-column: span 12; }
+  .chef-grid, .funnel-grid, .menu-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .plane--front { display: none; }
+  .snake-grid, .metrics-grid, .form-grid { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: span 1; }
+}
+</style>
 </head>
 <body>
 
-  <!-- HIGH-PERFORMANCE PARTICLES CANVAS (FALLING PETALS & GOLD EMBERS) -->
-  <canvas id="weddingCanvas"></canvas>
+<div class="grain-overlay"></div>
+<canvas id="emberCanvas" class="ember-canvas"></canvas>
 
-  <!-- ==========================================================================
-       1. PINNED SCROLL-SCRUBBED 3D ENVELOPE INTRO
-       (Envelope unfolds automatically as user scrolls down, and re-seals on scroll-up)
-       ========================================================================== -->
-  <section class="envelope-pinned-section" id="envelopeHero">
-    <div class="envelope-ambient-glow"></div>
-
-    <!-- Decorative Corner Watercolor Botanicals -->
-    <svg class="floral-corner-botanical floral-top-left" viewBox="0 0 240 240" fill="none">
-      <path d="M20,20 C80,20 140,60 160,120 C100,150 50,110 20,20 Z" fill="rgba(92, 29, 36, 0.22)"/>
-      <circle cx="60" cy="60" r="22" fill="rgba(235, 200, 204, 0.5)"/>
-      <circle cx="105" cy="50" r="14" fill="rgba(212, 175, 55, 0.35)"/>
-      <circle cx="50" cy="105" r="16" fill="rgba(92, 29, 36, 0.28)"/>
-      <path d="M40,40 Q90,90 140,70" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.5" fill="none"/>
-    </svg>
-
-    <svg class="floral-corner-botanical floral-bottom-right" viewBox="0 0 240 240" fill="none">
-      <path d="M20,20 C80,20 140,60 160,120 C100,150 50,110 20,20 Z" fill="rgba(92, 29, 36, 0.22)"/>
-      <circle cx="60" cy="60" r="22" fill="rgba(235, 200, 204, 0.5)"/>
-      <circle cx="105" cy="50" r="14" fill="rgba(212, 175, 55, 0.35)"/>
-      <circle cx="50" cy="105" r="16" fill="rgba(92, 29, 36, 0.28)"/>
-      <path d="M40,40 Q90,90 140,70" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.5" fill="none"/>
-    </svg>
-
-    <div class="envelope-stage-box" id="envelopeStage">
-      
-      <div class="envelope-intro-kicker">
-        A LOVE NOTE FROM
+<!-- 1. FLOATING GLASS NAVIGATION -->
+<header class="header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#top" class="brand-link">
+      <div class="brand-monogram">A</div>
+      <div>
+        <div class="brand-name">AURA GASTRONOMIE</div>
+        <div class="brand-sub">Three Michelin Stars &bull; Fenil Limbachiya</div>
       </div>
-      
-      <h1 class="envelope-couple-names">Olivia & Adrian</h1>
-      <span class="envelope-date-sub">SATURDAY · 08 AUGUST 2028 · NEW YORK</span>
+    </a>
 
-      <!-- 3D Envelope Chassis -->
-      <div class="envelope-3d-chassis" id="envelopeChassis">
-        
-        <!-- Rotating 3D Top Flap -->
-        <div class="envelope-flap-fold" id="envelopeFlap"></div>
+    <ul class="nav-links">
+      <li><a href="#odyssey" class="nav-link">Culinary Deck</a></li>
+      <li><a href="#deconstruct" class="nav-link">3D Anatomy</a></li>
+      <li><a href="#craft" class="nav-link">Philosophy</a></li>
+      <li><a href="#menu" class="nav-link">Tasting Menu</a></li>
+      <li><a href="#sanctuary" class="nav-link">Sanctuary</a></li>
+      <li><a href="#reserve" class="nav-link">Reserve</a></li>
+    </ul>
 
-        <!-- The Sliding & Unfolding Royal Letter Card -->
-        <div class="cinematic-invitation-card" id="invitationCard">
-          <div class="card-filigree-corners"></div>
-          <span class="card-invitation-pre">TOGETHER WITH OUR FAMILIES</span>
-          <h2 class="card-names-calligraphy">Olivia & Adrian</h2>
-          <p class="card-invite-prose">
-            Warmly request the pleasure of your company as we exchange our sacred vows and begin our new life together.
-          </p>
-          <div class="card-venue-callout">
-            THE PLAZA HOTEL & GRAND TERRACE · NEW YORK
-          </div>
-        </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="atmosphereToggle" class="atmosphere-btn" aria-label="Toggle Hearth Sound Atmosphere">
+        <span class="audio-wave" id="audioWave">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </span>
+        <span id="atmosphereLabel">Hearth Sound: Off</span>
+      </button>
 
-        <!-- Front Pocket Concealing Card -->
-        <div class="envelope-pocket-front"></div>
-
-        <!-- Realistic 3D Golden Wax Seal -->
-        <div class="wax-seal-golden" id="goldenWaxSeal">
-          <span class="wax-seal-emboss">O&A</span>
-          <span class="wax-seal-sub-icon">
-            <svg class="svg-icon" style="width:10px;height:10px;stroke:var(--c-burgundy-deep);" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          </span>
-          <svg class="wax-ribbon-tails" viewBox="0 0 40 40" fill="none">
-            <path d="M12 0 L20 28 L28 0 Z" fill="#6B4E0F"/>
-            <path d="M16 0 L20 24 L24 0 Z" fill="#D4AF37"/>
-          </svg>
-        </div>
-
-      </div>
-
-      <!-- Scroll Scrub Cue Indicator -->
-      <div class="scroll-scrub-indicator" id="scrollIndicator">
-        <div class="scroll-mouse-icon">
-          <div class="scroll-mouse-wheel"></div>
-        </div>
-        <div class="scroll-pill-badge">
-          Scroll down to unfold invitation
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       2. PERSISTENT FLOATING AUDIO PLAYER WIDGET
-       ========================================================================== -->
-  <aside class="floating-audio-bar" id="floatingAudioBar" aria-label="Wedding Music Player">
-    <button type="button" class="audio-btn-circle" id="audioToggleBtn" title="Play / Pause Romantic Harp Music">
-      <svg class="svg-icon" viewBox="0 0 24 24">
-        <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
-      </svg>
-    </button>
-    <div class="audio-info-col">
-      <span class="audio-track-title">CANON IN D · HARP ARPEGGIO</span>
-      <span class="audio-track-sub">Romantic Wedding Suite</span>
-    </div>
-    <div class="sound-bars-anim">
-      <div class="sound-bar"></div>
-      <div class="sound-bar"></div>
-      <div class="sound-bar"></div>
-    </div>
-  </aside>
-
-  <!-- ==========================================================================
-       3. EDITORIAL STICKY NAVBAR
-       ========================================================================== -->
-  <header class="wedding-header" id="weddingHeader">
-    <div class="site-container header-inner">
-      <a href="#home" class="brand-monogram-box">
-        <div class="monogram-seal-sm">OA</div>
-        <div class="brand-text-col">
-          <div class="brand-names">Olivia & Adrian</div>
-          <div class="brand-date">08 AUGUST 2028</div>
-        </div>
+      <a href="#reserve" class="btn-gold">
+        <span>Reserve Table</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
+    </div>
+  </div>
+</header>
 
-      <!-- Navigation Links -->
-      <nav class="wedding-nav">
-        <a href="#home" class="active">Home</a>
-        <a href="#story">Our Story</a>
-        <a href="#details">The Details</a>
-        <a href="#location">Location</a>
-        <a href="#schedule">Timeline</a>
-        <a href="#accommodation">Accommodation</a>
-        <a href="#registry">Registry</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+<!-- 2. HERO MULTI-PLANE 3D PARALLAX & CAMERA PUSH -->
+<section class="hero-section" id="top" data-hero>
+  <div class="plane plane--back">
+    <img src="assets/images/restaurant-hero.jpg" alt="Aura Gastronomie Dining Hall" class="hero-bg-img"/>
+  </div>
+  <div class="hero-vignette"></div>
 
-      <!-- Template Switcher & RSVP -->
-      <div style="display:flex;align-items:center;gap:12px;">
-        <a href="rangmahal-demo.html" class="btn-secondary-wedding" style="padding:8px 16px;font-size:0.6875rem;" title="View Rangmahal Royal Indian Palace Template">
-          View Rangmahal Demo →
-        </a>
-        <a href="#rsvp" class="btn-header-rsvp">
-          <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
-          Kindly Reply
-        </a>
+  <div class="hero-content">
+    <div class="plane plane--badge">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Three Michelin Stars &bull; World's Best Discovery</span>
       </div>
     </div>
-  </header>
 
-  <!-- ==========================================================================
-       4. HERO SECTION (LAKE COMO / PLAZA VILLA & FLORAL ARCHES)
-       ========================================================================== -->
-  <section class="wedding-hero" id="home">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80" alt="Scenic Wedding Estate" class="hero-backdrop-img">
-    <div class="hero-vignette-overlay"></div>
-    <div class="hero-floral-frame hero-floral-left"></div>
-    <div class="hero-floral-frame hero-floral-right"></div>
+    <div class="plane plane--title">
+      <h1 class="hero-title">
+        Culinary Artistry Sculpted by <em>Fire &amp; Time</em>
+      </h1>
+    </div>
 
-    <div class="hero-content-box">
-      <div class="hero-kicker-crest">
-        <span class="hero-kicker-line"></span>
-        <span class="hero-kicker-text">THE WEDDING CELEBRATION OF</span>
-        <span class="hero-kicker-line rev"></span>
-      </div>
-
-      <h1 class="hero-main-title">Olivia & Adrian</h1>
-
-      <div class="hero-date-row">
-        08 AUGUST 2028
-      </div>
-
-      <div class="hero-venue-tag">
-        THE PLAZA HOTEL & GRAND TERRACE · FIFTH AVENUE, NEW YORK
-      </div>
-
-      <!-- Real-Time Live Countdown Timer -->
-      <div class="countdown-card-wrapper tilt-card">
-        <div class="card-glare"></div>
-        <div class="countdown-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          COUNTING DOWN TO FOREVER
-        </div>
-        <div class="countdown-grid">
-          <div class="countdown-tile">
-            <span class="countdown-number" id="countdownDays">00</span>
-            <span class="countdown-label">Days</span>
-          </div>
-          <div class="countdown-tile">
-            <span class="countdown-number" id="countdownHours">00</span>
-            <span class="countdown-label">Hours</span>
-          </div>
-          <div class="countdown-tile">
-            <span class="countdown-number" id="countdownMins">00</span>
-            <span class="countdown-label">Minutes</span>
-          </div>
-          <div class="countdown-tile">
-            <span class="countdown-number" id="countdownSecs">00</span>
-            <span class="countdown-label">Seconds</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-cta-buttons">
-        <a href="#rsvp" class="btn-primary-wedding">
-          <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-          </svg>
-          Kindly Reply (RSVP)
+    <div class="plane plane--main">
+      <p class="hero-subtitle">
+        An intimate eighteen-course tasting voyage uniting single-estate micro-harvests, forty-five-day salt-cave aging, and rare Grand Cru pairings orchestrated by Executive Chef Fenil Limbachiya.
+      </p>
+      <div class="hero-ctas">
+        <a href="#reserve" class="btn-gold">
+          <span>Book Chef's Table</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#details" class="btn-secondary-wedding">
-          <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-          Celebration Itinerary
+        <a href="#odyssey" class="btn-ghost">
+          <span>Explore Pinned Odyssey</span>
         </a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ==========================================================================
-       5. SECTION: OUR STORY
-       ========================================================================== -->
-  <section class="wedding-section" id="story">
-    <div class="site-container">
-      
-      <div class="sec-head-center">
-        <span class="sec-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          HOW OUR JOURNEY BEGAN
-        </span>
-        <h2 class="sec-title-script">Our Story</h2>
-        <p class="sec-lead">From serendipitous coffee conversations to a lifetime of adventures, hand in hand.</p>
-      </div>
-
-      <div class="story-grid">
-        
-        <!-- Polaroid Frame with Specular Tilt -->
-        <div class="story-polaroid-stack">
-          <div class="polaroid-frame tilt-card">
-            <div class="card-glare"></div>
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80" alt="Olivia and Adrian Engagement" class="polaroid-img" loading="lazy">
-            <div class="polaroid-caption">Olivia & Adrian · Sunset in Como</div>
-          </div>
-        </div>
-
-        <!-- Narrative Column -->
-        <div class="story-narrative-col">
-          <blockquote class="story-quote">
-            “What began as simple conversations soon turned into a love story we never saw coming.”
-          </blockquote>
-
-          <p class="story-body">
-            We were two people walking different paths, who found in each other a sense of ease, kindness, and belonging. What started with an impromptu conversation on a rainy autumn evening in Soho quickly became our favorite daily chapter.
-          </p>
-          <p class="story-body">
-            Over the years, we discovered our shared passion for quiet morning coffees, spontaneous travels, and cooking dinners filled with laughter. On a sun-drenched terrace overlooking Lake Como, Adrian asked, and through happy tears, Olivia whispered yes.
-          </p>
-
-          <!-- Milestone Timeline -->
-          <div class="story-milestones">
-            
-            <div class="milestone-item">
-              <div class="milestone-dot-icon">
-                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
-                  <path d="M12 21a9 9 0 0 0 9-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 0 0 9 9z"></path>
-                </svg>
-              </div>
-              <div class="milestone-content">
-                <h4>OCTOBER 2021 · FIRST HELLO IN SOHO</h4>
-                <p>An unexpected meeting at a quaint corner bookstore cafe in Manhattan.</p>
-              </div>
-            </div>
-
-            <div class="milestone-item">
-              <div class="milestone-dot-icon">
-                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="4"></circle>
-                </svg>
-              </div>
-              <div class="milestone-content">
-                <h4>JUNE 2024 · THE LAKE COMO PROPOSAL</h4>
-                <p>A sunset wooden boat tour under the historic arches of Villa Balbiano.</p>
-              </div>
-            </div>
-
-            <div class="milestone-item">
-              <div class="milestone-dot-icon">
-                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-              </div>
-              <div class="milestone-content">
-                <h4>AUGUST 08, 2028 · OUR WEDDING DAY</h4>
-                <p>Surrounded by our dearest family and friends as we say forever.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <div>
-            <a href="#details" class="btn-primary-wedding">
-              View Wedding Details →
-            </a>
-          </div>
-        </div>
-
-      </div>
-
+  <div class="plane plane--front">
+    <span class="live-dot"></span>
+    <div>
+      <div class="font-mono" style="font-size: 11px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;">Tonight's Seating</div>
+      <div style="font-size: 13px; font-weight: 600;">2 Salon Tables Remaining</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==========================================================================
-       6. SECTION: THE DETAILS (DATE, VENUE, & DRESS CODE)
-       ========================================================================== -->
-  <section class="wedding-section alt-bg" id="details">
-    <div class="site-container">
-      
-      <div class="sec-head-center">
-        <span class="sec-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          CELEBRATION SCHEDULE & VENUES
-        </span>
-        <h2 class="sec-title-script">The Details</h2>
-        <p class="sec-lead">Three curated chapters of our wedding weekend in the heart of New York City.</p>
+<!-- 3. INFINITE ACCOLADES MARQUEE RAIL -->
+<div class="marquee-rail">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-diamond"></span> Three Michelin Stars 2026</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> A5 Miyazaki Wagyu Certified</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> 2,400+ Grand Cru Cellar Labels</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> World's 50 Best Discovery</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> Dawn-Harvested Micro-Farm Flora</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> Private 12-Seat Chef's Table</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> Three Michelin Stars 2026</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> A5 Miyazaki Wagyu Certified</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> 2,400+ Grand Cru Cellar Labels</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> World's 50 Best Discovery</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> Dawn-Harvested Micro-Farm Flora</div>
+    <div class="marquee-item"><span class="marquee-diamond"></span> Private 12-Seat Chef's Table</div>
+  </div>
+</div>
+
+<!-- 4. PINNED HORIZONTAL DECK SLIDER (Driven by Vertical Scroll) -->
+<section class="deck-wrapper" id="odyssey" data-deck>
+  <div class="deck-sticky">
+    <div class="deck-header-overlay">
+      <div class="container">
+        <div class="section-kicker">Scroll-Driven Tasting Story</div>
       </div>
-
-      <!-- 3-Column Events Grid matching Storyboard -->
-      <div class="details-events-grid">
-        
-        <!-- Event 1: Welcoming Drinks -->
-        <article class="event-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="event-icon-circle">
-            <!-- Champagne Coupe SVG Icon -->
-            <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
-              <path d="M7 3h10l2 6a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5L7 3z"></path>
-              <line x1="12" y1="14" x2="12" y2="21"></line>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-            </svg>
-          </div>
-          <span class="event-card-type">FRIDAY EVENING</span>
-          <h3 class="event-card-title">Welcoming Drinks</h3>
-          <div class="event-card-time">Friday, 07 August 2028 · 6:30 PM</div>
-          <p class="event-card-place">
-            The Palm Court & Rose Terrace<br>
-            Cocktails, light Italian canapés & reunion greetings.
-          </p>
-        </article>
-
-        <!-- Event 2: The Ceremony -->
-        <article class="event-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="event-icon-circle">
-            <!-- Intertwined Wedding Rings SVG Icon -->
-            <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
-              <circle cx="9" cy="12" r="5"></circle>
-              <circle cx="15" cy="12" r="5"></circle>
-              <path d="M12 4l1.5 2h-3z"></path>
-            </svg>
-          </div>
-          <span class="event-card-type">THE MAIN VOWS</span>
-          <h3 class="event-card-title">The Ceremony</h3>
-          <div class="event-card-time">Saturday, 08 August 2028 · 4:00 PM</div>
-          <p class="event-card-place">
-            The Grand Floral Courtyard<br>
-            Please arrive by 3:00 PM for welcome champagne.
-          </p>
-        </article>
-
-        <!-- Event 3: The Reception -->
-        <article class="event-card tilt-card">
-          <div class="card-glare"></div>
-          <div class="event-icon-circle">
-            <!-- Fine Dining Cloche SVG Icon -->
-            <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
-              <path d="M3 17h18"></path>
-              <path d="M4 17a8 8 0 0 1 16 0"></path>
-              <circle cx="12" cy="7" r="1.5"></circle>
-              <line x1="2" y1="20" x2="22" y2="20"></line>
-            </svg>
-          </div>
-          <span class="event-card-type">DINNER & DANCE</span>
-          <h3 class="event-card-title">The Reception</h3>
-          <div class="event-card-time">Saturday, 08 August 2028 · 7:30 PM</div>
-          <p class="event-card-place">
-            The Grand Plaza Ballroom<br>
-            Four-course dinner, heartfelt toasts, and midnight dancing.
-          </p>
-        </article>
-
-      </div>
-
-      <!-- Dress Code Card with Swatches -->
-      <div class="dress-code-banner tilt-card">
-        <div class="card-glare"></div>
-        
-        <div class="dress-code-visual">
-          <span class="dress-code-tag">ATTIRE GUIDELINES</span>
-          <h3 class="dress-code-name">Garden Formal</h3>
-          <p style="font-size:0.875rem;color:var(--c-text-muted);">
-            We warmly invite our guests to embrace formal garden elegance.
-          </p>
-          
-          <!-- Palette Swatches matching Storyboard -->
-          <div class="color-swatch-row">
-            <div class="color-swatch-item">
-              <div class="swatch-circle" style="background-color: #5C1D24;"></div>
-              <span class="swatch-label">Burgundy</span>
-            </div>
-            <div class="color-swatch-item">
-              <div class="swatch-circle" style="background-color: #D99B9B;"></div>
-              <span class="swatch-label">Dusty Rose</span>
-            </div>
-            <div class="color-swatch-item">
-              <div class="swatch-circle" style="background-color: #D4AF37;"></div>
-              <span class="swatch-label">Warm Gold</span>
-            </div>
-            <div class="color-swatch-item">
-              <div class="swatch-circle" style="background-color: #F7F0E8; border:1px solid #e0d0c0;"></div>
-              <span class="swatch-label">Almond</span>
-            </div>
-            <div class="color-swatch-item">
-              <div class="swatch-circle" style="background-color: #738276;"></div>
-              <span class="swatch-label">Eucalyptus</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="dress-code-guide">
-          <p>
-            Our wedding palette is inspired by antique botanical gardens, rich velvet burgundy roses, and warm champagne accents.
-          </p>
-          <ul>
-            <li><strong>For the Ladies:</strong> Floor-length evening gowns, romantic chiffon dresses, or refined formal cocktail attire in garden-inspired palettes.</li>
-            <li><strong>For the Gentlemen:</strong> Tailored dark tuxedos or formal dark suits with crisp dress shirts and ties or bowties.</li>
-            <li><strong>Footwear Tip:</strong> The ceremony takes place in the courtyard garden; block heels or heel protectors are recommended.</li>
-          </ul>
-        </div>
-      </div>
-
     </div>
-  </section>
 
-  <!-- ==========================================================================
-       7. SECTION: LOCATION & TRAVEL
-       ========================================================================== -->
-  <section class="wedding-section" id="location">
-    <div class="site-container">
-      
-      <div class="sec-head-center">
-        <span class="sec-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          VENUE & TRAVEL CONCIERGE
-        </span>
-        <h2 class="sec-title-script">Location & Travel</h2>
-        <p class="sec-lead">An iconic Manhattan landmark where timeless French Renaissance architecture meets Central Park serenity.</p>
-      </div>
-
-      <div class="location-grid">
-        
-        <!-- Architectural Venue Imagery -->
-        <div class="location-img-box tilt-card">
-          <div class="card-glare"></div>
-          <img src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1200&q=80" alt="The Plaza Hotel New York" class="location-venue-img" loading="lazy">
-          <div class="venue-badge-overlay">
-            <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path>
-              <circle cx="12" cy="9" r="2.5"></circle>
-            </svg>
-            THE PLAZA HOTEL · CENTRAL PARK SOUTH, NEW YORK
+    <!-- Slide 1 -->
+    <div class="deck-slide" data-deck-slide>
+      <div class="deck-slide-card">
+        <div class="deck-slide-media">
+          <img src="assets/images/dish-wagyu.jpg" alt="Binchotan Seared A5 Wagyu"/>
+        </div>
+        <div class="deck-slide-copy">
+          <div class="chapter-num">Chapter I &bull; The Hearth</div>
+          <h2 class="deck-slide-title">Binchotan Seared Miyazaki A5</h2>
+          <p class="deck-slide-text">
+            Forty-five-day Himalayan pink salt-aged tenderloin kissed by Japanese white oak binchotan embers, finished with 72-hour wild Kashmir morel reduction and Périgord black truffle smoke.
+          </p>
+          <div class="deck-slide-meta">
+            <span>Origin: Miyazaki, Japan</span>
+            <span>Aging: 45 Days</span>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="location-info-col">
-          <h3>The Plaza Hotel</h3>
-          <span class="location-address">768 5th Ave, New York, NY 10019</span>
-          
-          <p class="location-desc">
-            The Plaza Hotel is easily reached from John F. Kennedy International Airport (JFK) and LaGuardia Airport (LGA) by taxi, rideshare, or private car service. Located directly across from Central Park, it offers guests an unforgettable weekend of romance and discovery.
+    <!-- Slide 2 -->
+    <div class="deck-slide" data-deck-slide>
+      <div class="deck-slide-card">
+        <div class="deck-slide-media">
+          <img src="assets/images/dish-seafood.jpg" alt="Hokkaido Scallop and Ossetra Caviar"/>
+        </div>
+        <div class="deck-slide-copy">
+          <div class="chapter-num">Chapter II &bull; Deep Ocean</div>
+          <h2 class="deck-slide-title">Hokkaido Scallop &amp; Imperial Caviar</h2>
+          <p class="deck-slide-text">
+            Hand-dived sweet Hokkaido scallops lightly cured in sea-kelp dashi, crowned with golden Ossetra caviar, warm sea urchin emulsion, and aromatic yuzu blossom pearls.
+          </p>
+          <div class="deck-slide-meta">
+            <span>Harvest: Wild Cold-Water</span>
+            <span>Pairing: Champagne Salon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="deck-slide" data-deck-slide>
+      <div class="deck-slide-card">
+        <div class="deck-slide-media">
+          <img src="assets/images/restaurant-cocktail.jpg" alt="Cryogenic Molecular Mixology"/>
+        </div>
+        <div class="deck-slide-copy">
+          <div class="chapter-num">Chapter III &bull; Alchemy</div>
+          <h2 class="deck-slide-title">Tableside Smoked Elixirs</h2>
+          <p class="deck-slide-text">
+            Centrifuged botanical distillates and rare single-malt infusions served beneath hand-blown glass domes filled with charred applewood and mountain cedar vapor.
+          </p>
+          <div class="deck-slide-meta">
+            <span>Technique: Cryo-Centrifuge</span>
+            <span>Spirit: 21-Year Yamazaki</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="deck-slide" data-deck-slide>
+      <div class="deck-slide-card">
+        <div class="deck-slide-media">
+          <img src="assets/images/restaurant-cellar.jpg" alt="The Grand Cru Vault"/>
+        </div>
+        <div class="deck-slide-copy">
+          <div class="chapter-num">Chapter IV &bull; The Vault</div>
+          <h2 class="deck-slide-title">Two Thousand Grand Cru Vintages</h2>
+          <p class="deck-slide-text">
+            Our subterranean limestone cellar preserves iconic harvests from Burgundy, Bordeaux, and Piedmont at exact isothermal equilibrium, curated nightly by our master sommeliers.
+          </p>
+          <div class="deck-slide-meta">
+            <span>Collection: 2,400+ Bottles</span>
+            <span>Oldest Vintage: 1961</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deck-progress-bar">
+      <div class="deck-progress-fill" id="deckProgress"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. STRATEGY & CULINARY SNAKE (Staggered 3D Card Drop-In + SVG Draw) -->
+<section class="section" id="craft">
+  <div class="container">
+    <div class="section-kicker">From Dawn Soil to Crystal Plate</div>
+    <h2 class="section-heading">The Four-Stage Culinary Discipline</h2>
+    <p class="section-lead">
+      Every evening begins before sunrise. Follow our disciplined provenance chain from single-estate harvests to tableside presentation.
+    </p>
+
+    <div class="snake-wrap" data-stagger-group>
+      <svg class="snake-svg-bg" viewBox="0 0 1200 140" preserveAspectRatio="none">
+        <path class="snake-path" d="M 80 70 C 260 10, 380 130, 560 70 C 740 10, 880 130, 1120 70" />
+      </svg>
+
+      <div class="snake-grid">
+        <div class="snake-card" data-card>
+          <div class="snake-step">01</div>
+          <h3 class="snake-title">Dawn Micro-Harvest</h3>
+          <p class="snake-desc">Heirloom botanicals, micro-herbs, and edible blossoms are clipped at peak morning turgor from our private conservatory.</p>
+        </div>
+
+        <div class="snake-card" data-card>
+          <div class="snake-step">02</div>
+          <h3 class="snake-title">Salt-Cave Maturation</h3>
+          <p class="snake-desc">Prime cuts undergo controlled enzymatic tenderization for 45 days in bespoke Himalayan pink-salt chambers.</p>
+        </div>
+
+        <div class="snake-card" data-card>
+          <div class="snake-step">03</div>
+          <h3 class="snake-title">Thermal Precision</h3>
+          <p class="snake-desc">Courses are plated onto 58&deg;C carved Icelandic volcanic basalt stones to protect aromatic volatile compounds.</p>
+        </div>
+
+        <div class="snake-card" data-card>
+          <div class="snake-step">04</div>
+          <h3 class="snake-title">Sommelier Choreography</h3>
+          <p class="snake-desc">Each plate is synchronized to a half-glass pour from our Grand Cru vault, balancing tannin, acidity, and umami.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. GROWTH METRICS & DISTINCTIONS -->
+<section class="metrics-band">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-val" data-counter data-target="3" data-suffix="">0</div>
+        <div class="metric-lbl">Michelin Stars Held</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" data-counter data-target="18" data-suffix="">0</div>
+        <div class="metric-lbl">Signature Tasting Courses</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" data-counter data-target="2400" data-suffix="+">0</div>
+        <div class="metric-lbl">Cellar Vintage Labels</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" data-counter data-target="28" data-suffix="">0</div>
+        <div class="metric-lbl">Nightly Seat Capacity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. SEASONAL TASTING MENU (Interactive Filter Chips) -->
+<section class="section" id="menu">
+  <div class="container">
+    <div class="section-kicker">Curated Courses</div>
+    <h2 class="section-heading">The Seasonal Tasting Menu</h2>
+    <p class="section-lead">Explore individual highlights from our nightly eighteen-course tasting progression.</p>
+
+    <div class="filter-bar">
+      <button class="filter-chip active" data-filter="all">All Courses</button>
+      <button class="filter-chip" data-filter="land">Terroir &amp; Land</button>
+      <button class="filter-chip" data-filter="sea">Deep Ocean</button>
+      <button class="filter-chip" data-filter="cellar">Cellar &amp; Elixirs</button>
+    </div>
+
+    <div class="menu-grid">
+      <div class="dish-card" data-cat="land">
+        <img src="assets/images/dish-wagyu.jpg" alt="A5 Miyazaki Wagyu" class="dish-thumb"/>
+        <div>
+          <div class="dish-head">
+            <h3 class="dish-name">A5 Miyazaki Wagyu Binchotan</h3>
+            <span class="dish-price">&#8377;6,800</span>
+          </div>
+          <p class="dish-desc">Charcoal seared BMS 12 tenderloin, 72-hour wild Kashmir morel jus, smoked bone marrow glaze, and crispy shallot ash.</p>
+        </div>
+      </div>
+
+      <div class="dish-card" data-cat="sea">
+        <img src="assets/images/dish-seafood.jpg" alt="Hokkaido Scallop" class="dish-thumb"/>
+        <div>
+          <div class="dish-head">
+            <h3 class="dish-name">Hokkaido Scallop &amp; Ossetra</h3>
+            <span class="dish-price">&#8377;5,400</span>
+          </div>
+          <p class="dish-desc">Hand-dived cold-water scallop, imperial Ossetra caviar, warm sea urchin sabayon, and yuzu blossom pearls.</p>
+        </div>
+      </div>
+
+      <div class="dish-card" data-cat="land">
+        <img src="assets/images/restaurant-hero.jpg" alt="Black Truffle Brioche" class="dish-thumb"/>
+        <div>
+          <div class="dish-head">
+            <h3 class="dish-name">P&eacute;rigord Black Truffle Sphere</h3>
+            <span class="dish-price">&#8377;4,200</span>
+          </div>
+          <p class="dish-desc">Cultured butter brioche, 36-month aged Comt&eacute; foam, fresh winter truffle shavings, and pine needle smoke.</p>
+        </div>
+      </div>
+
+      <div class="dish-card" data-cat="cellar">
+        <img src="assets/images/restaurant-cocktail.jpg" alt="Smoked Yamazaki" class="dish-thumb"/>
+        <div>
+          <div class="dish-head">
+            <h3 class="dish-name">Nebula Smoked Yamazaki</h3>
+            <span class="dish-price">&#8377;2,800</span>
+          </div>
+          <p class="dish-desc">21-year single malt infused with charred applewood vapor, saffron bitters, and hand-carved glacier crystal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7B. PINNED 3D EXPLODED DISH DECONSTRUCTION (Anatomy of Miyazaki A5 Wagyu) -->
+<section class="deconstruct-wrapper" id="deconstruct">
+  <div class="deconstruct-sticky">
+    <div class="container">
+      <div class="deconstruct-grid">
+        <div class="deconstruct-left">
+          <div class="deconstruct-progress-track">
+            <span class="deconstruct-meter-label">3D SCROLL ASSEMBLY</span>
+            <div class="deconstruct-meter">
+              <div class="deconstruct-meter-fill" id="deconstructMeter"></div>
+            </div>
+            <span class="deconstruct-meter-label" id="deconstructPercent">0%</span>
+          </div>
+
+          <div class="section-kicker">Signature Dish Deconstructed</div>
+          <h2 class="section-heading" style="font-size: 38px; line-height: 1.2; margin-bottom: 14px;">Anatomy of an Icon</h2>
+          <p class="section-lead" style="margin-bottom: 24px; font-size: 15px;">
+            Scroll downward to expand the signature <strong>Miyazaki A5 Wagyu</strong> into its five constituent culinary planes in 3D perspective space. Scroll upward to reassemble the plate onto its heated volcanic basalt stone.
           </p>
 
-          <div class="travel-hints-list">
-            <div class="travel-hint-row">
-              <span class="travel-hint-icon">
-                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              </span>
-              <span><strong>Airports:</strong> 40 mins from JFK International · 25 mins from LGA</span>
+          <div class="layer-inspect-list" id="layerInspectList">
+            <div class="layer-inspect-item active" data-layer="5">
+              <div class="layer-num">05</div>
+              <div>
+                <div class="layer-title-text">Smoked Applewood Herbaceous Vapor Dome</div>
+                <div class="layer-sub-text">Hand-blown crystal cloche &bull; 42&deg;C aromatic cedar smoke</div>
+              </div>
             </div>
-            <div class="travel-hint-row">
-              <span class="travel-hint-icon">
-                <svg class="svg-icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-              </span>
-              <span><strong>Parking:</strong> Complimentary valet parking provided at the main Fifth Avenue entrance.</span>
+
+            <div class="layer-inspect-item" data-layer="4">
+              <div class="layer-num">04</div>
+              <div>
+                <div class="layer-title-text">P&eacute;rigord Winter Truffle &amp; Royal Ossetra</div>
+                <div class="layer-sub-text">Hand-planed black diamonds &bull; wild Sturgeon pearls</div>
+              </div>
             </div>
-            <div class="travel-hint-row">
-              <span class="travel-hint-icon">
-                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              </span>
-              <span><strong>Transfers:</strong> Private hotel car service can be booked via concierge.</span>
+
+            <div class="layer-inspect-item" data-layer="3">
+              <div class="layer-num">03</div>
+              <div>
+                <div class="layer-title-text">Binchotan Charred Miyazaki BMS 12 Medallion</div>
+                <div class="layer-sub-text">45-day pink salt-cave aged &bull; 54&deg;C medium-rare core</div>
+              </div>
+            </div>
+
+            <div class="layer-inspect-item" data-layer="2">
+              <div class="layer-num">02</div>
+              <div>
+                <div class="layer-title-text">72-Hour Wild Kashmir Morel Reduction</div>
+                <div class="layer-sub-text">Smoked bone marrow glaze &bull; aged shallot essence</div>
+              </div>
+            </div>
+
+            <div class="layer-inspect-item" data-layer="1">
+              <div class="layer-num">01</div>
+              <div>
+                <div class="layer-title-text">Hand-Carved Volcanic Basalt Stone Base</div>
+                <div class="layer-sub-text">Icelandic lava stone pre-heated to 58&deg;C thermal retention</div>
+              </div>
             </div>
           </div>
 
-          <div style="display:flex;gap:16px;flex-wrap:wrap;">
-            <a href="https://maps.google.com/?q=The+Plaza+Hotel+New+York" target="_blank" rel="noopener noreferrer" class="btn-primary-wedding">
-              <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
-                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
-              </svg>
-              View on Google Maps →
-            </a>
-            <a href="#accommodation" class="btn-secondary-wedding">
-              Guest Room Block
-            </a>
+          <div class="flavor-radar-box">
+            <div class="flavor-stat">
+              <div class="flavor-val">99%</div>
+              <div class="flavor-lbl">Umami Depth</div>
+            </div>
+            <div style="width: 1px; height: 32px; background: var(--border-subtle);"></div>
+            <div class="flavor-stat">
+              <div class="flavor-val">92%</div>
+              <div class="flavor-lbl">Smoke Aromatics</div>
+            </div>
+            <div style="width: 1px; height: 32px; background: var(--border-subtle);"></div>
+            <div class="flavor-stat">
+              <div class="flavor-val">58&deg;C</div>
+              <div class="flavor-lbl">Plating Temp</div>
+            </div>
+            <div style="width: 1px; height: 32px; background: var(--border-subtle);"></div>
+            <div class="flavor-stat">
+              <div class="flavor-val">BMS 12</div>
+              <div class="flavor-lbl">Marbling Score</div>
+            </div>
           </div>
         </div>
 
-      </div>
+        <div class="deconstruct-stage">
+          <div class="dish-3d-stage">
+            <div class="dish-layers-box" id="dishLayersBox">
+              <!-- Layer 1: Basalt Pedestal -->
+              <div class="dish-disc dish-disc--1" id="layer1" data-layer-idx="1" title="Layer 1: Heated Basalt Stone Base">
+                <span class="layer-tag-3d">01 Basalt Base &bull; 58&deg;C</span>
+              </div>
 
+              <!-- Layer 2: Morel Reduction -->
+              <div class="dish-disc dish-disc--2" id="layer2" data-layer-idx="2" title="Layer 2: Wild Morel & Marrow Coulis">
+                <span class="layer-tag-3d">02 Morel Glaze</span>
+              </div>
+
+              <!-- Layer 3: Miyazaki Wagyu -->
+              <div class="dish-disc dish-disc--3" id="layer3" data-layer-idx="3" title="Layer 3: Miyazaki A5 Wagyu Medallion">
+                <img src="assets/images/dish-wagyu.jpg" alt="A5 Miyazaki Wagyu Medallion"/>
+                <span class="layer-tag-3d">03 Miyazaki A5 (BMS 12)</span>
+              </div>
+
+              <!-- Layer 4: Truffle & Caviar -->
+              <div class="dish-disc dish-disc--4" id="layer4" data-layer-idx="4" title="Layer 4: Winter Truffle & Caviar">
+                <div class="caviar-pearls"></div>
+                <span class="layer-tag-3d">04 Truffle &amp; Ossetra</span>
+              </div>
+
+              <!-- Layer 5: Smoke Cloche Dome -->
+              <div class="dish-disc dish-disc--5" id="layer5" data-layer-idx="5" title="Layer 5: Applewood Smoke Dome">
+                <span class="layer-tag-3d">05 Applewood Smoke Cloche</span>
+              </div>
+            </div>
+
+            <div class="stage-orbit-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+              <span>Click &amp; Drag to Orbit 3D Plate</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==========================================================================
-       8. SECTION: WEDDING DAY TIMELINE (SCHEDULE)
-       ========================================================================== -->
-  <section class="wedding-section alt-bg" id="schedule">
-    <div class="site-container">
-      
-      <div class="sec-head-center">
-        <span class="sec-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          THE RHYTHM OF OUR DAY
-        </span>
-        <h2 class="sec-title-script">Wedding Day Timeline</h2>
-        <p class="sec-lead">A step-by-step itinerary of celebrations on Saturday, August 08, 2028.</p>
+<!-- 8. ATMOSPHERE BENTO WALL (3D Mouse Spotlight & Tilt) -->
+<section class="section" id="sanctuary" style="padding-top: 20px;">
+  <div class="container">
+    <div class="section-kicker">Architecture &amp; Sanctuary</div>
+    <h2 class="section-heading">Spaces Designed for Immersion</h2>
+
+    <div class="bento-grid">
+      <div class="tilt-card span-8" data-tilt>
+        <div class="tilt-bg"><img src="assets/images/restaurant-cellar.jpg" alt="Subterranean Wine Vault"/></div>
+        <div class="tilt-grad"></div>
+        <div class="tilt-content">
+          <span class="tilt-tag">Subterranean Vault</span>
+          <h3 class="tilt-title">The Grand Cru Limestone Cellar</h3>
+          <p class="tilt-desc">2,400 rare allocations spanning historic vintages from Burgundy, Bordeaux, and Barolo under exact isothermal balance.</p>
+        </div>
       </div>
 
-      <!-- Vertical Timeline Flow with Pure SVG Icons -->
-      <div class="timeline-vertical-flow">
-        
-        <!-- Step 1 -->
-        <div class="timeline-row-item">
-          <div class="timeline-time-badge">
-            <span class="time-clock">3:00 PM</span>
-            <span class="time-phase">GUEST ARRIVAL</span>
-          </div>
-          <div class="timeline-node-circle">
-            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
-              <path d="M7 3h10l2 6a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5L7 3z"></path>
-              <line x1="12" y1="14" x2="12" y2="21"></line>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-            </svg>
-          </div>
-          <div class="timeline-content-card tilt-card">
-            <div class="card-glare"></div>
-            <h3 class="timeline-event-name">Welcome Champagne & Strings</h3>
-            <p class="timeline-event-sub">
-              Guests are welcomed to the Rose Terrace with chilled vintage champagne and acoustic harp quartet melodies.
-            </p>
-          </div>
+      <div class="tilt-card span-4" data-tilt>
+        <div class="tilt-bg"><img src="assets/images/restaurant-cocktail.jpg" alt="Cryo Lounge"/></div>
+        <div class="tilt-grad"></div>
+        <div class="tilt-content">
+          <span class="tilt-tag">Molecular Bar</span>
+          <h3 class="tilt-title">The Cryo Lounge</h3>
+          <p class="tilt-desc">Tableside botanical distillation and aromatic smoke pairings.</p>
         </div>
-
-        <!-- Step 2 -->
-        <div class="timeline-row-item reverse">
-          <div class="timeline-time-badge">
-            <span class="time-clock">4:00 PM</span>
-            <span class="time-phase">THE CEREMONY</span>
-          </div>
-          <div class="timeline-node-circle">
-            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
-              <circle cx="9" cy="12" r="5"></circle>
-              <circle cx="15" cy="12" r="5"></circle>
-              <path d="M12 4l1.5 2h-3z"></path>
-            </svg>
-          </div>
-          <div class="timeline-content-card tilt-card">
-            <div class="card-glare"></div>
-            <h3 class="timeline-event-name">Exchange of Vows</h3>
-            <p class="timeline-event-sub">
-              Processional and sacred ceremonial exchange beneath the botanical floral gazebo in the courtyard.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="timeline-row-item">
-          <div class="timeline-time-badge">
-            <span class="time-clock">5:00 PM</span>
-            <span class="time-phase">COCKTAIL HOUR</span>
-          </div>
-          <div class="timeline-node-circle">
-            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
-              <polygon points="5 4 19 4 12 13 12 21 7 21 17 21"></polygon>
-            </svg>
-          </div>
-          <div class="timeline-content-card tilt-card">
-            <div class="card-glare"></div>
-            <h3 class="timeline-event-name">Aperitivo on the Terrace</h3>
-            <p class="timeline-event-sub">
-              Signature couple cocktails, Bellinis, artisanal cheeses, and Mediterranean hors d’oeuvres as the sun sets.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="timeline-row-item reverse">
-          <div class="timeline-time-badge">
-            <span class="time-clock">7:30 PM</span>
-            <span class="time-phase">RECEPTION DINNER</span>
-          </div>
-          <div class="timeline-node-circle">
-            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
-              <path d="M3 17h18"></path>
-              <path d="M4 17a8 8 0 0 1 16 0"></path>
-              <circle cx="12" cy="7" r="1.5"></circle>
-              <line x1="2" y1="20" x2="22" y2="20"></line>
-            </svg>
-          </div>
-          <div class="timeline-content-card tilt-card">
-            <div class="card-glare"></div>
-            <h3 class="timeline-event-name">Candlelit Four-Course Banquet</h3>
-            <p class="timeline-event-sub">
-              Guests are seated under crystal chandeliers in the Grand Ballroom for formal toasts and culinary artistry.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="timeline-row-item">
-          <div class="timeline-time-badge">
-            <span class="time-clock">8:30 PM</span>
-            <span class="time-phase">CAKE CUTTING</span>
-          </div>
-          <div class="timeline-node-circle">
-            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
-              <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path>
-              <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"></path>
-              <line x1="2" y1="21" x2="22" y2="21"></line>
-              <path d="M12 7V4"></path>
-              <circle cx="12" cy="3" r="1"></circle>
-            </svg>
-          </div>
-          <div class="timeline-content-card tilt-card">
-            <div class="card-glare"></div>
-            <h3 class="timeline-event-name">Cake & Champagne Tower</h3>
-            <p class="timeline-event-sub">
-              The ceremonial cutting of our five-tier vanilla bean and raspberry botanic cake, followed by dessert service.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 6 -->
-        <div class="timeline-row-item reverse">
-          <div class="timeline-time-badge">
-            <span class="time-clock">9:00 PM</span>
-            <span class="time-phase">DANCING TILL LATE</span>
-          </div>
-          <div class="timeline-node-circle">
-            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
-              <path d="M9 18V5l12-2v13"></path>
-              <circle cx="6" cy="18" r="3"></circle>
-              <circle cx="18" cy="16" r="3"></circle>
-            </svg>
-          </div>
-          <div class="timeline-content-card tilt-card">
-            <div class="card-glare"></div>
-            <h3 class="timeline-event-name">First Dance & Live Band</h3>
-            <p class="timeline-event-sub">
-              The 10-piece swing and contemporary band opens the dance floor. Midnight espresso bar and celebration!
-            </p>
-          </div>
-        </div>
-
       </div>
 
+      <div class="tilt-card span-6" data-tilt>
+        <div class="tilt-bg"><img src="assets/images/restaurant-hero.jpg" alt="Main Dining Salon"/></div>
+        <div class="tilt-grad"></div>
+        <div class="tilt-content">
+          <span class="tilt-tag">28 Seats Nightly</span>
+          <h3 class="tilt-title">The Obsidian Dining Salon</h3>
+          <p class="tilt-desc">Acoustic timber baffles and candlelight choreography crafted for uninterrupted intimacy.</p>
+        </div>
+      </div>
+
+      <div class="tilt-card span-6" data-tilt>
+        <div class="tilt-bg"><img src="assets/images/dish-wagyu.jpg" alt="Private Chef Salon"/></div>
+        <div class="tilt-grad"></div>
+        <div class="tilt-content">
+          <span class="tilt-tag">12-Seat Private Kitchen</span>
+          <h3 class="tilt-title">Chef's Hearth Counter</h3>
+          <p class="tilt-desc">Front-row views of open binchotan fire and live molecular plating.</p>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==========================================================================
-       9. SECTION: ACCOMMODATION
-       ========================================================================== -->
-  <section class="wedding-section" id="accommodation">
-    <div class="site-container">
-      
-      <div class="sec-head-center">
-        <span class="sec-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          STAYING IN THE CITY
-        </span>
-        <h2 class="sec-title-script">Accommodation</h2>
-        <p class="sec-lead">Preferred guest rates have been arranged for our wedding party and traveling guests.</p>
+<!-- 9. LEADERSHIP & EVENING ODYSSEY RESERVATION FUNNEL -->
+<section class="chef-feature">
+  <div class="container">
+    <div class="chef-grid">
+      <div class="chef-portrait-wrap">
+        <img src="assets/images/chef-plating.jpg" alt="Executive Chef Fenil Limbachiya"/>
       </div>
-
-      <div class="accommodation-box tilt-card">
-        <div class="card-glare"></div>
-        
-        <div class="accom-media">
-          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80" alt="The Plaza Hotel Suite" class="accom-img" loading="lazy">
-        </div>
-
-        <div class="accom-content">
-          <span class="accom-kicker">
-            <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-            PREFERRED ROOM BLOCK
-          </span>
-          <h3 class="accom-title">The Plaza Hotel, New York</h3>
-          <p class="accom-desc">
-            A room block has been reserved at The Plaza Hotel for our guests at a preferred wedding rate. Early reservation is warmly recommended as rooms are subject to summer availability.
-          </p>
-
-          <div class="room-block-pill">
-            <div>
-              <span class="room-code-tag">WEDDING PROMO CODE:</span>
-              <div class="room-code-val">OLIVIAADRIAN2028</div>
-            </div>
-            <button type="button" class="btn-primary-wedding" style="padding:8px 18px;font-size:0.6875rem;" onclick="showWeddingToast('Promo Code OLIVIAADRIAN2028 copied to clipboard!')">
-              Copy Code
-            </button>
-          </div>
-
-          <p style="font-size:0.8125rem;color:var(--c-text-muted);margin-bottom:20px;">
-            Please reserve by <strong>June 15, 2028</strong> to secure the special courtesy discount of 25% on Deluxe Rooms and Suites.
-          </p>
-
-          <div>
-            <a href="https://www.theplazany.com" target="_blank" rel="noopener noreferrer" class="btn-primary-wedding">
-              Book Plaza Hotel Room →
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       10. SECTION: REGISTRY & HONEYMOON FUND
-       ========================================================================== -->
-  <section class="wedding-section alt-bg" id="registry">
-    <div class="site-container">
-      
-      <div class="sec-head-center">
-        <span class="sec-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          WITH HEARTFELT GRATITUDE
-        </span>
-        <h2 class="sec-title-script">Registry</h2>
-        <p class="sec-lead">
-          Your presence at our celebration is the greatest gift of all. For those who wish to give, we have arranged a honeymoon fund to help us create lasting memories together.
+      <div>
+        <div class="section-kicker">Culinary Direction</div>
+        <h2 class="section-heading">Chef Fenil Limbachiya</h2>
+        <blockquote class="chef-quote">
+          &ldquo;Great gastronomy is never loud. It is the quiet precision of heat, patience, and memory meeting on a single warm stone.&rdquo;
+        </blockquote>
+        <p class="section-lead">
+          Trained across Kyoto hearth kitchens and Parisian cellar ateliers, Chef Fenil Limbachiya founded Aura Gastronomie to elevate heritage ingredients through modern thermal and fermentation craft. Every evening's menu is personally overseen for just twenty-eight guests.
         </p>
       </div>
-
-      <div class="registry-grid">
-        
-        <article class="registry-card tilt-card">
-          <div class="card-glare"></div>
-          <div>
-            <div class="registry-icon-circle">
-              <!-- Sailboat SVG Icon -->
-              <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
-                <path d="M2 20a2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 2-1 2.4 2.4 0 0 1 2 1 2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 2-1 2.4 2.4 0 0 1 2 1 2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1"></path>
-                <path d="M4 18L12 3l8 15H4z"></path>
-              </svg>
-            </div>
-            <h3 class="registry-title">Amalfi & Como Honeymoon</h3>
-            <p class="registry-desc">
-              Help us celebrate with private wooden boat excursions along the dramatic cliffs of Positano and candlelit coastal dinners.
-            </p>
-          </div>
-          <button type="button" class="btn-primary-wedding" onclick="showWeddingToast('Thank you for blessing our Amalfi & Como Honeymoon Fund!')">
-            Contribute to Fund →
-          </button>
-        </article>
-
-        <article class="registry-card tilt-card">
-          <div class="card-glare"></div>
-          <div>
-            <div class="registry-icon-circle">
-              <!-- Home Sanctuary SVG Icon -->
-              <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-            </div>
-            <h3 class="registry-title">Our Future Home Sanctuary</h3>
-            <p class="registry-desc">
-              Contributions toward furnishing our first home together, creating our botanical greenhouse garden, and timeless heirloom kitchen pieces.
-            </p>
-          </div>
-          <button type="button" class="btn-primary-wedding" onclick="showWeddingToast('Thank you for blessing our Future Home Sanctuary!')">
-            Contribute to Fund →
-          </button>
-        </article>
-
-        <article class="registry-card tilt-card">
-          <div class="card-glare"></div>
-          <div>
-            <div class="registry-icon-circle">
-              <!-- Botanical Leaf SVG Icon -->
-              <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
-                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
-                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
-              </svg>
-            </div>
-            <h3 class="registry-title">Botanical & Wildlife Gift</h3>
-            <p class="registry-desc">
-              A charitable donation in honor of our wedding day supporting the Central Park Conservancy and Wildlife Botanical Preservation.
-            </p>
-          </div>
-          <button type="button" class="btn-primary-wedding" onclick="showWeddingToast('Thank you for blessing the Botanical & Wildlife Preservation!')">
-            Contribute to Fund →
-          </button>
-        </article>
-
-      </div>
-
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==========================================================================
-       11. SECTION: FREQUENTLY ASKED QUESTIONS (FAQ)
-       ========================================================================== -->
-  <section class="wedding-section" id="faq">
-    <div class="site-container">
-      
-      <div class="sec-head-center">
-        <span class="sec-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          HELPFUL DETAILS
-        </span>
-        <h2 class="sec-title-script">Frequently Asked Questions</h2>
-        <p class="sec-lead">Everything you need to know about celebrating our special day with ease.</p>
-      </div>
-
-      <div class="faq-accordion-container">
-        
-        <div class="faq-card is-active">
-          <button type="button" class="faq-trigger-btn">
-            <span class="faq-question">IS THERE PARKING AT THE VENUE?</span>
-            <span class="faq-toggle-icon">
-              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </span>
-          </button>
-          <div class="faq-answer-panel">
-            <p class="faq-answer-text">
-              Yes! Complimentary white-glove valet parking is provided directly at the Fifth Avenue entrance of The Plaza Hotel for all our wedding guests throughout the ceremony and evening reception.
-            </p>
-          </div>
-        </div>
-
-        <div class="faq-card">
-          <button type="button" class="faq-trigger-btn">
-            <span class="faq-question">CAN I BRING A PLUS-ONE?</span>
-            <span class="faq-toggle-icon">
-              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </span>
-          </button>
-          <div class="faq-answer-panel">
-            <p class="faq-answer-text">
-              Due to intimate historic venue capacity restrictions, we can only accommodate guests who are formally named on your invitation envelope. If your invite includes a companion, it will be noted during the digital RSVP process.
-            </p>
-          </div>
-        </div>
-
-        <div class="faq-card">
-          <button type="button" class="faq-trigger-btn">
-            <span class="faq-question">ARE CHILDREN INVITED?</span>
-            <span class="faq-toggle-icon">
-              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </span>
-          </button>
-          <div class="faq-answer-panel">
-            <p class="faq-answer-text">
-              While we adore your little ones, our ceremony and reception are strictly adult-only occasions. We hope this allows all parents a relaxed evening of celebration and dancing!
-            </p>
-          </div>
-        </div>
-
-        <div class="faq-card">
-          <button type="button" class="faq-trigger-btn">
-            <span class="faq-question">HOW AND WHEN DO I RSVP?</span>
-            <span class="faq-toggle-icon">
-              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </span>
-          </button>
-          <div class="faq-answer-panel">
-            <p class="faq-answer-text">
-              Please submit your digital RSVP using the form below no later than <strong>22 July 2028</strong>. This allows us to finalize seating arrangements and dietary courses with our culinary team.
-            </p>
-          </div>
-        </div>
-
-        <div class="faq-card">
-          <button type="button" class="faq-trigger-btn">
-            <span class="faq-question">ARE THE CEREMONY AND RECEPTION AT THE SAME VENUE?</span>
-            <span class="faq-toggle-icon">
-              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </span>
-          </button>
-          <div class="faq-answer-panel">
-            <p class="faq-answer-text">
-              Yes, both events take place seamlessly at The Plaza Hotel. The ceremony will be held in the outdoor floral courtyard, followed immediately by cocktail hour on the terrace and dinner in the Grand Ballroom.
-            </p>
-          </div>
-        </div>
-
-      </div>
-
+<section class="section" id="reserve">
+  <div class="container">
+    <div style="text-align: center;">
+      <div class="section-kicker">Private Concierge</div>
+      <h2 class="section-heading">Plan &amp; Reserve Your Evening</h2>
+      <p class="section-lead" style="margin: 0 auto;">Estimate your tasting experience and confirm your preferred seating directly with our concierge via WhatsApp.</p>
     </div>
-  </section>
 
-  <!-- ==========================================================================
-       12. SECTION: KINDLY REPLY (RSVP FORM)
-       ========================================================================== -->
-  <section class="wedding-section alt-bg" id="rsvp">
-    <div class="site-container">
-      
-      <div class="rsvp-wrapper-box" id="rsvpWrapper">
-        <span class="rsvp-ribbon-tag">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
-          KINDLY RESPOND
-        </span>
+    <div class="funnel-grid">
+      <!-- Calculator -->
+      <div class="panel-card">
+        <h3 class="font-serif" style="font-size: 24px; margin-bottom: 24px;">Evening Odyssey Estimator</h3>
 
-        <div class="sec-head-center" style="margin-bottom:28px;">
-          <h2 class="sec-title-script">Kindly Reply</h2>
-          <p class="sec-lead" style="font-family:var(--font-caps);letter-spacing:0.18em;font-size:0.75rem;color:var(--c-burgundy);text-transform:uppercase;">
-            WE WOULD BE DELIGHTED TO CELEBRATE WITH YOU.<br>
-            PLEASE RESPOND BY 22 JULY 2028.
-          </p>
+        <div class="slider-row">
+          <div class="slider-top">
+            <span>Party Size</span>
+            <span class="slider-val" id="calcGuestsOut">4 Guests</span>
+          </div>
+          <input type="range" id="calcGuests" min="1" max="12" value="4" oninput="calcEvening()"/>
         </div>
 
-        <form class="rsvp-form-grid" onsubmit="handleRSVPSubmit(event)">
-          
-          <div class="rsvp-field-group">
-            <label for="rsvpName" class="rsvp-label">FULL NAME(S)</label>
-            <input type="text" id="rsvpName" class="rsvp-input" required placeholder="Lord & Lady Sterling">
+        <div class="slider-row">
+          <div class="slider-top">
+            <span>Tasting Menu</span>
+            <span class="slider-val" id="calcTierOut">12 Courses (Terroir)</span>
           </div>
+          <input type="range" id="calcTier" min="1" max="3" value="2" oninput="calcEvening()"/>
+        </div>
 
-          <div class="rsvp-field-group">
-            <label for="rsvpEmail" class="rsvp-label">EMAIL ADDRESS</label>
-            <input type="email" id="rsvpEmail" class="rsvp-input" required placeholder="sterling@family.com">
+        <div class="slider-row">
+          <div class="slider-top">
+            <span>Sommelier Pairing</span>
+            <span class="slider-val" id="calcWineOut">Grand Cru Reserve</span>
           </div>
+          <input type="range" id="calcWine" min="0" max="2" value="1" oninput="calcEvening()"/>
+        </div>
 
-          <div class="rsvp-field-group">
-            <label class="rsvp-label">WILL YOU BE ATTENDING?</label>
-            <div class="attendance-choice-row">
-              <label class="attendance-pill-radio">
-                <input type="radio" name="attendance" value="Joyfully Accepts" checked>
-                <span class="attendance-pill-text">
-                  <svg class="svg-icon" style="width:16px;height:16px;stroke:var(--c-gold-bright);" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                  Joyfully Accepts
-                </span>
-              </label>
-              <label class="attendance-pill-radio">
-                <input type="radio" name="attendance" value="Regretfully Declines">
-                <span class="attendance-pill-text">
-                  <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                  Regretfully Declines
-                </span>
-              </label>
+        <div class="summary-box">
+          <div class="font-mono text-dim" style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Estimated Evening Total</div>
+          <div class="summary-price" id="calcTotalOut">&#8377;76,000</div>
+          <div class="text-muted" style="font-size: 13px; margin-top: 6px;" id="calcNotesOut">Includes 3.5-hour service &amp; 6 Grand Cru pours per guest</div>
+        </div>
+      </div>
+
+      <!-- Reservation Form -->
+      <div class="panel-card">
+        <h3 class="font-serif" style="font-size: 24px; margin-bottom: 24px;">VIP Table Request</h3>
+        <form onsubmit="submitReservation(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Guest Name *</label>
+              <input type="text" id="resName" class="form-input" placeholder="e.g. Aarav Mehta" required/>
             </div>
-          </div>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-            <div class="rsvp-field-group">
-              <label for="rsvpGuests" class="rsvp-label">NUMBER OF GUESTS</label>
-              <select id="rsvpGuests" class="rsvp-select">
-                <option value="1">1 Guest</option>
-                <option value="2" selected>2 Guests</option>
+            <div class="form-group">
+              <label class="form-label">Phone / WhatsApp *</label>
+              <input type="tel" id="resPhone" class="form-input" placeholder="+91 98XXX XXXXX" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Preferred Date *</label>
+              <input type="date" id="resDate" class="form-input" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Seating Time *</label>
+              <select id="resTime" class="form-select">
+                <option value="7:00 PM (First Seating)">7:00 PM (First Seating)</option>
+                <option value="8:30 PM (Prime Salon)" selected>8:30 PM (Prime Salon)</option>
+                <option value="9:45 PM (Late Tasting)">9:45 PM (Late Tasting)</option>
               </select>
             </div>
-
-            <div class="rsvp-field-group">
-              <label for="rsvpDietary" class="rsvp-label">DIETARY REQUIREMENTS</label>
-              <select id="rsvpDietary" class="rsvp-select">
-                <option>No Restrictions</option>
-                <option>Vegetarian</option>
-                <option>Vegan</option>
-                <option>Gluten-Free</option>
-                <option>Pescatarian / Halal</option>
-              </select>
+            <div class="form-group full">
+              <label class="form-label">Dietary Notes or Occasion</label>
+              <input type="text" id="resNotes" class="form-input" placeholder="Anniversary, vegetarian tasting, cellar tour request"/>
             </div>
           </div>
 
-          <div class="rsvp-field-group">
-            <label for="rsvpSong" class="rsvp-label">WHAT SONG WILL GET YOU ON THE DANCE FLOOR?</label>
-            <input type="text" id="rsvpSong" class="rsvp-input" placeholder="e.g. Frank Sinatra - Fly Me to the Moon">
-          </div>
-
-          <div class="rsvp-field-group">
-            <label for="rsvpMessage" class="rsvp-label">A NOTE FOR THE COUPLE (OPTIONAL)</label>
-            <textarea id="rsvpMessage" class="rsvp-textarea" rows="3" placeholder="Share your warm wishes or memories..."></textarea>
-          </div>
-
-          <button type="submit" class="btn-rsvp-submit">
-            <svg class="svg-icon" style="width:18px;height:18px;" viewBox="0 0 24 24">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-            </svg>
-            SUBMIT RSVP WITH LOVE →
+          <button type="submit" class="btn-gold" style="width: 100%; justify-content: center; margin-top: 22px; padding: 15px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>Confirm via WhatsApp Concierge</span>
           </button>
         </form>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       13. SECTION: ROMANTIC MOMENTS GALLERY
-       ========================================================================== -->
-  <section class="wedding-section" id="gallery">
-    <div class="site-container">
-      
-      <div class="sec-head-center">
-        <span class="sec-kicker">
-          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          CHERISHED MEMORIES
-        </span>
-        <h2 class="sec-title-script">Moments in Love</h2>
-        <p class="sec-lead">A glimpse into our sweetest memories leading up to our wedding day.</p>
-      </div>
-
-      <div class="gallery-mosaic-grid">
-        <div class="gallery-tile tall">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Romantic Arch" class="gallery-img" loading="lazy">
-          <div class="gallery-hover-tag">VILLA BALBIANO GARDENS</div>
-        </div>
-        <div class="gallery-tile">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Wedding Rings" class="gallery-img" loading="lazy">
-          <div class="gallery-hover-tag">THE RINGS</div>
-        </div>
-        <div class="gallery-tile">
-          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" alt="Couple in Sunset" class="gallery-img" loading="lazy">
-          <div class="gallery-hover-tag">LAKE COMO SUNSET</div>
-        </div>
-        <div class="gallery-tile tall">
-          <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=800&q=80" alt="Wedding Table Arrangement" class="gallery-img" loading="lazy">
-          <div class="gallery-hover-tag">BOTANICAL TABLES</div>
-        </div>
-        <div class="gallery-tile">
-          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Champagne Flutes" class="gallery-img" loading="lazy">
-          <div class="gallery-hover-tag">VINTAGE TOASTS</div>
-        </div>
-        <div class="gallery-tile">
-          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Rose Petals" class="gallery-img" loading="lazy">
-          <div class="gallery-hover-tag">BURGUNDY ROSES</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       14. MASTER FOOTER
-       ========================================================================== -->
-  <footer class="wedding-footer">
-    <div class="site-container">
-      <div class="footer-monogram">O & A</div>
-      <div class="footer-names">Olivia & Adrian</div>
-      <div class="footer-tagline">AUGUST 08, 2028 · THE PLAZA HOTEL, NEW YORK</div>
-
-      <div class="footer-links-row">
-        <a href="#home">Home</a>
-        <a href="#story">Our Story</a>
-        <a href="#details">The Details</a>
-        <a href="#location">Location</a>
-        <a href="#schedule">Timeline</a>
-        <a href="#accommodation">Accommodation</a>
-        <a href="#registry">Registry</a>
-        <a href="#faq">FAQ</a>
-        <a href="#rsvp">RSVP</a>
-      </div>
-
-      <div class="footer-bottom-line">
-        © 2028 Olivia & Adrian Wedding Atelier. Made with everlasting love for our cherished family and friends.
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="wedding-app.js"></script>
+<!-- 10. MASTER CINEMATIC FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <div class="brand-monogram">A</div>
+        <div>
+          <div class="brand-name">AURA GASTRONOMIE</div>
+          <div class="text-dim" style="font-size: 12px;">Executive Chef Fenil Limbachiya &bull; Concierge: +91 82000 95497</div>
+        </div>
+      </div>
+
+      <a href="#top" class="back-top-btn" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Aura Gastronomie. All rights reserved.</span>
+      <span class="font-mono text-gold">Direct Reservation Line: +91 82000 95497</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918200095497?text=Hello%20Aura%20Gastronomie%20Concierge%2C%20I%20would%20like%20to%20reserve%20a%20tasting%20table." target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp Concierge">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ==========================================================================
+     BATTLE-TESTED 60 FPS ANIMATION ENGINES (cinematic-longform-web)
+     ========================================================================== -->
+<script>
+// Sticky header shrink
+window.addEventListener('scroll', () => {
+  const hdr = document.getElementById('siteHeader');
+  if (window.scrollY > 40) hdr.classList.add('is-scrolled');
+  else hdr.classList.remove('is-scrolled');
+}, { passive: true });
+
+// ENGINE 1: Hero Multi-Plane 3D Parallax & Camera Push
+(function initHeroParallax() {
+  const hero = document.querySelector('[data-hero]');
+  if (!hero) return;
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const PLANES = [
+    { sel: '.plane--back',  d0: -140, par: 0.30 },
+    { sel: '.plane--badge', d0:  -94, par: 0.65 },
+    { sel: '.plane--title', d0: -112, par: 0.54 },
+    { sel: '.plane--main',  d0:  -54, par: 0.90 },
+    { sel: '.plane--front', d0:   66, par: 1.50 }
+  ];
+
+  const planes = PLANES.map(p => ({ el: hero.querySelector(p.sel), ...p })).filter(p => p.el);
+  let pushProgress = 0;
+  let targetX = 0, targetY = 0, curX = 0, curY = 0;
+
+  window.addEventListener('pointermove', e => {
+    targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+    targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  function render() {
+    curX = lerp(curX, targetX, 0.08);
+    curY = lerp(curY, targetY, 0.08);
+    pushProgress = lerp(pushProgress, 1, 0.045);
+
+    planes.forEach(p => {
+      const z = lerp(p.d0, 0, pushProgress);
+      const x = curX * p.par * 20;
+      const y = curY * p.par * 18;
+      p.el.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, ${z.toFixed(2)}px)`;
+    });
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+})();
+
+// ENGINE 2: Pinned Horizontal Deck Slider with Vertical Scroll
+(function initPinnedDeck() {
+  const deck = document.querySelector('[data-deck]');
+  if (!deck) return;
+  const slides = [...deck.querySelectorAll('[data-deck-slide]')];
+  const progressBar = document.getElementById('deckProgress');
+  const clamp = (v, a = 0, b = 1) => (v < a ? a : v > b ? b : v);
+
+  function update() {
+    const vh = window.innerHeight;
+    const rect = deck.getBoundingClientRect();
+    const scrollable = Math.max(deck.offsetHeight - vh, 1);
+    const progress = clamp(-rect.top / scrollable);
+    const totalMoves = slides.length - 1;
+    const currentSlide = progress * totalMoves;
+
+    if (progressBar) {
+      progressBar.style.width = `${(progress * 100).toFixed(1)}%`;
+    }
+
+    slides.forEach((s, i) => {
+      const offset = (i - currentSlide) * 100;
+      s.style.transform = `translate3d(${offset}%, 0, 0)`;
+      s.style.opacity = Math.max(0, 1 - Math.abs(i - currentSlide) * 0.75);
+    });
+  }
+
+  window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ENGINE 3: Staggered 3D Perspective Card Drop-In & SVG Snake Drawing
+(function initSnakeDropIn() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-drawn');
+        const cards = entry.target.querySelectorAll('[data-card]');
+        cards.forEach((card, index) => {
+          card.animate([
+            { transform: 'translate3d(0, -60px, -120px) rotateX(-14deg)', opacity: 0 },
+            { transform: 'translate3d(0, 0, 0) rotateX(0deg)', opacity: 1 }
+          ], {
+            duration: 1200,
+            delay: index * 150,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            fill: 'forwards'
+          });
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18 });
+
+  document.querySelectorAll('[data-stagger-group]').forEach(el => observer.observe(el));
+})();
+
+// ENGINE 4: Filterable Menu Showcase
+document.querySelectorAll('.filter-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.dish-card').forEach(card => {
+      if (filter === 'all' || card.dataset.cat === filter) {
+        card.style.display = 'flex';
+        card.animate([
+          { opacity: 0, transform: 'translateY(14px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ], { duration: 350, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'forwards' });
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// ENGINE 5: Spring-Eased Counting Stats
+(function animateCounters() {
+  const counters = document.querySelectorAll('[data-counter]');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.getAttribute('data-target') || '100');
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1800;
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 4);
+        const current = Math.round(ease * target).toLocaleString();
+        el.textContent = `${current}${suffix}`;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.25 });
+
+  counters.forEach(c => obs.observe(c));
+})();
+
+// ENGINE 6: 3D Mouse Spotlight & Tilt
+document.querySelectorAll('[data-tilt]').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+  });
+});
+
+// Evening Estimator
+function calcEvening() {
+  const guests = parseInt(document.getElementById('calcGuests').value, 10);
+  const tier = parseInt(document.getElementById('calcTier').value, 10);
+  const wine = parseInt(document.getElementById('calcWine').value, 10);
+
+  document.getElementById('calcGuestsOut').textContent = `${guests} ${guests === 1 ? 'Guest' : 'Guests'}`;
+
+  let courseCost = 8500;
+  let tierName = '8 Courses (Harvest)';
+  let dur = '2.5-hour';
+  if (tier === 2) {
+    courseCost = 12500;
+    tierName = '12 Courses (Terroir)';
+    dur = '3.5-hour';
+  } else if (tier === 3) {
+    courseCost = 18000;
+    tierName = '18 Courses (Prestige)';
+    dur = '4.5-hour';
+  }
+  document.getElementById('calcTierOut').textContent = tierName;
+
+  let wineCost = 0;
+  let wineName = 'Botanical Infusions';
+  let wineNote = 'non-alcoholic botanical pairings';
+  if (wine === 1) {
+    wineCost = 6500;
+    wineName = 'Grand Cru Reserve';
+    wineNote = '6 Grand Cru pours per guest';
+  } else if (wine === 2) {
+    wineCost = 14000;
+    wineName = 'Heritage Vault';
+    wineNote = '8 rare century-cellar pours per guest';
+  }
+  document.getElementById('calcWineOut').textContent = wineName;
+
+  const total = (courseCost + wineCost) * guests;
+  document.getElementById('calcTotalOut').innerHTML = `&#8377;${total.toLocaleString()}`;
+  document.getElementById('calcNotesOut').textContent = `Includes ${dur} service & ${wineNote}`;
+}
+
+// WhatsApp Reservation Submission
+function submitReservation(e) {
+  e.preventDefault();
+  const name = document.getElementById('resName').value.trim();
+  const phone = document.getElementById('resPhone').value.trim();
+  const date = document.getElementById('resDate').value;
+  const time = document.getElementById('resTime').value;
+  const notes = document.getElementById('resNotes').value.trim();
+  const guests = document.getElementById('calcGuestsOut').textContent;
+  const menu = document.getElementById('calcTierOut').textContent;
+
+  const text = encodeURIComponent(
+    `Aura Gastronomie — VIP Table Reservation\n\n` +
+    `Guest: ${name}\n` +
+    `Phone: ${phone}\n` +
+    `Date: ${date}\n` +
+    `Seating: ${time}\n` +
+    `Party: ${guests} | Menu: ${menu}\n` +
+    `Notes: ${notes || 'None'}`
+  );
+  window.open(`https://wa.me/918200095497?text=${text}`, '_blank');
+}
+// ENGINE 7: 60 FPS Golden Hearth Embers Canvas Engine
+(function initEmbersCanvas() {
+  const canvas = document.getElementById('emberCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const PARTICLE_COUNT = 60;
+  const particles = [];
+  let mouseWind = 0;
+  let lastScrollY = window.scrollY;
+  let scrollBoost = 0;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 2.2 + 0.8,
+      speedY: Math.random() * 0.9 + 0.4,
+      speedX: (Math.random() - 0.5) * 0.5,
+      alpha: Math.random() * 0.7 + 0.2,
+      fadeSpeed: Math.random() * 0.008 + 0.003,
+      hue: Math.random() > 0.3 ? 42 : 28 // Gold / Amber
+    });
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    const normX = (e.clientX / width - 0.5) * 2;
+    mouseWind = normX * 0.8;
+  }, { passive: true });
+
+  window.addEventListener('scroll', () => {
+    const dy = Math.abs(window.scrollY - lastScrollY);
+    lastScrollY = window.scrollY;
+    scrollBoost = Math.min(dy * 0.08, 4);
+  }, { passive: true });
+
+  function loop() {
+    ctx.clearRect(0, 0, width, height);
+    scrollBoost *= 0.94;
+    mouseWind *= 0.96;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.y -= p.speedY + scrollBoost;
+      p.x += p.speedX + mouseWind;
+      p.alpha -= p.fadeSpeed;
+
+      if (p.y < -10 || p.alpha <= 0) {
+        p.y = height + 10;
+        p.x = Math.random() * width;
+        p.alpha = Math.random() * 0.7 + 0.3;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${p.hue}, 85%, 65%, ${p.alpha})`;
+      ctx.shadowBlur = p.size * 5;
+      ctx.shadowColor = `hsla(${p.hue}, 90%, 50%, 0.8)`;
+      ctx.fill();
+    }
+
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+
+// ENGINE 8: Web Audio Fine Dining Atmosphere Synthesizer (Zero External Load)
+(function initAtmosphereAudio() {
+  const btn = document.getElementById('atmosphereToggle');
+  const wave = document.getElementById('audioWave');
+  const label = document.getElementById('atmosphereLabel');
+  if (!btn) return;
+
+  let audioCtx = null;
+  let isPlaying = false;
+  let masterGain = null;
+  let noiseTimer = null;
+
+  function startAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+    masterGain.gain.exponentialRampToValueAtTime(0.24, audioCtx.currentTime + 1.5);
+    masterGain.connect(audioCtx.destination);
+
+    // Warm hearth drone oscillators (65Hz & 130Hz)
+    const osc1 = audioCtx.createOscillator();
+    const osc2 = audioCtx.createOscillator();
+    const filter = audioCtx.createBiquadFilter();
+
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(65.4, audioCtx.currentTime); // C2 warm tone
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(130.8, audioCtx.currentTime); // C3 harmonic
+
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(260, audioCtx.currentTime);
+
+    osc1.connect(filter);
+    osc2.connect(filter);
+    filter.connect(masterGain);
+    osc1.start();
+    osc2.start();
+
+    // Subtle gentle crackling embers
+    function crackle() {
+      if (!isPlaying) return;
+      const bufferSize = audioCtx.sampleRate * 0.04;
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.2));
+      }
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+      const crackleGain = audioCtx.createGain();
+      crackleGain.gain.setValueAtTime(Math.random() * 0.12 + 0.04, audioCtx.currentTime);
+      noise.connect(crackleGain);
+      crackleGain.connect(masterGain);
+      noise.start();
+
+      const nextDelay = Math.random() * 450 + 150;
+      noiseTimer = setTimeout(crackle, nextDelay);
+    }
+    crackle();
+  }
+
+  function stopAudio() {
+    if (!audioCtx) return;
+    if (noiseTimer) clearTimeout(noiseTimer);
+    masterGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+    setTimeout(() => {
+      audioCtx.close();
+      audioCtx = null;
+    }, 650);
+  }
+
+  btn.addEventListener('click', () => {
+    if (!isPlaying) {
+      startAudio();
+      isPlaying = true;
+      wave.classList.add('active');
+      label.textContent = 'Hearth Sound: On';
+      btn.style.borderColor = 'var(--accent)';
+      btn.style.color = '#fff';
+    } else {
+      stopAudio();
+      isPlaying = false;
+      wave.classList.remove('active');
+      label.textContent = 'Hearth Sound: Off';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }
+  });
+})();
+
+// ENGINE 9: Pinned 3D Exploded Dish Scroll Scrubbing & Layer Inspector
+(function initDeconstructDish() {
+  const section = document.getElementById('deconstruct');
+  const layersBox = document.getElementById('dishLayersBox');
+  const meterFill = document.getElementById('deconstructMeter');
+  const meterPercent = document.getElementById('deconstructPercent');
+  const inspectItems = document.querySelectorAll('.layer-inspect-item');
+
+  if (!section || !layersBox) return;
+
+  const layer1 = document.getElementById('layer1');
+  const layer2 = document.getElementById('layer2');
+  const layer3 = document.getElementById('layer3');
+  const layer4 = document.getElementById('layer4');
+  const layer5 = document.getElementById('layer5');
+
+  const clamp = (v, a = 0, b = 1) => (v < a ? a : v > b ? b : v);
+
+  function update() {
+    const vh = window.innerHeight;
+    const rect = section.getBoundingClientRect();
+    const scrollable = Math.max(section.offsetHeight - vh, 1);
+    const progress = clamp(-rect.top / scrollable);
+
+    // Update Progress bar
+    if (meterFill) meterFill.style.width = `${(progress * 100).toFixed(0)}%`;
+    if (meterPercent) meterPercent.textContent = `${(progress * 100).toFixed(0)}%`;
+
+    // 3D Exploded Layers Z-Transforms
+    // When progress = 0: Compact together
+    // When progress = 1: Exploded apart with high separation
+    const z2 = progress * 65;
+    const z3 = progress * 145;
+    const z4 = progress * 225;
+    const z5 = progress * 305;
+
+    if (layer1) layer1.style.transform = `translateZ(0px)`;
+    if (layer2) layer2.style.transform = `translateZ(${z2.toFixed(1)}px)`;
+    if (layer3) layer3.style.transform = `translateZ(${z3.toFixed(1)}px)`;
+    if (layer4) layer4.style.transform = `translateZ(${z4.toFixed(1)}px)`;
+    if (layer5) layer5.style.transform = `translateZ(${z5.toFixed(1)}px)`;
+
+    // Active Layer Highlight based on scroll progress
+    let activeIdx = 1;
+    if (progress > 0.8) activeIdx = 5;
+    else if (progress > 0.6) activeIdx = 4;
+    else if (progress > 0.4) activeIdx = 3;
+    else if (progress > 0.2) activeIdx = 2;
+
+    inspectItems.forEach(item => {
+      const idx = parseInt(item.getAttribute('data-layer'), 10);
+      if (idx === activeIdx) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener('resize', update);
+  update();
+
+  // Interactive Layer Inspection on Click
+  inspectItems.forEach(item => {
+    item.addEventListener('click', () => {
+      inspectItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const idx = item.getAttribute('data-layer');
+      const targetDisc = document.getElementById(`layer${idx}`);
+
+      document.querySelectorAll('.dish-disc').forEach(d => d.classList.remove('is-focused'));
+      if (targetDisc) {
+        targetDisc.classList.add('is-focused');
+        setTimeout(() => targetDisc.classList.remove('is-focused'), 1600);
+      }
+    });
+  });
+
+  // Direct 3D Disc click opens inspector
+  document.querySelectorAll('.dish-disc').forEach(disc => {
+    disc.addEventListener('click', () => {
+      const idx = disc.getAttribute('data-layer-idx');
+      const item = document.querySelector(`.layer-inspect-item[data-layer="${idx}"]`);
+      if (item) item.click();
+    });
+  });
+
+  // 3D Drag Orbit Rotation for Dish
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let currentRotX = 54;
+  let currentRotZ = -24;
+  let targetRotX = 54;
+  let targetRotZ = -24;
+
+  const stage = document.querySelector('.dish-3d-stage');
+  if (stage) {
+    stage.style.cursor = 'grab';
+
+    stage.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      stage.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      startX = e.clientX;
+      startY = e.clientY;
+      targetRotZ += dx * 0.45;
+      targetRotX -= dy * 0.45;
+      targetRotX = Math.max(15, Math.min(85, targetRotX));
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        stage.style.cursor = 'grab';
+      }
+    });
+
+    // Touch support for mobile devices
+    stage.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      targetRotZ += dx * 0.45;
+      targetRotX -= dy * 0.45;
+      targetRotX = Math.max(15, Math.min(85, targetRotX));
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    // Smooth lerp loop for rotation
+    function orbitLoop() {
+      currentRotX += (targetRotX - currentRotX) * 0.12;
+      currentRotZ += (targetRotZ - currentRotZ) * 0.12;
+      layersBox.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateZ(${currentRotZ.toFixed(2)}deg)`;
+      requestAnimationFrame(orbitLoop);
+    }
+    requestAnimationFrame(orbitLoop);
+  }
+})();
+
+// ENGINE 10: Interactive Dish Quick-View Modal
+(function initDishModal() {
+  const modal = document.getElementById('dishModal');
+  const closeBtn = document.getElementById('dishModalClose');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalPairing = document.getElementById('modalPairing');
+  const modalTag = document.getElementById('modalTag');
+  const reserveBtn = document.getElementById('modalReserveBtn');
+
+  if (!modal) return;
+
+  const dishDetails = {
+    'A5 Miyazaki Wagyu Binchotan': {
+      img: 'assets/images/dish-wagyu.jpg',
+      tag: 'Terroir & Land \u2022 Chapter I',
+      price: '\u20B96,800',
+      pairing: '2015 Domaine de la Roman\u00E9e-Conti Richebourg',
+      desc: 'Forty-five-day Himalayan salt-cave aged BMS 12 tenderloin seared over Kishu binchotan white oak, 72-hour wild Kashmir morel jus, and shallot ash.'
+    },
+    'Hokkaido Scallop & Ossetra': {
+      img: 'assets/images/dish-seafood.jpg',
+      tag: 'Deep Ocean \u2022 Chapter II',
+      price: '\u20B95,400',
+      pairing: '2012 Salon Cuv\u00E9e S Le Mesnil Blanc de Blancs',
+      desc: 'Hand-dived wild cold-water scallops cured in kelp dashi, topped with golden Ossetra sturgeon caviar and warm sea urchin emulsion.'
+    },
+    'P\u00E9rigord Black Truffle Sphere': {
+      img: 'assets/images/restaurant-hero.jpg',
+      tag: 'Atelier Signature \u2022 Chapter III',
+      price: '\u20B94,200',
+      pairing: '2018 Ch\u00E2teau d\u2019Yquem Sauternes',
+      desc: 'Cultured butter brioche filled with 36-month aged Comt\u00E9 foam, shaved black winter diamonds, and pine needle vapor.'
+    },
+    'Nebula Smoked Yamazaki': {
+      img: 'assets/images/restaurant-cocktail.jpg',
+      tag: 'Cellar Alchemy \u2022 Chapter IV',
+      price: '\u20B92,800',
+      pairing: 'Charred Applewood Molecular Cloche',
+      desc: '21-year Yamazaki single malt infused with tableside cedar vapor, saffron bitters, and hand-carved glacier crystal.'
+    }
+  };
+
+  document.querySelectorAll('.dish-card, .deck-slide-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const titleEl = card.querySelector('.dish-name, .deck-slide-title');
+      if (!titleEl) return;
+      const title = titleEl.textContent.trim();
+      const info = dishDetails[title] || {
+        img: card.querySelector('img') ? card.querySelector('img').src : 'assets/images/dish-wagyu.jpg',
+        tag: 'Grand Cru Highlight',
+        price: card.querySelector('.dish-price') ? card.querySelector('.dish-price').textContent : 'Aura Selection',
+        pairing: 'Grand Cru Sommelier Allocation',
+        desc: card.querySelector('.dish-desc, .deck-slide-text') ? card.querySelector('.dish-desc, .deck-slide-text').textContent : 'Artisanal course.'
+      };
+
+      modalImg.src = info.img;
+      modalTitle.textContent = title;
+      modalTag.textContent = info.tag;
+      modalPrice.textContent = info.price;
+      modalPairing.textContent = info.pairing;
+      modalDesc.textContent = info.desc;
+
+      modal.classList.add('is-open');
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('is-open'));
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('is-open');
+  });
+  if (reserveBtn) {
+    reserveBtn.addEventListener('click', () => {
+      modal.classList.remove('is-open');
+    });
+  }
+})();
+</script>
+
+<!-- DISH QUICK-VIEW MODAL -->
+<div class="dish-modal-overlay" id="dishModal">
+  <div class="dish-modal-card">
+    <button class="dish-modal-close" id="dishModalClose" aria-label="Close Modal">&times;</button>
+    <div class="dish-modal-media">
+      <img id="modalImg" src="assets/images/dish-wagyu.jpg" alt="Dish Highlight"/>
+    </div>
+    <div class="dish-modal-body">
+      <div>
+        <div class="chapter-num" id="modalTag">Signature Course</div>
+        <h3 class="font-serif" id="modalTitle" style="font-size: 26px; color: #fff; margin: 8px 0;">A5 Miyazaki Wagyu Binchotan</h3>
+        <p class="text-muted" id="modalDesc" style="font-size: 14px; margin-bottom: 18px; line-height: 1.6;">Charcoal seared BMS 12 tenderloin, 72-hour wild Kashmir morel jus, smoked bone marrow glaze, and shallot ash.</p>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; margin-bottom: 20px;">
+          <div class="font-mono text-gold" style="font-size: 11px; text-transform: uppercase;">Sommelier Pairing</div>
+          <div id="modalPairing" style="font-size: 13px; font-weight: 600; color: #f4f4f5; margin-top: 4px;">2015 Domaine de la Roman&eacute;e-Conti Richebourg</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+        <span class="font-mono text-gold" id="modalPrice" style="font-size: 22px; font-weight: 700;">&#8377;6,800</span>
+        <a href="#reserve" class="btn-gold" id="modalReserveBtn" style="padding: 10px 18px; font-size: 13px;">
+          <span>Request in Seating</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

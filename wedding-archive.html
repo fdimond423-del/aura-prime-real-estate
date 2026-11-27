@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olivia & Adrian — Royal Wedding Celebration · 08 August 2028</title>
+  <meta name="description" content="An ultra-premium cinematic wedding invitation celebrating the union of Olivia & Adrian at The Plaza Hotel, New York.">
+  
+  <!-- Fonts: Alex Brush (Calligraphy Script), Playfair Display (Serif), Cinzel (Roman Caps), Jost (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- GSAP Core & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <link rel="stylesheet" href="wedding-style.css">
+</head>
+<body>
+
+  <!-- HIGH-PERFORMANCE PARTICLES CANVAS (FALLING PETALS & GOLD EMBERS) -->
+  <canvas id="weddingCanvas"></canvas>
+
+  <!-- ==========================================================================
+       1. PINNED SCROLL-SCRUBBED 3D ENVELOPE INTRO
+       (Envelope unfolds automatically as user scrolls down, and re-seals on scroll-up)
+       ========================================================================== -->
+  <section class="envelope-pinned-section" id="envelopeHero">
+    <div class="envelope-ambient-glow"></div>
+
+    <!-- Decorative Corner Watercolor Botanicals -->
+    <svg class="floral-corner-botanical floral-top-left" viewBox="0 0 240 240" fill="none">
+      <path d="M20,20 C80,20 140,60 160,120 C100,150 50,110 20,20 Z" fill="rgba(92, 29, 36, 0.22)"/>
+      <circle cx="60" cy="60" r="22" fill="rgba(235, 200, 204, 0.5)"/>
+      <circle cx="105" cy="50" r="14" fill="rgba(212, 175, 55, 0.35)"/>
+      <circle cx="50" cy="105" r="16" fill="rgba(92, 29, 36, 0.28)"/>
+      <path d="M40,40 Q90,90 140,70" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.5" fill="none"/>
+    </svg>
+
+    <svg class="floral-corner-botanical floral-bottom-right" viewBox="0 0 240 240" fill="none">
+      <path d="M20,20 C80,20 140,60 160,120 C100,150 50,110 20,20 Z" fill="rgba(92, 29, 36, 0.22)"/>
+      <circle cx="60" cy="60" r="22" fill="rgba(235, 200, 204, 0.5)"/>
+      <circle cx="105" cy="50" r="14" fill="rgba(212, 175, 55, 0.35)"/>
+      <circle cx="50" cy="105" r="16" fill="rgba(92, 29, 36, 0.28)"/>
+      <path d="M40,40 Q90,90 140,70" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.5" fill="none"/>
+    </svg>
+
+    <div class="envelope-stage-box" id="envelopeStage">
+      
+      <div class="envelope-intro-kicker">
+        A LOVE NOTE FROM
+      </div>
+      
+      <h1 class="envelope-couple-names">Olivia & Adrian</h1>
+      <span class="envelope-date-sub">SATURDAY · 08 AUGUST 2028 · NEW YORK</span>
+
+      <!-- 3D Envelope Chassis -->
+      <div class="envelope-3d-chassis" id="envelopeChassis">
+        
+        <!-- Rotating 3D Top Flap -->
+        <div class="envelope-flap-fold" id="envelopeFlap"></div>
+
+        <!-- The Sliding & Unfolding Royal Letter Card -->
+        <div class="cinematic-invitation-card" id="invitationCard">
+          <div class="card-filigree-corners"></div>
+          <span class="card-invitation-pre">TOGETHER WITH OUR FAMILIES</span>
+          <h2 class="card-names-calligraphy">Olivia & Adrian</h2>
+          <p class="card-invite-prose">
+            Warmly request the pleasure of your company as we exchange our sacred vows and begin our new life together.
+          </p>
+          <div class="card-venue-callout">
+            THE PLAZA HOTEL & GRAND TERRACE · NEW YORK
+          </div>
+        </div>
+
+        <!-- Front Pocket Concealing Card -->
+        <div class="envelope-pocket-front"></div>
+
+        <!-- Realistic 3D Golden Wax Seal -->
+        <div class="wax-seal-golden" id="goldenWaxSeal">
+          <span class="wax-seal-emboss">O&A</span>
+          <span class="wax-seal-sub-icon">
+            <svg class="svg-icon" style="width:10px;height:10px;stroke:var(--c-burgundy-deep);" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
+          <svg class="wax-ribbon-tails" viewBox="0 0 40 40" fill="none">
+            <path d="M12 0 L20 28 L28 0 Z" fill="#6B4E0F"/>
+            <path d="M16 0 L20 24 L24 0 Z" fill="#D4AF37"/>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Scroll Scrub Cue Indicator -->
+      <div class="scroll-scrub-indicator" id="scrollIndicator">
+        <div class="scroll-mouse-icon">
+          <div class="scroll-mouse-wheel"></div>
+        </div>
+        <div class="scroll-pill-badge">
+          Scroll down to unfold invitation
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2. PERSISTENT FLOATING AUDIO PLAYER WIDGET
+       ========================================================================== -->
+  <aside class="floating-audio-bar" id="floatingAudioBar" aria-label="Wedding Music Player">
+    <button type="button" class="audio-btn-circle" id="audioToggleBtn" title="Play / Pause Romantic Harp Music">
+      <svg class="svg-icon" viewBox="0 0 24 24">
+        <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
+      </svg>
+    </button>
+    <div class="audio-info-col">
+      <span class="audio-track-title">CANON IN D · HARP ARPEGGIO</span>
+      <span class="audio-track-sub">Romantic Wedding Suite</span>
+    </div>
+    <div class="sound-bars-anim">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       3. EDITORIAL STICKY NAVBAR
+       ========================================================================== -->
+  <header class="wedding-header" id="weddingHeader">
+    <div class="site-container header-inner">
+      <a href="#home" class="brand-monogram-box">
+        <div class="monogram-seal-sm">OA</div>
+        <div class="brand-text-col">
+          <div class="brand-names">Olivia & Adrian</div>
+          <div class="brand-date">08 AUGUST 2028</div>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="wedding-nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#story">Our Story</a>
+        <a href="#details">The Details</a>
+        <a href="#location">Location</a>
+        <a href="#schedule">Timeline</a>
+        <a href="#accommodation">Accommodation</a>
+        <a href="#registry">Registry</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <!-- Template Switcher & RSVP -->
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="rangmahal-demo.html" class="btn-secondary-wedding" style="padding:8px 16px;font-size:0.6875rem;" title="View Rangmahal Royal Indian Palace Template">
+          View Rangmahal Demo →
+        </a>
+        <a href="#rsvp" class="btn-header-rsvp">
+          <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Kindly Reply
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       4. HERO SECTION (LAKE COMO / PLAZA VILLA & FLORAL ARCHES)
+       ========================================================================== -->
+  <section class="wedding-hero" id="home">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80" alt="Scenic Wedding Estate" class="hero-backdrop-img">
+    <div class="hero-vignette-overlay"></div>
+    <div class="hero-floral-frame hero-floral-left"></div>
+    <div class="hero-floral-frame hero-floral-right"></div>
+
+    <div class="hero-content-box">
+      <div class="hero-kicker-crest">
+        <span class="hero-kicker-line"></span>
+        <span class="hero-kicker-text">THE WEDDING CELEBRATION OF</span>
+        <span class="hero-kicker-line rev"></span>
+      </div>
+
+      <h1 class="hero-main-title">Olivia & Adrian</h1>
+
+      <div class="hero-date-row">
+        08 AUGUST 2028
+      </div>
+
+      <div class="hero-venue-tag">
+        THE PLAZA HOTEL & GRAND TERRACE · FIFTH AVENUE, NEW YORK
+      </div>
+
+      <!-- Real-Time Live Countdown Timer -->
+      <div class="countdown-card-wrapper tilt-card">
+        <div class="card-glare"></div>
+        <div class="countdown-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          COUNTING DOWN TO FOREVER
+        </div>
+        <div class="countdown-grid">
+          <div class="countdown-tile">
+            <span class="countdown-number" id="countdownDays">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-tile">
+            <span class="countdown-number" id="countdownHours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-tile">
+            <span class="countdown-number" id="countdownMins">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-tile">
+            <span class="countdown-number" id="countdownSecs">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-cta-buttons">
+        <a href="#rsvp" class="btn-primary-wedding">
+          <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          Kindly Reply (RSVP)
+        </a>
+        <a href="#details" class="btn-secondary-wedding">
+          <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Celebration Itinerary
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. SECTION: OUR STORY
+       ========================================================================== -->
+  <section class="wedding-section" id="story">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          HOW OUR JOURNEY BEGAN
+        </span>
+        <h2 class="sec-title-script">Our Story</h2>
+        <p class="sec-lead">From serendipitous coffee conversations to a lifetime of adventures, hand in hand.</p>
+      </div>
+
+      <div class="story-grid">
+        
+        <!-- Polaroid Frame with Specular Tilt -->
+        <div class="story-polaroid-stack">
+          <div class="polaroid-frame tilt-card">
+            <div class="card-glare"></div>
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80" alt="Olivia and Adrian Engagement" class="polaroid-img" loading="lazy">
+            <div class="polaroid-caption">Olivia & Adrian · Sunset in Como</div>
+          </div>
+        </div>
+
+        <!-- Narrative Column -->
+        <div class="story-narrative-col">
+          <blockquote class="story-quote">
+            “What began as simple conversations soon turned into a love story we never saw coming.”
+          </blockquote>
+
+          <p class="story-body">
+            We were two people walking different paths, who found in each other a sense of ease, kindness, and belonging. What started with an impromptu conversation on a rainy autumn evening in Soho quickly became our favorite daily chapter.
+          </p>
+          <p class="story-body">
+            Over the years, we discovered our shared passion for quiet morning coffees, spontaneous travels, and cooking dinners filled with laughter. On a sun-drenched terrace overlooking Lake Como, Adrian asked, and through happy tears, Olivia whispered yes.
+          </p>
+
+          <!-- Milestone Timeline -->
+          <div class="story-milestones">
+            
+            <div class="milestone-item">
+              <div class="milestone-dot-icon">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
+                  <path d="M12 21a9 9 0 0 0 9-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 0 0 9 9z"></path>
+                </svg>
+              </div>
+              <div class="milestone-content">
+                <h4>OCTOBER 2021 · FIRST HELLO IN SOHO</h4>
+                <p>An unexpected meeting at a quaint corner bookstore cafe in Manhattan.</p>
+              </div>
+            </div>
+
+            <div class="milestone-item">
+              <div class="milestone-dot-icon">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+              </div>
+              <div class="milestone-content">
+                <h4>JUNE 2024 · THE LAKE COMO PROPOSAL</h4>
+                <p>A sunset wooden boat tour under the historic arches of Villa Balbiano.</p>
+              </div>
+            </div>
+
+            <div class="milestone-item">
+              <div class="milestone-dot-icon">
+                <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </div>
+              <div class="milestone-content">
+                <h4>AUGUST 08, 2028 · OUR WEDDING DAY</h4>
+                <p>Surrounded by our dearest family and friends as we say forever.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div>
+            <a href="#details" class="btn-primary-wedding">
+              View Wedding Details →
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. SECTION: THE DETAILS (DATE, VENUE, & DRESS CODE)
+       ========================================================================== -->
+  <section class="wedding-section alt-bg" id="details">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          CELEBRATION SCHEDULE & VENUES
+        </span>
+        <h2 class="sec-title-script">The Details</h2>
+        <p class="sec-lead">Three curated chapters of our wedding weekend in the heart of New York City.</p>
+      </div>
+
+      <!-- 3-Column Events Grid matching Storyboard -->
+      <div class="details-events-grid">
+        
+        <!-- Event 1: Welcoming Drinks -->
+        <article class="event-card tilt-card">
+          <div class="card-glare"></div>
+          <div class="event-icon-circle">
+            <!-- Champagne Coupe SVG Icon -->
+            <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
+              <path d="M7 3h10l2 6a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5L7 3z"></path>
+              <line x1="12" y1="14" x2="12" y2="21"></line>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+            </svg>
+          </div>
+          <span class="event-card-type">FRIDAY EVENING</span>
+          <h3 class="event-card-title">Welcoming Drinks</h3>
+          <div class="event-card-time">Friday, 07 August 2028 · 6:30 PM</div>
+          <p class="event-card-place">
+            The Palm Court & Rose Terrace<br>
+            Cocktails, light Italian canapés & reunion greetings.
+          </p>
+        </article>
+
+        <!-- Event 2: The Ceremony -->
+        <article class="event-card tilt-card">
+          <div class="card-glare"></div>
+          <div class="event-icon-circle">
+            <!-- Intertwined Wedding Rings SVG Icon -->
+            <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
+              <circle cx="9" cy="12" r="5"></circle>
+              <circle cx="15" cy="12" r="5"></circle>
+              <path d="M12 4l1.5 2h-3z"></path>
+            </svg>
+          </div>
+          <span class="event-card-type">THE MAIN VOWS</span>
+          <h3 class="event-card-title">The Ceremony</h3>
+          <div class="event-card-time">Saturday, 08 August 2028 · 4:00 PM</div>
+          <p class="event-card-place">
+            The Grand Floral Courtyard<br>
+            Please arrive by 3:00 PM for welcome champagne.
+          </p>
+        </article>
+
+        <!-- Event 3: The Reception -->
+        <article class="event-card tilt-card">
+          <div class="card-glare"></div>
+          <div class="event-icon-circle">
+            <!-- Fine Dining Cloche SVG Icon -->
+            <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
+              <path d="M3 17h18"></path>
+              <path d="M4 17a8 8 0 0 1 16 0"></path>
+              <circle cx="12" cy="7" r="1.5"></circle>
+              <line x1="2" y1="20" x2="22" y2="20"></line>
+            </svg>
+          </div>
+          <span class="event-card-type">DINNER & DANCE</span>
+          <h3 class="event-card-title">The Reception</h3>
+          <div class="event-card-time">Saturday, 08 August 2028 · 7:30 PM</div>
+          <p class="event-card-place">
+            The Grand Plaza Ballroom<br>
+            Four-course dinner, heartfelt toasts, and midnight dancing.
+          </p>
+        </article>
+
+      </div>
+
+      <!-- Dress Code Card with Swatches -->
+      <div class="dress-code-banner tilt-card">
+        <div class="card-glare"></div>
+        
+        <div class="dress-code-visual">
+          <span class="dress-code-tag">ATTIRE GUIDELINES</span>
+          <h3 class="dress-code-name">Garden Formal</h3>
+          <p style="font-size:0.875rem;color:var(--c-text-muted);">
+            We warmly invite our guests to embrace formal garden elegance.
+          </p>
+          
+          <!-- Palette Swatches matching Storyboard -->
+          <div class="color-swatch-row">
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #5C1D24;"></div>
+              <span class="swatch-label">Burgundy</span>
+            </div>
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #D99B9B;"></div>
+              <span class="swatch-label">Dusty Rose</span>
+            </div>
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #D4AF37;"></div>
+              <span class="swatch-label">Warm Gold</span>
+            </div>
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #F7F0E8; border:1px solid #e0d0c0;"></div>
+              <span class="swatch-label">Almond</span>
+            </div>
+            <div class="color-swatch-item">
+              <div class="swatch-circle" style="background-color: #738276;"></div>
+              <span class="swatch-label">Eucalyptus</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dress-code-guide">
+          <p>
+            Our wedding palette is inspired by antique botanical gardens, rich velvet burgundy roses, and warm champagne accents.
+          </p>
+          <ul>
+            <li><strong>For the Ladies:</strong> Floor-length evening gowns, romantic chiffon dresses, or refined formal cocktail attire in garden-inspired palettes.</li>
+            <li><strong>For the Gentlemen:</strong> Tailored dark tuxedos or formal dark suits with crisp dress shirts and ties or bowties.</li>
+            <li><strong>Footwear Tip:</strong> The ceremony takes place in the courtyard garden; block heels or heel protectors are recommended.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. SECTION: LOCATION & TRAVEL
+       ========================================================================== -->
+  <section class="wedding-section" id="location">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          VENUE & TRAVEL CONCIERGE
+        </span>
+        <h2 class="sec-title-script">Location & Travel</h2>
+        <p class="sec-lead">An iconic Manhattan landmark where timeless French Renaissance architecture meets Central Park serenity.</p>
+      </div>
+
+      <div class="location-grid">
+        
+        <!-- Architectural Venue Imagery -->
+        <div class="location-img-box tilt-card">
+          <div class="card-glare"></div>
+          <img src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=1200&q=80" alt="The Plaza Hotel New York" class="location-venue-img" loading="lazy">
+          <div class="venue-badge-overlay">
+            <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path>
+              <circle cx="12" cy="9" r="2.5"></circle>
+            </svg>
+            THE PLAZA HOTEL · CENTRAL PARK SOUTH, NEW YORK
+          </div>
+        </div>
+
+        <div class="location-info-col">
+          <h3>The Plaza Hotel</h3>
+          <span class="location-address">768 5th Ave, New York, NY 10019</span>
+          
+          <p class="location-desc">
+            The Plaza Hotel is easily reached from John F. Kennedy International Airport (JFK) and LaGuardia Airport (LGA) by taxi, rideshare, or private car service. Located directly across from Central Park, it offers guests an unforgettable weekend of romance and discovery.
+          </p>
+
+          <div class="travel-hints-list">
+            <div class="travel-hint-row">
+              <span class="travel-hint-icon">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </span>
+              <span><strong>Airports:</strong> 40 mins from JFK International · 25 mins from LGA</span>
+            </div>
+            <div class="travel-hint-row">
+              <span class="travel-hint-icon">
+                <svg class="svg-icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+              </span>
+              <span><strong>Parking:</strong> Complimentary valet parking provided at the main Fifth Avenue entrance.</span>
+            </div>
+            <div class="travel-hint-row">
+              <span class="travel-hint-icon">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </span>
+              <span><strong>Transfers:</strong> Private hotel car service can be booked via concierge.</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:16px;flex-wrap:wrap;">
+            <a href="https://maps.google.com/?q=The+Plaza+Hotel+New+York" target="_blank" rel="noopener noreferrer" class="btn-primary-wedding">
+              <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+              View on Google Maps →
+            </a>
+            <a href="#accommodation" class="btn-secondary-wedding">
+              Guest Room Block
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. SECTION: WEDDING DAY TIMELINE (SCHEDULE)
+       ========================================================================== -->
+  <section class="wedding-section alt-bg" id="schedule">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          THE RHYTHM OF OUR DAY
+        </span>
+        <h2 class="sec-title-script">Wedding Day Timeline</h2>
+        <p class="sec-lead">A step-by-step itinerary of celebrations on Saturday, August 08, 2028.</p>
+      </div>
+
+      <!-- Vertical Timeline Flow with Pure SVG Icons -->
+      <div class="timeline-vertical-flow">
+        
+        <!-- Step 1 -->
+        <div class="timeline-row-item">
+          <div class="timeline-time-badge">
+            <span class="time-clock">3:00 PM</span>
+            <span class="time-phase">GUEST ARRIVAL</span>
+          </div>
+          <div class="timeline-node-circle">
+            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
+              <path d="M7 3h10l2 6a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5L7 3z"></path>
+              <line x1="12" y1="14" x2="12" y2="21"></line>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+            </svg>
+          </div>
+          <div class="timeline-content-card tilt-card">
+            <div class="card-glare"></div>
+            <h3 class="timeline-event-name">Welcome Champagne & Strings</h3>
+            <p class="timeline-event-sub">
+              Guests are welcomed to the Rose Terrace with chilled vintage champagne and acoustic harp quartet melodies.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-row-item reverse">
+          <div class="timeline-time-badge">
+            <span class="time-clock">4:00 PM</span>
+            <span class="time-phase">THE CEREMONY</span>
+          </div>
+          <div class="timeline-node-circle">
+            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
+              <circle cx="9" cy="12" r="5"></circle>
+              <circle cx="15" cy="12" r="5"></circle>
+              <path d="M12 4l1.5 2h-3z"></path>
+            </svg>
+          </div>
+          <div class="timeline-content-card tilt-card">
+            <div class="card-glare"></div>
+            <h3 class="timeline-event-name">Exchange of Vows</h3>
+            <p class="timeline-event-sub">
+              Processional and sacred ceremonial exchange beneath the botanical floral gazebo in the courtyard.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-row-item">
+          <div class="timeline-time-badge">
+            <span class="time-clock">5:00 PM</span>
+            <span class="time-phase">COCKTAIL HOUR</span>
+          </div>
+          <div class="timeline-node-circle">
+            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
+              <polygon points="5 4 19 4 12 13 12 21 7 21 17 21"></polygon>
+            </svg>
+          </div>
+          <div class="timeline-content-card tilt-card">
+            <div class="card-glare"></div>
+            <h3 class="timeline-event-name">Aperitivo on the Terrace</h3>
+            <p class="timeline-event-sub">
+              Signature couple cocktails, Bellinis, artisanal cheeses, and Mediterranean hors d’oeuvres as the sun sets.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-row-item reverse">
+          <div class="timeline-time-badge">
+            <span class="time-clock">7:30 PM</span>
+            <span class="time-phase">RECEPTION DINNER</span>
+          </div>
+          <div class="timeline-node-circle">
+            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
+              <path d="M3 17h18"></path>
+              <path d="M4 17a8 8 0 0 1 16 0"></path>
+              <circle cx="12" cy="7" r="1.5"></circle>
+              <line x1="2" y1="20" x2="22" y2="20"></line>
+            </svg>
+          </div>
+          <div class="timeline-content-card tilt-card">
+            <div class="card-glare"></div>
+            <h3 class="timeline-event-name">Candlelit Four-Course Banquet</h3>
+            <p class="timeline-event-sub">
+              Guests are seated under crystal chandeliers in the Grand Ballroom for formal toasts and culinary artistry.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="timeline-row-item">
+          <div class="timeline-time-badge">
+            <span class="time-clock">8:30 PM</span>
+            <span class="time-phase">CAKE CUTTING</span>
+          </div>
+          <div class="timeline-node-circle">
+            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
+              <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path>
+              <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"></path>
+              <line x1="2" y1="21" x2="22" y2="21"></line>
+              <path d="M12 7V4"></path>
+              <circle cx="12" cy="3" r="1"></circle>
+            </svg>
+          </div>
+          <div class="timeline-content-card tilt-card">
+            <div class="card-glare"></div>
+            <h3 class="timeline-event-name">Cake & Champagne Tower</h3>
+            <p class="timeline-event-sub">
+              The ceremonial cutting of our five-tier vanilla bean and raspberry botanic cake, followed by dessert service.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="timeline-row-item reverse">
+          <div class="timeline-time-badge">
+            <span class="time-clock">9:00 PM</span>
+            <span class="time-phase">DANCING TILL LATE</span>
+          </div>
+          <div class="timeline-node-circle">
+            <svg class="svg-icon icon-burgundy" viewBox="0 0 24 24">
+              <path d="M9 18V5l12-2v13"></path>
+              <circle cx="6" cy="18" r="3"></circle>
+              <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+          </div>
+          <div class="timeline-content-card tilt-card">
+            <div class="card-glare"></div>
+            <h3 class="timeline-event-name">First Dance & Live Band</h3>
+            <p class="timeline-event-sub">
+              The 10-piece swing and contemporary band opens the dance floor. Midnight espresso bar and celebration!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. SECTION: ACCOMMODATION
+       ========================================================================== -->
+  <section class="wedding-section" id="accommodation">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          STAYING IN THE CITY
+        </span>
+        <h2 class="sec-title-script">Accommodation</h2>
+        <p class="sec-lead">Preferred guest rates have been arranged for our wedding party and traveling guests.</p>
+      </div>
+
+      <div class="accommodation-box tilt-card">
+        <div class="card-glare"></div>
+        
+        <div class="accom-media">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80" alt="The Plaza Hotel Suite" class="accom-img" loading="lazy">
+        </div>
+
+        <div class="accom-content">
+          <span class="accom-kicker">
+            <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            PREFERRED ROOM BLOCK
+          </span>
+          <h3 class="accom-title">The Plaza Hotel, New York</h3>
+          <p class="accom-desc">
+            A room block has been reserved at The Plaza Hotel for our guests at a preferred wedding rate. Early reservation is warmly recommended as rooms are subject to summer availability.
+          </p>
+
+          <div class="room-block-pill">
+            <div>
+              <span class="room-code-tag">WEDDING PROMO CODE:</span>
+              <div class="room-code-val">OLIVIAADRIAN2028</div>
+            </div>
+            <button type="button" class="btn-primary-wedding" style="padding:8px 18px;font-size:0.6875rem;" onclick="showWeddingToast('Promo Code OLIVIAADRIAN2028 copied to clipboard!')">
+              Copy Code
+            </button>
+          </div>
+
+          <p style="font-size:0.8125rem;color:var(--c-text-muted);margin-bottom:20px;">
+            Please reserve by <strong>June 15, 2028</strong> to secure the special courtesy discount of 25% on Deluxe Rooms and Suites.
+          </p>
+
+          <div>
+            <a href="https://www.theplazany.com" target="_blank" rel="noopener noreferrer" class="btn-primary-wedding">
+              Book Plaza Hotel Room →
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. SECTION: REGISTRY & HONEYMOON FUND
+       ========================================================================== -->
+  <section class="wedding-section alt-bg" id="registry">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          WITH HEARTFELT GRATITUDE
+        </span>
+        <h2 class="sec-title-script">Registry</h2>
+        <p class="sec-lead">
+          Your presence at our celebration is the greatest gift of all. For those who wish to give, we have arranged a honeymoon fund to help us create lasting memories together.
+        </p>
+      </div>
+
+      <div class="registry-grid">
+        
+        <article class="registry-card tilt-card">
+          <div class="card-glare"></div>
+          <div>
+            <div class="registry-icon-circle">
+              <!-- Sailboat SVG Icon -->
+              <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
+                <path d="M2 20a2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 2-1 2.4 2.4 0 0 1 2 1 2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 2-1 2.4 2.4 0 0 1 2 1 2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1"></path>
+                <path d="M4 18L12 3l8 15H4z"></path>
+              </svg>
+            </div>
+            <h3 class="registry-title">Amalfi & Como Honeymoon</h3>
+            <p class="registry-desc">
+              Help us celebrate with private wooden boat excursions along the dramatic cliffs of Positano and candlelit coastal dinners.
+            </p>
+          </div>
+          <button type="button" class="btn-primary-wedding" onclick="showWeddingToast('Thank you for blessing our Amalfi & Como Honeymoon Fund!')">
+            Contribute to Fund →
+          </button>
+        </article>
+
+        <article class="registry-card tilt-card">
+          <div class="card-glare"></div>
+          <div>
+            <div class="registry-icon-circle">
+              <!-- Home Sanctuary SVG Icon -->
+              <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3 class="registry-title">Our Future Home Sanctuary</h3>
+            <p class="registry-desc">
+              Contributions toward furnishing our first home together, creating our botanical greenhouse garden, and timeless heirloom kitchen pieces.
+            </p>
+          </div>
+          <button type="button" class="btn-primary-wedding" onclick="showWeddingToast('Thank you for blessing our Future Home Sanctuary!')">
+            Contribute to Fund →
+          </button>
+        </article>
+
+        <article class="registry-card tilt-card">
+          <div class="card-glare"></div>
+          <div>
+            <div class="registry-icon-circle">
+              <!-- Botanical Leaf SVG Icon -->
+              <svg class="svg-icon svg-icon-lg icon-burgundy" viewBox="0 0 24 24">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+              </svg>
+            </div>
+            <h3 class="registry-title">Botanical & Wildlife Gift</h3>
+            <p class="registry-desc">
+              A charitable donation in honor of our wedding day supporting the Central Park Conservancy and Wildlife Botanical Preservation.
+            </p>
+          </div>
+          <button type="button" class="btn-primary-wedding" onclick="showWeddingToast('Thank you for blessing the Botanical & Wildlife Preservation!')">
+            Contribute to Fund →
+          </button>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. SECTION: FREQUENTLY ASKED QUESTIONS (FAQ)
+       ========================================================================== -->
+  <section class="wedding-section" id="faq">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          HELPFUL DETAILS
+        </span>
+        <h2 class="sec-title-script">Frequently Asked Questions</h2>
+        <p class="sec-lead">Everything you need to know about celebrating our special day with ease.</p>
+      </div>
+
+      <div class="faq-accordion-container">
+        
+        <div class="faq-card is-active">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">IS THERE PARKING AT THE VENUE?</span>
+            <span class="faq-toggle-icon">
+              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              Yes! Complimentary white-glove valet parking is provided directly at the Fifth Avenue entrance of The Plaza Hotel for all our wedding guests throughout the ceremony and evening reception.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">CAN I BRING A PLUS-ONE?</span>
+            <span class="faq-toggle-icon">
+              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              Due to intimate historic venue capacity restrictions, we can only accommodate guests who are formally named on your invitation envelope. If your invite includes a companion, it will be noted during the digital RSVP process.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">ARE CHILDREN INVITED?</span>
+            <span class="faq-toggle-icon">
+              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              While we adore your little ones, our ceremony and reception are strictly adult-only occasions. We hope this allows all parents a relaxed evening of celebration and dancing!
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">HOW AND WHEN DO I RSVP?</span>
+            <span class="faq-toggle-icon">
+              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              Please submit your digital RSVP using the form below no later than <strong>22 July 2028</strong>. This allows us to finalize seating arrangements and dietary courses with our culinary team.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <button type="button" class="faq-trigger-btn">
+            <span class="faq-question">ARE THE CEREMONY AND RECEPTION AT THE SAME VENUE?</span>
+            <span class="faq-toggle-icon">
+              <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer-panel">
+            <p class="faq-answer-text">
+              Yes, both events take place seamlessly at The Plaza Hotel. The ceremony will be held in the outdoor floral courtyard, followed immediately by cocktail hour on the terrace and dinner in the Grand Ballroom.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       12. SECTION: KINDLY REPLY (RSVP FORM)
+       ========================================================================== -->
+  <section class="wedding-section alt-bg" id="rsvp">
+    <div class="site-container">
+      
+      <div class="rsvp-wrapper-box" id="rsvpWrapper">
+        <span class="rsvp-ribbon-tag">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          KINDLY RESPOND
+        </span>
+
+        <div class="sec-head-center" style="margin-bottom:28px;">
+          <h2 class="sec-title-script">Kindly Reply</h2>
+          <p class="sec-lead" style="font-family:var(--font-caps);letter-spacing:0.18em;font-size:0.75rem;color:var(--c-burgundy);text-transform:uppercase;">
+            WE WOULD BE DELIGHTED TO CELEBRATE WITH YOU.<br>
+            PLEASE RESPOND BY 22 JULY 2028.
+          </p>
+        </div>
+
+        <form class="rsvp-form-grid" onsubmit="handleRSVPSubmit(event)">
+          
+          <div class="rsvp-field-group">
+            <label for="rsvpName" class="rsvp-label">FULL NAME(S)</label>
+            <input type="text" id="rsvpName" class="rsvp-input" required placeholder="Lord & Lady Sterling">
+          </div>
+
+          <div class="rsvp-field-group">
+            <label for="rsvpEmail" class="rsvp-label">EMAIL ADDRESS</label>
+            <input type="email" id="rsvpEmail" class="rsvp-input" required placeholder="sterling@family.com">
+          </div>
+
+          <div class="rsvp-field-group">
+            <label class="rsvp-label">WILL YOU BE ATTENDING?</label>
+            <div class="attendance-choice-row">
+              <label class="attendance-pill-radio">
+                <input type="radio" name="attendance" value="Joyfully Accepts" checked>
+                <span class="attendance-pill-text">
+                  <svg class="svg-icon" style="width:16px;height:16px;stroke:var(--c-gold-bright);" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  Joyfully Accepts
+                </span>
+              </label>
+              <label class="attendance-pill-radio">
+                <input type="radio" name="attendance" value="Regretfully Declines">
+                <span class="attendance-pill-text">
+                  <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                  Regretfully Declines
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="rsvp-field-group">
+              <label for="rsvpGuests" class="rsvp-label">NUMBER OF GUESTS</label>
+              <select id="rsvpGuests" class="rsvp-select">
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+              </select>
+            </div>
+
+            <div class="rsvp-field-group">
+              <label for="rsvpDietary" class="rsvp-label">DIETARY REQUIREMENTS</label>
+              <select id="rsvpDietary" class="rsvp-select">
+                <option>No Restrictions</option>
+                <option>Vegetarian</option>
+                <option>Vegan</option>
+                <option>Gluten-Free</option>
+                <option>Pescatarian / Halal</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="rsvp-field-group">
+            <label for="rsvpSong" class="rsvp-label">WHAT SONG WILL GET YOU ON THE DANCE FLOOR?</label>
+            <input type="text" id="rsvpSong" class="rsvp-input" placeholder="e.g. Frank Sinatra - Fly Me to the Moon">
+          </div>
+
+          <div class="rsvp-field-group">
+            <label for="rsvpMessage" class="rsvp-label">A NOTE FOR THE COUPLE (OPTIONAL)</label>
+            <textarea id="rsvpMessage" class="rsvp-textarea" rows="3" placeholder="Share your warm wishes or memories..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-rsvp-submit">
+            <svg class="svg-icon" style="width:18px;height:18px;" viewBox="0 0 24 24">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            SUBMIT RSVP WITH LOVE →
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       13. SECTION: ROMANTIC MOMENTS GALLERY
+       ========================================================================== -->
+  <section class="wedding-section" id="gallery">
+    <div class="site-container">
+      
+      <div class="sec-head-center">
+        <span class="sec-kicker">
+          <svg class="svg-icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          CHERISHED MEMORIES
+        </span>
+        <h2 class="sec-title-script">Moments in Love</h2>
+        <p class="sec-lead">A glimpse into our sweetest memories leading up to our wedding day.</p>
+      </div>
+
+      <div class="gallery-mosaic-grid">
+        <div class="gallery-tile tall">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Romantic Arch" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">VILLA BALBIANO GARDENS</div>
+        </div>
+        <div class="gallery-tile">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Wedding Rings" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">THE RINGS</div>
+        </div>
+        <div class="gallery-tile">
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" alt="Couple in Sunset" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">LAKE COMO SUNSET</div>
+        </div>
+        <div class="gallery-tile tall">
+          <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=800&q=80" alt="Wedding Table Arrangement" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">BOTANICAL TABLES</div>
+        </div>
+        <div class="gallery-tile">
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Champagne Flutes" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">VINTAGE TOASTS</div>
+        </div>
+        <div class="gallery-tile">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Rose Petals" class="gallery-img" loading="lazy">
+          <div class="gallery-hover-tag">BURGUNDY ROSES</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       14. MASTER FOOTER
+       ========================================================================== -->
+  <footer class="wedding-footer">
+    <div class="site-container">
+      <div class="footer-monogram">O & A</div>
+      <div class="footer-names">Olivia & Adrian</div>
+      <div class="footer-tagline">AUGUST 08, 2028 · THE PLAZA HOTEL, NEW YORK</div>
+
+      <div class="footer-links-row">
+        <a href="#home">Home</a>
+        <a href="#story">Our Story</a>
+        <a href="#details">The Details</a>
+        <a href="#location">Location</a>
+        <a href="#schedule">Timeline</a>
+        <a href="#accommodation">Accommodation</a>
+        <a href="#registry">Registry</a>
+        <a href="#faq">FAQ</a>
+        <a href="#rsvp">RSVP</a>
+      </div>
+
+      <div class="footer-bottom-line">
+        © 2028 Olivia & Adrian Wedding Atelier. Made with everlasting love for our cherished family and friends.
+      </div>
+    </div>
+  </footer>
+
+  <script src="wedding-app.js"></script>
+</body>
+</html>
